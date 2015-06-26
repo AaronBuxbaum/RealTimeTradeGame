@@ -11,7 +11,7 @@ var install = require('gulp-install');
 /* Non-default tasks */
 //Clean the build files
 gulp.task('clean', function () {  
-  return gulp.src('public_html', {read: false})
+  return gulp.src(['public_html/vendors.js'], {read: false})
     .pipe(clean());
 });
 
