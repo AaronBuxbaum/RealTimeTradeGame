@@ -1,0 +1,22 @@
+{
+  "name": "RealTimeTradeGame",
+  "version": "0.0.0",
+  "homepage": "https://github.com/AaronBuxbaum/RealTimeTradeGame",
+  "authors": [
+    "Aaron Buxbaum <abuxbaum@factset.com>"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "~1.4.1",
+    "firebase": "~2.2.7",
+    "angularfire": "~1.1.2",
+    "highcharts-ng": "~0.0.8"
+  }
+}
