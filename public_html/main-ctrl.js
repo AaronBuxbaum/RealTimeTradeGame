@@ -1,13 +1,45 @@
 RealTimeTrade.controller('MainCtrl', function ($scope, $timeout) {
-    $scope.test = 'TESTING';
-    
     $scope.chartConfig = {
         options: {
             chart: {
                 zoomType: 'x'
             },
             rangeSelector: {
-                enabled: true
+                buttons: [{
+                    type: 'day',
+                    count: 1,
+                    text: 'Real Time',
+                    dataGrouping: {
+                        units: [['seconds', [1]]]
+                    }
+                }, {
+                    type: 'month',
+                    count: 1,
+                    text: 'Hour',
+                    dataGrouping: {
+                        units: [['minutes', [1]]]
+                    }
+                }, {
+                    type: 'month',
+                    count: 3,
+                    text: 'Day',
+                    dataGrouping: {
+                        units: [['day', [1]]]
+                    }
+                }, {
+                    type: 'year',
+                    count: 1,
+                    text: 'Week',
+                    dataGrouping: {
+                        units: [['week', [1]]]
+                    }
+                }, {
+                    type: 'all',
+                    text: 'Month',
+                    dataGrouping: {
+                        units: [['month', [1]]]
+                    }
+                }]
             },
             navigator: {
                 enabled: true
@@ -23,6 +55,7 @@ RealTimeTrade.controller('MainCtrl', function ($scope, $timeout) {
     $scope.chartConfig.series.push({
         id: 1,
         data: [
+            [1000000000001, 60.45],
             [1147651200000, 23.15],
             [1147737600000, 23.01],
             [1147824000000, 22.73],

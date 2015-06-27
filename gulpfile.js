@@ -16,17 +16,13 @@ gulp.task('clean', function () {
     .pipe(clean());
 });
 
-//Watch for changes
-gulp.task('watch', function () {
-  return gulp.watch('public_html/**', ['build']);
-});
-
 //Start server and watch for changes
 gulp.task('start', function () {
   nodemon({
     script: 'server.js',
+    tasks: ['build'],
     ext: 'js html',
-     env: { 'NODE_ENV': 'development' }
+    env: { 'NODE_ENV': 'development' }
   });
 });
 
@@ -50,7 +46,7 @@ gulp.task('vendorJS', function() {
       BOWER + 'lazy.js/lazy.js',
       BOWER + 'firebase/firebase-debug.js',
       BOWER + 'angularfire/dist/angularfire.js',
-      BOWER + 'highcharts-release/highcharts.src.js',
+      BOWER + 'highstock-release/highstock.src.js',
       BOWER + 'highcharts-ng/dist/highcharts-ng.js'
   ])
     .pipe(concat('vendors.js'))
@@ -75,4 +71,4 @@ gulp.task('less', function () {
 
 /* Task batchers */
 gulp.task('build', ['install', 'vendorJS', 'vendorCSS', 'less']);
-gulp.task('default', ['build']);
+gulp.task('default', ['build', 'start']);

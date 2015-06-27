@@ -20,7 +20,7 @@
     "highcharts-ng": "~0.0.8",
     "jquery": "~2.1.4",
     "lazy.js": "~0.4.0",
-    "highcharts-release": "~4.1.7",
-    "angular-material": "master"
+    "angular-material": "master",
+    "highstock-release": "~2.1.6"
   }
 }
