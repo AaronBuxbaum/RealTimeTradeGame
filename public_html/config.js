@@ -1,0 +1,1 @@
+var RealTimeTrade = angular.module('RealTimeTrade', ['highcharts-ng', 'ngMaterial']);

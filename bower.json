@@ -17,6 +17,10 @@
     "angular": "~1.4.1",
     "firebase": "~2.2.7",
     "angularfire": "~1.1.2",
-    "highcharts-ng": "~0.0.8"
+    "highcharts-ng": "~0.0.8",
+    "jquery": "~2.1.4",
+    "lazy.js": "~0.4.0",
+    "highcharts-release": "~4.1.7",
+    "angular-material": "master"
   }
 }
