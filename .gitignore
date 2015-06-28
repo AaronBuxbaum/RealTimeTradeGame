@@ -1,7 +1,5 @@
 bower_components/*
 node_modules/*
 .settings/*
-public_html/modules.js
-public_html/vendors.js
-public_html/vendors.css
+public_html/build/*
 *.css

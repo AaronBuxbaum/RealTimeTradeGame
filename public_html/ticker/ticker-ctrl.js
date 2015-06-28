@@ -1,5 +1,7 @@
-Ticker.controller('TickerCtrl', function ($scope, $timeout) {
-    $scope.chartConfig = {
+Ticker.controller('TickerCtrl', function () {
+    var ctrl = this;
+    
+    ctrl.chartConfig = {
         options: {
             chart: {
                 zoomType: 'x'
@@ -52,7 +54,7 @@ Ticker.controller('TickerCtrl', function ($scope, $timeout) {
         useHighStocks: true
     }
 
-    $scope.chartConfig.series.push({
+    ctrl.chartConfig.series.push({
         id: 1,
         data: [
             [1000000000001, 60.45],

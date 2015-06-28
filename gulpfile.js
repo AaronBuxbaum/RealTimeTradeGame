@@ -12,16 +12,13 @@ var nodemon = require('gulp-nodemon');
 /* Global variables */
 var BASE = 'public_html/';
 var BOWER = 'bower_components/';
+var BUILD = BASE + 'build/';
 
 
 /* Non-default tasks */
 //Clean the build files
 gulp.task('clean', function () {  
-  return gulp.src([
-    BASE + 'vendors.js', 
-    BASE + 'vendors.css',
-    BASE + 'modules.js'
-    ], { read: false })
+  return gulp.src( BUILD, { read: false })
     .pipe(clean());
 });
 
@@ -59,14 +56,14 @@ gulp.task('vendorJS', function() {
   ])
     .pipe(concat('vendors.js'))
     //.pipe(uglify())
-    .pipe(gulp.dest('public_html'));
+    .pipe(gulp.dest(BUILD));
 });
 
 //Concatenate vendor CSS into one file
 gulp.task('vendorCSS', function () {
   return gulp.src([BOWER + 'angular-material/angular-material.css'])
     .pipe(concat('vendors.css'))
-    .pipe(gulp.dest('public_html'));
+    .pipe(gulp.dest(BUILD));
 });
 
 //Concatenate modules into one file
@@ -78,7 +75,7 @@ gulp.task('concat-modules', function () {
       BASE + module + '/' + '*.js'
     ])
       .pipe(concat(module + '.js'))
-      .pipe(gulp.dest(BASE + module));
+      .pipe(gulp.dest(BUILD + module));
   });
 });
 
@@ -86,7 +83,7 @@ gulp.task('concat-modules', function () {
 gulp.task('less', function () {
   return gulp.src(BASE + '**/*.less')
     .pipe(less())
-    .pipe(gulp.dest('public_html'));
+    .pipe(gulp.dest(BUILD));
 });
 
 
