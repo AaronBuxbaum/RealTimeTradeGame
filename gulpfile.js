@@ -9,16 +9,25 @@ var install = require('gulp-install');
 var nodemon = require('gulp-nodemon');
 
 
+/* Global variables */
+var BASE = 'public_html/';
+var BOWER = 'bower_components/';
+
+
 /* Non-default tasks */
 //Clean the build files
 gulp.task('clean', function () {  
-  return gulp.src(['public_html/vendors.js'], {read: false})
+  return gulp.src([
+    BASE + 'vendors.js', 
+    BASE + 'vendors.css',
+    BASE + 'modules.js'
+    ], { read: false })
     .pipe(clean());
 });
 
 //Start server and watch for changes
 gulp.task('start', function () {
-  nodemon({
+  return nodemon({
     script: 'server.js',
     tasks: ['build'],
     ext: 'js html',
@@ -36,7 +45,6 @@ gulp.task('install', function () {
 
 //Concatenate vendor JS into one file
 gulp.task('vendorJS', function() {
-  var BOWER = 'bower_components/';
   return gulp.src([
       BOWER + 'angular/angular.js',
       BOWER + 'angular-animate/angular-animate.js',
@@ -56,19 +64,32 @@ gulp.task('vendorJS', function() {
 
 //Concatenate vendor CSS into one file
 gulp.task('vendorCSS', function () {
-  return gulp.src(['bower_components/angular-material/angular-material.css'])
+  return gulp.src([BOWER + 'angular-material/angular-material.css'])
     .pipe(concat('vendors.css'))
     .pipe(gulp.dest('public_html'));
 });
 
+//Concatenate modules into one file
+gulp.task('concat-modules', function () {
+  var modules = ['ticker'];
+  return modules.forEach(function (module) {
+    return gulp.src([
+      BASE + module + '/' + module + '.js',
+      BASE + module + '/' + '*.js'
+    ])
+      .pipe(concat(module + '.js'))
+      .pipe(gulp.dest(BASE + module));
+  });
+});
+
 //Run less conversion
 gulp.task('less', function () {
-  return gulp.src('public_html/**/*.less')
+  return gulp.src(BASE + '**/*.less')
     .pipe(less())
     .pipe(gulp.dest('public_html'));
 });
 
 
 /* Task batchers */
-gulp.task('build', ['install', 'vendorJS', 'vendorCSS', 'less']);
+gulp.task('build', ['install', 'vendorJS', 'vendorCSS', 'concat-modules', 'less']);
 gulp.task('default', ['build', 'start']);

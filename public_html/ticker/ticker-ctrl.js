@@ -1,4 +1,4 @@
-RealTimeTrade.controller('MainCtrl', function ($scope, $timeout) {
+Ticker.controller('TickerCtrl', function ($scope, $timeout) {
     $scope.chartConfig = {
         options: {
             chart: {

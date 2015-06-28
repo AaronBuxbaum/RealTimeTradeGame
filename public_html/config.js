@@ -1,1 +1,4 @@
-var RealTimeTrade = angular.module('RealTimeTrade', ['highcharts-ng', 'ngMaterial']);
+var RealTimeTrade = angular.module('RealTimeTrade', [
+	'ngMaterial',
+	'Ticker'
+]);
