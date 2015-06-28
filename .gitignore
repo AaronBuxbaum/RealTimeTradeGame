@@ -1,5 +1,5 @@
 bower_components/*
 node_modules/*
 .settings/*
-public_html/build/*
+build/*
 *.css

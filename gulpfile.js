@@ -10,9 +10,10 @@ var nodemon = require('gulp-nodemon');
 
 
 /* Global variables */
-var BASE = 'public_html/';
+var SRC = 'src/';
 var BOWER = 'bower_components/';
-var BUILD = BASE + 'build/';
+var BUILD = 'build/';
+var MODULES = ['ticker'];
 
 
 /* Non-default tasks */
@@ -68,25 +69,33 @@ gulp.task('vendorCSS', function () {
 
 //Concatenate modules into one file
 gulp.task('concat-modules', function () {
-  var modules = ['ticker'];
-  return modules.forEach(function (module) {
-    return gulp.src([
-      BASE + module + '/' + module + '.js',
-      BASE + module + '/' + '*.js'
+  MODULES.forEach(function (module) {
+    gulp.src([
+      SRC + module + '/' + module + '.js',
+      SRC + module + '/' + '*.js'
     ])
       .pipe(concat(module + '.js'))
+      .pipe(gulp.dest(BUILD + module));
+      
+    gulp.src([SRC + module + '/*.html'])
       .pipe(gulp.dest(BUILD + module));
   });
 });
 
+//Copy files that don't need to be compiled
+gulp.task('copy-files', function () {
+  return gulp.src([SRC + 'index.html', SRC + 'config.js'])
+    .pipe(gulp.dest(BUILD));
+});
+
 //Run less conversion
 gulp.task('less', function () {
-  return gulp.src(BASE + '**/*.less')
+  return gulp.src(SRC + '**/*.less')
     .pipe(less())
     .pipe(gulp.dest(BUILD));
 });
 
 
 /* Task batchers */
-gulp.task('build', ['install', 'vendorJS', 'vendorCSS', 'concat-modules', 'less']);
+gulp.task('build', ['install', 'vendorJS', 'vendorCSS', 'concat-modules', 'copy-files', 'less']);
 gulp.task('default', ['build', 'start']);
