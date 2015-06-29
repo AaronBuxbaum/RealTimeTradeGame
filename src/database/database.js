@@ -1,0 +1,1 @@
+var Database = angular.module('Database', [ 'firebase']);

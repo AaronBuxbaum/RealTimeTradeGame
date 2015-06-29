@@ -13,7 +13,7 @@ var nodemon = require('gulp-nodemon');
 var SRC = 'src/';
 var BOWER = 'bower_components/';
 var BUILD = 'build/';
-var MODULES = ['ticker'];
+var MODULES = ['ticker', 'database'];
 
 
 /* Non-default tasks */
