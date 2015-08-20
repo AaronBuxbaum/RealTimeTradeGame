@@ -6,7 +6,7 @@ var clean = require('gulp-clean');
 var concat = require('gulp-concat');
 var uglify = require('gulp-uglify');
 var install = require('gulp-install');
-var nodemon = require('gulp-nodemon');
+var server = require('gulp-express');
 
 
 /* Global variables */
@@ -18,19 +18,13 @@ var MODULES = ['ticker', 'database'];
 
 /* Non-default tasks */
 //Clean the build files
-gulp.task('clean', function () {  
-  return gulp.src( BUILD, { read: false })
+gulp.task('clean', function () {
+  return gulp.src(BUILD, { read: false })
     .pipe(clean());
 });
 
-//Start server and watch for changes
-gulp.task('start', function () {
-  return nodemon({
-    script: 'server.js',
-    tasks: ['build'],
-    ext: 'js html',
-    env: { 'NODE_ENV': 'development' }
-  });
+gulp.task('server', function () {
+  server.run(['server.js']);
 });
 
 
@@ -42,21 +36,21 @@ gulp.task('install', function () {
 });
 
 //Concatenate vendor JS into one file
-gulp.task('vendorJS', function() {
+gulp.task('vendorJS', function () {
   return gulp.src([
-      BOWER + 'angular/angular.js',
-      BOWER + 'angular-animate/angular-animate.js',
-      BOWER + 'angular-aria/angular-aria.js',
-      BOWER + 'angular-material/angular-material.js',
-      BOWER + 'jquery/dist/jquery.js',
-      BOWER + 'lazy.js/lazy.js',
-      BOWER + 'firebase/firebase-debug.js',
-      BOWER + 'angularfire/dist/angularfire.js',
-      BOWER + 'highstock-release/highstock.src.js',
-      BOWER + 'highcharts-ng/dist/highcharts-ng.js'
+    BOWER + 'angular/angular.js',
+    BOWER + 'angular-animate/angular-animate.js',
+    BOWER + 'angular-aria/angular-aria.js',
+    BOWER + 'angular-material/angular-material.js',
+    BOWER + 'jquery/dist/jquery.js',
+    BOWER + 'lodash/lodash.js',
+    BOWER + 'firebase/firebase-debug.js',
+    BOWER + 'angularfire/dist/angularfire.js',
+    BOWER + 'highstock-release/highstock.src.js',
+    BOWER + 'highcharts-ng/dist/highcharts-ng.js'
   ])
     .pipe(concat('vendors.js'))
-    //.pipe(uglify())
+  //.pipe(uglify())
     .pipe(gulp.dest(BUILD));
 });
 
@@ -76,7 +70,7 @@ gulp.task('concat-modules', function () {
     ])
       .pipe(concat(module + '.js'))
       .pipe(gulp.dest(BUILD + module));
-      
+
     gulp.src([SRC + module + '/*.html'])
       .pipe(gulp.dest(BUILD + module));
   });
@@ -97,5 +91,6 @@ gulp.task('less', function () {
 
 
 /* Task batchers */
-gulp.task('build', ['install', 'vendorJS', 'vendorCSS', 'concat-modules', 'copy-files', 'less']);
-gulp.task('default', ['build', 'start']);
+//gulp.task('build', ['install', 'vendorJS', 'vendorCSS', 'concat-modules', 'copy-files', 'less']);
+gulp.task('build', ['vendorJS', 'vendorCSS']);
+gulp.task('default', ['start']);

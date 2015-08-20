@@ -1,49 +1,13 @@
-Ticker.controller('TickerCtrl', function ($scope, DatabaseService) {
+Ticker.controller('TickerCtrl', function ($interval, DatabaseService) {
     var ctrl = this;
-    DatabaseService.getSyncArray()[0].data = 
-    ctrl.league = DatabaseService.getSyncArray();
-    ctrl.player1 = ctrl.league[0].data;
-        /*
-        {
-        id: 1,
-        data: [
-            [1000000000001, 60.45],
-            [1147651200000, 23.15],
-            [1147737600000, 23.01],
-            [1147824000000, 22.73],
-            [1147910400000, 22.83],
-            [1147996800000, 22.56],
-            [1148256000000, 22.88],
-            [1148342400000, 22.79],
-            [1148428800000, 23.50],
-            [1148515200000, 23.74],
-            [1148601600000, 23.72],
-            [1148947200000, 23.15],
-            [1149033600000, 22.65]
-        ]
-    },   {
-        id: 2,
-        data: [
-            [1147651200000, 25.15],
-            [1147737600000, 25.01],
-            [1147824000000, 25.73],
-            [1147910400000, 25.83],
-            [1147996800000, 25.56],
-            [1148256000000, 25.88],
-            [1148342400000, 25.79],
-            [1148428800000, 25.50],
-            [1148515200000, 26.74],
-            [1148601600000, 26.72],
-            [1148947200000, 26.15],
-            [1149033600000, 26.65]
-        ]
-    }
-    */
     
+    //Add a point
     ctrl.addPoint = function () {
-      ctrl.league[0].data.push( [ Date.now(), Math.random()*100 ] );
-      ctrl.league.$save(ctrl.league[0].data);
+        DatabaseService.addExamplePoints();
     };
+    
+    //Run the add point function every second
+    $interval(ctrl.addPoint, 1000, 25);
     
     //Chart configuration
     ctrl.chartConfig = {
@@ -52,49 +16,51 @@ Ticker.controller('TickerCtrl', function ($scope, DatabaseService) {
                 zoomType: 'x'
             },
             rangeSelector: {
-                buttons: [{
-                    type: 'day',
-                    count: 1,
-                    text: 'Real Time',
-                    dataGrouping: {
-                        units: [['seconds', [1]]]
+                buttons: [
+                    {
+                        type: 'day',
+                        count: 1,
+                        text: 'Real Time',
+                        dataGrouping: {
+                            units: [['seconds', [1]]]
+                        }
+                    }, {
+                        type: 'month',
+                        count: 1,
+                        text: 'Hour',
+                        dataGrouping: {
+                            units: [['minutes', [1]]]
+                        }
+                    }, {
+                        type: 'month',
+                        count: 3,
+                        text: 'Day',
+                        dataGrouping: {
+                            units: [['day', [1]]]
+                        }
+                    }, {
+                        type: 'year',
+                        count: 1,
+                        text: 'Week',
+                        dataGrouping: {
+                            units: [['week', [1]]]
+                        }
+                    }, {
+                        type: 'all',
+                        text: 'Month',
+                        dataGrouping: {
+                            units: [['month', [1]]]
+                        }
                     }
-                }, {
-                    type: 'month',
-                    count: 1,
-                    text: 'Hour',
-                    dataGrouping: {
-                        units: [['minutes', [1]]]
-                    }
-                }, {
-                    type: 'month',
-                    count: 3,
-                    text: 'Day',
-                    dataGrouping: {
-                        units: [['day', [1]]]
-                    }
-                }, {
-                    type: 'year',
-                    count: 1,
-                    text: 'Week',
-                    dataGrouping: {
-                        units: [['week', [1]]]
-                    }
-                }, {
-                    type: 'all',
-                    text: 'Month',
-                    dataGrouping: {
-                        units: [['month', [1]]]
-                    }
-                }]
+                ]
             },
             navigator: {
                 enabled: true
             }
         },
-        series: ctrl.league,
+        series: ctrl.players,
         title: {
-            text: 'Title Goes Here'
+            text: ctrl.leagueName
         },
         useHighStocks: true
     };
