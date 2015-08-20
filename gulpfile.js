@@ -93,4 +93,4 @@ gulp.task('less', function () {
 /* Task batchers */
 //gulp.task('build', ['install', 'vendorJS', 'vendorCSS', 'concat-modules', 'copy-files', 'less']);
 gulp.task('build', ['vendorJS', 'vendorCSS']);
-gulp.task('default', ['start']);
+gulp.task('default', ['server']);

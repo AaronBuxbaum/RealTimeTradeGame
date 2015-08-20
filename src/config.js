@@ -1,4 +1,5 @@
 var RealTimeTrade = angular.module('RealTimeTrade', [
 	'ngMaterial',
-	'Ticker'
+	'Ticker',
+	'StockSelection'
 ]);

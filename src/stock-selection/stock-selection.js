@@ -1,0 +1,1 @@
+var StockSelection = angular.module('StockSelection', []);
