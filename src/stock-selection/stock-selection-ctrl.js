@@ -3,11 +3,6 @@ StockSelection.controller('StockSelectionCtrl', function (DatabaseService) {
 
     ctrl.stocks = [
         {
-            ticker: 'F',
-            percent: 8,
-            realName: 'Ford'
-        },
-        {
             ticker: 'FDS',
             percent: 32,
             realName: 'FactSet'
@@ -21,19 +16,16 @@ StockSelection.controller('StockSelectionCtrl', function (DatabaseService) {
             ticker: 'FB',
             percent: 2,
             realName: 'Facebook'
-        },
-        {
-            ticker: 'USD',
-            percent: 8,
-            realName: 'U.S. Dollar'
         }
     ];
 
-    ctrl.calculateMax = function () {
+    ctrl.calculateTotal = function () {
         return _.reduce(ctrl.stocks, function (total, value, key) {
             return total + value.percent;
         }, 0);
     };
-
-    ctrl.max = ctrl.calculateMax();
+    
+    ctrl.getMax = function (curr) {
+        return 100 - ctrl.calculateTotal() + curr;
+    };
 });

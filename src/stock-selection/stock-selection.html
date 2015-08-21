@@ -1,7 +1,7 @@
 <div>
-	<!-- this needs to be written. max will be the total of all stocks sliders - 100, for USD max = min. -->
 	<div ng-repeat="stock in ctrl.stocks">
-		{{stock.ticker}}: <md-slider ng-model="stock.percent" max="ctrl.max"></md-slider>
+		{{stock.ticker}}: <md-slider ng-model="stock.percent" ng-attr-max="{{ctrl.getMax(stock.percent) || 100}}"></md-slider>
 	</div>
-	USD: <md-slider ng-model="ctrl.stocks[ctrl.stocks.length]" max="ctrl.findMax" min="ctrl.findMax()" ng-disabled="true"></md-slider>
+	<!-- max = min -->
+	<!--USD: <md-slider ng-model="ctrl.stocks[ctrl.stocks.length]" max="ctrl.findMax" min="ctrl.findMax()" ng-disabled="true"></md-slider>-->
 </div>
