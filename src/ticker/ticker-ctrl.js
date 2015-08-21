@@ -1,3 +1,5 @@
+/* global Ticker */
+
 Ticker.controller('TickerCtrl', function ($interval, DatabaseService) {
     var ctrl = this;
     
