@@ -59,8 +59,7 @@ gulp.task('vendorJS', function () {
 gulp.task('vendorCSS', function () {
   return gulp.src([
     BOWER + 'angular-material/angular-material.css',
-    BOWER + 'angular-material-icons/angular-material-icons.css',
-    BOWER + 'font-awesome/css/font-awesome.css'
+    BOWER + 'angular-material-icons/angular-material-icons.css'
   ])
     .pipe(concat('vendors.css'))
     .pipe(gulp.dest(BUILD));
