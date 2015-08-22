@@ -1,0 +1,1 @@
+var StockAddNew = angular.module('StockAddNew', ['ngMaterial', 'Database']);

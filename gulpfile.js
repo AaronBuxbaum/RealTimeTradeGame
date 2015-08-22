@@ -42,6 +42,7 @@ gulp.task('vendorJS', function () {
     BOWER + 'angular-animate/angular-animate.js',
     BOWER + 'angular-aria/angular-aria.js',
     BOWER + 'angular-material/angular-material.js',
+    BOWER + 'angular-material-icons/angular-material-icons.js',
     BOWER + 'jquery/dist/jquery.js',
     BOWER + 'lodash/lodash.js',
     BOWER + 'firebase/firebase-debug.js',
@@ -56,7 +57,11 @@ gulp.task('vendorJS', function () {
 
 //Concatenate vendor CSS into one file
 gulp.task('vendorCSS', function () {
-  return gulp.src([BOWER + 'angular-material/angular-material.css'])
+  return gulp.src([
+    BOWER + 'angular-material/angular-material.css',
+    BOWER + 'angular-material-icons/angular-material-icons.css',
+    BOWER + 'font-awesome/css/font-awesome.css'
+  ])
     .pipe(concat('vendors.css'))
     .pipe(gulp.dest(BUILD));
 });

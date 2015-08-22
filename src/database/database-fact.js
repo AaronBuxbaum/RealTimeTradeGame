@@ -1,6 +1,7 @@
 Database.factory('DatabaseService', function ($firebaseArray, $firebaseObject) {
 	var svc = this;
 	
+	/*
 	//Get firebase reference
 	svc.ref = new Firebase("https://realtimetrade.firebaseio.com/league");
 	
@@ -20,7 +21,7 @@ Database.factory('DatabaseService', function ($firebaseArray, $firebaseObject) {
 
 
 	//Example data
-	/*[
+	[
 		{
 			id: 1,
 			data: [
@@ -56,6 +57,16 @@ Database.factory('DatabaseService', function ($firebaseArray, $firebaseObject) {
 			]
 		}
 	];*/
+	
+	//TODO: use a set instead so there aren't duplicates
+	svc.exampleStocks = [];
+	svc.exampleAddStock = function (stock) {
+        stock.percentage = 0;
+        svc.exampleStocks.push(stock);
+	};
+	svc.exampleDeleteStock = function (index) {
+		svc.exampleStocks.splice(index, 1);
+	};
 
 	svc.generateExampleEmptyArray = function (numPlayers) {
 		svc.example = _.times(numPlayers, function (n) {

@@ -1,0 +1,15 @@
+<div layout>
+	<!-- Name -->
+	<div flex="20" layout layout-align="center center">
+		<span class="md-body-1">{{ctrl.stock.name + ' (' + ctrl.stock.symbol + ')'}}</span>
+	</div>
+
+	<!-- Slider -->
+	<md-slider flex ng-model="ctrl.stock.percentage"></md-slider>
+
+	<!-- Percentage -->
+	<div flex="10" layout layout-align="center center">
+		{{ ctrl.stock.percentage | number:0 }}%
+		<div ng-transclude style="margin-left: 15px;"></div>
+	</div>
+</div>

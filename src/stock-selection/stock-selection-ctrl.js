@@ -1,56 +1,25 @@
-StockSelection.controller('StockSelectionCtrl', function ($http, DatabaseService) {
+StockSelection.controller('StockSelectionCtrl', function (DatabaseService) {
     var ctrl = this;
 
-    ctrl.queryStocks = function (query) {
-        var YAHOO = {
-            Finance: {
-                SymbolSuggest: {
-                    ssCallback: function (data) {
-                        console.log(data);
-                    }
-                }
-            }
-        };
+    ctrl.stocks = DatabaseService.exampleStocks;
 
-        return $http({
-            method: 'JSONP',
-            url: 'http://d.yimg.com/autoc.finance.yahoo.com/autoc',
-            params: {
-                query: query,
-                callback: 'YAHOO.Finance.SymbolSuggest.ssCallback'
-            }
-        });
+    ctrl.USD = {
+        name: 'U.S. Dollar',
+        symbol: 'USD',
+        percentage: 0
+    };
+
+    ctrl.deleteStock = function (stock) {
+        DatabaseService.exampleDeleteStock(stock);
     };
 
     ctrl.calculateTotal = function () {
         return _.reduce(ctrl.stocks, function (total, value, key) {
-            return total + value.percent;
+            return total + value.percentage;
         }, 0);
     };
 
-    ctrl.getMax = function (curr) {
-        return 100 - ctrl.calculateTotal() + curr;
+    ctrl.totalPercentage = function (stock) {
+        return 100 - ctrl.calculateTotal() + stock.percentage;
     };
-
-    ctrl.tickerToUpperCase = function () {
-        ctrl.newStock.ticker = ctrl.newStock.ticker.toUpperCase();
-    };
-
-    ctrl.stocks = [
-        {
-            ticker: 'FDS',
-            percent: 32,
-            realName: 'FactSet'
-        },
-        {
-            ticker: 'AAPL',
-            percent: 50,
-            realName: 'Apple'
-        },
-        {
-            ticker: 'FB',
-            percent: 2,
-            realName: 'Facebook'
-        }
-    ];
 });

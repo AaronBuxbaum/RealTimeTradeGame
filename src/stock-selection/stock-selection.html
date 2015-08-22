@@ -1,43 +1,15 @@
 <md-content>
+	<!-- Sliders -->
+	<!-- TODO: limit the total of every slider to 100 -->
 	<div style="margin-bottom: 25px;">
-		<stock-slider ng-repeat="stock in ctrl.stocks" stock="stock" get-max="ctrl.getMax"></stock-slider>
+		<stock-slider ng-repeat="stock in ctrl.stocks" stock="stock">
+			<ng-md-icon icon="delete" style="fill: red; cursor: pointer;" ng-click="ctrl.deleteStock($index)"></ng-md-icon>
+		</stock-slider>
+		<stock-slider stock="ctrl.USD"></stock-slider>
 	</div>
 
+	<!-- Add button -->
 	<div style="margin-bottom: 25px;">
-		<md-button ng-if="!ctrl.newStock.show" class="md-raised md-primary" ng-click="ctrl.newStock.show = true">
-			Add Stock
-		</md-button>
-
-		<div ng-if="ctrl.newStock.show" layout="row">
-			<md-autocomplete 
-				md-selected-item="ctrl.newStock.stock"
-				md-search-text="ctrl.searchText"
-				md-items="item in ctrl.queryStocks(ctrl.searchText)"
-				md-items-text="item.name"
-				md-min-length="1"
-				placeholder="Stock">
-				<md-item-template>
-          			<span md-highlight-text="ctrl.searchText" md-highlight-flags="^i">{{item.name}}</span>
-        		</md-item-template>
-        		<md-not-found>
-          			No matches found for "{{ctrl.searchText}}".
-        		</md-not-found>
-			</md-autocomplete>
-			
-			<!--
-			<md-input-container flex>
-				<label>Stock Ticker</label>
-				<input type="text" ng-model="ctrl.newStock.ticker" ng-change="ctrl.tickerToUpperCase()" maxlength="5">
-			</md-input-container>
-			-->
-			<md-button class="md-raised md-primary" ng-click="ctrl.addStock(ctrl.newStock)">Confirm</md-button>
-			<md-button class="md-raised md-warn" ng-click="ctrl.newStock = null">Cancel</md-button>
-		</div>
+		<stock-add-new></stock-add-new>
 	</div>
-
-	<md-toolbar class="md-warn" ng-if="ctrl.calculateTotal() < 100">
-		<h2 class="md-toolbar-tools">
-        	<span>U.S. Dollar: {{100 - ctrl.calculateTotal()}}</span>
-      	</h2>
-	</md-toolbar>
 </md-content>

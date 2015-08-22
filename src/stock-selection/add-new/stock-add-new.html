@@ -1,0 +1,21 @@
+<div>
+	<md-button ng-if="!ctrl.newStock.show" class="md-raised md-primary" ng-click="ctrl.newStock.show = true">
+		Add Stock
+	</md-button>
+
+	<div ng-if="ctrl.newStock.show" layout="row">
+		<md-autocomplete md-selected-item="ctrl.newStock.stock" md-search-text="ctrl.newStock.searchText" md-items="item in ctrl.getStocks(ctrl.newStock.searchText)"
+		md-item-text="item.name" md-autoselect="true" md-delay="100" placeholder="Stock">
+			<md-item-template>
+				<span md-highlight-text="ctrl.newStock.searchText" md-highlight-flags="i">
+						  {{item.name + ' (' + item.symbol + ')'}}
+					</span>
+			</md-item-template>
+			<md-not-found>
+				No matches found for "{{ctrl.newStock.searchText}}".
+			</md-not-found>
+		</md-autocomplete>
+		<md-button class="md-raised md-primary" ng-click="ctrl.addStock(ctrl.newStock.stock)">Confirm</md-button>
+		<md-button class="md-raised md-warn" ng-click="ctrl.newStock = null">Cancel</md-button>
+	</div>
+</div>

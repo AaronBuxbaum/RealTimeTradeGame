@@ -1,0 +1,1 @@
+var StockSlider = angular.module('StockSlider', ['Database', 'ngMaterial']);
