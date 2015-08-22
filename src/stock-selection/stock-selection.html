@@ -1,7 +1,43 @@
-<div>
-	<div ng-repeat="stock in ctrl.stocks">
-		{{stock.ticker}}: <md-slider ng-model="stock.percent" ng-attr-max="{{ctrl.getMax(stock.percent) || 100}}"></md-slider>
+<md-content>
+	<div style="margin-bottom: 25px;">
+		<stock-slider ng-repeat="stock in ctrl.stocks" stock="stock" get-max="ctrl.getMax"></stock-slider>
 	</div>
-	<!-- max = min -->
-	<!--USD: <md-slider ng-model="ctrl.stocks[ctrl.stocks.length]" max="ctrl.findMax" min="ctrl.findMax()" ng-disabled="true"></md-slider>-->
-</div>
+
+	<div style="margin-bottom: 25px;">
+		<md-button ng-if="!ctrl.newStock.show" class="md-raised md-primary" ng-click="ctrl.newStock.show = true">
+			Add Stock
+		</md-button>
+
+		<div ng-if="ctrl.newStock.show" layout="row">
+			<md-autocomplete 
+				md-selected-item="ctrl.newStock.stock"
+				md-search-text="ctrl.searchText"
+				md-items="item in ctrl.queryStocks(ctrl.searchText)"
+				md-items-text="item.name"
+				md-min-length="1"
+				placeholder="Stock">
+				<md-item-template>
+          			<span md-highlight-text="ctrl.searchText" md-highlight-flags="^i">{{item.name}}</span>
+        		</md-item-template>
+        		<md-not-found>
+          			No matches found for "{{ctrl.searchText}}".
+        		</md-not-found>
+			</md-autocomplete>
+			
+			<!--
+			<md-input-container flex>
+				<label>Stock Ticker</label>
+				<input type="text" ng-model="ctrl.newStock.ticker" ng-change="ctrl.tickerToUpperCase()" maxlength="5">
+			</md-input-container>
+			-->
+			<md-button class="md-raised md-primary" ng-click="ctrl.addStock(ctrl.newStock)">Confirm</md-button>
+			<md-button class="md-raised md-warn" ng-click="ctrl.newStock = null">Cancel</md-button>
+		</div>
+	</div>
+
+	<md-toolbar class="md-warn" ng-if="ctrl.calculateTotal() < 100">
+		<h2 class="md-toolbar-tools">
+        	<span>U.S. Dollar: {{100 - ctrl.calculateTotal()}}</span>
+      	</h2>
+	</md-toolbar>
+</md-content>

@@ -1,5 +1,40 @@
-StockSelection.controller('StockSelectionCtrl', function (DatabaseService) {
+StockSelection.controller('StockSelectionCtrl', function ($http, DatabaseService) {
     var ctrl = this;
+
+    ctrl.queryStocks = function (query) {
+        var YAHOO = {
+            Finance: {
+                SymbolSuggest: {
+                    ssCallback: function (data) {
+                        console.log(data);
+                    }
+                }
+            }
+        };
+
+        return $http({
+            method: 'JSONP',
+            url: 'http://d.yimg.com/autoc.finance.yahoo.com/autoc',
+            params: {
+                query: query,
+                callback: 'YAHOO.Finance.SymbolSuggest.ssCallback'
+            }
+        });
+    };
+
+    ctrl.calculateTotal = function () {
+        return _.reduce(ctrl.stocks, function (total, value, key) {
+            return total + value.percent;
+        }, 0);
+    };
+
+    ctrl.getMax = function (curr) {
+        return 100 - ctrl.calculateTotal() + curr;
+    };
+
+    ctrl.tickerToUpperCase = function () {
+        ctrl.newStock.ticker = ctrl.newStock.ticker.toUpperCase();
+    };
 
     ctrl.stocks = [
         {
@@ -18,14 +53,4 @@ StockSelection.controller('StockSelectionCtrl', function (DatabaseService) {
             realName: 'Facebook'
         }
     ];
-
-    ctrl.calculateTotal = function () {
-        return _.reduce(ctrl.stocks, function (total, value, key) {
-            return total + value.percent;
-        }, 0);
-    };
-    
-    ctrl.getMax = function (curr) {
-        return 100 - ctrl.calculateTotal() + curr;
-    };
 });
