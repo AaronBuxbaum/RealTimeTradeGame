@@ -1,3 +1,3 @@
-StockSlider.controller('StockSliderCtrl', function (DatabaseService) {
+StockSlider.controller('StockSliderCtrl', function () {
     var ctrl = this;
 });
