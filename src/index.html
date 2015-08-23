@@ -35,7 +35,7 @@
 
 <body ng-app="RealTimeTrade">
 	<div ng-controller="MainCtrl as ctrl">
-		<md-tabs>
+		<md-tabs md-dynamic-height="true" md-swipe-content="true">
 			<md-tab label="Ticker">
 				<ticker league-name="{{ctrl.leagueName}}" players="ctrl.players"></ticker>
 			</md-tab>
