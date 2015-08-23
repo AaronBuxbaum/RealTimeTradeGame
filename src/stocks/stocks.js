@@ -1,4 +1,4 @@
-var StockSelection = angular.module('StockSelection', [
+var Stocks = angular.module('Stocks', [
 	'Database',
 	'ngMdIcons',
 	'StockAddNew',

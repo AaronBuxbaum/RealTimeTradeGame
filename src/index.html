@@ -21,22 +21,28 @@
 <script src="ticker/ticker-ctrl.js"></script>
 <script src="ticker/ticker-drct.js"></script>
 
-<script src="stock-selection/stock-selection.js"></script>
-<script src="stock-selection/stock-selection-ctrl.js"></script>
-<script src="stock-selection/stock-selection-drct.js"></script>
+<script src="stocks/stocks.js"></script>
+<script src="stocks/stocks-ctrl.js"></script>
+<script src="stocks/stocks-drct.js"></script>
 
-<script src="stock-selection/add-new/stock-add-new.js"></script>
-<script src="stock-selection/add-new/stock-add-new-ctrl.js"></script>
-<script src="stock-selection/add-new/stock-add-new-drct.js"></script>
+<script src="stocks/add-new/stock-add-new.js"></script>
+<script src="stocks/add-new/stock-add-new-ctrl.js"></script>
+<script src="stocks/add-new/stock-add-new-drct.js"></script>
 
-<script src="stock-selection/slider/stock-slider.js"></script>
-<script src="stock-selection/slider/stock-slider-ctrl.js"></script>
-<script src="stock-selection/slider/stock-slider-drct.js"></script>
+<script src="stocks/slider/stock-slider.js"></script>
+<script src="stocks/slider/stock-slider-ctrl.js"></script>
+<script src="stocks/slider/stock-slider-drct.js"></script>
 
 <body ng-app="RealTimeTrade">
 	<div ng-controller="MainCtrl as ctrl">
-		<stock-selection></stock-selection>
-		<ticker league-name="{{ctrl.leagueName}}" players="ctrl.players"></ticker>
+		<md-tabs>
+			<md-tab label="Ticker">
+				<ticker league-name="{{ctrl.leagueName}}" players="ctrl.players"></ticker>
+			</md-tab>
+			<md-tab label="Stocks">
+				<stocks></stocks>
+			</md-tab>
+		</md-tabs>
 	</div>
 </body>
 

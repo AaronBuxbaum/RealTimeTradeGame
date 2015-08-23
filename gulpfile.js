@@ -13,7 +13,7 @@ var server = require('gulp-express');
 var SRC = 'src/';
 var BOWER = 'bower_components/';
 var BUILD = 'build/';
-var MODULES = ['ticker', 'database'];
+var MODULES = ['ticker', 'database', 'stocks'];
 
 
 /* Non-default tasks */

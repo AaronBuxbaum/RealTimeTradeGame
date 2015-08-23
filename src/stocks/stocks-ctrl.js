@@ -1,4 +1,4 @@
-StockSelection.controller('StockSelectionCtrl', function (DatabaseService) {
+Stocks.controller('StocksCtrl', function (DatabaseService) {
     var ctrl = this;
 
     ctrl.stocks = DatabaseService.exampleStocks;
