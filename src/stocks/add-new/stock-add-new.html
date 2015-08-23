@@ -14,13 +14,20 @@
 			<md-item-template>
 				<span class="item-title">
 					<ng-md-icon icon="event_note"></ng-md-icon>
-            		<span md-highlight-text="ctrl.newStock.searchText" md-highlight-flags="i">{{item.name}}</span>
+            		<span md-highlight-text="ctrl.newStock.searchText" md-highlight-flags="i">{{::item.name}}</span>
+				</span>
+				<span class="item-metadata" ng-if="::item.value">
+					Value: <span class="item-metastat">{{::item.value}}</span>
+				<span ng-if="::(item.changePercentage !== '0.00')" ng-style="::{color: ctrl.getChangePercentageColor(item.changePercentage)}">({{::item.changePercentage}}%)</span>
 				</span>
 				<span class="item-metadata">
-					Symbol: <span md-highlight-text="ctrl.newStock.searchText" md-highlight-flags="i" class="item-metastat">{{item.symbol}}</span>
+					Symbol: <span md-highlight-text="ctrl.newStock.searchText" md-highlight-flags="i" class="item-metastat">{{::item.symbol}}</span>
 				</span>
-				<span class="item-metadata">Type: {{item.typeDisp}}</span>
+				<span class="item-metadata">
+					Type: {{::item.typeDisp}}
+				</span>
 			</md-item-template>
+
 			<md-not-found>
 				No matches found for "{{ctrl.newStock.searchText}}".
 			</md-not-found>

@@ -58,12 +58,14 @@ Database.factory('DatabaseService', function ($firebaseArray, $firebaseObject) {
 		}
 	];*/
 	
-	//TODO: use a set instead so there aren't duplicates
+	//TODO: use a set instead to ensure unique elements in O(1)
 	svc.exampleStocks = [];
+	
 	svc.exampleAddStock = function (stock) {
         stock.percentage = 0;
         svc.exampleStocks.push(stock);
 	};
+	
 	svc.exampleDeleteStock = function (index) {
 		svc.exampleStocks.splice(index, 1);
 	};

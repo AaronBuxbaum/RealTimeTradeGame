@@ -1,5 +1,3 @@
-/* global Ticker */
-
 Ticker.controller('TickerCtrl', function ($interval, DatabaseService) {
     var ctrl = this;
     
@@ -9,7 +7,7 @@ Ticker.controller('TickerCtrl', function ($interval, DatabaseService) {
     };
     
     //Run the add point function every second
-    $interval(ctrl.addPoint, 1000, 25);
+    $interval(ctrl.addPoint, 2500, 25);
     
     //Chart configuration
     ctrl.chartConfig = {

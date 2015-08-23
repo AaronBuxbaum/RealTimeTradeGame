@@ -19,6 +19,17 @@ StockAddNew.controller('StockAddNewCtrl', function ($q, $http, DatabaseService) 
             Finance: {
                 SymbolSuggest: {
                     ssCallback: function (data) {
+                        if (data.ResultSet.Result.length > 0) {
+                            ctrl.getSymbolValues(_.pluck(data.ResultSet.Result, 'symbol')).then(function (symbols) {
+                                _.times(symbols.data.length, function (index) {
+                                    if (symbols.data[index]) {
+                                        data.ResultSet.Result[index].value = symbols.data[index].l;
+                                        data.ResultSet.Result[index].changePercentage = symbols.data[index].cp;
+                                    }
+                                });
+                            });
+                        }
+
                         deferred.resolve(data.ResultSet.Result);
                     }
                 }
@@ -32,8 +43,27 @@ StockAddNew.controller('StockAddNewCtrl', function ($q, $http, DatabaseService) 
                 query: query,
                 callback: 'YAHOO.Finance.SymbolSuggest.ssCallback'
             }
-        }).then(YAHOO.Finance.SymbolSuggest.ssCallback);
+        });
 
         return deferred.promise;
     };
+
+    ctrl.getSymbolValues = function (symbols) {
+        return $http({
+            method: 'JSONP',
+            url: 'http://finance.google.com/finance/info',
+            params: {
+                q: symbols.join(','),
+                callback: 'JSON_CALLBACK'
+            }
+        });
+    };
+
+    ctrl.getChangePercentageColor = function (change) {
+        if (!change) {
+            return;
+        }
+
+        return (change.charAt(0) === '-') ? 'red' : 'green';
+    }
 });
