@@ -1,15 +1,17 @@
-<md-content>
+<md-content layout-padding>
 	<!-- Sliders -->
 	<!-- TODO: limit the total of every slider to 100 -->
-	<div style="margin-bottom: 25px;">
+	<md-content layout-padding>
 		<stock-slider ng-repeat="stock in ctrl.stocks" stock="stock">
 			<ng-md-icon icon="delete" style="fill: red; cursor: pointer;" ng-click="ctrl.deleteStock($index)"></ng-md-icon>
 		</stock-slider>
 		<stock-slider stock="ctrl.USD"></stock-slider>
-	</div>
+	</md-content>
+	
+	<md-divider></md-divider>
 
 	<!-- Add button -->
-	<div style="margin-bottom: 25px;">
+	<md-content layout-padding>
 		<stock-add-new></stock-add-new>
-	</div>
+	</md-content>
 </md-content>

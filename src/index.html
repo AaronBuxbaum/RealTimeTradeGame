@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html>
-<link rel="stylesheet" href="../build/vendors.css"></link>
+<link rel="stylesheet" href="../build/vendors.css">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=RobotoDraft:300,400,500,700,400italic">
 
 <script src="../build/vendors.js"></script>
@@ -36,11 +36,17 @@
 <body ng-app="RealTimeTrade">
 	<div ng-controller="MainCtrl as ctrl">
 		<md-tabs md-dynamic-height="true" md-swipe-content="true">
-			<md-tab label="Ticker">
-				<ticker league-name="{{ctrl.leagueName}}" players="ctrl.players"></ticker>
+			<md-tab>
+				<md-tab-label>Ticker</md-tab-label>
+				<md-tab-body>
+					<ticker league-name="{{ctrl.leagueName}}" players="ctrl.players"></ticker>
+				</md-tab-body>
 			</md-tab>
-			<md-tab label="Stocks">
-				<stocks></stocks>
+			<md-tab>
+				<md-tab-label>Stocks</md-tab-label>
+				<md-tab-body>
+					<stocks></stocks>
+				</md-tab-body>
 			</md-tab>
 		</md-tabs>
 	</div>
