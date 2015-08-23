@@ -1,8 +1,7 @@
 To Do:
 
 Enhancements:
-1. Make stock percentages in stocks/stocks.html equal to 100% total
-2. Make stocks/add-new only pull NYSE stocks
+1. Make stocks/add-new only pull NYSE stocks
 
 Core Features:
 1. Service that pulls the current values of the user's stock symbols
