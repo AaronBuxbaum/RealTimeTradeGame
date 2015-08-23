@@ -6,7 +6,34 @@
   "bundle": "typings/tsd.d.ts",
   "installed": {
     "gulp/gulp.d.ts": {
-      "commit": "8f081073e6cb416f901b272810d8b04d6e01c9e0"
+      "commit": "af81415504b4edce8dac8446d96857f8018c6e9f"
+    },
+    "angular-material/angular-material.d.ts": {
+      "commit": "af81415504b4edce8dac8446d96857f8018c6e9f"
+    },
+    "angularfire/angularfire.d.ts": {
+      "commit": "af81415504b4edce8dac8446d96857f8018c6e9f"
+    },
+    "firebase/firebase.d.ts": {
+      "commit": "af81415504b4edce8dac8446d96857f8018c6e9f"
+    },
+    "highcharts/highcharts.d.ts": {
+      "commit": "af81415504b4edce8dac8446d96857f8018c6e9f"
+    },
+    "jquery/jquery.d.ts": {
+      "commit": "af81415504b4edce8dac8446d96857f8018c6e9f"
+    },
+    "angularjs/angular.d.ts": {
+      "commit": "af81415504b4edce8dac8446d96857f8018c6e9f"
+    },
+    "node/node.d.ts": {
+      "commit": "af81415504b4edce8dac8446d96857f8018c6e9f"
+    },
+    "lodash/lodash.d.ts": {
+      "commit": "af81415504b4edce8dac8446d96857f8018c6e9f"
+    },
+    "less/less.d.ts": {
+      "commit": "af81415504b4edce8dac8446d96857f8018c6e9f"
     }
   }
 }
