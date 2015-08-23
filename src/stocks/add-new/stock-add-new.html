@@ -5,7 +5,7 @@
 	<md-button ng-if="!ctrl.newStock.show" class="md-raised md-primary" ng-click="ctrl.newStock.show = true">Add Stock</md-button>
 
 	<!-- Add widget -->
-	<form ng-if="ctrl.newStock.show" layout layout-padding>
+	<form ng-if="ctrl.newStock.show" layout>
 
 		<!-- Stock selection -->
 		<md-autocomplete flex="50" md-selected-item="ctrl.newStock.stock" md-search-text="ctrl.newStock.searchText" md-items="item in ctrl.getStocks(ctrl.newStock.searchText)"
