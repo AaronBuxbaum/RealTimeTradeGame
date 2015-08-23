@@ -1,4 +1,4 @@
-Database.factory('DatabaseService', function ($firebaseArray, $firebaseObject) {
+Database.factory('DatabaseService', function ($http, $firebaseArray, $firebaseObject) {
 	var svc = this;
 	
 	/*
@@ -83,6 +83,30 @@ Database.factory('DatabaseService', function ($firebaseArray, $firebaseObject) {
 	svc.addExamplePoints = function () {
 		_.forEach(svc.example, function (player) {
 			player.data.push([Date.now(), Math.random() * 100]);
+		});
+	};
+	
+	//Assumes stocks are an array of objects that have attributes of symbol (String) and percentage (Number)
+	svc.getValueOfStocks = function (stocks) {
+		if (stocks.length <= 0) {
+			return;
+		}
+
+        $http({
+            method: 'JSONP',
+            url: 'http://finance.google.com/finance/info',
+            params: {
+                q: _.pluck(stocks, 'symbol').join(','),
+                callback: 'JSON_CALLBACK'
+            }
+        }).then(function (response) {
+			var total = 0;
+
+			_.forEach(response.data, function (val, index) {
+				total += val.l * (stocks[index].percentage / 100);
+			});
+
+			console.log(total);
 		});
 	};
 

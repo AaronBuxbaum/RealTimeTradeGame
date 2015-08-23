@@ -2,6 +2,7 @@ Stocks.controller('StocksCtrl', function (DatabaseService) {
     var ctrl = this;
 
     ctrl.stocks = DatabaseService.exampleStocks;
+    ctrl.getValue = DatabaseService.getValueOfStocks;
 
     ctrl.deleteStock = function (index) {
         DatabaseService.exampleDeleteStock(index);
@@ -14,6 +15,6 @@ Stocks.controller('StocksCtrl', function (DatabaseService) {
     };
 
     ctrl.getMax = function (curr) {
-        return 100 - ctrl.calculateTotal() + curr;
+        return 100 - calculateTotal() + curr;
     };
 });
