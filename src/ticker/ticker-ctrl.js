@@ -3,11 +3,11 @@ Ticker.controller('TickerCtrl', function ($interval, DatabaseService) {
     
     //Add a point
     ctrl.addPoint = function () {
-        DatabaseService.addExamplePoints();
+        DatabaseService.getValueOfStocks();
     };
     
     //Run the add point function every second
-    $interval(ctrl.addPoint, 2500, 25);
+    $interval(ctrl.addPoint, 5000, 25);
     
     //Chart configuration
     ctrl.chartConfig = {

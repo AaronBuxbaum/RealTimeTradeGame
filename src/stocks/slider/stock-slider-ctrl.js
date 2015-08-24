@@ -1,3 +1,3 @@
 StockSlider.controller('StockSliderCtrl', function () {
-    var ctrl = this;
+    //var ctrl = this;
 });

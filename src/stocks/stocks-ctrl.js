@@ -1,7 +1,7 @@
 Stocks.controller('StocksCtrl', function (DatabaseService) {
     var ctrl = this;
 
-    ctrl.stocks = DatabaseService.exampleStocks;
+    ctrl.stocks = DatabaseService.examplePlayer.stocks;
     ctrl.getValue = DatabaseService.getValueOfStocks;
 
     ctrl.deleteStock = function (index) {

@@ -58,16 +58,24 @@ Database.factory('DatabaseService', function ($http, $firebaseArray, $firebaseOb
 		}
 	];*/
 
-	//TODO: use a set instead to ensure unique elements in O(1)
-	svc.exampleStocks = [];
+	svc.examplePlayer = {
+		id: 1,
+		name: 'Aaron',
+		stocks: [], //TODO: use a set instead to ensure unique elements in O(1)
+		data: []
+	};
+
+	svc.examplePlayers = [
+		svc.examplePlayer
+	];
 
 	svc.exampleAddStock = function (stock) {
         stock.percentage = 0;
-        svc.exampleStocks.push(stock);
+        svc.examplePlayer.stocks.push(stock);
 	};
 
 	svc.exampleDeleteStock = function (index) {
-		svc.exampleStocks.splice(index, 1);
+		svc.examplePlayer.stocks.splice(index, 1);
 	};
 
 	svc.generateExampleEmptyArray = function (numPlayers) {
@@ -87,8 +95,8 @@ Database.factory('DatabaseService', function ($http, $firebaseArray, $firebaseOb
 	};
 	
 	//Assumes stocks are an array of objects that have attributes of symbol (String) and percentage (Number)
-	svc.getValueOfStocks = function (stocks) {
-		if (stocks.length <= 0) {
+	svc.getValueOfStocks = function () {
+		if (svc.examplePlayer.length <= 0) {
 			return;
 		}
 
@@ -96,17 +104,21 @@ Database.factory('DatabaseService', function ($http, $firebaseArray, $firebaseOb
             method: 'JSONP',
             url: 'http://finance.google.com/finance/info',
             params: {
-                q: _.pluck(stocks, 'symbol').join(','),
+                q: _.pluck(svc.examplePlayer.stocks, 'symbol').join(','),
                 callback: 'JSON_CALLBACK'
             }
         }).then(function (response) {
 			var total = 0;
 
 			_.forEach(response.data, function (val, index) {
-				total += val.l * (stocks[index].percentage / 100);
+				total += val.l * (svc.examplePlayer.stocks[index].percentage / 100);
 			});
 
-			console.log(total);
+			//TODO: working on this logic here
+			//perhaps give a 'cash' attribute or something?
+			//var previousValue = _.last(_.last(svc.examplePlayer.data));
+			
+			svc.examplePlayer.data.push([Date.now(), total]);
 		});
 	};
 
