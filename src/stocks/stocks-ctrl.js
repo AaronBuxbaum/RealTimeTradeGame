@@ -5,7 +5,7 @@ Stocks.controller('StocksCtrl', function (LeagueService, PlayerService) {
     ctrl.getValue = PlayerService.getValueOfStocks;
 
     ctrl.deleteStock = function (index) {
-        PlayerService.exampleDeleteStock(1, index);
+        PlayerService.deleteStock(1, index);
     };
 
     function getUsedPercentage() {

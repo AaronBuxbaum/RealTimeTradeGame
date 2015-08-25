@@ -3,7 +3,7 @@ StockAddNew.controller('StockAddNewCtrl', function ($q, $http, PlayerService) {
 
     ctrl.addStock = function (stock) {
         if (stock) {
-            PlayerService.exampleAddStock(1, stock);
+            PlayerService.addStock(1, stock);
             ctrl.newStock = null;
         }
     };
