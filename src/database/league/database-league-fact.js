@@ -6,10 +6,6 @@ League.factory('LeagueService', function () {
 
 	//Add a new player
 	svc.createPlayer = function (name) {
-		if (!svc.examplePlayers || !name) {
-			return;
-		}
-
 		var lastId = (svc.examplePlayers && svc.examplePlayers.length > 0) ? _.last(svc.examplePlayers).id : 1;
 		svc.examplePlayers.push({
 			id: lastId,

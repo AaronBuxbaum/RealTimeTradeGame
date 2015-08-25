@@ -11,22 +11,18 @@ Player.factory('PlayerService', function ($http, LeagueService) {
 	svc.deleteStock = function (id, index) {
 		LeagueService.getPlayer(id).portfolio.splice(index, 1);
 	};
-
-	svc.getUsedPercentage = function (id) {
-		var player = LeagueService.getPlayer(id);
-		return _.sum(player.data, 'percentage');
-	};
 	
 	//Find what percentage of the portfolio is unused (int between 0 and 100, inclusive).
 	svc.getUnusedPercentage = function (id) {
-		return 100 - svc.getUsedPercentage(id);
+		var player = LeagueService.getPlayer(id);
+		return 100 - _.sum(player.data, 'percentage');
 	};
 	
 	//Update player's portfolio
 	svc.updatePortfolio = function (id) {
 		var player = LeagueService.getPlayer(id);
 
-        $http({
+        return $http({
             method: 'JSONP',
             url: 'http://finance.google.com/finance/info',
             params: {
@@ -35,25 +31,25 @@ Player.factory('PlayerService', function ($http, LeagueService) {
             }
         })
 			.then(function (response) {
-				//Step 1: get last tick's earnings or initialize to $1M
+				//Get last tick's earnings or initialize to $1M
 				var lastTick = _.last(_.last(player.data)) || 1000000;
 				
-				//Step 2: update shares
+				//Update shares
 				_.forEach(player.portfolio, function (stock, index) {
 					stock.shares = (lastTick * (stock.percentage / 100)) / response.data[index].l;
 				});
 					
-				//Step 3: find how much is held in currency
+				//Find how much is held in currency
 				var total = lastTick * (svc.getUnusedPercentage(id) / 100);
 
-				//Step 4: find new earnings
+				//Find new earnings
 				if (player.portfolio.length > 0) {
 					total += _.reduce(response.data, function (total, stockData, index) {
 						return total + stockData.l * player.portfolio[index].shares;
 					}, 0);
 				}
 
-				//Step 5: save to database
+				//Save to database
 				player.data.push([Date.now(), total]);
 			});
 	};

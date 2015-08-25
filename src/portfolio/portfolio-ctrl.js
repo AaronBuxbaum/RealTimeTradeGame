@@ -3,7 +3,6 @@ Portfolio.controller('PortfolioCtrl', function (LeagueService, PlayerService) {
     ctrl.userId = 1;
 
     ctrl.portfolio = LeagueService.getPlayer(ctrl.userId).portfolio;
-    ctrl.getValue = PlayerService.updatePortfolio;
 
     ctrl.deleteStock = function (index) {
         PlayerService.deleteStock(ctrl.userId, index);
