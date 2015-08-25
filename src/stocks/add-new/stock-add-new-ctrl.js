@@ -13,15 +13,14 @@ StockAddNew.controller('StockAddNewCtrl', function ($q, $http, PlayerService) {
 
         //TODO: find a better way to do this that's less hacky
         //Hacky way to convince browser that the yahoo framework is installed.
-        //Pollutes the global scope slightly, but shouldn't be a big deal, mostly.
-        //In addition, this approach calls the function for every update; should be debounced.
+        //Pollutes the window scope slightly, but shouldn't be a big deal, mostly.
+        //In addition, this approach calls the function for every update; probably should be debounced.
         window.YAHOO = {
             Finance: {
                 SymbolSuggest: {
                     ssCallback: function (data) {
                         deferred.resolve(data.ResultSet.Result);
 
-                        //TODO: will this update in-place?
                         if (data.ResultSet.Result.length > 0) {
                             ctrl.getSymbolValues(_.pluck(data.ResultSet.Result, 'symbol')).then(function (symbols) {
                                 _.times(symbols.data.length, function (index) {
@@ -60,11 +59,15 @@ StockAddNew.controller('StockAddNewCtrl', function ($q, $http, PlayerService) {
         });
     };
 
+    ctrl.isNegative = function (string) {
+        return string.charAt(0) === '-';
+    };
+
     ctrl.getChangePercentageColor = function (change) {
         if (!change) {
             return;
         }
 
-        return (change.charAt(0) === '-') ? 'red' : 'green';
+        return (ctrl.isNegative(change)) ? 'red' : 'green';
     }
 });

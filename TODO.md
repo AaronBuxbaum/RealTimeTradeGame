@@ -10,3 +10,6 @@ Core Features:
   - Perhaps with a nightly/weekly/monthly daemon that reduces down the data
 4. User system
 5. League system
+
+Bugs:
+1. Sometimes the options in the list don't have values, which could cause problems if they're added to a portfolio
