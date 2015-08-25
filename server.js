@@ -11,6 +11,7 @@ var portfolioUpdater;
 var FETCH_INTERVAL = 5000;
 var examplePlayerDB = new Firebase("https://realtimetrade.firebaseio.com/examplePlayer");
 examplePlayerDB.set({
+	id: 1,
 	portfolio: [
 		{
 			symbol: 'GOOG',
