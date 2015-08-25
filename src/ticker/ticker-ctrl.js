@@ -6,7 +6,7 @@ Ticker.controller('TickerCtrl', function ($interval, PlayerService) {
         PlayerService.getValueOfStocks(1);
     };
     
-    //Run the add point function every second
+    //Run the add point function every five seconds
     $interval(ctrl.addPoint, 5000, 25);
     
     //Chart configuration
