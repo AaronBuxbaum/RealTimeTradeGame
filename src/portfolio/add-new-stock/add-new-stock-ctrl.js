@@ -1,9 +1,10 @@
-StockAddNew.controller('StockAddNewCtrl', function ($q, $http, PlayerService) {
+AddNewStock.controller('AddNewStockCtrl', function ($q, $http, PlayerService) {
     var ctrl = this;
+    ctrl.userId = 1;
 
     ctrl.addStock = function (stock) {
         if (stock) {
-            PlayerService.addStock(1, stock);
+            PlayerService.addStock(ctrl.userId, stock);
             ctrl.newStock = null;
         }
     };

@@ -1,9 +1,9 @@
 <md-content layout-padding>
 	<!-- Sliders -->
 	<md-content layout-padding>
-		<span ng-if="ctrl.stocks.length <= 0">Looks like there's nothing here yet!</span>
+		<span ng-if="!ctrl.portfolio.length">Looks like there's nothing here yet!</span>
 
-		<stock-slider ng-repeat="stock in ctrl.stocks" stock="stock" get-max="ctrl.getMax">
+		<stock-slider ng-repeat="stock in ctrl.portfolio" stock="stock" get-max="ctrl.getMax">
 			<ng-md-icon icon="delete" style="fill: red; cursor: pointer;" ng-click="ctrl.deleteStock($index)"></ng-md-icon>
 		</stock-slider>
 	</md-content>
@@ -12,6 +12,6 @@
 
 	<!-- Add button -->
 	<md-content layout-padding>
-		<stock-add-new></stock-add-new>
+		<add-new-stock></add-new-stock>
 	</md-content>
 </md-content>

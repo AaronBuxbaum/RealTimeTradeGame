@@ -1,7 +1,7 @@
 StockSlider.directive('stockSlider', function () {
 	return {
 		restrict: 'E',
-		templateUrl: 'stocks/slider/stock-slider.html',
+		templateUrl: 'portfolio/stock-slider/stock-slider.html',
 		controller: 'StockSliderCtrl',
 		controllerAs: 'ctrl',
 		bindToController: true,

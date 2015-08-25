@@ -14,7 +14,7 @@ League.factory('LeagueService', function () {
 		svc.examplePlayers.push({
 			id: lastId,
 			name: name,
-			stocks: [],  //TODO: use a set instead to ensure unique elements in O(1)
+			portfolio: [],  //TODO: use a set instead to ensure unique elements in O(1)
 			data: []
 		});
 	};

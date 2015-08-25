@@ -3,7 +3,7 @@ Ticker.controller('TickerCtrl', function ($interval, PlayerService) {
     
     //Add a point
     ctrl.addPoint = function () {
-        PlayerService.getValueOfStocks(1);
+        PlayerService.updatePortfolio(1);
     };
     
     //Run the add point function every five seconds

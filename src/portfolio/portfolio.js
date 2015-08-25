@@ -1,4 +1,4 @@
-var Stocks = angular.module('Stocks', [
+var Portfolio = angular.module('Portfolio', [
 	'Player',
 	'ngMaterial',
 	'ngMdIcons',
