@@ -1,8 +1,8 @@
 To Do:
 
 Core Features:
-1. Plug stock ticker into the ticker directive
-2. User system
+1. Polish and increase features for single user
+2. User system (ie. log in, separate accounts with separate settings)
 3. League system (mostly ignored for right now)
 
 Bugs:
