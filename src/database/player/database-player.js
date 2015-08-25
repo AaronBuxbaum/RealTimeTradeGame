@@ -1,0 +1,1 @@
+var Player = angular.module('Player', ['League']);

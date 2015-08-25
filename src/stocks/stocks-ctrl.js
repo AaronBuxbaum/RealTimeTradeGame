@@ -1,11 +1,11 @@
-Stocks.controller('StocksCtrl', function (DatabaseService) {
+Stocks.controller('StocksCtrl', function (LeagueService, PlayerService) {
     var ctrl = this;
 
-    ctrl.stocks = DatabaseService.examplePlayer.stocks;
-    ctrl.getValue = DatabaseService.getValueOfStocks;
+    ctrl.stocks = LeagueService.getPlayer(1).stocks;
+    ctrl.getValue = PlayerService.getValueOfStocks;
 
     ctrl.deleteStock = function (index) {
-        DatabaseService.exampleDeleteStock(index);
+        PlayerService.exampleDeleteStock(1, index);
     };
 
     function calculateTotal() {

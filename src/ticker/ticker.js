@@ -1,1 +1,1 @@
-var Ticker = angular.module('Ticker', ['highcharts-ng', 'Database']);
+var Ticker = angular.module('Ticker', ['highcharts-ng', 'Player']);

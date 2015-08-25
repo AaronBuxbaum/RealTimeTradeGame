@@ -1,6 +1,6 @@
-RealTimeTrade.controller('MainCtrl', function (DatabaseService) {
+RealTimeTrade.controller('MainCtrl', function (LeagueService) {
     var ctrl = this;
 	
 	ctrl.leagueName = 'Example League';
-	ctrl.players = DatabaseService.examplePlayers;
+	ctrl.players = LeagueService.examplePlayers;
 });

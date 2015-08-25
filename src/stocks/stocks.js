@@ -1,5 +1,5 @@
 var Stocks = angular.module('Stocks', [
-	'Database',
+	'Player',
 	'ngMaterial',
 	'ngMdIcons',
 	'StockAddNew',

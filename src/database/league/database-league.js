@@ -1,0 +1,1 @@
+var League = angular.module('League', []);

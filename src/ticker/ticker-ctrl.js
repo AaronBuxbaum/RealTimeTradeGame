@@ -1,9 +1,9 @@
-Ticker.controller('TickerCtrl', function ($interval, DatabaseService) {
+Ticker.controller('TickerCtrl', function ($interval, PlayerService) {
     var ctrl = this;
     
     //Add a point
     ctrl.addPoint = function () {
-        DatabaseService.getValueOfStocks();
+        PlayerService.getValueOfStocks(1);
     };
     
     //Run the add point function every second

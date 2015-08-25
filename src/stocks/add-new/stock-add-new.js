@@ -1,1 +1,1 @@
-var StockAddNew = angular.module('StockAddNew', ['ngMaterial', 'Database']);
+var StockAddNew = angular.module('StockAddNew', ['ngMaterial', 'Player']);

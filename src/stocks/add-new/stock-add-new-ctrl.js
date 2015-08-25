@@ -1,9 +1,9 @@
-StockAddNew.controller('StockAddNewCtrl', function ($q, $http, DatabaseService) {
+StockAddNew.controller('StockAddNewCtrl', function ($q, $http, PlayerService) {
     var ctrl = this;
 
     ctrl.addStock = function (stock) {
         if (stock) {
-            DatabaseService.exampleAddStock(stock);
+            PlayerService.exampleAddStock(1, stock);
             ctrl.newStock = null;
         }
     };
