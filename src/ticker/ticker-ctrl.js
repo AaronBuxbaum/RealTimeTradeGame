@@ -2,14 +2,6 @@ Ticker.controller('TickerCtrl', function ($interval, PlayerService) {
     var ctrl = this;
     ctrl.userId = 1;
     
-    //Add a point
-    ctrl.addPoint = function () {
-        PlayerService.updatePortfolio(ctrl.userId);
-    };
-    
-    //Run the add point function every five seconds
-    //$interval(ctrl.addPoint, 5000, 25);
-    
     //Chart configuration
     ctrl.chartConfig = {
         options: {

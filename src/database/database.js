@@ -1,1 +1,1 @@
-var Database = angular.module('Database', ['Player', 'League']);
+var Database = angular.module('Database', ['firebase' ,'Player', 'League']);

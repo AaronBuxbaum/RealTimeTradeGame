@@ -18,6 +18,7 @@
   "homepage": "https://github.com/AaronBuxbaum/RealTimeTradeGame",
   "dependencies": {
     "express": "^4.13.0",
+    "firebase": "^2.2.9",
     "less": "^2.5.1"
   },
   "devDependencies": {
@@ -29,6 +30,8 @@
     "gulp-less": "^3.0.3",
     "gulp-tsd": "0.0.4",
     "gulp-uglify": "^1.2.0",
+    "q": "^1.4.1",
+    "q-io": "^1.13.1",
     "require-dir": "^0.3.0"
   }
 }
