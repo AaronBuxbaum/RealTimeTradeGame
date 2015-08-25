@@ -1,11 +1,17 @@
 <md-content layout-padding>
 	<!-- Sliders -->
 	<md-content layout-padding>
-		<span ng-if="!ctrl.portfolio.length">Looks like there's nothing here yet!</span>
+		<md-content layout-padding ng-if="::!ctrl.portfolio.length">
+			<span>Looks like there's nothing here yet!</span>
+		</md-content>
 
 		<stock-slider ng-repeat="stock in ctrl.portfolio" stock="stock" get-max="ctrl.getMax">
 			<ng-md-icon icon="delete" style="fill: red; cursor: pointer;" ng-click="ctrl.deleteStock($index)"></ng-md-icon>
 		</stock-slider>
+
+		<md-content layout-padding ng-if="::ctrl.getMax(0) > 0">
+			<span>{{::ctrl.getMax(0)}}% is held in U.S. Dollars.</span>
+		</md-content>
 	</md-content>
 
 	<md-divider></md-divider>
