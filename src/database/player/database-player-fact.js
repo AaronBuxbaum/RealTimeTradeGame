@@ -13,7 +13,7 @@ Player.factory('PlayerService', function ($http, LeagueService) {
 	};
 	
 	//Get value of stocks for a player
-	//Assumes stocks are an array of objects that have attributes of symbol (String) and percentage (Number)
+	//Assumes stocks are an array of objects that have attributes of symbol (String), percentage (Number), and shares (Number)
 	svc.getValueOfStocks = function (id) {
 		var player = LeagueService.getPlayer(id);
 		if (!player) {
@@ -27,19 +27,23 @@ Player.factory('PlayerService', function ($http, LeagueService) {
                 q: _.pluck(player.stocks, 'symbol').join(','),
                 callback: 'JSON_CALLBACK'
             }
-        }).then(function (response) {
-			var total = 0;
+        })
+			.then(function (response) {
+				//Step 1: update shares
+				var cash = _.last(_.last(player.data)) || 1000;
+				_.forEach(player.stocks, function (stock) {
+					stock.shares = (cash * (stock.percentage / 100)) / stock.l;
+				});
+		
+				//Step 2: find new earnings
+				//TODO:Cleaner way to iterate through two arrays at the same time?
+				cash = _.reduce(response.data, function (total, stockData, index) {
+					return total + stockData.l * player.stocks[index].shares;
+				}, 0);
 
-			_.forEach(response.data, function (val, index) {
-				total += val.l * (player.stocks[index].percentage / 100);
+				//Step 3: save to database
+				player.data.push([Date.now(), cash]);
 			});
-
-			//TODO: working on this logic here
-			//perhaps give a 'cash' attribute or something?
-			//var previousValue = _.last(_.last(svc.examplePlayer.data));
-			
-			player.data.push([Date.now(), total]);
-		});
 	};
 
 	return svc;
