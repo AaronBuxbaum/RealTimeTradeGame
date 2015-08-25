@@ -8,9 +8,10 @@ var _ = require('./bower_components/lodash/lodash.js');
 
 //Initialize variables
 var portfolioUpdater;
-var FETCH_INTERVAL = 5000;
+var FETCH_INTERVAL = 20000;
 var examplePlayerDB = new Firebase("https://realtimetrade.firebaseio.com/examplePlayer");
-examplePlayerDB.set({
+
+/*examplePlayerDB.set({
 	id: 1,
 	portfolio: [
 		{
@@ -27,7 +28,7 @@ examplePlayerDB.set({
 		}
 	],
 	data: []
-});
+});*/
 
 //Start the portfolio updater
 function startPortfolioUpdater() {
@@ -38,9 +39,11 @@ function startPortfolioUpdater() {
 function updatePortfolio() {
 	examplePlayerDB.once('value', function (data) {
 		var player = data.val();
+
+		if (!player) { return; }
 		
 		//Param must exist for getStockValues to return correctly, so if empty, I use SPY and throw it away
-		var symbols = (player.portfolio.length > 0) ? _.pluck(player.portfolio, 'symbol') : ['SPY'];
+		var symbols = (player.portfolio && player.portfolio.length > 0) ? _.pluck(player.portfolio, 'symbol') : ['SPY'];
 		
 		//Push the new earnings to the database
 		getStockPrices(symbols).then(function (stockValues) {

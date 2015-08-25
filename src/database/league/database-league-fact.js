@@ -1,19 +1,15 @@
 League.factory('LeagueService', function (DatabaseService) {
 	var svc = this;
-	
-	//Initialize players array
-	svc.examplePlayers = [];
 
 	//Add a new player
 	svc.createPlayer = function (name) {
-		var lastId = (svc.examplePlayers && svc.examplePlayers.length > 0) ? _.last(svc.examplePlayers).id : 1;
-
-		DatabaseService.getSyncObject().$save({
-			id: lastId,
-			name: name,
-			portfolio: [], //TODO: use a set instead to ensure unique elements in O(1)
-			data: []
-		});
+		//var lastId = (svc.getPlayer() && svc.getPlayer().length > 0) ? _.last(svc.getPlayer()).id : 1;
+		var newPlayer = svc.getPlayer();
+		newPlayer.id = 1;
+		newPlayer.name = name;
+		newPlayer.portfolio = []; //TODO: use a set instead to ensure unique elements in O(1)
+		newPlayer.data = [];
+		return newPlayer.$save();
 	};
 	
 	//Get a player given their unique ID
@@ -21,7 +17,6 @@ League.factory('LeagueService', function (DatabaseService) {
 		return DatabaseService.getSyncObject();
 		//return _.find(svc.examplePlayers, { id: id });
 	};
-	
 		
 	/* For testing... */
 	svc.createPlayer('Aaron');
