@@ -19,6 +19,9 @@ StockAddNew.controller('StockAddNewCtrl', function ($q, $http, PlayerService) {
             Finance: {
                 SymbolSuggest: {
                     ssCallback: function (data) {
+                        deferred.resolve(data.ResultSet.Result);
+
+                        //TODO: will this update in-place?
                         if (data.ResultSet.Result.length > 0) {
                             ctrl.getSymbolValues(_.pluck(data.ResultSet.Result, 'symbol')).then(function (symbols) {
                                 _.times(symbols.data.length, function (index) {
@@ -29,8 +32,6 @@ StockAddNew.controller('StockAddNewCtrl', function ($q, $http, PlayerService) {
                                 });
                             });
                         }
-
-                        deferred.resolve(data.ResultSet.Result);
                     }
                 }
             }

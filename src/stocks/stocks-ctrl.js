@@ -8,13 +8,13 @@ Stocks.controller('StocksCtrl', function (LeagueService, PlayerService) {
         PlayerService.exampleDeleteStock(1, index);
     };
 
-    function calculateTotal() {
+    function getUsedPercentage() {
         return _.reduce(ctrl.stocks, function (total, value, key) {
             return total + value.percentage;
         }, 0);
     };
 
     ctrl.getMax = function (curr) {
-        return 100 - calculateTotal() + curr;
+        return 100 - getUsedPercentage() + curr;
     };
 });
