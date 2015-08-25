@@ -1,3 +1,4 @@
-StockSlider.controller('StockSliderCtrl', function () {
-    //var ctrl = this;
+StockSlider.controller('StockSliderCtrl', function (PlayerService) {
+    var ctrl = this;
+    ctrl.getMax = PlayerService.getUnusedPercentage;
 });

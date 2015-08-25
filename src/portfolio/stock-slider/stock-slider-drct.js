@@ -7,8 +7,7 @@ StockSlider.directive('stockSlider', function () {
 		bindToController: true,
 		transclude: true,
 		scope: {
-			stock: '=',
-			getMax: '='
+			stock: '='
 		}
 	};
 });

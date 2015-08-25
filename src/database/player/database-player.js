@@ -1,1 +1,1 @@
-var Player = angular.module('Player', ['League']);
+var Player = angular.module('Player', ['firebase']);

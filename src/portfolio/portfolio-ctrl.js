@@ -1,11 +1,8 @@
-Portfolio.controller('PortfolioCtrl', function ($firebaseArray, PlayerService) {
+Portfolio.controller('PortfolioCtrl', function (PlayerService) {
     var ctrl = this;
 
     ctrl.userId = 1;
     ctrl.portfolio = PlayerService.portfolio;
     ctrl.deleteStock = PlayerService.deleteStock;
-
-    ctrl.getMax = function (curr) {
-        return PlayerService.getUnusedPercentage(ctrl.userId) + curr;
-    };
+    ctrl.getMax = PlayerService.getUnusedPercentage;
 });

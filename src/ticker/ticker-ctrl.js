@@ -1,6 +1,13 @@
-Ticker.controller('TickerCtrl', function ($interval, PlayerService) {
+Ticker.controller('TickerCtrl', function ($scope, PlayerService) {
     var ctrl = this;
     ctrl.userId = 1;
+    
+    ctrl.series = [
+        {
+            id: 1,
+            data: PlayerService.data
+        }
+    ];
     
     //Chart configuration
     ctrl.chartConfig = {
@@ -51,7 +58,7 @@ Ticker.controller('TickerCtrl', function ($interval, PlayerService) {
                 enabled: true
             }
         },
-        series: ctrl.players,
+        series: ctrl.series,
         title: {
             text: ctrl.leagueName
         },
