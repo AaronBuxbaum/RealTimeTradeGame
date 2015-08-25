@@ -8,7 +8,7 @@ Ticker.controller('TickerCtrl', function ($interval, PlayerService) {
     };
     
     //Run the add point function every five seconds
-    $interval(ctrl.addPoint, 5000, 25);
+    //$interval(ctrl.addPoint, 5000, 25);
     
     //Chart configuration
     ctrl.chartConfig = {
