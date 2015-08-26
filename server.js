@@ -127,4 +127,4 @@ function listen(port) {
 
 //Start the server
 startPortfolioUpdater();
-listen(8080);
+listen(process.env.PORT || 8080);
