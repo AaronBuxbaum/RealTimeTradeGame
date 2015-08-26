@@ -11,25 +11,6 @@ var portfolioUpdater;
 var FETCH_INTERVAL = 20000;
 var examplePlayerDB = new Firebase("https://realtimetrade.firebaseio.com/examplePlayer");
 
-/*examplePlayerDB.set({
-	id: 1,
-	portfolio: [
-		{
-			symbol: 'GOOG',
-			percentage: 40
-		},
-		{
-			symbol: 'FDS',
-			percentage: 50
-		},
-		{
-			symbol: 'FB',
-			percentage: 10
-		}
-	],
-	data: []
-});*/
-
 //Start the portfolio updater
 function startPortfolioUpdater() {
 	portfolioUpdater = setInterval(updatePortfolio, FETCH_INTERVAL);
