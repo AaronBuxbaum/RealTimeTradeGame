@@ -11,6 +11,11 @@ Player.factory('PlayerService', function ($firebaseArray, $firebaseObject) {
         stock.percentage = 0;
 		svc.portfolio.$add(stock);
 	};
+	
+	//Save changes to a stock
+	svc.saveStock = function (stock) {
+		svc.portfolio.$save(stock);
+	};
 
 	//Delete a stock from a player
 	svc.deleteStock = function (index) {

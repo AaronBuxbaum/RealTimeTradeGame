@@ -1,15 +1,15 @@
 <md-content layout-padding layout>
 	<!-- Name -->
 	<div flex="20" layout layout-align="center center">
-		<span class="md-body-1">{{ctrl.stock.name + ' (' + ctrl.stock.symbol + ')'}}</span>
+		<span class="md-body-1">{{::ctrl.name}}</span>
 	</div>
 
 	<!-- Slider -->
-	<md-slider flex ng-model="ctrl.stock.percentage" max="{{ctrl.getMax(ctrl.stock.percentage)}}" aria-label="stockSlider"></md-slider>
+	<md-slider flex ng-model="ctrl.percentage" ng-change="ctrl.ngChange()" max="{{ctrl.getMax(ctrl.percentage)}}" aria-label="stockSlider"></md-slider>
 
 	<!-- Percentage -->
 	<div flex="10" layout layout-align="center center">
-		{{ctrl.stock.percentage}}%
+		{{ctrl.percentage}}%
 		<div ng-transclude style="margin-left: 15px;"></div>
 	</div>
 </md-content>

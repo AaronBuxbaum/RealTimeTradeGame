@@ -5,6 +5,8 @@ AddNewStock.directive('addNewStock', function () {
 		controller: 'AddNewStockCtrl',
 		controllerAs: 'ctrl',
 		bindToController: true,
-		scope: {}
+		scope: {
+			isOpen: '=?'
+		}
 	};
 });
