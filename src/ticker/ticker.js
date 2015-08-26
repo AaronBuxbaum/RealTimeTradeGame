@@ -1,3 +1,4 @@
+/* global Ticker */
 var Ticker = angular.module('Ticker', ['highcharts-ng', 'Player']);
 
 Ticker.config(function () {
