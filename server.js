@@ -4,7 +4,7 @@ var server = express();
 var Q = require('q');
 var http = require('q-io/http');
 var Firebase = require("firebase");
-var _ = require('./bower_components/lodash/lodash.js');
+var _ = require('lodash');
 
 //Initialize variables
 var portfolioUpdater;

@@ -16,11 +16,11 @@ gulp.task('concat-vendor-js', function () {
     g.BOWER + 'angular-material/angular-material.js',
     g.BOWER + 'angular-material-icons/angular-material-icons.js',
     g.BOWER + 'jquery/dist/jquery.js',
-    g.BOWER + 'lodash/lodash.js',
     g.BOWER + 'firebase/firebase-debug.js',
     g.BOWER + 'angularfire/dist/angularfire.js',
     g.BOWER + 'highstock-release/highstock.src.js',
-    g.BOWER + 'highcharts-ng/dist/highcharts-ng.js'
+    g.BOWER + 'highcharts-ng/dist/highcharts-ng.js',
+    g.NPM + 'lodash/index.js'
   ])
     .pipe(concat('vendors.js'))
   //.pipe(uglify())
