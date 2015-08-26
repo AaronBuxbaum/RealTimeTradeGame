@@ -22,7 +22,7 @@ gulp.task('concat-vendor-js', function () {
     g.BOWER + 'highcharts-ng/dist/highcharts-ng.js',
     g.NPM + 'lodash/index.js'
   ])
-    .pipe(concat('vendors.js'))
+    .concat('vendors.js')
   //.pipe(uglify())
     .pipe(gulp.dest(g.BUILD));
 });
@@ -33,7 +33,7 @@ gulp.task('concat-vendor-css', function () {
     g.BOWER + 'angular-material/angular-material.css',
     g.BOWER + 'angular-material-icons/angular-material-icons.css'
   ])
-    .pipe(concat('vendors.css'))
+    .concat('vendors.css')
     .pipe(gulp.dest(g.BUILD));
 });
 
@@ -44,7 +44,7 @@ gulp.task('concat-modules', function () {
       g.SRC + module + '/' + module + '.js',
       g.SRC + module + '/' + '*.js'
     ])
-      .pipe(concat(module + '.js'))
+      .concat(module + '.js')
       .pipe(gulp.dest(g.BUILD + module));
 
     gulp.src([g.SRC + module + '/*.html'])

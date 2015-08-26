@@ -77,7 +77,7 @@ function getPortfolioValue(portfolio, previousEarnings, stockValues) {
 				portfolio[i].shares = getNumberOfShares(previousEarnings, portfolio[i].percentage, stockValue);
 			}
 
-			return total + stockValue * portfolio[i].shares;
+			return total + Number(stockValue) * portfolio[i].shares;
 		}, 0);
 	}
 	
