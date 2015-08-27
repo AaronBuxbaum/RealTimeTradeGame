@@ -53,8 +53,6 @@ function updatePortfolio() {
 
 //Check the time
 function checkTime() {
-	console.log('checking time');
-
 	if (portfolioUpdater) {
 		//If NYSE has closed
 		if (moment().isBetween(16, 9, 'hour')) {
@@ -84,9 +82,9 @@ function getPortfolioValue(portfolio, previousEarnings) {
 	var total = previousEarnings * (unusedPercentage / 100);
 
 	//Find new earnings
-	var symbols = _.pluck(_.toArray(portfolio), 'symbol');
-	return getStockPrices(symbols).then(function (stockValues) {
-		var stockValuesMap = _.zipObject(symbols, stockValues);
+	var tickers = _.pluck(_.toArray(portfolio), 'ticker');
+	return getStockPrices(tickers).then(function (stockValues) {
+		var stockValuesMap = _.zipObject(tickers, stockValues);
 
 		_.forOwn(portfolio, function (stock, key) {
 			var stockValue = Number(stockValuesMap[stock.symbol]);
@@ -103,16 +101,16 @@ function getPortfolioValue(portfolio, previousEarnings) {
 }
 
 //Get prices for an array of stock symbols
-function getStockPrices(symbols) {
+function getStockPrices(tickers) {
 	//Param must exist for getStockValues to return correctly, so if empty, I use SPY and throw it away
-	if (!symbols || !symbols.length) {
-		symbols = ['SPY']
+	if (!tickers || !tickers.length) {
+		tickers = ['SPY']
 	}
 
 	return http.request({
 		method: 'GET',
 		host: 'www.google.com',
-		path: '/finance/info?q=' + symbols.join(',')
+		path: '/finance/info?q=' + tickers.join(',')
 	}).then(function (response) {
 		return response.body.read().then(function (body) {
 			return transformStockPrices(body);
@@ -123,7 +121,7 @@ function getStockPrices(symbols) {
 //Take a buffer and parse out an array of latest stock values
 function transformStockPrices(body) {
 	body = body.toString('utf8');
-	return (body) ? _.pluck(JSON.parse(body.substring(3)), 'l_cur') : null;
+	return (body) ? _.pluck(JSON.parse(body.substring(3)), 'l') : null;
 }
 
 //Round to 2 decimal places to avoid Javascript numeric bugs (ie. 1000.00000001)
