@@ -8,3 +8,4 @@ Core Features:
 
 Bugs:
 1. Font doesn't seem to be working properly
+2. Memory issues seem to be occuring, probably related to too much data
