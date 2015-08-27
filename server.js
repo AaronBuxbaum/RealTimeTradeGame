@@ -148,5 +148,5 @@ function listen(port) {
 /* Initialization */
 //Start the server
 listen(process.env.PORT || 8080);
-startPortfolioUpdater();
+checkTime();
 setInterval(checkTime, FETCH_INTERVAL * 10);
