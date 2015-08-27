@@ -9,7 +9,7 @@ var _ = require('lodash');
 
 //Initialize variables
 var portfolioUpdater;
-var FETCH_INTERVAL = 15000;
+var FETCH_INTERVAL = 20 * 1000;
 var PlayerDatabase = new Firebase('https://realtimetrade.firebaseio.com/examplePlayer');
 var PortfolioDatabase = PlayerDatabase.child('portfolio');
 var HistoryDatabase = PlayerDatabase.child('data');
@@ -19,8 +19,9 @@ function startPortfolioUpdater() {
 	if (portfolioUpdater) {
 		return;
 	}
-	console.log('Portfolio updater started');
+
 	portfolioUpdater = setInterval(updatePortfolio, FETCH_INTERVAL);
+	console.log('Portfolio updater started');
 }
 
 //Stop the portfolio updater
@@ -29,9 +30,9 @@ function stopPortfolioUpdater() {
 		return;
 	}
 
-	console.log('Portfolio updater stopped');
 	clearInterval(portfolioUpdater);
 	portfolioUpdater = null;
+	console.log('Portfolio updater stopped');
 }
 
 //Update player's portfolio
