@@ -53,12 +53,12 @@ function updatePortfolio() {
 }
 
 //Check the time
+var MARKET_OPEN_MOMENT = moment().hour(9).minute(30);
+var MARKET_CLOSE_MOMENT = moment().hour(16);
 function checkTime() {
-	if (portfolioUpdater) {
-		//If NYSE has closed
-		if (moment().isBetween(16, 9, 'hour')) {
-			stopPortfolioUpdater();
-		}
+	//If NYSE has closed
+	if (!moment().isBetween(MARKET_OPEN_MOMENT, MARKET_CLOSE_MOMENT)) {
+		stopPortfolioUpdater();
 	}
 	
 	//If NYSE has just opened
@@ -87,7 +87,7 @@ function getPortfolioValue(portfolio, previousEarnings) {
 
 	return getStockPrices(tickers).then(function (stockValues) {
 		var stockValuesMap = _.zipObject(tickers, stockValues);
-		
+
 		_.forOwn(portfolio, function (stock, key) {
 			var stockValue = Number(stockValuesMap[stock.ticker]);
 			stock.shares = previousEarnings * (stock.percentage / 100) / stock.value;
