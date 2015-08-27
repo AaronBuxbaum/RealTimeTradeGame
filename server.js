@@ -19,6 +19,7 @@ function startPortfolioUpdater() {
 	if (portfolioUpdater) {
 		return;
 	}
+	console.log('Portfolio updater started');
 	portfolioUpdater = setInterval(updatePortfolio, FETCH_INTERVAL);
 }
 
@@ -28,6 +29,7 @@ function stopPortfolioUpdater() {
 		return;
 	}
 
+	console.log('Portfolio updater stopped');
 	clearInterval(portfolioUpdater);
 	portfolioUpdater = null;
 }
@@ -43,7 +45,6 @@ function updatePortfolio() {
 			var previousEarnings = _.last(_.last(_.toArray(history.val())));
 
 			getPortfolioValue(portfolio, previousEarnings).then(function (portfolioValue) {
-				console.log(portfolioValue);
 				HistoryDatabase.push([Date.now(), portfolioValue]);
 			});
 		});
@@ -120,7 +121,7 @@ function getStockPrices(tickers) {
 //Take a buffer and parse out an array of latest stock values
 function transformStockPrices(body) {
 	body = body.toString('utf8');
-	return (body) ? _.pluck(JSON.parse(body.substring(3)), 'l') : null;
+	return (body) ? _.pluck(JSON.parse(body.substring(3)), 'l_cur') : null;
 }
 
 //Round to 2 decimal places to avoid Javascript numeric bugs (ie. 1000.00000001)
