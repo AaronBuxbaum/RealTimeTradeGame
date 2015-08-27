@@ -11,20 +11,19 @@
 		<md-autocomplete flex="50" md-selected-item="ctrl.newStock.stock" md-search-text="ctrl.newStock.searchText" md-items="item in ctrl.getStocks(ctrl.newStock.searchText)"
 		md-item-text="item.name" md-autoselect="true" md-delay="100" md-menu-class="autocomplete-custom-template" placeholder="Pick a stock"
 		md-autofocus>
-			<md-item-template ng-if="::{{item.value}}">
+			<md-item-template>
 				<span class="item-title">
 					<ng-md-icon icon="event_note"></ng-md-icon>
-            		<span md-highlight-text="ctrl.newStock.searchText" md-highlight-flags="i">{{::item.name}}</span>
+					<span md-highlight-text="ctrl.newStock.searchText" md-highlight-flags="i">
+						{{::item.name}} ({{::item.ticker}})
+					</span>
 				</span>
 				<span class="item-metadata">
 					Value: <span class="item-metastat">{{::item.value}}</span>
-				<span ng-if="item.changePercentage !== 0" ng-style="{color: ctrl.getChangePercentageColor(item.changePercentage)}">({{item.changePercentage}}%)</span>
-				</span>
-				<span class="item-metadata">
-					Ticker: <span md-highlight-text="ctrl.newStock.searchText" md-highlight-flags="i" class="item-metastat">{{::item.ticker}}</span>
-				</span>
-				<span class="item-metadata">
-					Exchange: {{::item.exchange}}
+
+				<span ng-if="item.changePercentage !== 0" ng-style="{color: ctrl.getChangePercentageColor(item.changePercentage)}">
+						({{item.changePercentage}}%)
+					</span>
 				</span>
 			</md-item-template>
 

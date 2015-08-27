@@ -9,5 +9,4 @@ Core Features:
 Bugs:
 1. Font doesn't seem to be working properly
 2. Memory issues seem to be occuring, probably related to too much data
-3. When you select a new stock, the autocomplete will not auto-close and show weird stuff
-4. Some stocks don't work via Google's system, which causes major issues
+3. Some stocks don't work via Google's system, which causes major issues

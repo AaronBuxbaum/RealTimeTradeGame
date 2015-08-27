@@ -8,6 +8,10 @@ Player.factory('PlayerService', function ($firebaseArray, $firebaseObject) {
 	
 	//Add a stock to a player
 	svc.addStock = function (stock) {
+		if (!stock || _.find(svc.portfolio, { ticker: stock.ticker })) {
+			return;
+		}
+
         stock.percentage = 0;
 		svc.portfolio.$add(stock);
 	};

@@ -4,9 +4,7 @@ AddNewStock.controller('AddNewStockCtrl', function (PlayerService, StocksService
     ctrl.getStocks = StocksService.getStocks;
 
     ctrl.addStock = function (stock) {
-        if (stock) {
-            PlayerService.addStock(stock);
-        }
+        PlayerService.addStock(stock);
         ctrl.close();
     };
 
