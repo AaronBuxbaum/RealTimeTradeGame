@@ -3,18 +3,27 @@ var express = require('express');
 var server = express();
 var Q = require('q');
 var http = require('q-io/http');
-var Firebase = require("firebase");
+var Firebase = require('firebase');
+var moment = require('moment');
 var _ = require('lodash');
 
 //Initialize variables
 var portfolioUpdater;
+var active = false;
 var FETCH_INTERVAL = 5000;
-var PlayerDatabase = new Firebase("https://realtimetrade.firebaseio.com/examplePlayer");
+var PlayerDatabase = new Firebase('https://realtimetrade.firebaseio.com/examplePlayer');
 var PortfolioDatabase = PlayerDatabase.child('portfolio');
 
 //Start the portfolio updater
 function startPortfolioUpdater() {
 	portfolioUpdater = setInterval(updatePortfolio, FETCH_INTERVAL);
+	active = true;
+}
+
+//Stop the portfolio updater
+function stopPortfolioUpdater() {
+	clearInterval(portfolioUpdater);
+	active = false;
 }
 
 //Update player's portfolio
@@ -38,29 +47,21 @@ function updatePortfolio() {
 	});
 }
 
-//Stop the portfolio updater
-function stopPortfolioUpdater() {
-	clearInterval(portfolioUpdater);
+//Check the time
+function checkTime() {
+	//If NYSE has closed
+	if (moment().isBetween(17, 9, 'hour')) {
+		stopPortfolioUpdater();
+	}
+	//If NYSE has just opened
+	else if (!active) {
+		startPortfolioUpdater();
+	}
 }
 
-//Take a buffer and parse out an array of latest stock values
-function transformStockPrices(body) {
-	body = body.toString('utf8');
-	return (body) ? _.pluck(JSON.parse(body.substring(3)), 'l_cur') : null;
-}
 
-//Get prices for an array of stock symbols
-function getStockPrices(symbols) {
-	return http.request({
-		method: 'GET',
-		host: 'www.google.com',
-		path: '/finance/info?q=' + symbols,
-	}).then(function (response) {
-		return response.body.read().then(function (body) {
-			return transformStockPrices(body);
-		});
-	});
-}
+
+/* Portfolio value functions */
 
 //Return the value of the player's portfolio
 function getPortfolioValue(portfolio, previousEarnings, symbols) {
@@ -91,10 +92,33 @@ function getPortfolioValue(portfolio, previousEarnings, symbols) {
 	});
 }
 
+//Get prices for an array of stock symbols
+function getStockPrices(symbols) {
+	return http.request({
+		method: 'GET',
+		host: 'www.google.com',
+		path: '/finance/info?q=' + symbols,
+	}).then(function (response) {
+		return response.body.read().then(function (body) {
+			return transformStockPrices(body);
+		});
+	});
+}
+
+//Take a buffer and parse out an array of latest stock values
+function transformStockPrices(body) {
+	body = body.toString('utf8');
+	return (body) ? _.pluck(JSON.parse(body.substring(3)), 'l_cur') : null;
+}
+
 //Round to 2 decimal places to avoid Javascript numeric bugs (ie. 1000.00000001)
 function roundNumber(num) {
 	return Math.round(Number(num) * 100) / 100;
 }
+
+
+
+/* Server functions */
 
 //Open a port and serve pages through it
 function listen(port) {
@@ -106,6 +130,10 @@ function listen(port) {
 	console.log("Server listening on port", port);
 }
 
+
+
+/* Initialization */
 //Start the server
 listen(process.env.PORT || 8080);
 startPortfolioUpdater();
+setInterval(checkTime, FETCH_INTERVAL * 10);
