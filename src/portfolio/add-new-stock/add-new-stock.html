@@ -9,22 +9,22 @@
 
 		<!-- Stock selection -->
 		<md-autocomplete flex="50" md-selected-item="ctrl.newStock.stock" md-search-text="ctrl.newStock.searchText" md-items="item in ctrl.getStocks(ctrl.newStock.searchText)"
-		md-item-text="item.name" md-autoselect="true" md-delay="100" md-menu-class="autocomplete-custom-template" placeholder="Pick a stock"
+		md-item-text="item.Name" md-autoselect="true" md-delay="100" md-menu-class="autocomplete-custom-template" placeholder="Pick a stock"
 		md-autofocus>
 			<md-item-template ng-if="::{{item.value}}">
 				<span class="item-title">
 					<ng-md-icon icon="event_note"></ng-md-icon>
-            		<span md-highlight-text="ctrl.newStock.searchText" md-highlight-flags="i">{{::item.name}}</span>
+            		<span md-highlight-text="ctrl.newStock.searchText" md-highlight-flags="i">{{::item.Name}}</span>
 				</span>
 				<span class="item-metadata">
 					Value: <span class="item-metastat">{{::item.value}}</span>
 				<span ng-if="::(item.changePercentage !== '0.00')" ng-style="::{color: ctrl.getChangePercentageColor(item.changePercentage)}">({{::item.changePercentage}}%)</span>
 				</span>
 				<span class="item-metadata">
-					Symbol: <span md-highlight-text="ctrl.newStock.searchText" md-highlight-flags="i" class="item-metastat">{{::item.symbol}} ({{::item.exchDisp}})</span>
+					Symbol: <span md-highlight-text="ctrl.newStock.searchText" md-highlight-flags="i" class="item-metastat">{{::item.Symbol}}</span>
 				</span>
 				<span class="item-metadata">
-					Type: {{::item.typeDisp}}
+					Exchange: {{::item.Exchange}}
 				</span>
 			</md-item-template>
 

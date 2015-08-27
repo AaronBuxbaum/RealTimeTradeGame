@@ -2,43 +2,31 @@ Stocks.factory('StocksService', function ($http, $q) {
     var svc = this;
 
     svc.getStocks = function (query) {
-        var deferred = $q.defer();
-
-        //TODO: find a better way to do this that's less hacky
-        //Hacky way to convince browser that the yahoo framework is installed.
-        //Pollutes the window scope slightly, but shouldn't be a big deal, mostly.
-        //In addition, this approach calls the function for every update; probably should be debounced.
-        window.YAHOO = {
-            Finance: {
-                SymbolSuggest: {
-                    ssCallback: function (data) {
-                        deferred.resolve(data.ResultSet.Result);
-
-                        if (data.ResultSet.Result.length > 0) {
-                            svc.getSymbolValues(_.pluck(data.ResultSet.Result, 'symbol')).then(function (symbols) {
-                                _.times(symbols.data.length, function (index) {
-                                    if (symbols.data[index]) {
-                                        data.ResultSet.Result[index].value = symbols.data[index].l;
-                                        data.ResultSet.Result[index].changePercentage = symbols.data[index].cp;
-                                    }
-                                });
-                            });
-                        }
-                    }
-                }
-            }
-        };
-
-        $http({
+        return $http({
             method: 'JSONP',
-            url: 'http://d.yimg.com/autoc.finance.yahoo.com/autoc',
+            url: '//dev.markitondemand.com/Api/v2/Lookup/jsonp',
             params: {
-                query: query,
-                callback: 'YAHOO.Finance.SymbolSuggest.ssCallback'
+                input: query,
+                callback: 'JSON_CALLBACK'
             }
-        });
+        }).then(function (response) {
+            var suggestedStocks = response.data;
 
-        return deferred.promise;
+            if (suggestedStocks.length) {
+                svc.getSymbolValues(_.pluck(suggestedStocks, 'Symbol')).then(function (symbolValues) {
+                    symbolValues = symbolValues.data;
+                    _.times(symbolValues.length, function (index) {
+                        if (symbolValues[index]) {
+                            suggestedStocks[index].value = symbolValues[index].l;
+                            suggestedStocks[index].changePercentage = symbolValues[index].cp;
+                        }
+                    });
+                });
+            }
+
+            console.log(suggestedStocks);
+            return suggestedStocks
+        });
     };
 
     //Get symbol values given an array of symbols
