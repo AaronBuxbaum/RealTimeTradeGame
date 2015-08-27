@@ -38,7 +38,7 @@ AddNewStock.controller('AddNewStockCtrl', function ($firebaseArray, $q, $http, P
 
         $http({
             method: 'JSONP',
-            url: 'https://d.yimg.com/autoc.finance.yahoo.com/autoc',
+            url: 'http://d.yimg.com/autoc.finance.yahoo.com/autoc',
             params: {
                 query: query,
                 callback: 'YAHOO.Finance.SymbolSuggest.ssCallback'
