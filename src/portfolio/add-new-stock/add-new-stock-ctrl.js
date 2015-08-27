@@ -5,6 +5,11 @@ AddNewStock.controller('AddNewStockCtrl', function ($q, $http, PlayerService, St
 
     ctrl.addStock = function (stock) {
         PlayerService.addStock(stock);
+        ctrl.close();
+    };
+
+    ctrl.close = function () {
+        ctrl.isOpen = false;
         ctrl.newStock = null;
     };
 
