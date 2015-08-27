@@ -9,7 +9,6 @@ var _ = require('lodash');
 
 //Initialize variables
 var portfolioUpdater;
-var active = false;
 var FETCH_INTERVAL = 15000;
 var PlayerDatabase = new Firebase('https://realtimetrade.firebaseio.com/examplePlayer');
 var PortfolioDatabase = PlayerDatabase.child('portfolio');
@@ -17,16 +16,22 @@ var HistoryDatabase = PlayerDatabase.child('data');
 
 //Start the portfolio updater
 function startPortfolioUpdater() {
+	if (portfolioUpdater) {
+		return;
+	}
 	console.log('starting');
 	portfolioUpdater = setInterval(updatePortfolio, FETCH_INTERVAL);
-	active = true;
 }
 
 //Stop the portfolio updater
 function stopPortfolioUpdater() {
+	if (!portfolioUpdater) {
+		return;
+	}
+
 	console.log('stopping');
 	clearInterval(portfolioUpdater);
-	active = false;
+	portfolioUpdater = null;
 }
 
 //Update player's portfolio
@@ -49,13 +54,16 @@ function updatePortfolio() {
 //Check the time
 function checkTime() {
 	console.log('checking time');
-	
-	//If NYSE has closed
-	if (active && moment().isBetween(16, 9.5, 'hour')) {
-		stopPortfolioUpdater();
+
+	if (portfolioUpdater) {
+		//If NYSE has closed
+		if (moment().isBetween(16, 9, 'hour')) {
+			stopPortfolioUpdater();
+		}
 	}
+	
 	//If NYSE has just opened
-	else if (!active) {
+	else {
 		startPortfolioUpdater();
 	}
 }
