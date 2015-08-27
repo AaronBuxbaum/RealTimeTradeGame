@@ -18,7 +18,7 @@
 				</span>
 				<span class="item-metadata">
 					Value: <span class="item-metastat">{{::item.value}}</span>
-				<span ng-if="::(item.changePercentage !== '0.00')" ng-style="::{color: ctrl.getChangePercentageColor(item.changePercentage)}">({{::item.changePercentage}}%)</span>
+				<span ng-if="item.changePercentage !== 0" ng-style="{color: ctrl.getChangePercentageColor(item.changePercentage)}">({{item.changePercentage}}%)</span>
 				</span>
 				<span class="item-metadata">
 					Ticker: <span md-highlight-text="ctrl.newStock.searchText" md-highlight-flags="i" class="item-metastat">{{::item.ticker}}</span>
