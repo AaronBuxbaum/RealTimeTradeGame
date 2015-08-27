@@ -15,12 +15,12 @@ Stocks.factory('StocksService', function ($http, $q) {
     function transformStocks(response) {
         var suggestedStocks = _.take(response.data, 10);
         if (suggestedStocks.length) {
-            svc.getSymbolValues(_.pluck(suggestedStocks, 'ticker')).then(function (symbolValues) {
-                symbolValues = symbolValues.data;
-                _.times(symbolValues.length, function (index) {
-                    if (symbolValues[index]) {
-                        suggestedStocks[index].value = Number(symbolValues[index].l);
-                        suggestedStocks[index].changePercentage = Number(symbolValues[index].cp);
+            svc.getTickerValues(_.pluck(suggestedStocks, 'ticker')).then(function (tickerValues) {
+                tickerValues = tickerValues.data;
+                _.times(tickerValues.length, function (index) {
+                    if (tickerValues[index]) {
+                        suggestedStocks[index].value = Number(tickerValues[index].l);
+                        suggestedStocks[index].changePercentage = Number(tickerValues[index].cp);
                     }
                 });
             });
@@ -28,14 +28,14 @@ Stocks.factory('StocksService', function ($http, $q) {
         return suggestedStocks;
     }
 
-    //Get symbol values given an array of symbols
+    //Get ticker values given an array of tickers
     //TODO: reuse the code in server.js
-    svc.getSymbolValues = function (symbols) {
+    svc.getTickerValues = function (tickers) {
         return $http({
             method: 'JSONP',
             url: '//finance.google.com/finance/info',
             params: {
-                q: symbols.join(','),
+                q: tickers.join(','),
                 callback: 'JSON_CALLBACK'
             }
         });

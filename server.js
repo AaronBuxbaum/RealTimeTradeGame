@@ -19,7 +19,6 @@ function startPortfolioUpdater() {
 	if (portfolioUpdater) {
 		return;
 	}
-	console.log('starting');
 	portfolioUpdater = setInterval(updatePortfolio, FETCH_INTERVAL);
 }
 
@@ -29,7 +28,6 @@ function stopPortfolioUpdater() {
 		return;
 	}
 
-	console.log('stopping');
 	clearInterval(portfolioUpdater);
 	portfolioUpdater = null;
 }
@@ -45,6 +43,7 @@ function updatePortfolio() {
 			var previousEarnings = _.last(_.last(_.toArray(history.val())));
 
 			getPortfolioValue(portfolio, previousEarnings).then(function (portfolioValue) {
+				console.log(portfolioValue);
 				HistoryDatabase.push([Date.now(), portfolioValue]);
 			});
 		});
@@ -87,7 +86,7 @@ function getPortfolioValue(portfolio, previousEarnings) {
 		var stockValuesMap = _.zipObject(tickers, stockValues);
 
 		_.forOwn(portfolio, function (stock, key) {
-			var stockValue = Number(stockValuesMap[stock.symbol]);
+			var stockValue = Number(stockValuesMap[stock.ticker]);
 			stock.shares = previousEarnings * (stock.percentage / 100) / stock.value;
 			stock.value = stockValue;
 			total += stockValue * stock.shares;
@@ -100,7 +99,7 @@ function getPortfolioValue(portfolio, previousEarnings) {
 	});
 }
 
-//Get prices for an array of stock symbols
+//Get prices for an array of stock tickers
 function getStockPrices(tickers) {
 	//Param must exist for getStockValues to return correctly, so if empty, I use SPY and throw it away
 	if (!tickers || !tickers.length) {
