@@ -10,9 +10,10 @@ var _ = require('lodash');
 //Initialize variables
 var portfolioUpdater;
 var active = false;
-var FETCH_INTERVAL = 5000;
+var FETCH_INTERVAL = 15000;
 var PlayerDatabase = new Firebase('https://realtimetrade.firebaseio.com/examplePlayer');
 var PortfolioDatabase = PlayerDatabase.child('portfolio');
+var HistoryDatabase = PlayerDatabase.child('data');
 
 //Start the portfolio updater
 function startPortfolioUpdater() {
@@ -31,16 +32,12 @@ function updatePortfolio() {
 	PortfolioDatabase.once('value', function (portfolioData) {
 		if (!portfolioData) { return; }
 		
-		//Param must exist for getStockValues to return correctly, so if empty, I use SPY and throw it away
-		var portfolio = portfolioData.val();
-		var portfolioArray = _.toArray(portfolio);
-		var symbols = (portfolioArray && portfolioArray.length > 0) ? _.pluck(portfolioArray, 'symbol') : ['SPY'];
-		
 		//Push the new earnings to the database
-		var HistoryDatabase = PlayerDatabase.child('data');
 		HistoryDatabase.once('value', function (history) {
+			var portfolio = portfolioData.val();
 			var previousEarnings = _.last(_.last(_.toArray(history.val())));
-			getPortfolioValue(portfolio, previousEarnings, symbols).then(function (portfolioValue) {
+
+			getPortfolioValue(portfolio, previousEarnings).then(function (portfolioValue) {
 				HistoryDatabase.push([Date.now(), portfolioValue]);
 			});
 		});
@@ -50,7 +47,7 @@ function updatePortfolio() {
 //Check the time
 function checkTime() {
 	//If NYSE has closed
-	if (moment().isBetween(17, 9, 'hour')) {
+	if (moment().isBetween(16, 9.5, 'hour')) {
 		stopPortfolioUpdater();
 	}
 	//If NYSE has just opened
@@ -64,7 +61,7 @@ function checkTime() {
 /* Portfolio value functions */
 
 //Return the value of the player's portfolio
-function getPortfolioValue(portfolio, previousEarnings, symbols) {
+function getPortfolioValue(portfolio, previousEarnings) {
 	//If this is the first entry, initialize to $1M
 	if (!previousEarnings) {
 		previousEarnings = 1000000;
@@ -75,6 +72,7 @@ function getPortfolioValue(portfolio, previousEarnings, symbols) {
 	var total = previousEarnings * (unusedPercentage / 100);
 
 	//Find new earnings
+	var symbols = _.pluck(_.toArray(portfolio), 'symbol');
 	return getStockPrices(symbols).then(function (stockValues) {
 		var stockValuesMap = _.zipObject(symbols, stockValues);
 
@@ -82,7 +80,7 @@ function getPortfolioValue(portfolio, previousEarnings, symbols) {
 			var stockValue = Number(stockValuesMap[stock.symbol]);
 			stock.shares = previousEarnings * (stock.percentage / 100) / stock.value;
 			stock.value = stockValue;
-			total += stock.value * stock.shares;
+			total += stockValue * stock.shares;
 		});
 			
 		//Update stock values
@@ -94,10 +92,15 @@ function getPortfolioValue(portfolio, previousEarnings, symbols) {
 
 //Get prices for an array of stock symbols
 function getStockPrices(symbols) {
+	//Param must exist for getStockValues to return correctly, so if empty, I use SPY and throw it away
+	if (!symbols || !symbols.length) {
+		symbols = ['SPY']
+	}
+
 	return http.request({
 		method: 'GET',
 		host: 'www.google.com',
-		path: '/finance/info?q=' + symbols,
+		path: '/finance/info?q=' + symbols.join(, )
 	}).then(function (response) {
 		return response.body.read().then(function (body) {
 			return transformStockPrices(body);
