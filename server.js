@@ -100,7 +100,7 @@ function getStockPrices(symbols) {
 	return http.request({
 		method: 'GET',
 		host: 'www.google.com',
-		path: '/finance/info?q=' + symbols.join(, )
+		path: '/finance/info?q=' + symbols.join(',')
 	}).then(function (response) {
 		return response.body.read().then(function (body) {
 			return transformStockPrices(body);
