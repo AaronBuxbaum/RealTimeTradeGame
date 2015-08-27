@@ -1,6 +1,5 @@
 Ticker.controller('TickerCtrl', function ($scope, PlayerService) {
     var ctrl = this;
-    ctrl.userId = 1;
     
     ctrl.series = [
         {
