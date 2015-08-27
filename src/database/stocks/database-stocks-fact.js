@@ -31,7 +31,7 @@ Stocks.factory('StocksService', function ($http, $q) {
 
         $http({
             method: 'JSONP',
-            url: 'http://d.yimg.com/autoc.finance.yahoo.com/autoc',
+            url: '//d.yimg.com/autoc.finance.yahoo.com/autoc',
             params: {
                 query: query,
                 callback: 'YAHOO.Finance.SymbolSuggest.ssCallback'
@@ -46,7 +46,7 @@ Stocks.factory('StocksService', function ($http, $q) {
     svc.getSymbolValues = function (symbols) {
         return $http({
             method: 'JSONP',
-            url: 'http://finance.google.com/finance/info',
+            url: '//finance.google.com/finance/info',
             params: {
                 q: symbols.join(','),
                 callback: 'JSON_CALLBACK'
