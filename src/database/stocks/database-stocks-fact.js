@@ -3,31 +3,30 @@ Stocks.factory('StocksService', function ($http, $q) {
 
     svc.getStocks = function (query) {
         return $http({
-            method: 'JSONP',
-            url: '//dev.markitondemand.com/Api/v2/Lookup/jsonp',
+            method: 'GET',
+            url: '//api.investfly.com/stockmarket/company',
             params: {
-                input: query,
-                callback: 'JSON_CALLBACK'
+                exp: query,
+                market: 'US'
             }
-        }).then(function (response) {
-            var suggestedStocks = response.data;
-
-            if (suggestedStocks.length) {
-                svc.getSymbolValues(_.pluck(suggestedStocks, 'Symbol')).then(function (symbolValues) {
-                    symbolValues = symbolValues.data;
-                    _.times(symbolValues.length, function (index) {
-                        if (symbolValues[index]) {
-                            suggestedStocks[index].value = symbolValues[index].l;
-                            suggestedStocks[index].changePercentage = symbolValues[index].cp;
-                        }
-                    });
-                });
-            }
-
-            console.log(suggestedStocks);
-            return suggestedStocks
-        });
+        }).then(transformStocks);
     };
+
+    function transformStocks(response) {
+        var suggestedStocks = _.take(response.data, 10);
+        if (suggestedStocks.length) {
+            svc.getSymbolValues(_.pluck(suggestedStocks, 'ticker')).then(function (symbolValues) {
+                symbolValues = symbolValues.data;
+                _.times(symbolValues.length, function (index) {
+                    if (symbolValues[index]) {
+                        suggestedStocks[index].value = Number(symbolValues[index].l);
+                        suggestedStocks[index].changePercentage = Number(symbolValues[index].cp);
+                    }
+                });
+            });
+        }
+        return suggestedStocks;
+    }
 
     //Get symbol values given an array of symbols
     //TODO: reuse the code in server.js

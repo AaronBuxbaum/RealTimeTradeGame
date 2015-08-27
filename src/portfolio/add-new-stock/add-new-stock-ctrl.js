@@ -16,7 +16,7 @@ AddNewStock.controller('AddNewStockCtrl', function (PlayerService, StocksService
     };
 
     ctrl.isNegative = function (string) {
-        return string.charAt(0) === '-';
+        return string.toString().charAt(0) === '-';
     };
 
     ctrl.getChangePercentageColor = function (change) {

@@ -8,7 +8,7 @@
 		</md-content>
 
 		<!-- Stock sliders -->
-		<stock-slider ng-repeat="stock in ctrl.portfolio" name="{{stock.Name}}" ng-model="stock.percentage" ng-change="ctrl.updateStock(stock)">
+		<stock-slider ng-repeat="stock in ctrl.portfolio" name="{{stock.name}}" ng-model="stock.percentage" ng-change="ctrl.updateStock(stock)">
 			<ng-md-icon icon="delete" style="fill: red; cursor: pointer;" ng-click="ctrl.deleteStock($index)"></ng-md-icon>
 		</stock-slider>
 
