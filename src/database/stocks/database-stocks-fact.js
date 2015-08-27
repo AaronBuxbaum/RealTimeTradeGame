@@ -31,7 +31,7 @@ Stocks.factory('StocksService', function ($http, $q) {
 
         $http({
             method: 'JSONP',
-            url: '//d.yimg.com/autoc.finance.yahoo.com/autoc',
+            url: 'http://d.yimg.com/autoc.finance.yahoo.com/autoc',
             params: {
                 query: query,
                 callback: 'YAHOO.Finance.SymbolSuggest.ssCallback'
