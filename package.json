@@ -2,7 +2,7 @@
   "name": "RealTimeTradeGame",
   "version": "0.0.0",
   "description": "README",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -10,7 +10,7 @@
     "type": "git",
     "url": "https://github.com/AaronBuxbaum/RealTimeTradeGame.git"
   },
-  "author": "",
+  "author": "Aaron Buxbaum",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/AaronBuxbaum/RealTimeTradeGame/issues"
@@ -30,10 +30,14 @@
     "gulp-uglify": "^1.2.0",
     "less": "^2.5.1",
     "lodash": "^3.10.1",
+    "moment": "^2.10.6",
     "q": "^1.4.1",
     "q-io": "^1.13.1",
     "require-dir": "^0.3.0",
-    "run-sequence": "^1.1.2",
-    "moment": "^2.10.6"
-  }
+    "run-sequence": "^1.1.2"
+  },
+  "cacheDirectories": [
+    "node_modules",
+    "bower_components"
+  ]
 }
