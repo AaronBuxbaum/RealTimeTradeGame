@@ -84,9 +84,10 @@ function getPortfolioValue(portfolio, previousEarnings) {
 
 	//Find new earnings
 	var tickers = _.pluck(_.toArray(portfolio), 'ticker');
+
 	return getStockPrices(tickers).then(function (stockValues) {
 		var stockValuesMap = _.zipObject(tickers, stockValues);
-
+		
 		_.forOwn(portfolio, function (stock, key) {
 			var stockValue = Number(stockValuesMap[stock.ticker]);
 			stock.shares = previousEarnings * (stock.percentage / 100) / stock.value;
@@ -109,9 +110,8 @@ function getStockPrices(tickers) {
 	}
 
 	return http.request({
-		method: 'GET',
-		host: 'www.google.com',
-		path: '/finance/info?q=' + tickers.join(',')
+		url: 'https://finance.google.com/finance/info?q=' + tickers.join(','),
+		method: 'GET'
 	}).then(function (response) {
 		return response.body.read().then(function (body) {
 			return transformStockPrices(body);

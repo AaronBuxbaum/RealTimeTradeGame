@@ -15,7 +15,7 @@
   "bugs": {
     "url": "https://github.com/AaronBuxbaum/RealTimeTradeGame/issues"
   },
-  "homepage": "https://github.com/AaronBuxbaum/RealTimeTradeGame",
+  "homepage": "https://real-time-trade.herokuapp.com",
   "dependencies": {
     "bower": "^1.5.2",
     "express": "^4.13.0",
