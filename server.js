@@ -17,12 +17,14 @@ var HistoryDatabase = PlayerDatabase.child('data');
 
 //Start the portfolio updater
 function startPortfolioUpdater() {
+	console.log('starting');
 	portfolioUpdater = setInterval(updatePortfolio, FETCH_INTERVAL);
 	active = true;
 }
 
 //Stop the portfolio updater
 function stopPortfolioUpdater() {
+	console.log('stopping');
 	clearInterval(portfolioUpdater);
 	active = false;
 }
@@ -46,8 +48,10 @@ function updatePortfolio() {
 
 //Check the time
 function checkTime() {
+	console.log('checking time');
+	
 	//If NYSE has closed
-	if (moment().isBetween(16, 9.5, 'hour')) {
+	if (active && moment().isBetween(16, 9.5, 'hour')) {
 		stopPortfolioUpdater();
 	}
 	//If NYSE has just opened
