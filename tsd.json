@@ -6,34 +6,34 @@
   "bundle": "typings/tsd.d.ts",
   "installed": {
     "gulp/gulp.d.ts": {
-      "commit": "e5de5c4daf8cdc33ed60704cd6e8021c99a89f92"
+      "commit": "67605e10f6eb01c9d4a0d13719d804d6dea9e1cb"
     },
     "angular-material/angular-material.d.ts": {
-      "commit": "e5de5c4daf8cdc33ed60704cd6e8021c99a89f92"
+      "commit": "67605e10f6eb01c9d4a0d13719d804d6dea9e1cb"
     },
     "angularfire/angularfire.d.ts": {
-      "commit": "e5de5c4daf8cdc33ed60704cd6e8021c99a89f92"
+      "commit": "67605e10f6eb01c9d4a0d13719d804d6dea9e1cb"
     },
     "firebase/firebase.d.ts": {
-      "commit": "e5de5c4daf8cdc33ed60704cd6e8021c99a89f92"
+      "commit": "67605e10f6eb01c9d4a0d13719d804d6dea9e1cb"
     },
     "highcharts/highcharts.d.ts": {
-      "commit": "e5de5c4daf8cdc33ed60704cd6e8021c99a89f92"
+      "commit": "67605e10f6eb01c9d4a0d13719d804d6dea9e1cb"
     },
     "jquery/jquery.d.ts": {
-      "commit": "e5de5c4daf8cdc33ed60704cd6e8021c99a89f92"
+      "commit": "67605e10f6eb01c9d4a0d13719d804d6dea9e1cb"
     },
     "angularjs/angular.d.ts": {
-      "commit": "e5de5c4daf8cdc33ed60704cd6e8021c99a89f92"
+      "commit": "67605e10f6eb01c9d4a0d13719d804d6dea9e1cb"
     },
     "node/node.d.ts": {
-      "commit": "e5de5c4daf8cdc33ed60704cd6e8021c99a89f92"
+      "commit": "67605e10f6eb01c9d4a0d13719d804d6dea9e1cb"
     },
     "lodash/lodash.d.ts": {
-      "commit": "e5de5c4daf8cdc33ed60704cd6e8021c99a89f92"
+      "commit": "67605e10f6eb01c9d4a0d13719d804d6dea9e1cb"
     },
     "less/less.d.ts": {
-      "commit": "e5de5c4daf8cdc33ed60704cd6e8021c99a89f92"
+      "commit": "67605e10f6eb01c9d4a0d13719d804d6dea9e1cb"
     }
   }
 }

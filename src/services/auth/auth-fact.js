@@ -43,7 +43,7 @@ Authentication.factory('AuthenticationService', function ($firebaseAuth, $fireba
 				var user = ref.child('users/' + response.uid);
 				var newUser = $firebaseObject(user);
 				newUser.uid = response.uid;
-				newUser.name = 'Example';
+				newUser.name = response.uid;
 				newUser.$save();
 				return svc.logIn(email, password);
 			})

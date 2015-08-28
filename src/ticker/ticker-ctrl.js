@@ -18,17 +18,18 @@ Ticker.controller('TickerCtrl', function ($firebaseArray, AuthenticationService)
 
             var activeUserLeague = activeUser.val().league;
             ref.child('leagues').once('value', function (leagues) {
-                var findLeague = _.find(leagues, { id: activeUserLeague });
-                if (findLeague) {
-                    var leagueUsers = findLeague.child('users');
-                    leagueUsers.once('value', function (users) {
-                        _.forEach(users.val(), function (user) {
-                            var tmp = user.val();
-                            tmp.data = $firebaseArray(ref.child('series').child(user));
-                            ctrl.lines.push(tmp);
-                        });
-                    });
+                var findLeague = _.find(leagues.val(), { id: activeUserLeague });
+                if (!findLeague) {
+                    return;
                 }
+
+                _.forEach(findLeague.users, function (leagueUser) {
+                    ref.child('users').child(leagueUser.toString()).once('value', function (user) {
+                        var tmp = user.val();
+                        tmp.data = $firebaseArray(ref.child('series').child(tmp.uid));
+                        ctrl.lines.push(tmp);
+                    });
+                });
             });
         });
         
