@@ -89,7 +89,7 @@ function getEarnings(uid) {
 function getPortfolioValue(portfolioRef, previousEarnings) {
 	var defer = Q.defer();
 
-	portfolioRef.on('value', function (response) {
+	portfolioRef.once('value', function (response) {
 		var portfolio = response.val();
 		//If this is the first entry, initialize to $1M
 		if (!previousEarnings) {
@@ -103,6 +103,7 @@ function getPortfolioValue(portfolioRef, previousEarnings) {
 		//Find new earnings
 		var tickers = _.pluck(_.toArray(portfolio), 'ticker');
 
+		console.log(tickers);
 		getStockPrices(tickers).then(function (stockValues) {
 			var stockValuesMap = _.zipObject(tickers, stockValues);
 
