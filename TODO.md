@@ -5,9 +5,8 @@ Core Features:
 2. Daily/weekly/monthly daemons that cut down the data requirements
 
 Bugs:
-1. Font doesn't seem to be working properly
-2. Memory issues seem to be occuring, probably related to too much data
-3. Some stocks don't work via Google's system, which causes major issues
+1. Memory issues seem to be occuring, probably related to too much data
+2. Some stocks don't work via Google's system, which causes major issues
 
 Leagues:
 1. You should see your ticker start working immediately after joining a league
@@ -18,8 +17,6 @@ Leagues:
 5. More information should be stored on leagues, such as start date, end date, etc
 6. Leagues with end dates should have a countdown displayed
 	- A server script will have to be implemented that handles closing the league when the timer runs out
-
-
 
 Ticker:
 1. There should be a checkbox to allow hiding/showing certain league players
