@@ -28,6 +28,7 @@ Authentication.factory('AuthenticationService', function ($firebaseAuth) {
 			password: password
 		})
 			.then(function (response) {
+				//create an entry in the database for the new user's data to be stored in
 				return svc.logIn(email, password);
 			})
 
