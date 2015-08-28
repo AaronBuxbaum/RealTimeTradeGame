@@ -2,5 +2,6 @@
 var RealTimeTrade = angular.module('RealTimeTrade', [
 	'ngMaterial',
 	'Ticker',
-	'Portfolio'
+	'Portfolio',
+	'Toolbar'
 ]);

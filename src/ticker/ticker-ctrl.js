@@ -1,10 +1,12 @@
-Ticker.controller('TickerCtrl', function ($scope, PlayerService) {
+Ticker.controller('TickerCtrl', function (PlayerService) {
     var ctrl = this;
-    
+
     ctrl.series = [
         {
             id: 1,
-            data: PlayerService.data
+            name: 'Aaron',
+            data: PlayerService.data,
+            showCheckbox: true
         }
     ];
     
