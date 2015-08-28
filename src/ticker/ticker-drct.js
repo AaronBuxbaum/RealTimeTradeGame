@@ -5,8 +5,6 @@ Ticker.directive('ticker', function () {
 		controller: 'TickerCtrl',
 		controllerAs: 'ctrl',
 		bindToController: true,
-		scope: {
-			leagueName: '@'
-		}
+		scope: {}
 	};
 });

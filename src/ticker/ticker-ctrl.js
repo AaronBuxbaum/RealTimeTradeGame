@@ -9,13 +9,13 @@ Ticker.controller('TickerCtrl', function ($firebaseArray, AuthenticationService)
         }
 
         var seriesRef = new Firebase('https://realtimetrade.firebaseio.com/series/' + auth.uid);
-        ctrl.lines = [
-            {
-                id: 1,
-                name: 'Aaron',
-                data: (auth) ? $firebaseArray(seriesRef) : []
-            }
-        ];
+
+        ctrl.user = {
+            id: 1,
+            name: 'Aaron',
+            data: (auth) ? $firebaseArray(seriesRef) : []
+        };
+        ctrl.lines = [ctrl.user];
         
         //Chart configuration
         ctrl.chartConfig = {
@@ -68,7 +68,7 @@ Ticker.controller('TickerCtrl', function ($firebaseArray, AuthenticationService)
             },
             series: ctrl.lines,
             title: {
-                text: ctrl.leagueName
+                text: ctrl.lines[0].name
             },
             useHighStocks: true
         };
