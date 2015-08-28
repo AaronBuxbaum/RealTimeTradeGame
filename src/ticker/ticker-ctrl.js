@@ -3,23 +3,21 @@ Ticker.controller('TickerCtrl', function ($firebaseArray, AuthenticationService)
 
     AuthenticationService.auth.$onAuth(function (auth) {
         var ref = new Firebase('https://realtimetrade.firebaseio.com');
-        var uid = auth.uid || '';
-
-        /*
+        var uid = (auth) ? auth.uid : '';
+        
+        //Get lines for each player in active league
+        ctrl.lines = [];
         ref.child('users').child(uid).once('value', function (activeUser) {
             ref.child('leagues').child(activeUser.val().leagueID).child('users').once('value', function (leagueUsers) {
-                console.log(leagueUsers);
+                _.forEach(leagueUsers.val(), function (leagueUser) {
+                    ref.child('users').child(leagueUser.toString()).once('value', function (user) {
+                        var tmp = user.val();
+                        tmp.data = $firebaseArray(ref.child('series').child(leagueUser.toString()));
+                        ctrl.lines.push(tmp);
+                    });
+                });
             });
         });
-        */
-
-        var seriesRef = ref.child('series').child(uid);
-        ctrl.user = {
-            id: 1,
-            name: 'Aaron',
-            data: $firebaseArray(seriesRef)
-        };
-        ctrl.lines = [ctrl.user];
         
         //Chart configuration
         ctrl.chartConfig = {
@@ -72,7 +70,7 @@ Ticker.controller('TickerCtrl', function ($firebaseArray, AuthenticationService)
             },
             series: ctrl.lines,
             title: {
-                text: ctrl.lines[0].name
+                text: 'Testing'
             },
             useHighStocks: true
         };
