@@ -1,2 +1,4 @@
 /* global Player */
-var Player = angular.module('Player', ['firebase']);
+var Player = angular.module('Player', [
+	'firebase'
+]);

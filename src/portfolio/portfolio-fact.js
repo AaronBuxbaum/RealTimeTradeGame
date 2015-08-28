@@ -1,21 +1,13 @@
-Player.factory('PlayerService', function (AuthenticationService, $firebaseArray, $firebaseObject) {
+Portfolio.factory('PortfolioService', function (AuthenticationService, $firebaseArray) {
 	var svc = this;
 
-	var usersRef = new Firebase('https://realtimetrade.firebaseio.com');
-	var examplePlayer = usersRef.child('examplePlayer');
-	svc.examplePlayer = $firebaseObject(examplePlayer);
-    svc.portfolio = $firebaseArray(examplePlayer.child('portfolio'));
-	svc.data = $firebaseArray(examplePlayer.child('data'));
-	
-	//Get a player object
-	svc.getPlayer = function () {
-		var uid = AuthenticationService.getUserID();
-		return $firebaseObject(usersRef.child(uid));
-	};
+	var portfoliosRef = new Firebase('https://realtimetrade.firebaseio.com/portfolios');
+	var portfolioRef = portfoliosRef.child(AuthenticationService.getUserID().uid);
+	svc.portfolio = $firebaseArray(portfolioRef);
 	
 	//Add a stock to a player
 	svc.addStock = function (stock) {
-		if (!stock || _.find(svc.portfolio, { ticker: stock.ticker })) {
+		if (!stock || !svc.portfolio || _.find(svc.portfolio, { ticker: stock.ticker })) {
 			return;
 		}
 

@@ -1,10 +1,10 @@
-AddNewStock.controller('AddNewStockCtrl', function (PlayerService, StocksService) {
+AddNewStock.controller('AddNewStockCtrl', function (PortfolioService, StocksService) {
     var ctrl = this;
 
     ctrl.getStocks = StocksService.getStocks;
 
     ctrl.addStock = function (stock) {
-        PlayerService.addStock(stock);
+        PortfolioService.addStock(stock);
         ctrl.close();
     };
 

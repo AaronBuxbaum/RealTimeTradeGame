@@ -1,8 +1,8 @@
-Portfolio.controller('PortfolioCtrl', function (PlayerService) {
+Portfolio.controller('PortfolioCtrl', function (PortfolioService) {
     var ctrl = this;
 
-    ctrl.portfolio = PlayerService.portfolio;
-    ctrl.updateStock = PlayerService.saveStock;
-    ctrl.deleteStock = PlayerService.deleteStock;
-    ctrl.getMax = PlayerService.getUnusedPercentage;
+    ctrl.portfolio = PortfolioService.portfolio;
+    ctrl.updateStock = PortfolioService.saveStock;
+    ctrl.deleteStock = PortfolioService.deleteStock;
+    ctrl.getMax = PortfolioService.getUnusedPercentage;
 });
