@@ -2,17 +2,20 @@ Ticker.controller('TickerCtrl', function ($firebaseArray, AuthenticationService)
     var ctrl = this;
 
     AuthenticationService.auth.$onAuth(function (auth) {
+        if (!auth) {
+            return;
+        }
+
         var ref = new Firebase('https://realtimetrade.firebaseio.com');
-        var uid = (auth) ? auth.uid : '';
         
         //Get lines for each player in active league
         ctrl.lines = [];
-        ref.child('users').child(uid).once('value', function (activeUser) {
-            ref.child('leagues').child(activeUser.val().leagueID).child('users').once('value', function (leagueUsers) {
+        ref.child('users/' + auth.uid).once('value', function (activeUser) {
+            ref.child('leagues/' + activeUser.val().leagueID + '/users').once('value', function (leagueUsers) {
                 _.forEach(leagueUsers.val(), function (leagueUser) {
-                    ref.child('users').child(leagueUser.toString()).once('value', function (user) {
+                    ref.child('users/' + leagueUser).once('value', function (user) {
                         var tmp = user.val();
-                        tmp.data = $firebaseArray(ref.child('series').child(leagueUser.toString()));
+                        tmp.data = $firebaseArray(ref.child('series/' + leagueUser));
                         ctrl.lines.push(tmp);
                     });
                 });
