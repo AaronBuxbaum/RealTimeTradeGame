@@ -1,9 +1,8 @@
 Ticker.controller('TickerCtrl', function ($firebaseArray, AuthenticationService) {
     var ctrl = this;
 
-    var uid = AuthenticationService.getUserID().uid;
-    var seriesRef = new Firebase('https://realtimetrade.firebaseio.com/series');
-    var portfolioRef = seriesRef.child(uid);
+    var uid = AuthenticationService.getUserID();
+    var portfolioRef = new Firebase('https://realtimetrade.firebaseio.com/series/' + uid);
 
     ctrl.series = [
         {

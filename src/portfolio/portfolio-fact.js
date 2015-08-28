@@ -1,9 +1,12 @@
 Portfolio.factory('PortfolioService', function (AuthenticationService, $firebaseArray) {
 	var svc = this;
+	svc.portfolio;
 
-	var portfoliosRef = new Firebase('https://realtimetrade.firebaseio.com/portfolios');
-	var portfolioRef = portfoliosRef.child(AuthenticationService.getUserID().uid);
-	svc.portfolio = $firebaseArray(portfolioRef);
+	svc.getPortfolio = function (uid) {
+		var portfolioRef = new Firebase('https://realtimetrade.firebaseio.com/portfolios/' + uid);
+		svc.portfolio = $firebaseArray(portfolioRef);
+		return svc.portfolio;
+	};
 	
 	//Add a stock to a player
 	svc.addStock = function (stock) {

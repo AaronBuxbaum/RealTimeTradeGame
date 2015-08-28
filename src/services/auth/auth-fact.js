@@ -6,7 +6,7 @@ Authentication.factory('AuthenticationService', function ($firebaseAuth, $fireba
 
 	//Get signed in user ID (or null if not signed in)
 	svc.getUserID = function () {
-		return svc.auth.$getAuth();
+		return svc.auth.$getAuth().uid;
 	};
 	
 	//Watch for changes in the authentication state
