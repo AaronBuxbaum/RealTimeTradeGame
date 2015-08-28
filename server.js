@@ -12,7 +12,8 @@ var _ = require('lodash');
 var PORTFOLIO_UPDATER;
 var FETCH_INTERVAL = 20 * 1000;
 var EDT = 'America/New_York';
-var MARKET_OPEN_MOMENT = moment().tz(EDT).hour(9).minute(30);
+//var MARKET_OPEN_MOMENT = moment().tz(EDT).hour(9).minute(30);
+var MARKET_OPEN_MOMENT = moment().tz(EDT).hour(3).minute(30);
 var MARKET_CLOSE_MOMENT = moment().tz(EDT).hour(16);
 var ref = new Firebase('https://realtimetrade.firebaseio.com');
 var usersRef = ref.child('users');
@@ -43,18 +44,17 @@ function stopPortfolioUpdater() {
 //Update player's portfolio
 function updatePortfolio() {
 	usersRef.once('value', function (users) {
-		console.log(users);
-		return _.forEach(users, getEarnings);
+		return _.forOwn(users.val(), function (user) {
+			getEarnings(user.uid);
+		});
 	});
 }
 
-function getEarnings(user) {
-	var uid = user.uid;
-	
+function getEarnings(uid) {
 	//Push the new earnings to the database
 	seriesRef.child(uid).once('value', function (series) {
 		var portfolioRef = portfoliosRef.child(uid);
-		var previousEarnings = _.last(_.last(_.toArray(series.val())));
+		var previousEarnings = _.last(_.last(_.toArray(series)));
 
 		getPortfolioValue(portfolioRef, previousEarnings).then(function (portfolioValue) {
 			seriesRef.child(uid).push([Date.now(), portfolioValue]);
@@ -81,34 +81,34 @@ function checkTime() {
 
 //Return the value of the player's portfolio
 function getPortfolioValue(portfolioRef, previousEarnings) {
-	var portfolio = portfolioRef.val();
-	
-	//If this is the first entry, initialize to $1M
-	if (!previousEarnings) {
-		previousEarnings = 1000000;
-	}
+	return portfolioRef.on('value', function (portfolio) {
+		//If this is the first entry, initialize to $1M
+		if (!previousEarnings) {
+			previousEarnings = 1000000;
+		}
 
-	//Initialize cash
-	var unusedPercentage = 100 - _.sum(portfolio, 'percentage');
-	var total = previousEarnings * (unusedPercentage / 100);
+		//Initialize cash
+		var unusedPercentage = 100 - _.sum(portfolio, 'percentage');
+		var total = previousEarnings * (unusedPercentage / 100);
 
-	//Find new earnings
-	var tickers = _.pluck(_.toArray(portfolio), 'ticker');
+		//Find new earnings
+		var tickers = _.pluck(_.toArray(portfolio), 'ticker');
 
-	return getStockPrices(tickers).then(function (stockValues) {
-		var stockValuesMap = _.zipObject(tickers, stockValues);
+		return getStockPrices(tickers).then(function (stockValues) {
+			var stockValuesMap = _.zipObject(tickers, stockValues);
 
-		_.forOwn(portfolio, function (stock, key) {
-			var stockValue = Number(stockValuesMap[stock.ticker]);
-			stock.shares = previousEarnings * (stock.percentage / 100) / stock.value;
-			stock.value = stockValue;
-			total += stockValue * stock.shares;
-		});
+			_.forOwn(portfolio, function (stock, key) {
+				var stockValue = Number(stockValuesMap[stock.ticker]);
+				stock.shares = previousEarnings * (stock.percentage / 100) / stock.value;
+				stock.value = stockValue;
+				total += stockValue * stock.shares;
+			});
 			
-		//Update stock values
-		portfolioRef.set(portfolio);
+			//Update stock values
+			portfolioRef.set(portfolio);
 
-		return roundNumber(total);
+			return roundNumber(total);
+		});
 	});
 }
 
