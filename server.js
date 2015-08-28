@@ -81,7 +81,7 @@ function checkTime() {
 
 //Return the value of the player's portfolio
 function getPortfolioValue(portfolioRef, previousEarnings) {
-	return portfolioRef.on('value', function (portfolio) {
+	portfolioRef.on('value', function (portfolio) {
 		//If this is the first entry, initialize to $1M
 		if (!previousEarnings) {
 			previousEarnings = 1000000;
