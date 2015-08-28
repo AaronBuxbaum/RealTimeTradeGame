@@ -58,6 +58,7 @@ function getEarnings(uid) {
 
 		getPortfolioValue(portfolioRef, previousEarnings).then(function (portfolioValue) {
 			seriesRef.child(uid).push([Date.now(), portfolioValue]);
+			console.log(portfolioValue);
 		});
 	});
 }
@@ -81,6 +82,8 @@ function checkTime() {
 
 //Return the value of the player's portfolio
 function getPortfolioValue(portfolioRef, previousEarnings) {
+	var defer = Q.defer();
+
 	portfolioRef.on('value', function (portfolio) {
 		//If this is the first entry, initialize to $1M
 		if (!previousEarnings) {
@@ -107,9 +110,11 @@ function getPortfolioValue(portfolioRef, previousEarnings) {
 			//Update stock values
 			portfolioRef.set(portfolio);
 
-			return roundNumber(total);
+			defer.resolve(roundNumber(total));
 		});
 	});
+
+	return defer.promise;
 }
 
 //Get prices for an array of stock tickers
