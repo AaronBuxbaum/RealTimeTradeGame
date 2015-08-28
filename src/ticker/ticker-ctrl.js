@@ -11,6 +11,10 @@ Ticker.controller('TickerCtrl', function ($firebaseArray, AuthenticationService)
         //Get lines for each player in active league
         ctrl.lines = [];
         ref.child('users/' + auth.uid).once('value', function (activeUser) {
+            if (!activeUser.val() || !activeUser.val().leagueID) {
+                return;
+            }
+
             ref.child('leagues/' + activeUser.val().leagueID + '/users').once('value', function (leagueUsers) {
                 _.forEach(leagueUsers.val(), function (leagueUser) {
                     ref.child('users/' + leagueUser).once('value', function (user) {

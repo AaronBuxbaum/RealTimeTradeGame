@@ -63,7 +63,9 @@ function stopPortfolioUpdater() {
 function updatePortfolio() {
 	usersRef.once('value', function (users) {
 		return _.forOwn(users.val(), function (user) {
-			getEarnings(user.uid);
+			if (user.uid) {
+				getEarnings(user.uid);
+			}
 		});
 	});
 }

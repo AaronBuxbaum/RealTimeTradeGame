@@ -1,0 +1,11 @@
+<md-content layout-padding>
+	<md-input-container>
+		<label>League</label>
+		<md-select ng-model="ctrl.league">
+			<md-option ng-repeat="league in ctrl.leagues" value="{{league.id}}">{{league.name}}</md-option>
+		</md-select>
+	</md-input-container>
+
+	<md-button class="md-raised md-primary" ng-click="ctrl.createLeague(1, 'Aaron')">Create League</md-button>
+	<md-button class="md-raised md-primary" ng-click="ctrl.joinLeague(ctrl.league, ctrl.uid)">Join League</md-button>
+</md-content>
