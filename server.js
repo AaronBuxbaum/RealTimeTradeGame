@@ -8,30 +8,32 @@ var moment = require('moment');
 var _ = require('lodash');
 
 //Initialize variables
-var portfolioUpdater;
+var PORTFOLIO_UPDATER;
 var FETCH_INTERVAL = 20 * 1000;
+var MARKET_OPEN_MOMENT = moment().hour(9).minute(30);
+var MARKET_CLOSE_MOMENT = moment().hour(16);
 var PlayerDatabase = new Firebase('https://realtimetrade.firebaseio.com/examplePlayer');
 var PortfolioDatabase = PlayerDatabase.child('portfolio');
 var HistoryDatabase = PlayerDatabase.child('data');
 
 //Start the portfolio updater
 function startPortfolioUpdater() {
-	if (portfolioUpdater) {
+	if (PORTFOLIO_UPDATER) {
 		return;
 	}
 
-	portfolioUpdater = setInterval(updatePortfolio, FETCH_INTERVAL);
+	PORTFOLIO_UPDATER = setInterval(updatePortfolio, FETCH_INTERVAL);
 	console.log('Portfolio updater started');
 }
 
 //Stop the portfolio updater
 function stopPortfolioUpdater() {
-	if (!portfolioUpdater) {
+	if (!PORTFOLIO_UPDATER) {
 		return;
 	}
 
-	clearInterval(portfolioUpdater);
-	portfolioUpdater = null;
+	clearInterval(PORTFOLIO_UPDATER);
+	PORTFOLIO_UPDATER = null;
 	console.log('Portfolio updater stopped');
 }
 
@@ -53,8 +55,6 @@ function updatePortfolio() {
 }
 
 //Check the time
-var MARKET_OPEN_MOMENT = moment().hour(9).minute(30);
-var MARKET_CLOSE_MOMENT = moment().hour(16);
 function checkTime() {
 	//If NYSE has closed
 	if (!moment().isBetween(MARKET_OPEN_MOMENT, MARKET_CLOSE_MOMENT)) {
