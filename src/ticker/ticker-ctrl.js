@@ -1,6 +1,7 @@
 Ticker.controller('TickerCtrl', function ($firebaseArray, AuthenticationService) {
     var ctrl = this;
 
+    //TODO this shouldn't only happen when the authorization status changes (ie. if people join or leave a league?)
     AuthenticationService.auth.$onAuth(function (auth) {
         if (!auth) {
             return;
@@ -11,11 +12,11 @@ Ticker.controller('TickerCtrl', function ($firebaseArray, AuthenticationService)
         //Get lines for each player in active league
         ctrl.lines = [];
         ref.child('users/' + auth.uid).once('value', function (activeUser) {
-            if (!activeUser.val() || !activeUser.val().leagueID) {
+            if (!activeUser.val() || !activeUser.val().league) {
                 return;
             }
 
-            ref.child('leagues/' + activeUser.val().leagueID + '/users').once('value', function (leagueUsers) {
+            ref.child('leagues/' + activeUser.val().league + '/users').once('value', function (leagueUsers) {
                 _.forEach(leagueUsers.val(), function (leagueUser) {
                     ref.child('users/' + leagueUser).once('value', function (user) {
                         var tmp = user.val();
