@@ -10,10 +10,9 @@ var _ = require('lodash');
 
 //Initialize variables
 var PORTFOLIO_UPDATER;
-var FETCH_INTERVAL = 30 * 1000;
+var FETCH_INTERVAL = 15 * 1000;
 var EDT = 'America/New_York';
-//var MARKET_OPEN_MOMENT = moment().tz(EDT).hour(9).minute(30);
-var MARKET_OPEN_MOMENT = moment().tz(EDT).hour(3).minute(30);
+var MARKET_OPEN_MOMENT = moment().tz(EDT).hour(9).minute(30);
 var MARKET_CLOSE_MOMENT = moment().tz(EDT).hour(16);
 var ref = new Firebase('https://realtimetrade.firebaseio.com');
 var usersRef = ref.child('users');
