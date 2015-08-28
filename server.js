@@ -20,6 +20,23 @@ var usersRef = ref.child('users');
 var portfoliosRef = ref.child('portfolios');
 var seriesRef = ref.child('series');
 
+
+
+/* Updater */
+
+//Check the time
+function checkTime() {
+	//If NYSE has closed
+	if (!moment().tz(EDT).isBetween(MARKET_OPEN_MOMENT, MARKET_CLOSE_MOMENT)) {
+		stopPortfolioUpdater();
+	}
+	
+	//If NYSE has just opened
+	else {
+		startPortfolioUpdater();
+	}
+}
+
 //Start the portfolio updater
 function startPortfolioUpdater() {
 	if (PORTFOLIO_UPDATER) {
@@ -41,6 +58,8 @@ function stopPortfolioUpdater() {
 	console.log('Portfolio updater stopped');
 }
 
+/* Update functionality */
+
 //Update player's portfolio
 function updatePortfolio() {
 	usersRef.once('value', function (users) {
@@ -54,26 +73,12 @@ function getEarnings(uid) {
 	//Push the new earnings to the database
 	seriesRef.child(uid).once('value', function (series) {
 		var portfolioRef = portfoliosRef.child(uid);
-		var previousEarnings = _.last(_.last(_.toArray(series)));
+		var previousEarnings = _.last(_.last(_.toArray(series.val())));
 
 		getPortfolioValue(portfolioRef, previousEarnings).then(function (portfolioValue) {
 			seriesRef.child(uid).push([Date.now(), portfolioValue]);
-			console.log(portfolioValue);
 		});
 	});
-}
-
-//Check the time
-function checkTime() {
-	//If NYSE has closed
-	if (!moment().tz(EDT).isBetween(MARKET_OPEN_MOMENT, MARKET_CLOSE_MOMENT)) {
-		stopPortfolioUpdater();
-	}
-	
-	//If NYSE has just opened
-	else {
-		startPortfolioUpdater();
-	}
 }
 
 
@@ -84,7 +89,8 @@ function checkTime() {
 function getPortfolioValue(portfolioRef, previousEarnings) {
 	var defer = Q.defer();
 
-	portfolioRef.on('value', function (portfolio) {
+	portfolioRef.on('value', function (response) {
+		var portfolio = response.val();
 		//If this is the first entry, initialize to $1M
 		if (!previousEarnings) {
 			previousEarnings = 1000000;
@@ -97,7 +103,7 @@ function getPortfolioValue(portfolioRef, previousEarnings) {
 		//Find new earnings
 		var tickers = _.pluck(_.toArray(portfolio), 'ticker');
 
-		return getStockPrices(tickers).then(function (stockValues) {
+		getStockPrices(tickers).then(function (stockValues) {
 			var stockValuesMap = _.zipObject(tickers, stockValues);
 
 			_.forOwn(portfolio, function (stock, key) {

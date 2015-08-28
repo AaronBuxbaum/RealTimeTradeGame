@@ -1,14 +1,16 @@
 Ticker.controller('TickerCtrl', function ($firebaseArray, AuthenticationService) {
     var ctrl = this;
 
-    var uid = AuthenticationService.getUserID();
-    var portfolioRef = new Firebase('https://realtimetrade.firebaseio.com/series/' + uid);
+    AuthenticationService.auth.$onAuth(function (auth) {
+        var seriesRef = new Firebase('https://realtimetrade.firebaseio.com/series/' + auth.uid);
+        ctrl.userSeries = (auth) ? $firebaseArray(seriesRef) : null;
+    });
 
-    ctrl.series = [
+    ctrl.lines = [
         {
             id: 1,
             name: 'Aaron',
-            data: $firebaseArray(portfolioRef),
+            data: ctrl.userSeries,
             showCheckbox: true
         }
     ];
@@ -62,7 +64,7 @@ Ticker.controller('TickerCtrl', function ($firebaseArray, AuthenticationService)
                 enabled: true
             }
         },
-        series: ctrl.series,
+        series: ctrl.lines,
         title: {
             text: ctrl.leagueName
         },
