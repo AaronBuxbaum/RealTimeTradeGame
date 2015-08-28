@@ -11,20 +11,24 @@
 <script src="ticker/ticker.js"></script>
 
 	Until then, just hard-code each file -->
+
 <script src="main.js"></script>
 <script src="main-ctrl.js"></script>
 
-<script src="database/database.js"></script>
-<script src="database/database-fact.js"></script>
+<script src="services/auth/auth.js"></script>
+<script src="services/auth/auth-fact.js"></script>
 
-<script src="database/stocks/database-stocks.js"></script>
-<script src="database/stocks/database-stocks-fact.js"></script>
+<script src="services/database/database.js"></script>
+<script src="services/database/database-fact.js"></script>
 
-<script src="database/league/database-league.js"></script>
-<script src="database/league/database-league-fact.js"></script>
+<script src="services/stocks/stocks.js"></script>
+<script src="services/stocks/stocks-fact.js"></script>
 
-<script src="database/player/database-player.js"></script>
-<script src="database/player/database-player-fact.js"></script>
+<script src="services/league/league.js"></script>
+<script src="services/league/league-fact.js"></script>
+
+<script src="services/player/player.js"></script>
+<script src="services/player/player-fact.js"></script>
 
 <script src="ticker/ticker.js"></script>
 <script src="ticker/ticker-ctrl.js"></script>
@@ -33,6 +37,10 @@
 <script src="portfolio/portfolio.js"></script>
 <script src="portfolio/portfolio-ctrl.js"></script>
 <script src="portfolio/portfolio-drct.js"></script>
+
+<script src="profile/profile.js"></script>
+<script src="profile/profile-ctrl.js"></script>
+<script src="profile/profile-drct.js"></script>
 
 <script src="toolbar/toolbar.js"></script>
 <script src="toolbar/toolbar-ctrl.js"></script>
@@ -49,17 +57,14 @@
 <body ng-app="RealTimeTrade">
 	<md-content layout-padding ng-controller="MainCtrl as ctrl">
 		<md-tabs md-dynamic-height="true" md-swipe-content="true">
-			<md-tab>
-				<md-tab-label>Ticker</md-tab-label>
-				<md-tab-body>
-					<ticker league-name="{{ctrl.leagueName}}"></ticker>
-				</md-tab-body>
+			<md-tab label="Ticker">
+				<ticker league-name="{{ctrl.leagueName}}"></ticker>
 			</md-tab>
-			<md-tab>
-				<md-tab-label>Portfolio</md-tab-label>
-				<md-tab-body>
-					<portfolio></portfolio>
-				</md-tab-body>
+			<md-tab label="Portfolio">
+				<portfolio></portfolio>
+			</md-tab>
+			<md-tab label="Profile">
+				<profile></profile>
 			</md-tab>
 		</md-tabs>
 	</md-content>
