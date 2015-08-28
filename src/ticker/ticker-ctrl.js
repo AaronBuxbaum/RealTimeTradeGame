@@ -16,14 +16,19 @@ Ticker.controller('TickerCtrl', function ($firebaseArray, AuthenticationService)
                 return;
             }
 
-            ref.child('leagues/' + activeUser.val().league + '/users').once('value', function (leagueUsers) {
-                _.forEach(leagueUsers.val(), function (leagueUser) {
-                    ref.child('users/' + leagueUser).once('value', function (user) {
-                        var tmp = user.val();
-                        tmp.data = $firebaseArray(ref.child('series/' + leagueUser));
-                        ctrl.lines.push(tmp);
+            var activeUserLeague = activeUser.val().league;
+            ref.child('leagues').once('value', function (leagues) {
+                var findLeague = _.find(leagues, { id: activeUserLeague });
+                if (findLeague) {
+                    var leagueUsers = findLeague.child('users');
+                    leagueUsers.once('value', function (users) {
+                        _.forEach(users.val(), function (user) {
+                            var tmp = user.val();
+                            tmp.data = $firebaseArray(ref.child('series').child(user));
+                            ctrl.lines.push(tmp);
+                        });
                     });
-                });
+                }
             });
         });
         
