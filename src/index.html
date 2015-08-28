@@ -12,8 +12,8 @@
 
 	Until then, just hard-code each file -->
 
-<script src="main.js"></script>
-<script src="main-ctrl.js"></script>
+<script src="real-time-trade.js"></script>
+<script src="real-time-trade-ctrl.js"></script>
 
 <script src="services/auth/auth.js"></script>
 <script src="services/auth/auth-fact.js"></script>
@@ -30,6 +30,10 @@
 <script src="services/player/player.js"></script>
 <script src="services/player/player-fact.js"></script>
 
+<script src="main/main.js"></script>
+<script src="main/main-ctrl.js"></script>
+<script src="main/main-drct.js"></script>
+
 <script src="ticker/ticker.js"></script>
 <script src="ticker/ticker-ctrl.js"></script>
 <script src="ticker/ticker-drct.js"></script>
@@ -38,9 +42,13 @@
 <script src="portfolio/portfolio-ctrl.js"></script>
 <script src="portfolio/portfolio-drct.js"></script>
 
-<script src="profile/profile.js"></script>
-<script src="profile/profile-ctrl.js"></script>
-<script src="profile/profile-drct.js"></script>
+<script src="login/login.js"></script>
+<script src="login/login-ctrl.js"></script>
+<script src="login/login-drct.js"></script>
+
+<script src="logout/logout.js"></script>
+<script src="logout/logout-ctrl.js"></script>
+<script src="logout/logout-drct.js"></script>
 
 <script src="toolbar/toolbar.js"></script>
 <script src="toolbar/toolbar-ctrl.js"></script>
@@ -55,18 +63,9 @@
 <script src="portfolio/stock-slider/stock-slider-drct.js"></script>
 
 <body ng-app="RealTimeTrade">
-	<md-content layout-padding ng-controller="MainCtrl as ctrl">
-		<md-tabs md-dynamic-height="true" md-swipe-content="true">
-			<md-tab label="Ticker">
-				<ticker league-name="{{ctrl.leagueName}}"></ticker>
-			</md-tab>
-			<md-tab label="Portfolio">
-				<portfolio></portfolio>
-			</md-tab>
-			<md-tab label="Profile">
-				<profile></profile>
-			</md-tab>
-		</md-tabs>
+	<md-content layout-padding ng-controller="RealTimeTradeCtrl as ctrl">
+		<login ng-if="!ctrl.isAuthenticated"></login>
+		<main ng-if="ctrl.isAuthenticated"></main>
 	</md-content>
 </body>
 

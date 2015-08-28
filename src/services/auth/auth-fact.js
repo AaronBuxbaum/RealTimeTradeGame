@@ -1,10 +1,45 @@
 Authentication.factory('AuthenticationService', function ($firebaseAuth) {
 	var svc = this;
 
-	var auth = new Firebase('https://realtimetrade.firebaseio.com');
+	var ref = new Firebase('https://realtimetrade.firebaseio.com');
+	svc.auth = $firebaseAuth(ref);
 
+	//Log in
+	svc.logIn = function (email, password) {
+		return svc.auth.$authWithPassword({
+            email: email,
+            password: password
+        })
+			.then(function (response) {
+				svc.profileImage = response.password.profileImageURL;
+				return svc.profileImage;
+			})
+
+			.catch(function (error) {
+				console.log(error);
+				return error;
+			});
+	};
+
+	//Sign up
+	svc.signUp = function (email, password) {
+		svc.auth.$createUser({
+			email: email,
+			password: password
+		})
+			.then(function (response) {
+				return svc.logIn(email, password);
+			})
+
+			.catch(function (error) {
+				console.log(error);
+				return error;
+			});
+	};
+	
+	//Log out
 	svc.logOut = function () {
-		return $firebaseAuth(auth);
+		svc.auth.$unauth();
 	};
 
 	return svc;
