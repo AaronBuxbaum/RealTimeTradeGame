@@ -1,4 +1,4 @@
-Authentication.factory('AuthenticationService', function ($firebaseAuth, $firebaseArray) {
+Authentication.factory('AuthenticationService', function ($firebaseAuth, $firebaseObject) {
 	var svc = this;
 
 	var ref = new Firebase('https://realtimetrade.firebaseio.com');
@@ -40,8 +40,9 @@ Authentication.factory('AuthenticationService', function ($firebaseAuth, $fireba
 			password: password
 		})
 			.then(function (response) {
-				//Is there a better way to connect user accounts and their own section of firebase data?
-				$firebaseArray(ref.child('users')).$add(response);
+				var newUser = $firebaseObject(ref.child('users'));
+				newUser[response.uid] = response;
+				newUser.$save();
 				return svc.logIn(email, password);
 			})
 

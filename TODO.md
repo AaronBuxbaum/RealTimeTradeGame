@@ -3,8 +3,7 @@ To Do:
 Core Features:
 1. Polish and increase features for single user
 2. Daily/weekly/monthly daemons that cut down the data requirements
-3. User system (ie. log in, separate accounts with separate settings)
-4. League system (mostly ignored for right now)
+3. League system (mostly ignored for right now)
 
 Bugs:
 1. Font doesn't seem to be working properly

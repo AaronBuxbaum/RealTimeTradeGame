@@ -102,7 +102,6 @@ function getPortfolioValue(portfolioRef, previousEarnings) {
 		//Find new earnings
 		var tickers = _.pluck(_.toArray(portfolio), 'ticker');
 
-		console.log(tickers);
 		getStockPrices(tickers).then(function (stockValues) {
 			var stockValuesMap = _.zipObject(tickers, stockValues);
 
