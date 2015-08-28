@@ -4,6 +4,18 @@ Authentication.factory('AuthenticationService', function ($firebaseAuth, $fireba
 	var ref = new Firebase('https://realtimetrade.firebaseio.com');
 	svc.auth = $firebaseAuth(ref);
 
+	//Get signed in user ID (or null if not signed in)
+	svc.getUserID = function () {
+		return svc.auth.$getAuth();
+	};
+	
+	//Watch for changes in the authentication state
+	/*
+	svc.auth.$onAuth(function(authData) {
+		svc.isAuthenticated = !!authData;
+	});
+	*/
+
 	//Log in
 	svc.logIn = function (email, password) {
 		return svc.auth.$authWithPassword({
