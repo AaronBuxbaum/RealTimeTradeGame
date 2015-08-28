@@ -14,9 +14,10 @@ var FETCH_INTERVAL = 20 * 1000;
 var EDT = 'America/New_York';
 var MARKET_OPEN_MOMENT = moment().tz(EDT).hour(9).minute(30);
 var MARKET_CLOSE_MOMENT = moment().tz(EDT).hour(16);
-var PlayerDatabase = new Firebase('https://realtimetrade.firebaseio.com/examplePlayer');
-var PortfolioDatabase = PlayerDatabase.child('portfolio');
-var HistoryDatabase = PlayerDatabase.child('data');
+var ref = new Firebase('https://realtimetrade.firebaseio.com');
+var usersRef = ref.child('users');
+var portfoliosRef = ref.child('portfolios');
+var seriesRef = ref.child('series');
 
 //Start the portfolio updater
 function startPortfolioUpdater() {
@@ -41,17 +42,22 @@ function stopPortfolioUpdater() {
 
 //Update player's portfolio
 function updatePortfolio() {
-	PortfolioDatabase.once('value', function (portfolioData) {
-		if (!portfolioData) { return; }
-		
-		//Push the new earnings to the database
-		HistoryDatabase.once('value', function (history) {
-			var portfolio = portfolioData.val();
-			var previousEarnings = _.last(_.last(_.toArray(history.val())));
+	usersRef.once('value', function (users) {
+		console.log(users);
+		return _.forEach(users, getEarnings);
+	});
+}
 
-			getPortfolioValue(portfolio, previousEarnings).then(function (portfolioValue) {
-				HistoryDatabase.push([Date.now(), portfolioValue]);
-			});
+function getEarnings(user) {
+	var uid = user.uid;
+	
+	//Push the new earnings to the database
+	seriesRef.child(uid).once('value', function (series) {
+		var portfolioRef = portfoliosRef.child(uid);
+		var previousEarnings = _.last(_.last(_.toArray(series.val())));
+
+		getPortfolioValue(portfolioRef, previousEarnings).then(function (portfolioValue) {
+			seriesRef.child(uid).push([Date.now(), portfolioValue]);
 		});
 	});
 }
@@ -74,7 +80,9 @@ function checkTime() {
 /* Portfolio value functions */
 
 //Return the value of the player's portfolio
-function getPortfolioValue(portfolio, previousEarnings) {
+function getPortfolioValue(portfolioRef, previousEarnings) {
+	var portfolio = portfolioRef.val();
+	
 	//If this is the first entry, initialize to $1M
 	if (!previousEarnings) {
 		previousEarnings = 1000000;
@@ -98,7 +106,7 @@ function getPortfolioValue(portfolio, previousEarnings) {
 		});
 			
 		//Update stock values
-		PortfolioDatabase.set(portfolio);
+		portfolioRef.set(portfolio);
 
 		return roundNumber(total);
 	});

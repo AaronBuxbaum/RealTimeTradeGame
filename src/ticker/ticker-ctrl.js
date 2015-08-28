@@ -1,11 +1,15 @@
-Ticker.controller('TickerCtrl', function (PlayerService) {
+Ticker.controller('TickerCtrl', function ($firebaseArray, AuthenticationService) {
     var ctrl = this;
+
+    var uid = AuthenticationService.getUserID().uid;
+    var seriesRef = new Firebase('https://realtimetrade.firebaseio.com/series');
+    var portfolioRef = seriesRef.child(uid);
 
     ctrl.series = [
         {
             id: 1,
             name: 'Aaron',
-            data: PlayerService.data,
+            data: $firebaseArray(portfolioRef),
             showCheckbox: true
         }
     ];

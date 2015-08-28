@@ -2,7 +2,7 @@
 var Ticker = angular.module('Ticker', [
 	'ngMaterial',
 	'highcharts-ng',
-	'Player'
+	'Authentication'
 ]);
 
 Ticker.config(function () {
