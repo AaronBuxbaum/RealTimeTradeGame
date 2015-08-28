@@ -2,8 +2,13 @@ Ticker.controller('TickerCtrl', function ($firebaseArray, AuthenticationService)
     var ctrl = this;
 
     AuthenticationService.auth.$onAuth(function (auth) {
-        var seriesRef = new Firebase('https://realtimetrade.firebaseio.com/series/' + auth.uid || '');
+        if (!auth) {
+            auth = {
+                uid: ''
+            };
+        }
 
+        var seriesRef = new Firebase('https://realtimetrade.firebaseio.com/series/' + auth.uid);
         ctrl.lines = [
             {
                 id: 1,
