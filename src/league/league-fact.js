@@ -8,7 +8,7 @@ League.factory('LeagueService', function (AuthenticationService, $firebaseObject
 	svc.joinLeague = function (leagueID, uid) {
 		if (leagueID && uid) {
 			var league = _.find(svc.leagues, { id: leagueID });
-			if (league && _.indexOf(league.users, uid) < 0) {
+			if (league && !_.contains(league.users, uid)) {
 				if (!league.users) {
 					league.users = [];
 				}
