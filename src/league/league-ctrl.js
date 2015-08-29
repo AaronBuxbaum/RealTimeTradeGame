@@ -11,5 +11,6 @@ League.controller('LeagueCtrl', function (LeagueService, AuthenticationService) 
         ctrl.leagues = LeagueService.leagues;
         ctrl.joinLeague = LeagueService.joinLeague;
         ctrl.createLeague = LeagueService.createLeague;
+        ctrl.leaveLeague = LeagueService.leaveLeague;
     });
 });

@@ -33,5 +33,25 @@ League.factory('LeagueService', function (AuthenticationService, $firebaseObject
 		});
 	};
 
+	svc.leaveLeague = function (uid) {
+		var user = $firebaseObject(ref.child('users').child(uid));
+		user.$loaded().then(function (data) {
+			var leagueID = _.cloneDeep(user.league);
+			data.league = null;
+			data.$save();
+
+			var leagues = $firebaseArray(ref.child('leagues'));
+			leagues.$loaded().then(function (data) {
+				var leagueFind = _.find(data, { id: leagueID });
+
+				if (leagueFind) {
+					var index = _.indexOf(leagueFind.users, uid);
+					leagueFind.users.splice(index, 1);
+					data.$save();
+				}
+			});
+		});
+	};
+
 	return svc;
 });
