@@ -3,6 +3,7 @@ To Do:
 Core Features:
 1. Polish and increase features for single user
 2. Daily/weekly/monthly daemons that cut down the data requirements
+3. Cut down on bandwidth use with firebase specific functionality or Angular's limit() functions
 
 Bugs:
 1. Memory issues seem to be occuring, probably related to too much data
