@@ -12,8 +12,8 @@ var _ = require('lodash');
 var PORTFOLIO_UPDATER;
 var FETCH_INTERVAL = 15 * 1000;
 var EDT = 'America/New_York';
-var MARKET_OPEN_MOMENT = moment().tz(EDT).hour(9).minute(30);
-var MARKET_CLOSE_MOMENT = moment().tz(EDT).hour(16);
+var MARKET_OPEN = moment().tz(EDT).hour(9).minute(30);
+var MARKET_CLOSE = moment().tz(EDT).hour(16);
 var ref = new Firebase('https://realtimetrade.firebaseio.com');
 var usersRef = ref.child('users');
 var portfoliosRef = ref.child('portfolios');
@@ -25,15 +25,56 @@ var seriesRef = ref.child('series');
 
 //Check the time
 function checkTime() {
-	//If NYSE has closed
-	if (!moment().tz(EDT).isBetween(MARKET_OPEN_MOMENT, MARKET_CLOSE_MOMENT)) {
+	if (!isMarketOpen) {
 		stopPortfolioUpdater();
 	}
-	
-	//If NYSE has just opened
 	else {
 		startPortfolioUpdater();
 	}
+}
+
+//Check if the stock market is open
+function isMarketOpen() {
+	var now = moment().tz(EDT);
+
+	if (now.day() < 1 || now.day() > 5) {
+		return false;
+	}
+
+	if (isNationalHoliday(now)) {
+		return false;
+	}
+
+	return now.isBetween(MARKET_OPEN, MARKET_CLOSE);
+}
+
+//Check if it is a national holiday
+function isNationalHoliday(moment) {
+    var holidays = {
+		'M': {//Month, Day
+            '01/01': "New Year's Day",
+            '07/04': "Independence Day",
+            '11/11': "Veteran's Day",
+            '11/28': "Thanksgiving Day",
+            '11/29': "Day after Thanksgiving",
+            '12/24': "Christmas Eve",
+            '12/25': "Christmas Day",
+            '12/31': "New Year's Eve"
+        },
+        'W': {//Month, Week of Month, Day of Week
+            '1/3/1': "Martin Luther King Jr. Day",
+            '2/3/1': "Washington's Birthday",
+            '5/5/1': "Memorial Day",
+            '9/1/1': "Labor Day",
+            '10/2/1': "Columbus Day",
+            '11/4/4': "Thanksgiving Day"
+        }
+    };
+
+	var diff = 1 + (0 | (this._d.getDate() - 1) / 7),
+		memorial = (this._d.getDay() === 1 && (this._d.getDate() + 7) > 30) ? "5" : null;
+
+	return (holidays['M'][this.format('MM/DD')] || holidays['W'][this.format('M/' + (memorial || diff) + '/d')]);
 }
 
 //Start the portfolio updater
@@ -56,6 +97,8 @@ function stopPortfolioUpdater() {
 	PORTFOLIO_UPDATER = null;
 	console.log('Portfolio updater stopped');
 }
+
+
 
 /* Update functionality */
 

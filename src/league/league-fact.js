@@ -47,7 +47,7 @@ League.factory('LeagueService', function (AuthenticationService, $firebaseObject
 				if (leagueFind) {
 					var index = _.indexOf(leagueFind.users, uid);
 					leagueFind.users.splice(index, 1);
-					data.$save();
+					data.$save(leagueFind.users);
 				}
 			});
 		});
