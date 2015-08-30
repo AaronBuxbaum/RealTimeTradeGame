@@ -46,36 +46,37 @@ Ticker.controller('TickerCtrl', function ($firebaseArray, AuthenticationService)
                 rangeSelector: {
                     buttons: [
                         {
-                            type: 'day',
+                            type: 'second',
                             count: 1,
-                            text: 'Real Time',
+                            text: 's',
                             dataGrouping: {
                                 units: [['seconds', [1]]]
                             }
                         }, {
-                            type: 'month',
+                            type: 'hour',
                             count: 1,
-                            text: 'Hour',
+                            text: 'h',
                             dataGrouping: {
-                                units: [['minutes', [1]]]
+                                units: [['hours', [1]]]
                             }
                         }, {
-                            type: 'month',
-                            count: 3,
-                            text: 'Day',
+                            type: 'day',
+                            count: 1,
+                            text: 'd',
                             dataGrouping: {
                                 units: [['day', [1]]]
                             }
                         }, {
-                            type: 'year',
+                            type: 'week',
                             count: 1,
-                            text: 'Week',
+                            text: 'w',
                             dataGrouping: {
                                 units: [['week', [1]]]
                             }
                         }, {
-                            type: 'all',
-                            text: 'Month',
+                            type: 'month',
+                            count: 1,
+                            text: 'm',
                             dataGrouping: {
                                 units: [['month', [1]]]
                             }
