@@ -25,11 +25,11 @@ var seriesRef = ref.child('series');
 
 //Check the time
 function checkTime() {
-	if (!isMarketOpen) {
-		stopPortfolioUpdater();
+	if (isMarketOpen()) {
+		startPortfolioUpdater();
 	}
 	else {
-		startPortfolioUpdater();
+		stopPortfolioUpdater();
 	}
 }
 
@@ -49,32 +49,40 @@ function isMarketOpen() {
 }
 
 //Check if it is a national holiday
-function isNationalHoliday(moment) {
-    var holidays = {
-		'M': {//Month, Day
-            '01/01': "New Year's Day",
-            '07/04': "Independence Day",
-            '11/11': "Veteran's Day",
-            '11/28': "Thanksgiving Day",
-            '11/29': "Day after Thanksgiving",
-            '12/24': "Christmas Eve",
-            '12/25': "Christmas Day",
-            '12/31': "New Year's Eve"
-        },
-        'W': {//Month, Week of Month, Day of Week
-            '1/3/1': "Martin Luther King Jr. Day",
-            '2/3/1': "Washington's Birthday",
-            '5/5/1': "Memorial Day",
-            '9/1/1': "Labor Day",
-            '10/2/1': "Columbus Day",
-            '11/4/4': "Thanksgiving Day"
-        }
-    };
+function isNationalHoliday(date) {
+	/*
+		Due to complexity of holidays, currently it'll be hardcoded with each day of the year for now.
+		This will need to be updated each year.
+		
+		The following are the stock market off days:
+		-New Year's Day
+		-Martin Luther King, Jr. Day
+		-President's Day
+		-Good Friday
+		-Memorial Day
+		-Independence Day
+		-Labor Day
+		-Thanksgiving Day
+		-Christmas Day
+		
+		As well as an early close (1 PM) on Thanksgiving and Christmas. (currently unimplemented)
+	*/
+	var holidays = {
+		'09/07/15': 'Labor Day',
+		'11/26/15': 'Thanksgiving Day',
+		'12/25/15': 'Christmas Day',
+		'01/01/16': 'New Year\'s Day',
+		'01/18/16': 'Martin Luther King, Jr. Day',
+		'02/15/16': 'President\'s Day',
+		'03/25/16': 'Good Friday',
+		'05/30/16': 'Memorial Day',
+		'07/04/16': 'Independence Day',
+		'09/05/16': 'Labor Day',
+		'11/24/16': 'Thanksgiving Day',
+		'12/26/16': 'Christmas Day'
+	};
 
-	var diff = 1 + (0 | (this._d.getDate() - 1) / 7),
-		memorial = (this._d.getDay() === 1 && (this._d.getDate() + 7) > 30) ? "5" : null;
-
-	return (holidays['M'][this.format('MM/DD')] || holidays['W'][this.format('M/' + (memorial || diff) + '/d')]);
+	return holidays[date.format('MM/DD/YY')];
 }
 
 //Start the portfolio updater
@@ -215,4 +223,4 @@ function listen(port) {
 //Start the server
 listen(process.env.PORT || 8080);
 checkTime();
-setInterval(checkTime, FETCH_INTERVAL * 10);
+setInterval(checkTime, FETCH_INTERVAL * 5);

@@ -6,8 +6,7 @@ Core Features:
 3. Cut down on bandwidth use with firebase specific functionality or Angular's limit() functions
 
 Bugs:
-1. Memory issues seem to be occuring, probably related to too much data
-2. Some stocks don't work via Google's system, which causes major issues
+1. Some stocks don't work via Google's system, which causes major issues
 
 Leagues:
 1. You should see your ticker start working immediately after joining a league
