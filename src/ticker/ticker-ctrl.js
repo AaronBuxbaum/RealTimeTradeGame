@@ -64,21 +64,21 @@ Ticker.controller('TickerCtrl', function ($firebaseArray, AuthenticationService)
                             count: 1,
                             text: 'd',
                             dataGrouping: {
-                                units: [['day', [1]]]
+                                units: [['days', [1]]]
                             }
                         }, {
                             type: 'week',
                             count: 1,
                             text: 'w',
                             dataGrouping: {
-                                units: [['week', [1]]]
+                                units: [['weeks', [1]]]
                             }
                         }, {
                             type: 'month',
                             count: 1,
                             text: 'm',
                             dataGrouping: {
-                                units: [['month', [1]]]
+                                units: [['months', [1]]]
                             }
                         }
                     ]
