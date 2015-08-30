@@ -55,31 +55,19 @@ Ticker.controller('TickerCtrl', function ($firebaseArray, AuthenticationService)
                         }, {
                             type: 'hour',
                             count: 1,
-                            text: 'h',
-                            dataGrouping: {
-                                units: [['hours', [1]]]
-                            }
+                            text: 'h'
                         }, {
                             type: 'day',
                             count: 1,
-                            text: 'd',
-                            dataGrouping: {
-                                units: [['days', [1]]]
-                            }
+                            text: 'd'
                         }, {
                             type: 'week',
                             count: 1,
-                            text: 'w',
-                            dataGrouping: {
-                                units: [['weeks', [1]]]
-                            }
+                            text: 'w'
                         }, {
                             type: 'month',
                             count: 1,
-                            text: 'm',
-                            dataGrouping: {
-                                units: [['months', [1]]]
-                            }
+                            text: 'm'
                         }
                     ]
                 },
