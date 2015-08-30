@@ -23,6 +23,10 @@ Ticker.controller('TickerCtrl', function ($firebaseArray, AuthenticationService)
                     return;
                 }
 
+                if (findLeague.endTime) {
+                    ctrl.endTime = findLeague.endTime;
+                }
+
                 _.forEach(findLeague.users, function (leagueUser) {
                     ref.child('users').child(leagueUser.toString()).once('value', function (user) {
                         var tmp = user.val();

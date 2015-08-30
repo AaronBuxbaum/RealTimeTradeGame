@@ -10,6 +10,8 @@ var g = require('./gulp-global.json');
 //Concatenate vendor JS into one file
 gulp.task('concat-vendor-js', function () {
   return gulp.src([
+    g.NPM + 'lodash/index.js',
+    g.NPM + 'moment/moment.js',
     g.BOWER + 'angular/angular.js',
     g.BOWER + 'angular-animate/angular-animate.js',
     g.BOWER + 'angular-aria/angular-aria.js',
@@ -20,7 +22,7 @@ gulp.task('concat-vendor-js', function () {
     g.BOWER + 'angularfire/dist/angularfire.js',
     g.BOWER + 'highstock-release/highstock.src.js',
     g.BOWER + 'highcharts-ng/dist/highcharts-ng.js',
-    g.NPM + 'lodash/index.js'
+    g.BOWER + 'angular-moment/angular-moment.js'
   ])
     .pipe(concat('vendors.js'))
   //.pipe(uglify())

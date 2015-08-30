@@ -2,6 +2,7 @@
 var Ticker = angular.module('Ticker', [
 	'ngMaterial',
 	'highcharts-ng',
+	'angularMoment',
 	'Authentication'
 ]);
 
