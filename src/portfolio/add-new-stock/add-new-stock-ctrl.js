@@ -12,16 +12,4 @@ AddNewStock.controller('AddNewStockCtrl', function (PortfolioService, StocksServ
         ctrl.isOpen = false;
         ctrl.newStock = null;
     };
-
-    ctrl.isNegative = function (input) {
-        return input.toString().charAt(0) === '-';
-    };
-
-    ctrl.getChangePercentageColor = function (change) {
-        if (!change) {
-            return;
-        }
-
-        return (ctrl.isNegative(change)) ? 'red' : 'green';
-    }
 });

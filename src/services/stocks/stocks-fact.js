@@ -23,6 +23,9 @@ Stocks.factory('StocksService', function ($http, $q) {
                         suggestedStocks[index].changePercentage = Number(tickerValues[index].cp);
                     }
                 });
+                _.remove(suggestedStocks, function (stock) {
+                    return !stock.value;
+                });
             });
         }
         return suggestedStocks;
