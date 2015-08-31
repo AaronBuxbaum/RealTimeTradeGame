@@ -53,6 +53,10 @@
 <script src="logout/logout-ctrl.js"></script>
 <script src="logout/logout-drct.js"></script>
 
+<script src="about/about.js"></script>
+<script src="about/about-ctrl.js"></script>
+<script src="about/about-drct.js"></script>
+
 <script src="toolbar/toolbar.js"></script>
 <script src="toolbar/toolbar-ctrl.js"></script>
 <script src="toolbar/toolbar-drct.js"></script>
@@ -69,6 +73,8 @@
 	<md-content layout-padding ng-controller="RealTimeTradeCtrl as ctrl">
 		<login ng-if="!ctrl.isAuthenticated"></login>
 		<main ng-if="ctrl.isAuthenticated"></main>
+		
+		<about></about>
 	</md-content>
 </body>
 
