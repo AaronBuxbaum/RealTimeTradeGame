@@ -7,7 +7,7 @@ About.controller('AboutCtrl', function ($mdDialog, $templateCache) {
             templateUrl: 'about/about-dialog.html',
             ok: 'Close',
             targetEvent: $event,
-            closeOutsideToClose: true,
+            clickOutsideToClose: true,
             controller: function ($scope, $mdDialog) {
                 $scope.closeDialog = function () {
                     $mdDialog.hide();
