@@ -1,4 +1,4 @@
-About.controller('AboutCtrl', function ($mdDialog, $templateCache) {
+About.controller('AboutCtrl', function ($mdDialog) {
     var ctrl = this;
 
     ctrl.openAbout = function ($event) {
