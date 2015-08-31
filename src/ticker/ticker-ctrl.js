@@ -40,6 +40,9 @@ Ticker.controller('TickerCtrl', function ($firebaseArray, AuthenticationService)
         //Chart configuration
         ctrl.chartConfig = {
             options: {
+                legend: {
+                    enabled: true
+                },
                 chart: {
                     zoomType: 'x'
                 },

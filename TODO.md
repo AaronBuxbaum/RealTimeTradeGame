@@ -36,8 +36,3 @@ Leagues:
 	- Also should store internal data like start date and creating user ID
 4. Need a server script that handles closing a league when the timer runs out
 5. There should be a pre-league system where you collect your players before beginning to play
-
-
-
-Ticker:
-1. There should be a checkbox to allow hiding/showing certain league players
