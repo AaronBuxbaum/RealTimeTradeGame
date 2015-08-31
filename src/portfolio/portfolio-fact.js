@@ -10,7 +10,7 @@ Portfolio.factory('PortfolioService', function (AuthenticationService, $firebase
 	
 	//Add a stock to a player
 	svc.addStock = function (stock) {
-		if (!stock || !svc.portfolio || _.find(svc.portfolio, { ticker: stock.ticker })) {
+		if (!stock || !svc.portfolio || !stock.value || _.find(svc.portfolio, { ticker: stock.ticker })) {
 			return;
 		}
 
