@@ -1,6 +1,3 @@
-To Do:
-1. Write About page
-
 Core Features:
 1. Rethink how the league system works. Think about how the system works in regard to monetization.
 	- Players should be able to create as many leagues as they'd like and invite friends (joining random leagues probably isn't super interesting)
@@ -11,6 +8,8 @@ Core Features:
 	- Smarter use of Firebase specific functionality, ie. "ref.child('events').child('20150829').orderByChild('timestamp').limitToLast(100)"
 	- Flatten Firebase structure for robustness
 	- Angular's limit() function as it can be used
+
+
 
 Bugs:
 1. Some stocks don't work via Google's system, which causes major issues
@@ -37,6 +36,8 @@ Leagues:
 	- Also should store internal data like start date and creating user ID
 4. Need a server script that handles closing a league when the timer runs out
 5. There should be a pre-league system where you collect your players before beginning to play
+
+
 
 Ticker:
 1. There should be a checkbox to allow hiding/showing certain league players
