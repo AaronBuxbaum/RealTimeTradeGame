@@ -46,28 +46,25 @@ Ticker.controller('TickerCtrl', function ($firebaseArray, AuthenticationService)
                 rangeSelector: {
                     buttons: [
                         {
-                            type: 'second',
+                            type: 'minute',
                             count: 1,
-                            text: 's',
-                            dataGrouping: {
-                                units: [['seconds', [1]]]
-                            }
+                            text: 'm'
                         }, {
                             type: 'hour',
                             count: 1,
                             text: 'h'
                         }, {
-                            type: 'day',
-                            count: 1,
+                            type: 'hour',
+                            count: 8,
                             text: 'd'
                         }, {
-                            type: 'week',
-                            count: 1,
+                            type: 'day',
+                            count: 5,
                             text: 'w'
                         }, {
-                            type: 'month',
+                            type: 'all',
                             count: 1,
-                            text: 'm'
+                            text: 'all'
                         }
                     ]
                 },
