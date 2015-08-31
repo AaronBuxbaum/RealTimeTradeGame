@@ -18,9 +18,9 @@
 						{{::item.name}} ({{::item.ticker}})
 					</span>
 				</span>
-				<span class="item-metadata" ng-if="item.value">
+				<span class="item-metadata">
 					Value: <span class="item-metastat">{{item.value}}</span>
-					<span ng-if="item.changePercentage" ng-style="{'color': (item.changePercentage.toString().charAt(0) === '-') ? 'red' : 'green' }">
+					<span ng-style="{'color': (item.changePercentage.toString().charAt(0) === '-') ? 'red' : 'green' }">
 						({{item.changePercentage}}%)
 					</span>
 				</span>

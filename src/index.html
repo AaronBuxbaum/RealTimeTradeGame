@@ -21,9 +21,6 @@
 <script src="services/database/database.js"></script>
 <script src="services/database/database-fact.js"></script>
 
-<script src="services/stocks/stocks.js"></script>
-<script src="services/stocks/stocks-fact.js"></script>
-
 <script src="services/player/player.js"></script>
 <script src="services/player/player-fact.js"></script>
 
@@ -64,6 +61,7 @@
 <script src="portfolio/add-new-stock/add-new-stock.js"></script>
 <script src="portfolio/add-new-stock/add-new-stock-ctrl.js"></script>
 <script src="portfolio/add-new-stock/add-new-stock-drct.js"></script>
+<script src="portfolio/add-new-stock/add-new-stock-fact.js"></script>
 
 <script src="portfolio/stock-slider/stock-slider.js"></script>
 <script src="portfolio/stock-slider/stock-slider-ctrl.js"></script>
@@ -73,7 +71,6 @@
 	<md-content layout-padding ng-controller="RealTimeTradeCtrl as ctrl">
 		<login ng-if="!ctrl.isAuthenticated"></login>
 		<main ng-if="ctrl.isAuthenticated"></main>
-		
 		<about></about>
 	</md-content>
 </body>

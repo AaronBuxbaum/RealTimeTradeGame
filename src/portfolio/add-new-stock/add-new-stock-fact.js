@@ -1,4 +1,4 @@
-Stocks.factory('StocksService', function ($http, $q) {
+AddNewStock.factory('AddNewStockService', function ($http, $q) {
     var svc = this;
 
     svc.getStocks = function (query) {
