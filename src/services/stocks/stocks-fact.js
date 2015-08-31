@@ -13,7 +13,7 @@ Stocks.factory('StocksService', function ($http, $q) {
     };
 
     function transformStocks(response) {
-        var suggestedStocks = _.take(response.data, 10);
+        var suggestedStocks = _.take(response.data, 5);
         if (suggestedStocks.length) {
             svc.getTickerValues(_.pluck(suggestedStocks, 'ticker')).then(function (tickerValues) {
                 tickerValues = tickerValues.data;

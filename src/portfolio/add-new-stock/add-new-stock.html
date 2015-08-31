@@ -8,7 +8,7 @@
 	<form ng-if="ctrl.isOpen" layout>
 
 		<!-- Stock selection -->
-		<md-autocomplete flex="50" md-selected-item="ctrl.newStock.stock" md-search-text="ctrl.newStock.searchText" md-items="item in ctrl.getStocks(ctrl.newStock.searchText)"
+		<md-autocomplete flex="35" md-selected-item="ctrl.newStock.stock" md-search-text="ctrl.newStock.searchText" md-items="item in ctrl.getStocks(ctrl.newStock.searchText)"
 		md-item-text="item.name" md-autoselect="true" md-delay="100" md-menu-class="autocomplete-custom-template" placeholder="Pick a stock"
 		md-autofocus>
 			<md-item-template>
@@ -27,7 +27,7 @@
 			</md-item-template>
 
 			<md-not-found>
-				No matches found for "{{ctrl.newStock.searchText}}".
+				No matches found for "{{::ctrl.newStock.searchText}}".
 			</md-not-found>
 		</md-autocomplete>
 
