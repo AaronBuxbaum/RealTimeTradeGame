@@ -15,6 +15,7 @@ gulp.task('concat-vendor-js', function () {
     g.BOWER + 'angular/angular.js',
     g.BOWER + 'angular-animate/angular-animate.js',
     g.BOWER + 'angular-aria/angular-aria.js',
+    g.BOWER + 'angular-messages/angular-messages.js',
     g.BOWER + 'angular-material/angular-material.js',
     g.BOWER + 'angular-material-icons/angular-material-icons.js',
     g.BOWER + 'jquery/dist/jquery.js',

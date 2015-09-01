@@ -1,4 +1,5 @@
 /* global CreateLeague */
 var CreateLeague = angular.module('CreateLeague', [
-	'ngMaterial'
+	'ngMaterial',
+	'ngMessages'
 ]);

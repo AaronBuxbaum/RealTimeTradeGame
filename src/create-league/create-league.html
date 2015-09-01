@@ -1,23 +1,10 @@
 <form name="createLeagueForm" layout-padding>
-	<md-input-container style="width: 250px;">
+	<md-input-container style="width: 300px;">
 		<label>League Name</label>
 		<input type="text" ng-model="ctrl.name" required md-minlength="4">
 	</md-input-container>
 
-	<md-input-container style="width: 250px;">
-		<label>Bid (entry fee per player)</label>
-		<input type="number" ng-model="ctrl.bid" required min="ctrl.minBid">
-		<div ng-messages="userForm.lastName.$error" ng-show="userForm.lastName.$dirty">
-			<div ng-message="min">The bid amount must be at least ${{ctrl.minBid | number: 2}}.
-				<md-tooltip>
-					Minimum bid is derived from the maximum number of players and the close date. The more the player cap is raised and the longer
-					the event, the more the minimum bid will rise.
-				</md-tooltip>
-			</div>
-		</div>
-	</md-input-container>
-
-	<md-input-container style="width: 250px;">
+	<md-input-container style="width: 300px;">
 		<label>Maximum Number of Players</label>
 		<input type="number" ng-model="ctrl.maxPlayers" ng-change="ctrl.updateMinBid()" required min="1">
 	</md-input-container>
@@ -32,13 +19,26 @@
 
 	<md-divider></md-divider>
 
+	<md-input-container style="width: 300px;" ng-show="ctrl.minBid">
+		<label>Bid (entry fee per player, in dollars)</label>
+		<input type="number" ng-model="ctrl.bid" name="bid" required min="{{ctrl.minBid}}">
+		<div ng-messages="createLeagueForm.bid.$error" role="alert">
+			<div ng-message="min, required">The bid amount must be at least {{ctrl.minBid | currency}}.
+				<md-tooltip md-direction="right">
+					Minimum bid is derived from the maximum number of players and the close date.
+					<br/> The more players involved and the longer the event, the more the minimum bid will rise.
+				</md-tooltip>
+			</div>
+		</div>
+	</md-input-container>
+
 	<md-content layout-padding ng-if="ctrl.totalWinnings()">
-		<span class="md-subhead" style="display: block;">
-			Winner will earn at least <b>${{ ctrl.totalWinnings() | number:2}}</b>
+		<span class="md-subhead">
+			Winner will earn <b>{{ ctrl.totalWinnings() | currency}}</b>
 		
-			<md-tooltip>
-				The calculation for winner's earnings assume that the maximum number of players allowed will play, all paying in to the given bid number.
-				In reality, this number could be smaller if the league is not filled when it begins.
+			<md-tooltip md-direction="right">
+				The calculation for winner's earnings assume that the maximum number of players allowed will play, all paying in to the bid number.
+				<br/> In reality, this number could be smaller if the league is not filled.
 			</md-tooltip>
 		</span>
 	</md-content>
