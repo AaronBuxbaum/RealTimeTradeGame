@@ -17,7 +17,14 @@
   },
   "homepage": "https://real-time-trade.herokuapp.com",
   "dependencies": {
-    "bower": "^1.5.2",
+    "angular": "^1.4.5",
+    "angular-animate": "^1.4.5",
+    "angular-aria": "^1.4.5",
+    "angular-material": "^0.10.1",
+    "angular-material-icons": "^0.5.0",
+    "angular-messages": "^1.4.5",
+    "angular-moment": "^0.10.2",
+    "angularfire": "^1.1.2",
     "express": "^4.13.0",
     "firebase": "^2.2.9",
     "gulp": "^3.9.0",
@@ -28,6 +35,9 @@
     "gulp-less": "^3.0.3",
     "gulp-tsd": "0.0.4",
     "gulp-uglify": "^1.2.0",
+    "highcharts-ng": "0.0.8",
+    "highstock-release": "^2.1.8",
+    "jquery": "^2.1.4",
     "less": "^2.5.1",
     "lodash": "^3.10.1",
     "moment": "^2.10.6",
@@ -38,7 +48,6 @@
     "run-sequence": "^1.1.2"
   },
   "cacheDirectories": [
-    "node_modules",
-    "bower_components"
+    "node_modules"
   ]
 }

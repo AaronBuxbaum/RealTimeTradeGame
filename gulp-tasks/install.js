@@ -7,9 +7,9 @@ var g = require('./global.json');
 
 /* Install tasks */
 
-//Install bower and npm
+//Install npm
 gulp.task('install', function () {
-  return gulp.src(['../bower.json', '../package.json'])
+  return gulp.src(['../package.json'])
     .pipe(install());
 });
 

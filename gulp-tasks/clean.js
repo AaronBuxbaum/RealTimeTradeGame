@@ -5,12 +5,6 @@ var g = require('./global.json');
 
 /* Clean tasks */
 
-//Clean the bower_components directory
-gulp.task('clean-bower', function () {
-  return gulp.src(g.BOWER, { read: false })
-    .pipe(clean({ force: true }));
-});
-
 //Clean the node_modules directory
 gulp.task('clean-npm', function () {
   return gulp.src(g.NPM, { read: false })
