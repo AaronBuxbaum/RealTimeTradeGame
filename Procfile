@@ -1,1 +1,1 @@
-web: node node_modules/gulp/bin/gulp deploy --cwd gulp
+web: node node_modules/gulp/bin/gulp deploy
