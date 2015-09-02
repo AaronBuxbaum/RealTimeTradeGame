@@ -1,7 +1,7 @@
 /* Dependencies */
 var gulp = require('gulp');
 var clean = require('gulp-clean');
-var g = require('./gulp-global.json');
+var g = require('./global.json');
 
 /* Clean tasks */
 

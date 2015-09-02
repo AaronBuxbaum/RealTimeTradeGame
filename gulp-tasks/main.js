@@ -1,9 +1,8 @@
 /* Dependencies */
 var gulp = require('gulp');
-var requireDir = require('require-dir')();
 var runSequence = require('run-sequence');
 
-/* Task batchers */
+/* Main tasks */
 //gulp.task('build', ['install', 'vendorJS', 'vendorCSS', 'concat-modules', 'copy-files', 'less']);
 //gulp.task('heroku:product', ['install', 'server']);
 gulp.task('clean', ['clean-build', 'clean-typings']);

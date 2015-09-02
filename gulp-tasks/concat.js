@@ -2,7 +2,7 @@
 var gulp = require('gulp');
 var concat = require('gulp-concat');
 var uglify = require('gulp-uglify');
-var g = require('./gulp-global.json');
+var g = require('./global.json');
 
 
 /* Concatenate tasks */

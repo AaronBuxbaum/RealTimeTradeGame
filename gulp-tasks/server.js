@@ -6,5 +6,5 @@ var express = require('gulp-express');
 
 //Run the server
 gulp.task('server', function () {
-  express.run(['../server.js']);
+  express.run(['server.js']);
 });

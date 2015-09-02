@@ -3,7 +3,7 @@ var gulp = require('gulp');
 var tsd = require('gulp-tsd');
 var less = require('gulp-less');
 var install = require('gulp-install');
-var g = require('./gulp-global.json');
+var g = require('./global.json');
 
 /* Install tasks */
 
