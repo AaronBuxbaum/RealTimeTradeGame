@@ -15,8 +15,12 @@ gulp.task('install', function () {
 
 //Install typescript definitions
 gulp.task('tsd', function () {
-  return gulp.src('./gulp-tsd.json')
-    .pipe(tsd());
+  tsd({
+    "command": "reinstall",
+    "latest": true,
+    "config": "../tsd.json",
+    "opts": {}
+  });
 });
 
 //Copy files that don't need to be compiled
