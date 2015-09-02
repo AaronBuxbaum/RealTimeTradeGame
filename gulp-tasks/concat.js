@@ -4,27 +4,37 @@ var concat = require('gulp-concat');
 var uglify = require('gulp-uglify');
 var g = require('./global.json');
 
+//Prepend the NPM directory to all passed-in files
+function prependNPM(fileNames) {
+  return fileNames.map(function (fileName) {
+    return g.NPM + fileName
+  });
+}
+
 
 /* Concatenate tasks */
 
 //Concatenate vendor JS into one file
 gulp.task('concat-vendor-js', function () {
-  return gulp.src([
-    g.NPM + 'lodash/index.js',
-    g.NPM + 'moment/moment.js',
-    g.NPM + 'angular/angular.js',
-    g.NPM + 'angular-animate/angular-animate.js',
-    g.NPM + 'angular-aria/angular-aria.js',
-    g.NPM + 'angular-messages/angular-messages.js',
-    g.NPM + 'angular-material/angular-material.js',
-    g.NPM + 'angular-material-icons/angular-material-icons.js',
-    g.NPM + 'jquery/dist/jquery.js',
-    g.NPM + 'firebase/firebase-debug.js',
-    g.NPM + 'angularfire/dist/angularfire.js',
-    g.NPM + 'highstock-release/highstock.src.js',
-    g.NPM + 'highcharts-ng/dist/highcharts-ng.js',
-    g.NPM + 'angular-moment/angular-moment.js'
-  ])
+  var vendorFiles = [
+    'lodash/index.js',
+    'moment/moment.js',
+    'angular/angular.js',
+    'angular-animate/angular-animate.js',
+    'angular-aria/angular-aria.js',
+    'angular-messages/angular-messages.js',
+    'angular-material/angular-material.js',
+    'angular-material-icons/angular-material-icons.js',
+    'jquery/dist/jquery.js',
+    'firebase/firebase-debug.js',
+    'angularfire/dist/angularfire.js',
+    'highstock-release/highstock.src.js',
+    'highcharts-ng/dist/highcharts-ng.js',
+    'angular-moment/angular-moment.js'
+  ];
+
+  return gulp
+    .src(prependNPM(vendorFiles))
     .pipe(concat('vendors.js'))
   //.pipe(uglify())
     .pipe(gulp.dest(g.BUILD));
@@ -32,10 +42,13 @@ gulp.task('concat-vendor-js', function () {
 
 //Concatenate vendor CSS into one file
 gulp.task('concat-vendor-css', function () {
-  return gulp.src([
-    g.NPM + 'angular-material/angular-material.css',
-    g.NPM + 'angular-material-icons/angular-material-icons.css'
-  ])
+  var vendorFiles = [
+    'angular-material/angular-material.css',
+    'angular-material-icons/angular-material-icons.css'
+  ];
+
+  return gulp
+    .src(prependNPM(vendorFiles))
     .pipe(concat('vendors.css'))
     .pipe(gulp.dest(g.BUILD));
 });
