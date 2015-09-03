@@ -1,26 +1,15 @@
 /* Dependencies */
 var gulp = require('gulp');
-var tsd = require('gulp-tsd');
 var less = require('gulp-less');
 var install = require('gulp-install');
 var g = require('./global.json');
 
 /* Install tasks */
 
-//Install npm
+//Install npm and typescript packages
 gulp.task('install', function () {
-  return gulp.src(['../package.json'])
+  return gulp.src(['package.json', 'tsd.json'])
     .pipe(install());
-});
-
-//Install typescript definitions
-gulp.task('tsd', function () {
-  tsd({
-    "command": "reinstall",
-    "latest": true,
-    "config": "../tsd.json",
-    "opts": {}
-  });
 });
 
 //Copy files that don't need to be compiled

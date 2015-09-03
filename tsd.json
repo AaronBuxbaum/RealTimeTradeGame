@@ -50,9 +50,6 @@
     "moment/moment.d.ts": {
       "commit": "af76bf46025371c760d8fe8c03cf874428da6124"
     },
-    "gulp-tsd/gulp-tsd.d.ts": {
-      "commit": "af76bf46025371c760d8fe8c03cf874428da6124"
-    },
     "gulp-less/gulp-less.d.ts": {
       "commit": "af76bf46025371c760d8fe8c03cf874428da6124"
     },
