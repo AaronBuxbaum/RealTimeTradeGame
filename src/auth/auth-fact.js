@@ -44,6 +44,7 @@ Authentication.factory('AuthenticationService', function ($firebaseAuth, $fireba
 				var newUser = $firebaseObject(user);
 				newUser.uid = response.uid;
 				newUser.name = response.uid;
+				newUser.league = 1; //TODO: remove -- this is just for early convenience factor
 				newUser.$save();
 				return svc.logIn(email, password);
 			})
