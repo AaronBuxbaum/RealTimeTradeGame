@@ -36,3 +36,7 @@ Leagues:
 	- Also should store internal data like start date and creating user ID
 4. Need a server script that handles closing a league when the timer runs out
 5. There should be a pre-league system where you collect your players before beginning to play
+
+
+Currently:
+1. Is it possible to use Firebase the same way now that it's being pulled in via NPM? Alternatively could pull it in also via Bower, same as before.
