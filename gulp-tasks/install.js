@@ -6,9 +6,15 @@ var g = require('./global.json');
 
 /* Install tasks */
 
-//Install npm and typescript packages
-gulp.task('install', function () {
-  return gulp.src(['package.json', 'tsd.json'])
+//Install npm packages
+gulp.task('install-npm', function () {
+  return gulp.src('package.json')
+    .pipe(install());
+});
+
+//Install Typescript typings (for Visual Studio)
+gulp.task('install-tsd', function () {
+  return gulp.src('tsd.json')
     .pipe(install());
 });
 
