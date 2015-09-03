@@ -29,6 +29,7 @@
     "angular-messages": "^1.4.5",
     "angular-moment": "^0.10.2",
     "angularfire": "^1.1.2",
+    "del": "^2.0.0",
     "express": "^4.13.0",
     "firebase": "^2.2.9",
     "gulp": "^3.9.0",
