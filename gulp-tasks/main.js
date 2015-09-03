@@ -11,5 +11,3 @@ gulp.task('default', ['server']);
 gulp.task('deploy', function (callback) {
 	runSequence('install-npm', ['concat-vendor-js', 'concat-vendor-css'], 'server', callback);
 });
-
-gulp.task('heroku:product', ['deploy']);
