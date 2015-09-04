@@ -43,6 +43,9 @@ Ticker.controller('TickerCtrl', function ($firebaseArray, AuthenticationService)
                 legend: {
                     enabled: true
                 },
+                credits: {
+                    enabled: false
+                },
                 chart: {
                     zoomType: 'x'
                 },
@@ -50,7 +53,7 @@ Ticker.controller('TickerCtrl', function ($firebaseArray, AuthenticationService)
                     buttons: [
                         {
                             type: 'minute',
-                            count: 1,
+                            count: 5,
                             text: 'm'
                         }, {
                             type: 'hour',
