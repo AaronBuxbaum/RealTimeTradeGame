@@ -30,6 +30,7 @@ function checkTime() {
 	}
 	else {
 		stopPortfolioUpdater();
+		startBatcher();
 	}
 }
 
@@ -104,6 +105,12 @@ function stopPortfolioUpdater() {
 	clearInterval(PORTFOLIO_UPDATER);
 	PORTFOLIO_UPDATER = null;
 	console.log('Portfolio updater stopped');
+}
+
+function startBatcher() {
+	console.log('Batcher utility started');
+	//TODO: do stuff here
+	console.log('Batcher utility finished successfully');
 }
 
 
