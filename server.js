@@ -4,16 +4,15 @@ var server = express();
 var Q = require('q');
 var http = require('q-io/http');
 var Firebase = require('firebase');
-var moment = require('moment');
-var timezone = require('moment-timezone');
 var _ = require('lodash');
+
+//Node scripts
+var batcher = require('./server-scripts/batcher.js');
+var marketOpen = require('./server-scripts/market-open.js');
 
 //Initialize variables
 var PORTFOLIO_UPDATER;
 var FETCH_INTERVAL = 15 * 1000;
-var EDT = 'America/New_York';
-var MARKET_OPEN = moment().tz(EDT).hour(9).minute(30);
-var MARKET_CLOSE = moment().tz(EDT).hour(16);
 var ref = new Firebase('https://realtimetrade.firebaseio.com');
 var usersRef = ref.child('users');
 var portfoliosRef = ref.child('portfolios');
@@ -25,65 +24,12 @@ var seriesRef = ref.child('series');
 
 //Check the time
 function checkTime() {
-	if (isMarketOpen()) {
+	if (marketOpen.isMarketOpen()) {
 		startPortfolioUpdater();
 	}
 	else {
 		stopPortfolioUpdater();
-		startBatcher();
 	}
-}
-
-//Check if the stock market is open
-function isMarketOpen() {
-	var now = moment().tz(EDT);
-
-	if (now.day() < 1 || now.day() > 5) {
-		return false;
-	}
-
-	if (isNationalHoliday(now)) {
-		return false;
-	}
-
-	return now.isBetween(MARKET_OPEN, MARKET_CLOSE);
-}
-
-//Check if it is a national holiday
-function isNationalHoliday(date) {
-	/*
-		Due to complexity of holidays, currently it'll be hardcoded with each day of the year for now.
-		This will need to be updated each year.
-		
-		The following are the stock market off days:
-		-New Year's Day
-		-Martin Luther King, Jr. Day
-		-President's Day
-		-Good Friday
-		-Memorial Day
-		-Independence Day
-		-Labor Day
-		-Thanksgiving Day
-		-Christmas Day
-		
-		As well as an early close (1 PM) on Thanksgiving and Christmas. (currently unimplemented)
-	*/
-	var holidays = {
-		'09/07/15': 'Labor Day',
-		'11/26/15': 'Thanksgiving Day',
-		'12/25/15': 'Christmas Day',
-		'01/01/16': 'New Year\'s Day',
-		'01/18/16': 'Martin Luther King, Jr. Day',
-		'02/15/16': 'President\'s Day',
-		'03/25/16': 'Good Friday',
-		'05/30/16': 'Memorial Day',
-		'07/04/16': 'Independence Day',
-		'09/05/16': 'Labor Day',
-		'11/24/16': 'Thanksgiving Day',
-		'12/26/16': 'Christmas Day'
-	};
-
-	return holidays[date.format('MM/DD/YY')];
 }
 
 //Start the portfolio updater
@@ -105,12 +51,8 @@ function stopPortfolioUpdater() {
 	clearInterval(PORTFOLIO_UPDATER);
 	PORTFOLIO_UPDATER = null;
 	console.log('Portfolio updater stopped');
-}
 
-function startBatcher() {
-	console.log('Batcher utility started');
-	//TODO: do stuff here
-	console.log('Batcher utility finished successfully');
+	batcher.dailyBatch(); //Kick off the daily batcher utility
 }
 
 
@@ -231,3 +173,8 @@ function listen(port) {
 listen(process.env.PORT || 8080);
 checkTime();
 setInterval(checkTime, FETCH_INTERVAL * 5);
+
+
+
+//TEMPORARY
+batcher.dailyBatch(); //Kick off the daily batcher utility
