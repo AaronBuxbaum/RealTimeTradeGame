@@ -1,10 +1,14 @@
-Loading.directive('loading', function () {
+Loading.directive('loading', function ($mdDialog) {
 	return {
 		restrict: 'E',
-		templateUrl: 'loading/loading.html',
 		controller: 'LoadingCtrl',
 		controllerAs: 'ctrl',
 		bindToController: true,
-		scope: {}
+		scope: {},
+		link: function (scope) {
+			scope.$on('$destroy', function () {
+				$mdDialog.hide();
+			});
+		}
 	};
 });

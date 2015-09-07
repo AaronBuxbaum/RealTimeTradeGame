@@ -5,7 +5,7 @@ Login.directive('login', function ($mdDialog) {
 		controllerAs: 'ctrl',
 		bindToController: true,
 		scope: {},
-		link: function (scope, elem, attrs, ctrl) {
+		link: function (scope) {
 			scope.$on('$destroy', function () {
 				$mdDialog.hide();
 			});
