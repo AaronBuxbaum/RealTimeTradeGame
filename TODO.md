@@ -40,3 +40,4 @@ Leagues:
 
 Currently:
 1. Is it possible to use Firebase the same way now that it's being pulled in via NPM? Alternatively could pull it in also via Bower, same as before.
+2. Implement the "loading" modal directive

@@ -69,7 +69,8 @@
 
 <body ng-app="RealTimeTrade">
 	<md-content layout-padding ng-controller="RealTimeTradeCtrl as ctrl">
-		<login ng-if="!ctrl.isAuthenticated"></login>
+		<loading ng-if="!ctrl.isAuthenticated == undefined"></loading>
+		<login ng-if="ctrl.isAuthenticated == false"></login>
 		<main ng-if="ctrl.isAuthenticated"></main>
 		<about></about>
 	</md-content>

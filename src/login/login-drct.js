@@ -5,17 +5,10 @@ Login.directive('login', function ($mdDialog) {
 		controllerAs: 'ctrl',
 		bindToController: true,
 		scope: {},
-		compile: function () {
-			return {
-				pre: function (scope) {
-					scope.$on('$destroy', function () {
-						$mdDialog.hide();
-					});
-				},
-				post: function (scope, elem, attrs, ctrl) {
-					ctrl.showDialog();
-				}
-			}
+		link: function (scope, elem, attrs, ctrl) {
+			scope.$on('$destroy', function () {
+				$mdDialog.hide();
+			});
 		}
 	};
 });
