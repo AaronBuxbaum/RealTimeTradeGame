@@ -7,6 +7,12 @@ var batcher = require('./batcher.js');
 var marketOpen = require('./market-open.js');
 var updatePortfolio = require('./update-portfolio.js');
 
+//Initialize checker
+function initialize() {
+	checkTime();
+	setInterval(checkTime, FETCH_INTERVAL);
+}
+
 //Check the time
 function checkTime() {
 	if (marketOpen.isMarketOpen()) {
@@ -40,9 +46,4 @@ function stopPortfolioUpdater() {
 	batcher.dailyBatch(); //Kick off the daily batcher utility
 }
 
-
-
-//TEMPORARY
-batcher.dailyBatch(); //Kick off the daily batcher utility
-
-module.exports.checkTime = checkTime;
+module.exports.initialize = initialize;

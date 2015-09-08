@@ -16,6 +16,4 @@ function listen(port) {
 listen(process.env.PORT || 8080);
 
 //Start portfolio updater
-var portfolioUpdater = require('./server-scripts/portfolio-updater.js');
-portfolioUpdater.checkTime();
-setInterval(portfolioUpdater.checkTime, 5000);
+require('./server-scripts/portfolio-updater.js').initialize();
