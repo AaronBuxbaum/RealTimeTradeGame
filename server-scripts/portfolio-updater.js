@@ -3,9 +3,9 @@ var PORTFOLIO_UPDATER;
 var FETCH_INTERVAL = 15 * 1000;
 
 //Node scripts
-var batcher = require('./server-scripts/batcher.js');
-var marketOpen = require('./server-scripts/market-open.js');
-var updatePortfolio = require('./server-scripts/update-portfolio.js');
+var batcher = require('./batcher.js');
+var marketOpen = require('./market-open.js');
+var updatePortfolio = require('./update-portfolio.js');
 
 //Check the time
 function checkTime() {
@@ -40,8 +40,9 @@ function stopPortfolioUpdater() {
 	batcher.dailyBatch(); //Kick off the daily batcher utility
 }
 
-checkTime();
-setInterval(checkTime, FETCH_INTERVAL * 5);
+
 
 //TEMPORARY
 batcher.dailyBatch(); //Kick off the daily batcher utility
+
+module.exports.checkTime = checkTime;

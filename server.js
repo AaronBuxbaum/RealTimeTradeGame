@@ -2,12 +2,6 @@
 var express = require('express');
 var server = express();
 
-//Node scripts
-var batcher = require('./server-scripts/portfolio-updater.js');
-
-
-/* Server functions */
-
 //Open a port and serve pages through it
 function listen(port) {
 	server.use(express.static(__dirname));
@@ -18,8 +12,10 @@ function listen(port) {
 	console.log("Server listening on port", port);
 }
 
-
-
-/* Initialization */
 //Start the server
 listen(process.env.PORT || 8080);
+
+//Start portfolio updater
+var portfolioUpdater = require('./server-scripts/portfolio-updater.js');
+portfolioUpdater.checkTime();
+setInterval(portfolioUpdater.checkTime, 5000);
