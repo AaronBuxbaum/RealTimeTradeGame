@@ -5,7 +5,7 @@ module.exports = function (config) {
 		browsers: ['PhantomJS'],
 		colors: true,
 		files: [
-			'../vendors.js',
+			'../build/vendors.js',
 
 			'about/about.js',
 			'auth/auth.js',
