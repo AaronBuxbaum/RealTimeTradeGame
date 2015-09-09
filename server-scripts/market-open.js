@@ -20,7 +20,7 @@ function isMarketOpen() {
 	if (isNationalHoliday(now)) {
 		return false;
 	}
-
+	
 	return now.isBetween(MARKET_OPEN, MARKET_CLOSE);
 }
 
