@@ -3,12 +3,12 @@ var Firebase = require('firebase');
 var _ = require('lodash');
 
 //Initialize variables
-var ref = new Firebase('https://realtimetrade.firebaseio.com');
+var ref = new Firebase('https://realtimetrade.firebaseio.com/series');
 
 function dailyBatch() {
-	console.log('Batcher utility running...');
+	console.log('Batcher utility started');
 
-	ref.child('series').once('value', function (s) {
+	ref.once('value', function (s) {
 		//Run for every series
 		s.forEach(function (userSeries) {
 			//Get the entries only for this previous day
