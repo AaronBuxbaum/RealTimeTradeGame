@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/AaronBuxbaum/RealTimeTradeGame.svg)](https://travis-ci.org/AaronBuxbaum/RealTimeTradeGame)
+
 ### To build:
 1. Clone git repo
 2. Run `npm install`. You may need to install `npm` from npmjs.com.
