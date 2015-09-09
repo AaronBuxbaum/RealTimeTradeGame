@@ -1,10 +1,11 @@
 /* Dependencies */
 var gulp = require('gulp');
-var express = require('gulp-express');
+var gls = require('gulp-live-server');
 
 /* Server tasks */
 
 //Run the server
 gulp.task('server', function () {
-  express.run(['server.js']);
+  var server = gls.new('server.js');
+  server.start();
 });
