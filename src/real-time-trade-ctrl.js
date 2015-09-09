@@ -1,4 +1,4 @@
-RealTimeTrade.controller('RealTimeTradeCtrl', function (AuthenticationService) {
+angular.module('RealTimeTrade').controller('RealTimeTradeCtrl', function (AuthenticationService) {
     var ctrl = this;
 
 	ctrl.leagueName = 'Example League';
