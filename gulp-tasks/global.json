@@ -1,6 +1,7 @@
 {
 	"SRC": "src/",
 	"NPM": "node_modules/",
+	"BOWER": "bower_components/",
 	"BUILD": "build/",
 	"TYPINGS": "typings/",
 	"MODULES": [

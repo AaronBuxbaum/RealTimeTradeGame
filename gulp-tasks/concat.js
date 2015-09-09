@@ -16,7 +16,7 @@ function prependNPM(fileNames) {
 
 //Concatenate vendor JS into one file
 gulp.task('concat-vendor-js', function () {
-  var vendorFiles = [
+  var vendorFiles = prependNPM([
     'lodash/index.js',
     'moment/moment.js',
     'angular/angular.js',
@@ -31,10 +31,11 @@ gulp.task('concat-vendor-js', function () {
     'highstock-release/highstock.src.js',
     'highcharts-ng/dist/highcharts-ng.js',
     'angular-moment/angular-moment.js'
-  ];
+  ]);
+  vendorFiles.push(g.BOWER + 'firebase/firebase-debug.js');
 
   return gulp
-    .src(prependNPM(vendorFiles))
+    .src(vendorFiles)
     .pipe(concat('vendors.js'))
   //.pipe(uglify())
     .pipe(gulp.dest(g.BUILD));
