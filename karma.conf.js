@@ -2,27 +2,36 @@ module.exports = function (config) {
 	config.set({
 		autoWatch: false,
 		basePath: './src/',
-		browserify: {
-			watch: false,
-			debug: true
-		},
-		browsers: ['Chrome'],
+		browsers: ['PhantomJS'],
 		colors: true,
 		files: [
-			'../node_modules/angular/angular.js',
-			'../node_modules/angular-animate/angular-animate.js',
-			'../node_modules/angular-aria/angular-aria.js',
-			'../node_modules/angular-material/angular-material.js',
-			'../node_modules/angular-mocks/angular-mocks.js',
+			'../build/vendors.js',
+			'../bower_components/firebase/firebase.js',
+
+			'about/about.js',
+			'auth/auth.js',
+			'auth/auth-fact.js',
+			'create-league/create-league.js',
+			'league/league.js',
+			'loading/loading.js',
+			'login/login.js',
+			'logout/logout.js',
+			'main/main.js',
+			'portfolio/portfolio.js',
+			'portfolio/add-new-stock/add-new-stock.js',
+			'portfolio/stock-slider/stock-slider.js',
 			'real-time-trade.js',
 			'real-time-trade-ctrl.js',
-			'real-time-trade-ctrl.spec.js',
-			'**/*.js'
+			'ticker/ticker.js',
+			'toolbar/toolbar.js',
+
+			'**/*.spec.js'
 		],
-		frameworks: ['browserify', 'jasmine'],
-		preprocessors: {
-			'**/*.spec.js': ['browserify']
-		},
+		frameworks: ['jasmine'],
+		plugins: [
+			'karma-jasmine',
+			'karma-phantomjs-launcher'
+		],
 		reporters: ['progress'],
 		singleRun: true
 	});

@@ -1,19 +1,17 @@
 describe('RealTimeTradeCtrl', function () {
-    var $scope;
-    var controller;
+    var ctrl;
 
     beforeEach(function () {
         module('RealTimeTrade');
     });
 
     beforeEach(inject(function ($controller, $rootScope) {
-        $scope = $rootScope.$new();
-        controller = $controller('RealTimeTradeCtrl', {
-            $scope: $scope
+        ctrl = $controller('RealTimeTradeCtrl', {
+            $scope: $rootScope.$new()
         });
     }));
 
-    it("Should say hello", function () {
-        expect($scope.leagueName).toBe("Hello");
+    it('should run this test', function () {
+        expect(1 + 1).toBe(2);
     });
 });

@@ -25,6 +25,7 @@ gulp.task('concat-vendor-js', function () {
     'angular-material/angular-material.js',
     'angular-material-icons/angular-material-icons.js',
     'angular-messages/angular-messages.js',
+    'angular-mocks/angular-mocks.js',
     'jquery/dist/jquery.js',
     'angularfire/dist/angularfire.js',
     'highstock-release/highstock.src.js',
