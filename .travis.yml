@@ -9,3 +9,5 @@ before_script:
     - npm install
     - node_modules/bower/bin/bower install
     - gulp concat-vendor-js
+notifications:
+  email: false
