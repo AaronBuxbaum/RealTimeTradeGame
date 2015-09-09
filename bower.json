@@ -1,0 +1,19 @@
+{
+  "name": "RealTimeTradeGame",
+  "version": "0.0.0",
+  "homepage": "https://github.com/AaronBuxbaum/RealTimeTradeGame",
+  "authors": [
+    "Aaron Buxbaum <abuxbaum@factset.com>"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "firebase": "~2.2.9"
+  }
+}
