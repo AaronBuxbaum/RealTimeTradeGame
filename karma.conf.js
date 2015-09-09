@@ -5,8 +5,7 @@ module.exports = function (config) {
 		browsers: ['PhantomJS'],
 		colors: true,
 		files: [
-			'../build/vendors.js',
-			'../bower_components/firebase/firebase.js',
+			'../vendors.js',
 
 			'about/about.js',
 			'auth/auth.js',

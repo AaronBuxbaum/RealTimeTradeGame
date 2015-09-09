@@ -35,9 +35,6 @@
     "less/less.d.ts": {
       "commit": "a213223e1bdf40b280ebf765b42e7ef3da9394dc"
     },
-    "express/express.d.ts": {
-      "commit": "af76bf46025371c760d8fe8c03cf874428da6124"
-    },
     "gulp-concat/gulp-concat.d.ts": {
       "commit": "af76bf46025371c760d8fe8c03cf874428da6124"
     },

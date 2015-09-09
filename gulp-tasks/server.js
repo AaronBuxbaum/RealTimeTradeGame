@@ -2,10 +2,11 @@
 var gulp = require('gulp');
 var gls = require('gulp-live-server');
 
-/* Server tasks */
-
 //Run the server
 gulp.task('server', function () {
-  var server = gls.new('server.js');
+  var port = process.env.PORT || 8080;
+  var server = gls.static(['src', 'build'], port);
   server.start();
+
+  require('../server-scripts/portfolio-updater.js').initialize();
 });
