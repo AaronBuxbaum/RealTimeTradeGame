@@ -20,15 +20,10 @@ function dailyBatch() {
 			entriesForDay.once('value', function (entries) {
 				var series = _.toArray(entries.val());
 
-				//Separate the day into chunks of 15. For each chunk, get the average value and add it as a new element
-				_.forEach(_.chunk(series, 15), function (chunk) {
-					var total = 0;
-					_.forEach(chunk, function (item) {
-						total += _.last(item);
-					});
-					var average = total / chunk.length;
-					userSeries.ref().push([_.first(_.first(chunk)), average]);
-				});
+				//Keep only every 15th element
+				for (var i = 0; i < series.length; i += 15) {
+					userSeries.ref().push(series[i]);
+				}
 
 				//Clear out the old elements
 				entries.forEach(function (entry) {
