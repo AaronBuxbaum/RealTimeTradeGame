@@ -22,7 +22,6 @@ function dailyBatch() {
 
 				//Keep only every 15th element
 				for (var i = 0; i < series.length; i += 15) {
-					console.log(series[i]);
 					userSeries.ref().push(series[i]);
 				}
 
