@@ -1,12 +1,11 @@
 /* Dependencies */
 var gulp = require('gulp');
-var less = require('gulp-less');
 var install = require('gulp-install');
 var g = require('./global.json');
 
 /* Install tasks */
-//Install everything
-gulp.task('install', ['install-npm', 'install-bower', 'install-tsd']);
+//Install npm and bower (not Typescripts -- those should only be run when using Visual Studio)
+gulp.task('install', ['install-npm', 'install-bower']);
 
 //Install npm packages
 gulp.task('install-npm', function () {
@@ -29,12 +28,5 @@ gulp.task('install-tsd', function () {
 //Copy files that don't need to be compiled
 gulp.task('copy-files', function () {
   return gulp.src([g.SRC + 'index.html', g.SRC + 'config.js'])
-    .pipe(gulp.dest(g.BUILD));
-});
-
-//Run less conversion
-gulp.task('less', function () {
-  return gulp.src(g.SRC + '**/*.less')
-    .pipe(less())
     .pipe(gulp.dest(g.BUILD));
 });

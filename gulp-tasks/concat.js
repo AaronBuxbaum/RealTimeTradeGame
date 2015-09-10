@@ -1,8 +1,9 @@
 /* Dependencies */
 var gulp = require('gulp');
 var concat = require('gulp-concat');
-var uglify = require('gulp-uglify');
+var less = require('gulp-less');
 var g = require('./global.json');
+
 
 //Prepend the NPM directory to all passed-in files
 function prependNPM(fileNames) {
@@ -12,7 +13,8 @@ function prependNPM(fileNames) {
 }
 
 
-/* Concatenate tasks */
+//Concat everything down
+gulp.task('concat', ['concat-vendor-js', 'concat-vendor-css', 'concat-app-js', 'concat-app-css']);
 
 //Concatenate vendor JS into one file
 gulp.task('concat-vendor-js', function () {
@@ -37,7 +39,6 @@ gulp.task('concat-vendor-js', function () {
   return gulp
     .src(vendorFiles)
     .pipe(concat('vendors.js'))
-  //.pipe(uglify())
     .pipe(gulp.dest(g.BUILD));
 });
 
@@ -54,17 +55,22 @@ gulp.task('concat-vendor-css', function () {
     .pipe(gulp.dest(g.BUILD));
 });
 
-//Concatenate modules into one file
-gulp.task('concat-modules', function () {
-  g.MODULES.forEach(function (module) {
-    gulp.src([
-      g.SRC + module + '/' + module + '.js',
-      g.SRC + module + '/' + '*.js'
+//Concat all source files into one
+gulp.task('concat-app-js', function () {
+  return gulp
+    .src([
+      g.SRC + '**/*-module.js',
+      g.SRC + '**/*.js',
+      '!' + g.SRC + '**/*.spec.js'
     ])
-      .pipe(concat(module + '.js'))
-      .pipe(gulp.dest(g.BUILD + module));
+    .pipe(concat('app.js'))
+    .pipe(gulp.dest(g.BUILD));
+});
 
-    gulp.src([g.SRC + module + '/*.html'])
-      .pipe(gulp.dest(g.BUILD + module));
-  });
+//Run less conversion
+gulp.task('concat-app-css', function () {
+  return gulp.src(g.SRC + '**/*.less')
+    .pipe(less())
+    .pipe(concat('app.css'))
+    .pipe(gulp.dest(g.BUILD));
 });
