@@ -4,11 +4,17 @@ CreateLeague.controller('CreateLeagueCtrl', function () {
     //Minimum bid is $1.50 per day
     ctrl.updateMinBid = function () {
         var numDays = (ctrl.closeDate - ctrl.startDate) / 1000 / 60 / 60 / 24;
-        ctrl.minBid = numDays * 1.5;
+        ctrl.minBid = (numDays > 0) ? numDays * 1.5 : 0;
     };
 
     ctrl.totalWinnings = function () {
-        return (ctrl.bid || ctrl.minBid) * ctrl.maxPlayers * 0.95;
+        if (!ctrl.bid) {
+            ctrl.bid = ctrl.minBid;
+        }
+        else if (ctrl.minBid > ctrl.bid) {
+            ctrl.bid = ctrl.minBid;
+        }
+        return ctrl.bid * ctrl.maxPlayers * 0.95;
     };
 
     ctrl.createLeague = function () {
