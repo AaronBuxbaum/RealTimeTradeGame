@@ -3,6 +3,7 @@ var _ = require('lodash');
 var http = require('q-io/http');
 var Q = require('q');
 var Firebase = require('firebase');
+var token = require('./token.js');
 
 //Initialize variables
 var ref = new Firebase('https://realtimetrade.firebaseio.com');
@@ -22,13 +23,15 @@ function updatePortfolio() {
 }
 
 function getEarnings(uid) {
-	//Push the new earnings to the database
-	seriesRef.child(uid).once('value', function (series) {
-		var portfolioRef = portfoliosRef.child(uid);
-		var previousEarnings = _.last(_.last(_.toArray(series.val())));
+	token.authenticate(seriesRef).then(function () {
+		//Push the new earnings to the database
+		seriesRef.child(uid).once('value', function (series) {
+			var portfolioRef = portfoliosRef.child(uid);
+			var previousEarnings = _.last(_.last(_.toArray(series.val())));
 
-		getPortfolioValue(portfolioRef, previousEarnings).then(function (portfolioValue) {
-			seriesRef.child(uid).push([Date.now(), portfolioValue]);
+			getPortfolioValue(portfolioRef, previousEarnings).then(function (portfolioValue) {
+				seriesRef.child(uid).push([Date.now(), portfolioValue]);
+			});
 		});
 	});
 }
