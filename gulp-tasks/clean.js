@@ -6,7 +6,7 @@ var g = require('./global.json');
 /* Clean tasks */
 
 //Clean everything
-gulp.task('clean', ['clean-npm', 'clean-bower', 'clean-build', 'clean-typings']);
+gulp.task('clean', ['clean-npm', 'clean-bower', 'clean-build', 'clean-typings', 'clean-coverage']);
 
 //Clean the node_modules directory
 gulp.task('clean-npm', function () {
@@ -27,3 +27,8 @@ gulp.task('clean-build', function () {
 gulp.task('clean-typings', function () {
   return del(g.TYPINGS);
 });
+
+//Clean the coverage directory
+gulp.task('clean-coverage', function () {
+  return del('coverage');
+})

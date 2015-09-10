@@ -12,9 +12,13 @@ module.exports = function (config) {
 		frameworks: ['jasmine'],
 		plugins: [
 			'karma-jasmine',
-			'karma-phantomjs-launcher'
+			'karma-phantomjs-launcher',
+			'karma-coverage'
 		],
-		reporters: ['progress'],
+		preprocessors: {
+			'build/app.js': 'coverage'
+		},
+		reporters: ['progress', 'coverage'],
 		singleRun: true
 	});
 };
