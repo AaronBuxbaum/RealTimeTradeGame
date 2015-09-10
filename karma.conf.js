@@ -6,6 +6,7 @@ module.exports = function (config) {
 		colors: true,
 		files: [
 			'build/vendors.js',
+			'build/templates.js',
 			'build/app.js',
 			'src/**/*.spec.js'
 		],

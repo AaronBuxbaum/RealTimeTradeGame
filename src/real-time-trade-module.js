@@ -4,5 +4,6 @@ angular.module('RealTimeTrade', [
 	'Loading',
 	'Main',
 	'About',
-	'Authentication'
+	'Authentication',
+	'Templates'
 ]);

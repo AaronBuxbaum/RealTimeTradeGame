@@ -2,6 +2,7 @@
 var gulp = require('gulp');
 var concat = require('gulp-concat');
 var less = require('gulp-less');
+var ngHtml2Js = require("gulp-ng-html2js");
 var g = require('./global.json');
 
 
@@ -14,7 +15,7 @@ function prependNPM(fileNames) {
 
 
 //Concat everything down
-gulp.task('concat', ['concat-vendor-js', 'concat-vendor-css', 'concat-app-js', 'concat-app-css']);
+gulp.task('concat', ['concat-vendor-js', 'concat-vendor-css', 'concat-app-js', 'concat-app-css', 'concat-app-html', 'copy-index']);
 
 //Concatenate vendor JS into one file
 gulp.task('concat-vendor-js', function () {
@@ -55,7 +56,7 @@ gulp.task('concat-vendor-css', function () {
     .pipe(gulp.dest(g.BUILD));
 });
 
-//Concat all source files into one
+//Concat all source files into one file
 gulp.task('concat-app-js', function () {
   return gulp
     .src([
@@ -67,10 +68,26 @@ gulp.task('concat-app-js', function () {
     .pipe(gulp.dest(g.BUILD));
 });
 
-//Run less conversion
+//Run less conversion and then concat into one file
 gulp.task('concat-app-css', function () {
   return gulp.src(g.SRC + '**/*.less')
     .pipe(less())
     .pipe(concat('app.css'))
+    .pipe(gulp.dest(g.BUILD));
+});
+
+//Convert HTML -> Javascript and then concat into one file
+gulp.task('concat-app-html', function () {
+  return gulp.src(g.SRC + '**/*.html')
+    .pipe(ngHtml2Js({
+      moduleName: 'Templates'
+    }))
+    .pipe(concat('templates.js'))
+    .pipe(gulp.dest(g.BUILD));
+});
+
+//Copy the index.html file to the build directory
+gulp.task('copy-index', function () {
+  return gulp.src(g.SRC + 'index.html')
     .pipe(gulp.dest(g.BUILD));
 });
