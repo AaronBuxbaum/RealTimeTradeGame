@@ -3,10 +3,5 @@
 	"NPM": "node_modules/",
 	"BOWER": "bower_components/",
 	"BUILD": "build/",
-	"TYPINGS": "typings/",
-	"MODULES": [
-		"ticker",
-		"database",
-		"stocks"
-	]
+	"TYPINGS": "typings/"
 }

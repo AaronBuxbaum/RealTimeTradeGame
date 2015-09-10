@@ -24,9 +24,3 @@ gulp.task('install-tsd', function () {
   return gulp.src('tsd.json')
     .pipe(install());
 });
-
-//Copy files that don't need to be compiled
-gulp.task('copy-files', function () {
-  return gulp.src([g.SRC + 'index.html', g.SRC + 'config.js'])
-    .pipe(gulp.dest(g.BUILD));
-});

@@ -6,8 +6,7 @@ module.exports = function (config) {
 		colors: true,
 		files: [
 			'build/vendors.js',
-			'src/**/*-module.js',
-			'src/**/*.js'
+			'build/app.js'
 		],
 		frameworks: ['jasmine'],
 		plugins: [
