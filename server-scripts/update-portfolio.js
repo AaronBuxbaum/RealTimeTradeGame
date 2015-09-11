@@ -27,7 +27,7 @@ function getEarnings(uid) {
 		//Push the new earnings to the database
 		seriesRef.child(uid).once('value', function (series) {
 			var portfolioRef = portfoliosRef.child(uid);
-			var previousEarnings = _.last(_.last(_.toArray(series.val())));
+			var previousEarnings = series.val()[1][1];
 
 			getPortfolioValue(portfolioRef, previousEarnings).then(function (portfolioValue) {
 				seriesRef.child(uid).push([Date.now(), portfolioValue]);
@@ -84,11 +84,9 @@ function getStockPrices(tickers) {
 	if (!tickers || !tickers.length) {
 		tickers = ['SPY']
 	}
-
-	return http.request({
-		url: 'https://finance.google.com/finance/info?q=' + tickers.join(','),
-		method: 'GET'
-	}).then(function (response) {
+	
+	var url = 'https://finance.google.com/finance/info?q=' + tickers.join(',');
+	return http.request( url ).then(function (response) {
 		return response.body.read().then(function (body) {
 			return transformStockPrices(body);
 		});
