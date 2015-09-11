@@ -2,7 +2,7 @@
 var gulp = require('gulp');
 var concat = require('gulp-concat');
 var less = require('gulp-less');
-var ngHtml2Js = require("gulp-ng-html2js");
+var ngHtml2Js = require('gulp-ng-html2js');
 var g = require('./global.json');
 
 
