@@ -10,9 +10,10 @@
 <script src="../templates.js"></script>
 
 <body ng-app="RealTimeTrade">
-	<md-content layout-padding ng-controller="RealTimeTradeCtrl as ctrl">
-		<loading ng-if="ctrl.isAuthenticated === undefined"></loading>
+	<md-content ng-controller="RealTimeTradeCtrl as ctrl" ng-style="!ctrl.isAuthenticated && ctrl.loadingStyle">
 		<login ng-if="ctrl.isAuthenticated === false"></login>
+		<md-content ng-if="ctrl.isAuthenticated === false"></md-content>
+		<loading ng-if="ctrl.isAuthenticated === undefined"></loading>
 		<main ng-if="ctrl.isAuthenticated"></main>
 		<about></about>
 	</md-content>
