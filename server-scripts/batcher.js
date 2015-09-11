@@ -12,12 +12,14 @@ function dailyBatch() {
 		return;
 	}
 
-	token.authenticate(ref).then(function () {
-		console.log('Batcher utility started');
+	console.log('Batcher utility started');
 
-		ref.once('value', function (s) {
-			//Run for every series
-			s.forEach(function (userSeries) {
+	//Run for every series
+	ref.once('value', function (s) {
+		s.forEach(function (userSeries) {
+			console.log(userSeries.key());
+			console.log(userSeries);
+			token.authenticate(userSeries, userSeries.key()).then(function () {
 				//Get the entries only for this previous day
 				var timestamp = new Date();
 				timestamp.setHours(9);
