@@ -1,4 +1,4 @@
-Main.directive('main', function () {
+angular.module('Main').directive('main', function () {
 	return {
 		restrict: 'E',
 		templateUrl: 'main/main.html',

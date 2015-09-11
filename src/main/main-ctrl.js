@@ -1,3 +1,3 @@
-Main.controller('MainCtrl', function () {
+angular.module('Main').controller('MainCtrl', function () {
     var ctrl = this;
 });

@@ -1,4 +1,4 @@
-CreateLeague.controller('CreateLeagueCtrl', function () {
+angular.module('CreateLeague').controller('CreateLeagueCtrl', function () {
     var ctrl = this;
 
     //Minimum bid is $1.50 per day

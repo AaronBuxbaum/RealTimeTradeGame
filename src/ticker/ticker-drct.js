@@ -1,4 +1,4 @@
-Ticker.directive('ticker', function () {
+angular.module('Ticker').directive('ticker', function () {
 	return {
 		restrict: 'E',
 		templateUrl: 'ticker/ticker.html',

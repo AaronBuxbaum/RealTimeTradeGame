@@ -1,4 +1,4 @@
-StockSlider.directive('stockSlider', function () {
+angular.module('StockSlider').directive('stockSlider', function () {
 	return {
 		restrict: 'E',
 		templateUrl: 'portfolio/stock-slider/stock-slider.html',

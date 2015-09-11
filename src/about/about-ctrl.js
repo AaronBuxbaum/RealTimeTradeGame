@@ -1,4 +1,4 @@
-About.controller('AboutCtrl', function ($mdDialog) {
+angular.module('About').controller('AboutCtrl', function ($mdDialog) {
     var ctrl = this;
 
     ctrl.openAbout = function ($event) {

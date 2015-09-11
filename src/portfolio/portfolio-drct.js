@@ -1,4 +1,4 @@
-Portfolio.directive('portfolio', function () {
+angular.module('Portfolio').directive('portfolio', function () {
 	return {
 		restrict: 'E',
 		templateUrl: 'portfolio/portfolio.html',

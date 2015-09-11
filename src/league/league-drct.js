@@ -1,4 +1,4 @@
-League.directive('league', function () {
+angular.module('League').directive('league', function () {
 	return {
 		restrict: 'E',
 		templateUrl: 'league/league.html',

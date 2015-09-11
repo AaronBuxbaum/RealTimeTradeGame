@@ -1,4 +1,4 @@
-Logout.directive('logout', function () {
+angular.module('Logout').directive('logout', function () {
 	return {
 		restrict: 'E',
 		templateUrl: 'logout/logout.html',

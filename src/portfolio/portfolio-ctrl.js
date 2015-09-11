@@ -1,4 +1,4 @@
-Portfolio.controller('PortfolioCtrl', function (AuthenticationService, PortfolioService) {
+angular.module('Portfolio').controller('PortfolioCtrl', function (AuthenticationService, PortfolioService) {
     var ctrl = this;
 
     ctrl.update = function (auth) {
