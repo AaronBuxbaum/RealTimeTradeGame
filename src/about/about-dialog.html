@@ -1,11 +1,9 @@
 <md-dialog>
-	<link rel="stylesheet" href="about/about.css">
-
 	<md-dialog-content>
 		<md-content class="md-padding">
 			<h2>Developers</h2>
 
-			<md-list>
+			<md-list class="about">
 				<md-list-item class="md-3-line" ng-repeat="developer in ::developers">
 					<img ng-src="{{developer.picture}}" class="developer-face" alt="{{developer.name}}">
 					<div class="md-list-item-text">
