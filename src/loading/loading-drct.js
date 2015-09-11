@@ -1,4 +1,4 @@
-Loading.directive('loading', function ($mdDialog) {
+angular.module('Loading').directive('loading', function ($mdDialog) {
 	return {
 		restrict: 'E',
 		controller: 'LoadingCtrl',

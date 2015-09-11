@@ -1,4 +1,4 @@
-League.controller('LeagueCtrl', function (LeagueService, AuthenticationService) {
+angular.module('League').controller('LeagueCtrl', function (LeagueService, AuthenticationService) {
     var ctrl = this;
 
     AuthenticationService.auth.$onAuth(function (auth) {

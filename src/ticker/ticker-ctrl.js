@@ -1,4 +1,4 @@
-Ticker.controller('TickerCtrl', function ($firebaseArray, AuthenticationService) {
+angular.module('Ticker').controller('TickerCtrl', function ($firebaseArray, AuthenticationService) {
     var ctrl = this;
 
     //TODO this shouldn't only happen when the authorization status changes (ie. if people join or leave a league?)

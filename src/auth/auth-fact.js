@@ -1,4 +1,4 @@
-Authentication.factory('AuthenticationService', function ($firebaseAuth, $firebaseObject) {
+angular.module('Authentication').factory('AuthenticationService', function ($firebaseAuth, $firebaseObject) {
 	var svc = this;
 
 	var ref = new Firebase('https://realtimetrade.firebaseio.com');

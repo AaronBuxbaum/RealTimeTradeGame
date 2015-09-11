@@ -1,4 +1,3 @@
-/* global About */
-var About = angular.module('About', [
+angular.module('About', [
 	'ngMaterial'
 ]);

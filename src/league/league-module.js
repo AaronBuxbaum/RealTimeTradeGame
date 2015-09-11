@@ -1,5 +1,4 @@
-/* global League */
-var League = angular.module('League', [
+angular.module('League', [
 	'ngMaterial',
 	'Authentication'
 ]);

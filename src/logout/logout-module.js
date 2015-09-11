@@ -1,5 +1,4 @@
-/* global Logout */
-var Logout = angular.module('Logout', [
+angular.module('Logout', [
 	'ngMaterial',
 	'Authentication'
 ]);

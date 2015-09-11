@@ -3,9 +3,9 @@
   "version": "0.0.0",
   "homepage": "https://github.com/AaronBuxbaum/RealTimeTradeGame",
   "authors": [
-    "Aaron Buxbaum <abuxbaum@factset.com>"
+    "Aaron Buxbaum <aaronbuxbaum@gmail.com>"
   ],
-  "license": "MIT",
+  "license": "ISC",
   "ignore": [
     "**/.*",
     "node_modules",

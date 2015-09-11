@@ -1,5 +1,4 @@
-/* global AddNewStock */
-var AddNewStock = angular.module('AddNewStock', [
+angular.module('AddNewStock', [
 	'ngMaterial',
 	'Portfolio'
 ]);

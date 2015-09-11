@@ -1,4 +1,4 @@
-Login.controller('LoginCtrl', function ($mdDialog) {
+angular.module('Login').controller('LoginCtrl', function ($mdDialog) {
     $mdDialog.show({
         controller: function (AuthenticationService) {
             var ctrl = this;

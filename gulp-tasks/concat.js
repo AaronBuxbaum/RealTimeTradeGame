@@ -2,7 +2,8 @@
 var gulp = require('gulp');
 var concat = require('gulp-concat');
 var less = require('gulp-less');
-var ngHtml2Js = require("gulp-ng-html2js");
+var ngHtml2Js = require('gulp-ng-html2js');
+var plumber = require('gulp-plumber');
 var g = require('./global.json');
 
 
@@ -71,6 +72,7 @@ gulp.task('concat-app-js', function () {
 //Run less conversion and then concat into one file
 gulp.task('concat-app-css', function () {
   return gulp.src(g.SRC + '**/*.less')
+    .pipe(plumber({ errorHandler: true }))
     .pipe(less())
     .pipe(concat('app.css'))
     .pipe(gulp.dest(g.BUILD));

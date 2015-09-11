@@ -1,4 +1,4 @@
-AddNewStock.controller('AddNewStockCtrl', function (PortfolioService, AddNewStockService) {
+angular.module('AddNewStock').controller('AddNewStockCtrl', function (PortfolioService, AddNewStockService) {
     var ctrl = this;
 
     ctrl.getStocks = AddNewStockService.getStocks;

@@ -1,4 +1,4 @@
-AddNewStock.directive('addNewStock', function () {
+angular.module('AddNewStock').directive('addNewStock', function () {
 	return {
 		restrict: 'E',
 		templateUrl: 'portfolio/add-new-stock/add-new-stock.html',

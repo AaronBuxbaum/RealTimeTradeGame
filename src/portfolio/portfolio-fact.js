@@ -1,4 +1,4 @@
-Portfolio.factory('PortfolioService', function (AuthenticationService, $firebaseArray) {
+angular.module('Portfolio').factory('PortfolioService', function (AuthenticationService, $firebaseArray) {
 	var svc = this;
 	svc.portfolio;
 

@@ -1,4 +1,4 @@
-Login.directive('login', function ($mdDialog) {
+angular.module('Login').directive('login', function ($mdDialog) {
 	return {
 		restrict: 'E',
 		controller: 'LoginCtrl',
