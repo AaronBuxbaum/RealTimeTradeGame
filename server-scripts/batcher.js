@@ -1,12 +1,17 @@
 //Dependencies
 var Firebase = require('firebase');
 var _ = require('lodash');
+var marketOpen = require('./market-open.js');
 var token = require('./token.js');
 
 //Initialize variables
 var ref = new Firebase('https://realtimetrade.firebaseio.com/series');
 
 function dailyBatch() {
+	if (marketOpen.isMarketOpen()) {
+		return;
+	}
+
 	token.authenticate(ref).then(function () {
 		console.log('Batcher utility started');
 
