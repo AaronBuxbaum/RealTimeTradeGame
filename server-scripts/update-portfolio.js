@@ -23,9 +23,10 @@ function updatePortfolio() {
 }
 
 function getEarnings(uid) {
-	token.authenticate(seriesRef).then(function () {
+	var userEarnings = seriesRef.child(uid);
+	token.authenticate(userEarnings, uid).then(function () {
 		//Push the new earnings to the database
-		seriesRef.child(uid).orderByChild('0').limitToLast(1).once('value', function (previousEarningsArr) {
+		userEarnings.orderByChild('0').limitToLast(1).once('value', function (previousEarningsArr) {
 			var portfolioRef = portfoliosRef.child(uid);
 			var previousEarnings = _.toArray(previousEarningsArr.val())[0];
 
@@ -33,8 +34,8 @@ function getEarnings(uid) {
 				return;
 			}
 
-			getPortfolioValue(portfolioRef, previousEarnings[1]).then(function (portfolioValue) {
-				seriesRef.child(uid).push([Date.now(), portfolioValue]);
+			getPortfolioValue(portfolioRef, previousEarnings[1], uid).then(function (portfolioValue) {
+				userEarnings.push([Date.now(), portfolioValue]);
 			});
 		});
 	});
@@ -45,10 +46,10 @@ function getEarnings(uid) {
 /* Portfolio value functions */
 
 //Return the value of the player's portfolio
-function getPortfolioValue(portfolioRef, previousEarnings) {
+function getPortfolioValue(portfolioRef, previousEarnings, uid) {
 	var deferred = Q.defer();
-	
-	token.authenticate(portfolioRef).then(function () {
+
+	token.authenticate(portfolioRef, uid).then(function () {
 		portfolioRef.once('value', function (response) {
 			var portfolio = response.val();
 			//If this is the first entry, initialize to $1M
@@ -80,7 +81,7 @@ function getPortfolioValue(portfolioRef, previousEarnings) {
 			});
 		});
 	});
-	
+
 	return deferred.promise;
 }
 

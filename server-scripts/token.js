@@ -1,13 +1,11 @@
 var Q = require('q');
 var FirebaseTokenGenerator = require('firebase-token-generator');
-
 var tokenGenerator = new FirebaseTokenGenerator(process.env.FIREBASE_SECRET || '');
-var token = tokenGenerator.createToken({ uid: '1' });
 
-function authenticate(ref) {
+function authenticate(ref, uid) {
 	var defer = Q.defer();
 
-	ref.authWithCustomToken(token,
+	ref.authWithCustomToken(createToken(uid),
 		function (error) {
 			if (!error) {
 				defer.resolve();
@@ -15,11 +13,14 @@ function authenticate(ref) {
 				defer.reject(error);
 			}
 		}, {
-			admin: true,
 			remember: 'none'
 		});
 
 	return defer.promise;
+}
+
+function createToken (uid) {
+	return tokenGenerator.createToken({ uid: uid });
 }
 
 module.exports.authenticate = authenticate;
