@@ -11,8 +11,5 @@ gulp.task('deploy', function (callback) {
 	runSequence('build', 'server', callback);
 });
 
-gulp.task('develop', function (callback) {
-	runSequence('install-tsd', 'deploy', 'watch', callback);
-});
-
+gulp.task('develop', ['watch', 'server']);
 gulp.task('default', ['server']);
