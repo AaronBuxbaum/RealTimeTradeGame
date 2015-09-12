@@ -18,7 +18,6 @@ function dailyBatch() {
 	ref.once('value', function (s) {
 		s.forEach(function (userSeries) {
 			token.authenticate(ref, userSeries.key()).then(function () {
-				console.log('authenticated');
 				//Get the entries only for this previous day
 				var timestamp = new Date();
 				timestamp.setHours(9);
@@ -27,7 +26,6 @@ function dailyBatch() {
 				//Handle the entries for this day
 				entriesForDay.once('value', function (entries) {
 					var series = _.toArray(entries.val());
-					console.log(series);
 
 					//Keep only every 15th element
 					for (var i = 0; i < series.length; i += 15) {
