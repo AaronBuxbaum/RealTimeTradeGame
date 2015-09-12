@@ -25,7 +25,6 @@ function updatePortfolio() {
 function getEarnings(uid) {
 	var userEarnings = seriesRef.child(uid);
 	token.authenticate(userEarnings, uid).then(function () {
-		console.log('authenticated');
 		//Push the new earnings to the database
 		userEarnings.orderByChild('0').limitToLast(1).once('value', function (previousEarningsArr) {
 			var portfolioRef = portfoliosRef.child(uid);
@@ -51,7 +50,6 @@ function getPortfolioValue(portfolioRef, previousEarnings, uid) {
 	var deferred = Q.defer();
 
 	token.authenticate(portfolioRef, uid).then(function () {
-		console.log('authenticated again');
 		portfolioRef.once('value', function (response) {
 			var portfolio = response.val();
 			//If this is the first entry, initialize to $1M
