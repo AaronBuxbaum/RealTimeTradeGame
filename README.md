@@ -1,4 +1,6 @@
 [![Build Status](https://travis-ci.org/AaronBuxbaum/RealTimeTradeGame.svg)](https://travis-ci.org/AaronBuxbaum/RealTimeTradeGame)
+[![Dependency Status](https://david-dm.org/AaronBuxbaum/RealTimeTradeGame.svg)](https://david-dm.org/AaronBuxbaum/RealTimeTradeGame#info=dependencies)
+[![devDependency Status](https://david-dm.org/AaronBuxbaum/RealTimeTradeGame/dev-status.svg)](https://david-dm.org/AaronBuxbaum/RealTimeTradeGame#info=devDependencies)
 
 ### To build:
 1. Clone git repo
