@@ -15,9 +15,9 @@ function dailyBatch() {
 	console.log('Batcher utility started');
 
 	//Run for every series
-	ref.once('value', function (s) {
-		s.forEach(function (userSeries) {
-			token.authenticate(ref, userSeries.key()).then(function () {
+	token.authenticate(ref, 'admin').then(function () {
+		ref.once('value', function (s) {
+			s.forEach(function (userSeries) {
 				//Get the entries only for this previous day
 				var timestamp = new Date();
 				timestamp.setHours(9);
@@ -41,7 +41,5 @@ function dailyBatch() {
 		});
 	});
 }
-
-dailyBatch();
 
 module.exports.dailyBatch = dailyBatch;
