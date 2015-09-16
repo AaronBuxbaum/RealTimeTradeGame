@@ -17,6 +17,7 @@ function authenticate(ref, uid) {
 				if (!error) {
 					defer.resolve();
 				} else {
+					console.error(error);
 					defer.reject(error);
 				}
 			});

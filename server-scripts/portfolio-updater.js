@@ -15,7 +15,7 @@ function initialize() {
 
 //Check the time
 function checkTime() {
-	if (marketOpen.isMarketOpen()) {
+	if (true) {
 		startPortfolioUpdater();
 	}
 	else {
