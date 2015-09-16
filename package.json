@@ -51,6 +51,7 @@
     "lodash": "^3.10.1",
     "moment": "^2.10.6",
     "moment-timezone": "^0.4.0",
+    "pubnub": "^3.7.14",
     "q": "^1.4.1",
     "q-io": "^1.13.1",
     "require-dir": "^0.3.0",
