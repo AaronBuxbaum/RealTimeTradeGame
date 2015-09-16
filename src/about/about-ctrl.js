@@ -1,6 +1,20 @@
+/**
+* @ngdoc controller
+* @name About.controller:AboutCtrl
+**/
 angular.module('About').controller('AboutCtrl', function ($mdDialog) {
     var ctrl = this;
 
+    /**
+    * @ngdoc method
+    * @name AboutCtrl#openAbout
+    * @methodOf About.controller:AboutCtrl
+    *
+    * @description
+    * A function that opens a dialog with developer information.
+    *
+    * @param {Object=} $event an Angular click event
+    **/
     ctrl.openAbout = function ($event) {
         $mdDialog.show({
             title: 'About',
