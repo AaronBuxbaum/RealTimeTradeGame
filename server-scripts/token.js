@@ -9,16 +9,20 @@ function authenticate(ref, uid) {
 	}
 
 	else {
+		var options = {};
+		if (uid === 'admin') {
+			options.admin = true;
+		}
+
 		var tokenGenerator = new FirebaseTokenGenerator(process.env.FIREBASE_SECRET);
-		var token = tokenGenerator.createToken({ uid: uid });
+		var token = tokenGenerator.createToken({ uid: uid }, options);
 
 		ref.authWithCustomToken(token,
 			function (error) {
 				if (!error) {
-					console.log('success');
 					defer.resolve();
 				} else {
-					console.error('error');
+					console.error(error);
 					defer.reject(error);
 				}
 			});

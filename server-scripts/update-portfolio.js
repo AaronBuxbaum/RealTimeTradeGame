@@ -15,29 +15,28 @@ var portfoliosRef = ref.child('portfolios');
 //Update player's portfolio
 function updatePortfolio() {
 	usersRef.once('value', function (users) {
-		return _.forOwn(users.val(), function (user) {
-			if (user.uid) {
-				getEarnings(user.uid);
-			}
+		token.authenticate(seriesRef, 'admin').then(function () {
+			return _.forOwn(users.val(), function (user) {
+				if (user.uid) {
+					getEarnings(user.uid);
+				}
+			});
 		});
 	});
 }
 
 function getEarnings(uid) {
 	var userEarnings = seriesRef.child(uid);
-	token.authenticate(userEarnings, uid).then(function () {
-		//Push the new earnings to the database
-		userEarnings.orderByChild('0').limitToLast(1).once('value', function (previousEarningsArr) {
-			var portfolioRef = portfoliosRef.child(uid);
-			var previousEarnings = _.toArray(previousEarningsArr.val())[0];
+	//Push the new earnings to the database
+	userEarnings.orderByChild('0').limitToLast(1).once('value', function (previousEarningsArr) {
+		var portfolioRef = portfoliosRef.child(uid);
 
-			if (!_.isArray(previousEarnings)) {
-				return;
-			}
+		if (previousEarningsArr.val()) {
+			var previousEarnings = _.toArray(previousEarningsArr.val())[0][1];
+		}
 
-			getPortfolioValue(portfolioRef, previousEarnings[1], uid).then(function (portfolioValue) {
-				userEarnings.push([Date.now(), portfolioValue]);
-			});
+		getPortfolioValue(portfolioRef, previousEarnings, uid).then(function (portfolioValue) {
+			userEarnings.push([Date.now(), portfolioValue]);
 		});
 	});
 }
@@ -50,35 +49,36 @@ function getEarnings(uid) {
 function getPortfolioValue(portfolioRef, previousEarnings, uid) {
 	var deferred = Q.defer();
 
-	token.authenticate(portfolioRef, uid).then(function () {
-		portfolioRef.once('value', function (response) {
-			var portfolio = response.val();
-			//If this is the first entry, initialize to $1M
-			if (!previousEarnings) {
-				previousEarnings = 1000000;
-			}
+	portfolioRef.once('value', function (response) {
+		var portfolio = response.val();
+		//If this is the first entry, initialize to $1M
+		if (!previousEarnings) {
+			previousEarnings = 1000000;
+		}
 
-			//Initialize cash
-			var unusedPercentage = 100 - _.sum(portfolio, 'percentage');
-			var total = previousEarnings * (unusedPercentage / 100);
+		//Initialize cash
+		var unusedPercentage = 100 - _.sum(portfolio, 'percentage');
+		var total = previousEarnings * (unusedPercentage / 100);
 
-			//Find new earnings
-			var tickers = _.pluck(_.toArray(portfolio), 'ticker');
-			yahooFinance.snapshot({
-				symbols: tickers,
-				fields: ['b', 'b2', 'b3']
-			}).then(function (stocks) {
-				_.forOwn(portfolio, function (stock) {
-					var stockValue = _.find(stocks, { symbol: stock.ticker }).bid;
-					stock.shares = previousEarnings * (stock.percentage / 100) / stock.value;
-					stock.value = stockValue;
-					total += stockValue * stock.shares;
-				});
-
-				//Update stock values
-				portfolioRef.set(portfolio);
-				deferred.resolve(roundNumber(total));
+		//Find new earnings
+		var tickers = _.pluck(_.toArray(portfolio), 'ticker');
+		if (!tickers.length) {
+			tickers = ['F'];
+		}
+		yahooFinance.snapshot({
+			symbols: tickers,
+			fields: ['b', 'b2', 'b3']
+		}).then(function (stocks) {
+			_.forOwn(portfolio, function (stock) {
+				var stockValue = _.find(stocks, { symbol: stock.ticker }).bid;
+				stock.shares = previousEarnings * (stock.percentage / 100) / stock.value || stockValue;
+				stock.value = stockValue;
+				total += stockValue * stock.shares;
 			});
+
+			//Update stock values
+			portfolioRef.set(portfolio);
+			deferred.resolve(roundNumber(total));
 		});
 	});
 
