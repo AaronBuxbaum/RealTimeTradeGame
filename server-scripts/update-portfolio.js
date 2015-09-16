@@ -51,6 +51,7 @@ function getPortfolioValue(portfolioRef, previousEarnings, uid) {
 
 	portfolioRef.once('value', function (response) {
 		var portfolio = response.val();
+		
 		//If this is the first entry, initialize to $1M
 		if (!previousEarnings) {
 			previousEarnings = 1000000;
@@ -60,15 +61,18 @@ function getPortfolioValue(portfolioRef, previousEarnings, uid) {
 		var unusedPercentage = 100 - _.sum(portfolio, 'percentage');
 		var total = previousEarnings * (unusedPercentage / 100);
 
-		//Find new earnings
+		//Get tickers
 		var tickers = _.pluck(_.toArray(portfolio), 'ticker');
 		if (!tickers.length) {
 			tickers = ['F'];
 		}
+
+		//Find new earnings
 		yahooFinance.snapshot({
 			symbols: tickers,
 			fields: ['b', 'b2', 'b3']
 		}).then(function (stocks) {
+			//Calculate new earnings
 			_.forOwn(portfolio, function (stock) {
 				var stockValue = _.find(stocks, { symbol: stock.ticker }).bid;
 				stock.shares = previousEarnings * (stock.percentage / 100) / stock.value || stockValue;
