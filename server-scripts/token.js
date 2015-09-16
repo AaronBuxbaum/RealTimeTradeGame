@@ -15,9 +15,10 @@ function authenticate(ref, uid) {
 		ref.authWithCustomToken(token,
 			function (error) {
 				if (!error) {
+					console.log('success');
 					defer.resolve();
 				} else {
-					console.error(error);
+					console.error('error');
 					defer.reject(error);
 				}
 			});
