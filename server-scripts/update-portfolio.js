@@ -3,7 +3,6 @@ var _ = require('lodash');
 var http = require('q-io/http');
 var Q = require('q');
 var Firebase = require('firebase');
-//var pubnub = require('pubnub');
 var token = require('./token.js');
 
 //Initialize variables
@@ -39,7 +38,7 @@ function getEarnings(uid) {
 				userEarnings.push([Date.now(), portfolioValue]);
 			});
 		});
-	}, console.error);
+	});
 }
 
 
@@ -111,18 +110,5 @@ function transformStockPrices(body) {
 function roundNumber(num) {
 	return Math.round(Number(num) * 100) / 100;
 }
-
-/*
-var getStocks = pubnub.init({
-	windowing: 1000,
-	timeout: 15000,
-	subscribe_key: 'demo'
-});
-
-getStocks.subscribe({
-	channel: ['GOOG', 'AAPL'],
-	message: function (a) { console.log(a); }
-});
-*/
 
 module.exports.updatePortfolio = updatePortfolio;

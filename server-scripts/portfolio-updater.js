@@ -1,6 +1,6 @@
 //Initialize variables
 var PORTFOLIO_UPDATER;
-var FETCH_INTERVAL = 15 * 1000;
+var FETCH_INTERVAL = 20 * 1000;
 
 //Node scripts
 var batcher = require('./batcher.js');
@@ -15,7 +15,7 @@ function initialize() {
 
 //Check the time
 function checkTime() {
-	if (true) {
+	if (marketOpen.isMarketOpen()) {
 		startPortfolioUpdater();
 	}
 	else {
