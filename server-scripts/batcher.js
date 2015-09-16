@@ -1,18 +1,23 @@
 //Dependencies
 var Firebase = require('firebase');
 var _ = require('lodash');
+var marketOpen = require('./market-open.js');
 var token = require('./token.js');
 
 //Initialize variables
 var ref = new Firebase('https://realtimetrade.firebaseio.com/series');
 
 function dailyBatch() {
-	token.authenticate(ref).then(function () {
-		console.log('Batcher utility started');
+	if (marketOpen.isMarketOpen()) {
+		return;
+	}
 
-		ref.once('value', function (s) {
-			//Run for every series
-			s.forEach(function (userSeries) {
+	console.log('Batcher utility started');
+
+	//Run for every series
+	ref.once('value', function (s) {
+		s.forEach(function (userSeries) {
+			token.authenticate(ref, userSeries.key()).then(function () {
 				//Get the entries only for this previous day
 				var timestamp = new Date();
 				timestamp.setHours(9);
@@ -36,5 +41,7 @@ function dailyBatch() {
 		});
 	});
 }
+
+dailyBatch();
 
 module.exports.dailyBatch = dailyBatch;

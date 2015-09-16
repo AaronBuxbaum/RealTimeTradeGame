@@ -24,14 +24,19 @@ function updatePortfolio() {
 }
 
 function getEarnings(uid) {
-	token.authenticate(seriesRef).then(function () {
+	var userEarnings = seriesRef.child(uid);
+	token.authenticate(userEarnings, uid).then(function () {
 		//Push the new earnings to the database
-		seriesRef.child(uid).once('value', function (series) {
+		userEarnings.orderByChild('0').limitToLast(1).once('value', function (previousEarningsArr) {
 			var portfolioRef = portfoliosRef.child(uid);
-			var previousEarnings = _.last(_.last(_.toArray(series.val())));
+			var previousEarnings = _.toArray(previousEarningsArr.val())[0];
 
-			getPortfolioValue(portfolioRef, previousEarnings).then(function (portfolioValue) {
-				seriesRef.child(uid).push([Date.now(), portfolioValue]);
+			if (!_.isArray(previousEarnings)) {
+				return;
+			}
+
+			getPortfolioValue(portfolioRef, previousEarnings[1], uid).then(function (portfolioValue) {
+				userEarnings.push([Date.now(), portfolioValue]);
 			});
 		});
 	}, console.error);
@@ -42,41 +47,43 @@ function getEarnings(uid) {
 /* Portfolio value functions */
 
 //Return the value of the player's portfolio
-function getPortfolioValue(portfolioRef, previousEarnings) {
-	var defer = Q.defer();
+function getPortfolioValue(portfolioRef, previousEarnings, uid) {
+	var deferred = Q.defer();
 
-	portfolioRef.once('value', function (response) {
-		var portfolio = response.val();
-		//If this is the first entry, initialize to $1M
-		if (!previousEarnings) {
-			previousEarnings = 1000000;
-		}
+	token.authenticate(portfolioRef, uid).then(function () {
+		portfolioRef.once('value', function (response) {
+			var portfolio = response.val();
+			//If this is the first entry, initialize to $1M
+			if (!previousEarnings) {
+				previousEarnings = 1000000;
+			}
 
-		//Initialize cash
-		var unusedPercentage = 100 - _.sum(portfolio, 'percentage');
-		var total = previousEarnings * (unusedPercentage / 100);
+			//Initialize cash
+			var unusedPercentage = 100 - _.sum(portfolio, 'percentage');
+			var total = previousEarnings * (unusedPercentage / 100);
 
-		//Find new earnings
-		var tickers = _.pluck(_.toArray(portfolio), 'ticker');
+			//Find new earnings
+			var tickers = _.pluck(_.toArray(portfolio), 'ticker');
 
-		getStockPrices(tickers).then(function (stockValues) {
-			var stockValuesMap = _.zipObject(tickers, stockValues);
+			getStockPrices(tickers).then(function (stockValues) {
+				var stockValuesMap = _.zipObject(tickers, stockValues);
 
-			_.forOwn(portfolio, function (stock, key) {
-				var stockValue = Number(stockValuesMap[stock.ticker]);
-				stock.shares = previousEarnings * (stock.percentage / 100) / stock.value;
-				stock.value = stockValue;
-				total += stockValue * stock.shares;
-			});
+				_.forOwn(portfolio, function (stock, key) {
+					var stockValue = Number(stockValuesMap[stock.ticker]);
+					stock.shares = previousEarnings * (stock.percentage / 100) / stock.value;
+					stock.value = stockValue;
+					total += stockValue * stock.shares;
+				});
 			
-			//Update stock values
-			portfolioRef.set(portfolio);
+				//Update stock values
+				portfolioRef.set(portfolio);
 
-			defer.resolve(roundNumber(total));
+				deferred.resolve(roundNumber(total));
+			});
 		});
 	});
 
-	return defer.promise;
+	return deferred.promise;
 }
 
 //Get prices for an array of stock tickers
@@ -86,10 +93,8 @@ function getStockPrices(tickers) {
 		tickers = ['SPY']
 	}
 
-	return http.request({
-		url: 'https://finance.google.com/finance/info?q=' + tickers.join(','),
-		method: 'GET'
-	}).then(function (response) {
+	var url = 'https://finance.google.com/finance/info?q=' + tickers.join(',');
+	return http.request(url).then(function (response) {
 		return response.body.read().then(function (body) {
 			return transformStockPrices(body);
 		});

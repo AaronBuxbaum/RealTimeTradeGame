@@ -1,4 +1,6 @@
 [![Build Status](https://travis-ci.org/AaronBuxbaum/RealTimeTradeGame.svg)](https://travis-ci.org/AaronBuxbaum/RealTimeTradeGame)
+[![Dependency Status](https://david-dm.org/AaronBuxbaum/RealTimeTradeGame.svg)](https://david-dm.org/AaronBuxbaum/RealTimeTradeGame#info=dependencies)
+[![devDependency Status](https://david-dm.org/AaronBuxbaum/RealTimeTradeGame/dev-status.svg)](https://david-dm.org/AaronBuxbaum/RealTimeTradeGame#info=devDependencies)
 
 ### To build:
 1. Clone git repo
@@ -10,6 +12,7 @@ If you are using [Visual Studio Code](https://code.visualstudio.com/), you will 
 
 1. Install the TypeScript Definition manager by running `npm install --global tsd`.
 2. Build the `typings` directory by running `gulp install-tsd`.
+3. To add new typings, run `tsd query <typing1> <typing2> <typingN> --action install --save`.
 
 #### Updating dependencies:
 1. Install `npm-check-updates`: `npm install --global npm-check-updates`.
