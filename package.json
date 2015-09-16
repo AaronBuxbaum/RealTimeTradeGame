@@ -51,11 +51,11 @@
     "lodash": "^3.10.1",
     "moment": "^2.10.6",
     "moment-timezone": "^0.4.0",
-    "pubnub": "^3.7.14",
     "q": "^1.4.1",
     "q-io": "^1.13.1",
     "require-dir": "^0.3.0",
-    "run-sequence": "^1.1.2"
+    "run-sequence": "^1.1.2",
+    "yahoo-finance": "^0.2.11"
   },
   "devDependencies": {
     "angular-mocks": "^1.4.5",

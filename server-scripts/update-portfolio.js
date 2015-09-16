@@ -3,6 +3,7 @@ var _ = require('lodash');
 var http = require('q-io/http');
 var Q = require('q');
 var Firebase = require('firebase');
+var yahooFinance = require('yahoo-finance');
 var token = require('./token.js');
 
 //Initialize variables
@@ -63,47 +64,25 @@ function getPortfolioValue(portfolioRef, previousEarnings, uid) {
 
 			//Find new earnings
 			var tickers = _.pluck(_.toArray(portfolio), 'ticker');
-
-			getStockPrices(tickers).then(function (stockValues) {
-				var stockValuesMap = _.zipObject(tickers, stockValues);
-
-				_.forOwn(portfolio, function (stock, key) {
-					var stockValue = Number(stockValuesMap[stock.ticker]);
+			yahooFinance.snapshot({
+				symbols: tickers,
+				fields: ['b', 'b2', 'b3']
+			}).then(function (stocks) {
+				_.forOwn(portfolio, function (stock) {
+					var stockValue = _.find(stocks, { symbol: stock.ticker }).bid;
 					stock.shares = previousEarnings * (stock.percentage / 100) / stock.value;
 					stock.value = stockValue;
 					total += stockValue * stock.shares;
 				});
-			
+
 				//Update stock values
 				portfolioRef.set(portfolio);
-
 				deferred.resolve(roundNumber(total));
 			});
 		});
 	});
 
 	return deferred.promise;
-}
-
-//Get prices for an array of stock tickers
-function getStockPrices(tickers) {
-	//Param must exist for getStockValues to return correctly, so if empty, I use SPY and throw it away
-	if (!tickers || !tickers.length) {
-		tickers = ['SPY']
-	}
-
-	var url = 'https://finance.google.com/finance/info?q=' + tickers.join(',');
-	return http.request(url).then(function (response) {
-		return response.body.read().then(function (body) {
-			return transformStockPrices(body);
-		});
-	});
-}
-
-//Take a buffer and parse out an array of latest stock values
-function transformStockPrices(body) {
-	body = body.toString('utf8');
-	return (body) ? _.pluck(JSON.parse(body.substring(3)), 'l_cur') : null;
 }
 
 //Round to 2 decimal places to avoid Javascript numeric bugs (ie. 1000.00000001)
