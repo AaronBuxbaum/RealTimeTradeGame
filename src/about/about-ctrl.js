@@ -1,6 +1,11 @@
 /**
 * @ngdoc controller
 * @name About.controller:AboutCtrl
+*
+* @description
+* Controller for the About dialog.
+*
+* @requires $mdDialog
 **/
 angular.module('About').controller('AboutCtrl', function ($mdDialog) {
     var ctrl = this;
