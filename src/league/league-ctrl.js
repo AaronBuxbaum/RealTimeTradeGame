@@ -1,3 +1,12 @@
+/**
+* @ngdoc controller
+* @name League.controller:LeagueCtrl
+*
+* @description
+*
+* @requires LeagueService
+* @requires AuthenticationService
+**/
 angular.module('League').controller('LeagueCtrl', function (LeagueService, AuthenticationService) {
     var ctrl = this;
 

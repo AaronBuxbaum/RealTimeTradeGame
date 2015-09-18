@@ -1,3 +1,11 @@
+/**
+* @ngdoc controller
+* @name Login.controller:LoginCtrl
+*
+* @description
+*
+* @requires $mdDialog
+**/
 angular.module('Login').controller('LoginCtrl', function ($mdDialog) {
     $mdDialog.show({
         controller: function (AuthenticationService) {

@@ -1,3 +1,13 @@
+/**
+* @ngdoc directive
+* @name Loading.directive:loading
+* @restrict E
+* @element loading
+* @scope
+*
+* @description
+* A loading spinner in an Angular-Material modal.
+**/
 angular.module('Loading').directive('loading', function ($mdDialog) {
 	return {
 		restrict: 'E',

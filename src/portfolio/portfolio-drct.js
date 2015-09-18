@@ -1,3 +1,12 @@
+/**
+* @ngdoc directive
+* @name Portfolio.directive:portfolio
+* @restrict E
+* @element portfolio
+* @scope
+*
+* @description
+**/
 angular.module('Portfolio').directive('portfolio', function () {
 	return {
 		restrict: 'E',

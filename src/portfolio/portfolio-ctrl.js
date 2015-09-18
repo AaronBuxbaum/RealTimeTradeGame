@@ -1,3 +1,12 @@
+/**
+* @ngdoc controller
+* @name Portfolio.controller:PortfolioCtrl
+*
+* @description
+*
+* @requires AuthenticationService
+* @requires PortfolioService
+**/
 angular.module('Portfolio').controller('PortfolioCtrl', function (AuthenticationService, PortfolioService) {
     var ctrl = this;
 

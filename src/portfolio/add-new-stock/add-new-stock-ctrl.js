@@ -1,3 +1,12 @@
+/**
+* @ngdoc controller
+* @name AddNewStock.controller:AddNewStockCtrl
+*
+* @description
+*
+* @requires PortfolioService
+* @requires AddNewStockService
+**/
 angular.module('AddNewStock').controller('AddNewStockCtrl', function (PortfolioService, AddNewStockService) {
     var ctrl = this;
 

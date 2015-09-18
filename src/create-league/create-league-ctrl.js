@@ -1,3 +1,9 @@
+/**
+* @ngdoc controller
+* @name CreateLeague.controller:CreateLeagueCtrl
+*
+* @description
+**/
 angular.module('CreateLeague').controller('CreateLeagueCtrl', function () {
     var ctrl = this;
 

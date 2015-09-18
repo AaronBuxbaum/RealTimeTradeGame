@@ -1,3 +1,4 @@
+
 angular.module('Authentication').factory('AuthenticationService', function ($firebaseAuth, $firebaseObject) {
 	var svc = this;
 

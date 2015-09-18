@@ -1,3 +1,11 @@
+/**
+* @ngdoc controller
+* @name RealTimeTrade.controller:RealTimeTradeCtrl
+*
+* @description
+*
+* @requires AuthenticationService
+**/
 angular.module('RealTimeTrade').controller('RealTimeTradeCtrl', function (AuthenticationService) {
     var ctrl = this;
 

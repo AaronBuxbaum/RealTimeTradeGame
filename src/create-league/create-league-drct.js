@@ -1,3 +1,13 @@
+/**
+* @ngdoc directive
+* @name CreateLeague.directive:createLeague
+* @restrict E
+* @element createLeague
+* @scope
+*
+* @description
+* A form to create a new league.
+**/
 angular.module('CreateLeague').directive('createLeague', function () {
 	return {
 		restrict: 'E',

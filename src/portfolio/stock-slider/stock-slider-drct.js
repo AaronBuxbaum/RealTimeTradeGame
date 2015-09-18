@@ -1,3 +1,12 @@
+/**
+* @ngdoc directive
+* @name StockSlider.directive:stockSlider
+* @restrict E
+* @element stock-slider
+* @scope
+*
+* @description
+**/
 angular.module('StockSlider').directive('stockSlider', function () {
 	return {
 		restrict: 'E',

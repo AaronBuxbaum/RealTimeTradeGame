@@ -1,3 +1,12 @@
+/**
+* @ngdoc directive
+* @name AddNewStock.directive:addNewStock
+* @restrict E
+* @element add-new-stock
+* @scope
+*
+* @description
+**/
 angular.module('AddNewStock').directive('addNewStock', function () {
 	return {
 		restrict: 'E',

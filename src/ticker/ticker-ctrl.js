@@ -1,3 +1,12 @@
+/**
+* @ngdoc controller
+* @name Ticker.controller:TickerCtrl
+*
+* @description
+*
+* @requires $firebaseArray
+* @requires AuthenticationService
+**/
 angular.module('Ticker').controller('TickerCtrl', function ($firebaseArray, AuthenticationService) {
     var ctrl = this;
 
