@@ -13,7 +13,7 @@ var MARKET_CLOSE = moment().tz(EDT).hour(16);
 function isMarketOpen() {
 	var now = moment().tz(EDT);
 
-	if (now.day() < 0 || now.day() > 5) {
+	if (now.day() < 1 || now.day() > 5) {
 		return false;
 	}
 
