@@ -1,5 +1,6 @@
 //Initialize variables
 var PORTFOLIO_UPDATER;
+var isUpdaterActive = false;
 var FETCH_INTERVAL = 20 * 1000;
 
 //Node scripts
@@ -15,27 +16,27 @@ function initialize() {
 
 //Check the time
 function checkTime() {
-	if (marketOpen.isMarketOpen()) {
+	if (!isUpdaterActive && marketOpen.isMarketOpen()) {
 		startPortfolioUpdater();
 	}
-	else {
+	else if (isUpdaterActive) {
 		stopPortfolioUpdater();
+		batcher.dailyBatch(); //Kick off the daily batcher utility
 	}
 }
 
 //Start the portfolio updater
 function startPortfolioUpdater() {
 	PORTFOLIO_UPDATER = setInterval(updatePortfolio.updatePortfolio, FETCH_INTERVAL);
+	isUpdaterActive = true;
 	console.log('Portfolio updater started');
 }
 
 //Stop the portfolio updater
 function stopPortfolioUpdater() {
 	clearInterval(PORTFOLIO_UPDATER);
-	PORTFOLIO_UPDATER = null;
+	isUpdaterActive = false;
 	console.log('Portfolio updater stopped');
-
-	batcher.dailyBatch(); //Kick off the daily batcher utility
 }
 
 module.exports.initialize = initialize;
