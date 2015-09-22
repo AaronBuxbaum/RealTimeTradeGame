@@ -34,6 +34,7 @@
     "eslint": "^1.5.0",
     "firebase": "^2.2.9",
     "firebase-token-generator": "^2.0.0",
+    "glob": "^5.0.14",
     "gulp": "^3.9.0",
     "gulp-concat": "^2.6.0",
     "gulp-eslint": "^1.0.0",
@@ -59,11 +60,13 @@
   },
   "devDependencies": {
     "angular-mocks": "^1.4.6",
+    "gulp-protractor": "^1.0.0",
     "jasmine-core": "^2.3.4",
     "karma-coverage": "^0.5.2",
     "karma-jasmine": "^0.3.6",
     "karma-phantomjs-launcher": "^0.2.1",
-    "phantomjs": "^1.9.18"
+    "phantomjs": "^1.9.18",
+    "protractor": "^2.2.0"
   },
   "cacheDirectories": [
     "node_modules",
