@@ -25,20 +25,12 @@ function checkTime() {
 
 //Start the portfolio updater
 function startPortfolioUpdater() {
-	if (PORTFOLIO_UPDATER) {
-		return;
-	}
-
 	PORTFOLIO_UPDATER = setInterval(updatePortfolio.updatePortfolio, FETCH_INTERVAL);
 	console.log('Portfolio updater started');
 }
 
 //Stop the portfolio updater
 function stopPortfolioUpdater() {
-	if (!PORTFOLIO_UPDATER) {
-		return;
-	}
-
 	clearInterval(PORTFOLIO_UPDATER);
 	PORTFOLIO_UPDATER = null;
 	console.log('Portfolio updater stopped');
