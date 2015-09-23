@@ -6,7 +6,7 @@ var protractor = require('gulp-protractor');
 gulp.task('test', ['unit-tests', 'e2e-tests']);
 
 gulp.task('unit-tests', function (done) {
-	new karma.Server({
+	return new karma.Server({
 		configFile: __dirname + '/../karma.conf.js',
 		singleRun: true
 	}, done).start();
