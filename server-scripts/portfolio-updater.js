@@ -16,11 +16,11 @@ function initialize() {
 
 //Check the time
 function checkTime() {
-	console.log('checking time...');
+	console.log('Checking time...');
 	if (!isUpdaterActive && marketOpen.isMarketOpen()) {
 		startPortfolioUpdater();
 	}
-	else if (isUpdaterActive) {
+	else if (isUpdaterActive && !marketOpen.isMarketOpen()) {
 		stopPortfolioUpdater();
 		batcher.dailyBatch(); //Kick off the daily batcher utility
 	}
