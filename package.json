@@ -52,6 +52,7 @@
     "lodash": "^3.10.1",
     "moment": "^2.10.6",
     "moment-timezone": "^0.4.0",
+    "protractor": "^2.2.0",
     "q": "^1.4.1",
     "q-io": "^1.13.1",
     "require-dir": "^0.3.0",
@@ -65,8 +66,7 @@
     "karma-coverage": "^0.5.2",
     "karma-jasmine": "^0.3.6",
     "karma-phantomjs-launcher": "^0.2.1",
-    "phantomjs": "^1.9.18",
-    "protractor": "^2.2.0"
+    "phantomjs": "^1.9.18"
   },
   "cacheDirectories": [
     "node_modules",
