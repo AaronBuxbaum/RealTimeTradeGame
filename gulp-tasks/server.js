@@ -6,5 +6,8 @@ var gls = require('gulp-live-server');
 gulp.task('server', function () {
   var port = process.env.PORT || 8080;
   var server = gls.static('build', port);
-  return server.start();
+
+  require('../server-scripts/portfolio-updater.js').initialize();
+
+  server.start();
 });
