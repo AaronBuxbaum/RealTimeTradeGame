@@ -6,7 +6,7 @@ gulp.task('build', function (callback) {
 });
 
 gulp.task('deploy', function (callback) {
-	runSequence('build', 'server', 'portfolioUpdater', callback);
+	runSequence('build', 'server', callback);
 });
 
 gulp.task('debug', ['docs', 'lint', 'test']);
