@@ -8,6 +8,5 @@ before_script:
     - node_modules/bower/bin/bower install
     - gulp build
     - webdriver-manager update
-    - webdriver-manager start
 notifications:
   email: false
