@@ -15,6 +15,6 @@ gulp.task('unit-tests', function (done) {
 gulp.task('e2e-tests', function () {
 	return gulp.src(['./e2e-tests/**/*.js'])
 		.pipe(protractor.protractor({
-			'configFile': 'protractor.conf.js'
+			configFile: './protractor.conf.js'
 		}));
 });
