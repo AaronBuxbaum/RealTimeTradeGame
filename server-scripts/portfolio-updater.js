@@ -22,7 +22,7 @@ function checkTime() {
 	}
 	else if (isUpdaterActive && !marketOpen.isMarketOpen()) {
 		stopPortfolioUpdater();
-		batcher.dailyBatch(); //Kick off the daily batcher utility
+		batcher.historicalBatch(); //Kick off the batcher utility
 	}
 }
 
