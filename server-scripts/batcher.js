@@ -22,7 +22,7 @@ function historicalBatch() {
 			s.forEach(function (userSeries) {
 				userSeries.ref().orderByChild('0').limitToFirst(1).once('value', function (firstDay) {
 					if (firstDay) {
-						batchDay(userSeries.ref(), _.values(firstDay.val())[0][0]);
+						batchRef(userSeries.ref(), _.values(firstDay.val())[0][0]);
 					}
 				});
 			});
@@ -41,7 +41,7 @@ function batchRef(ref, startTime) {
 			batch(ref, series);
 		}
 		if (values.length) {
-			batchDay(ref, getTime(startTime, 24));
+			batchRef(ref, getTime(startTime, 24));
 		}
 	});
 }
