@@ -1,5 +1,6 @@
 //Initialize variables
 var PORTFOLIO_UPDATER;
+var runBatcher = false;
 var isUpdaterActive = false;
 var FETCH_INTERVAL = 20 * 1000;
 
@@ -16,16 +17,18 @@ function initialize() {
 
 //Check the time
 function checkTime() {
-	console.log('Checking time...');
-	console.log('Market is open:', marketOpen.isMarketOpen());
-	console.log('Is updater active', isUpdaterActive);
-	
-	if (!isUpdaterActive && marketOpen.isMarketOpen()) {
+	var isMarketOpen = marketOpen.isMarketOpen();
+
+	if (!isUpdaterActive && isMarketOpen) {
 		startPortfolioUpdater();
 	}
-	else if (isUpdaterActive && !marketOpen.isMarketOpen()) {
+	else if (isUpdaterActive && !isMarketOpen) {
 		stopPortfolioUpdater();
-		batcher.historicalBatch(); //Kick off the batcher utility
+	}
+
+	if (!isUpdaterActive && !isMarketOpen && runBatcher) {
+		batcher.historicalBatch();
+		runBatcher = false;
 	}
 }
 
@@ -40,6 +43,7 @@ function startPortfolioUpdater() {
 function stopPortfolioUpdater() {
 	clearInterval(PORTFOLIO_UPDATER);
 	isUpdaterActive = false;
+	runBatcher = true;
 	console.log('Portfolio updater stopped');
 }
 
