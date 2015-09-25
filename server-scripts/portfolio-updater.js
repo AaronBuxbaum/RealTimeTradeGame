@@ -17,6 +17,9 @@ function initialize() {
 //Check the time
 function checkTime() {
 	console.log('Checking time...');
+	console.log('Market is open:', marketOpen.isMarketOpen());
+	console.log('Is updater active', isUpdaterActive);
+	
 	if (!isUpdaterActive && marketOpen.isMarketOpen()) {
 		startPortfolioUpdater();
 	}
