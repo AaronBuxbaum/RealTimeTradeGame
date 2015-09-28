@@ -46,6 +46,7 @@
     "gulp-ngdocs": "^0.2.13",
     "gulp-plumber": "^1.0.1",
     "gulp-protractor": "^1.0.0",
+    "gulp-typescript": "^2.9.0",
     "highcharts-ng": "^0.0.11",
     "highstock-release": "^2.1.8",
     "jasmine-core": "^2.3.4",
