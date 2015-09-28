@@ -1,5 +1,5 @@
 language: node_js
-node_js: '0.12.7'
+node_js: '4.1.1'
 script: gulp unit-tests
 before_install:
     - export DISPLAY=:99.0
