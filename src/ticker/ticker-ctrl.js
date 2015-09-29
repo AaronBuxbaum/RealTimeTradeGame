@@ -56,6 +56,7 @@ angular.module('Ticker').controller('TickerCtrl', function ($firebaseArray, Auth
                     enabled: false
                 },
                 chart: {
+                    animation: false,
                     zoomType: 'x'
                 },
                 rangeSelector: {
