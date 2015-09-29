@@ -71,7 +71,8 @@ gulp.task('concat-app-js', function () {
 
 //Run less conversion and then concat into one file
 gulp.task('concat-app-css', function () {
-  return gulp.src(g.SRC + '**/*.less')
+  return gulp
+    .src(g.SRC + '**/*.less')
     .pipe(plumber({ errorHandler: true }))
     .pipe(less())
     .pipe(concat('app.css'))
@@ -80,7 +81,8 @@ gulp.task('concat-app-css', function () {
 
 //Convert HTML -> Javascript and then concat into one file
 gulp.task('concat-app-html', function () {
-  return gulp.src(g.SRC + '**/*.html')
+  return gulp
+    .src(g.SRC + '**/*.html')
     .pipe(ngHtml2Js({
       moduleName: 'Templates'
     }))
@@ -90,6 +92,7 @@ gulp.task('concat-app-html', function () {
 
 //Copy the index.html file to the build directory
 gulp.task('copy-index', function () {
-  return gulp.src(g.SRC + 'index.html')
+  return gulp
+    .src(g.SRC + 'index.html')
     .pipe(gulp.dest(g.BUILD));
 });

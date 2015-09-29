@@ -9,18 +9,21 @@ gulp.task('install', ['install-npm', 'install-bower']);
 
 //Install npm packages
 gulp.task('install-npm', function () {
-  return gulp.src('package.json')
+  return gulp
+    .src('package.json')
     .pipe(install());
 });
 
 //Install bower packages
 gulp.task('install-bower', function () {
-  return gulp.src('bower.json')
+  return gulp
+    .src('bower.json')
     .pipe(install());
 });
 
 //Install Typescript typings (for Visual Studio)
 gulp.task('install-tsd', function () {
-  return gulp.src('tsd.json')
+  return gulp
+    .src('tsd.json')
     .pipe(install());
 });
