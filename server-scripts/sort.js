@@ -20,6 +20,4 @@ function sort(user) {
 	});
 }
 
-sortUsers(series);
-
 module.exports.sortUsers = sortUsers;
