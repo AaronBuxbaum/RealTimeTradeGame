@@ -2,6 +2,8 @@
 var _ = require('lodash');
 var http = require('q-io/http');
 var Q = require('q');
+var moment = require('moment');
+var timezone = require('moment-timezone');
 var Firebase = require('firebase');
 var yahooFinance = require('yahoo-finance');
 var token = require('./token.js');
@@ -11,6 +13,7 @@ var ref = new Firebase('https://realtimetrade.firebaseio.com');
 var usersRef = ref.child('users');
 var seriesRef = ref.child('series');
 var portfoliosRef = ref.child('portfolios');
+var EDT = 'America/New_York';
 
 //Update player's portfolio
 function updatePortfolio() {
@@ -36,8 +39,9 @@ function getEarnings(uid) {
 		}
 
 		getPortfolioValue(portfolioRef, previousEarnings, uid).then(function (portfolioValue) {
-			if (Date.now() > _.toArray(previousEarningsArr.val())[0][0]) {
-				userEarnings.push([Date.now(), portfolioValue]);
+			var now = moment().tz(EDT).valueOf();
+			if (now > _.toArray(previousEarningsArr.val())[0][0] || 0) {
+				userEarnings.push([now, portfolioValue]);
 			}
 		});
 	});
