@@ -36,7 +36,9 @@ function getEarnings(uid) {
 		}
 
 		getPortfolioValue(portfolioRef, previousEarnings, uid).then(function (portfolioValue) {
-			userEarnings.push([Date.now(), portfolioValue]);
+			if (Date.now() > _.toArray(previousEarningsArr.val())[0][0]) {
+				userEarnings.push([Date.now(), portfolioValue]);
+			}
 		});
 	});
 }
