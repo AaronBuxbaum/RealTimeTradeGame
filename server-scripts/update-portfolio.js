@@ -17,13 +17,13 @@ var EDT = 'America/New_York';
 
 //Update player's portfolio
 function updatePortfolio() {
+	console.log('Updating portfolio');
+
 	usersRef.once('value', function (users) {
-		token.authenticate(seriesRef, 'admin').then(function () {
-			return _.forOwn(users.val(), function (user) {
-				if (user.uid) {
-					getEarnings(user.uid);
-				}
-			});
+		return _.forOwn(users.val(), function (user) {
+			if (user.uid) {
+				getEarnings(user.uid);
+			}
 		});
 	});
 }
@@ -41,7 +41,11 @@ function getEarnings(uid) {
 		getPortfolioValue(portfolioRef, previousEarnings, uid).then(function (portfolioValue) {
 			var now = moment().tz(EDT).valueOf();
 			if (now > _.toArray(previousEarningsArr.val())[0][0] || 0) {
-				userEarnings.push([now, portfolioValue]);
+				console.log('Authenticating...');
+				token.authenticate(seriesRef, 'admin').then(function () {
+					userEarnings.push([now, portfolioValue]);
+					console.log('Updating...');
+				});
 			}
 		});
 	});
@@ -87,8 +91,10 @@ function getPortfolioValue(portfolioRef, previousEarnings, uid) {
 			});
 
 			//Update stock values
-			portfolioRef.set(portfolio);
-			deferred.resolve(roundNumber(total));
+			token.authenticate(seriesRef, 'admin').then(function () {
+				portfolioRef.set(portfolio);
+				deferred.resolve(roundNumber(total));
+			});
 		});
 	});
 
