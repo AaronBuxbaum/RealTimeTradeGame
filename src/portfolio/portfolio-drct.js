@@ -16,7 +16,7 @@ angular.module('Portfolio').directive('portfolio', function () {
 		bindToController: true,
 		scope: {},
 		link: function (scope, elem, attrs, ctrl) {
-			scope.$watch('ctrl.portfolio.league', ctrl.authAndUpdate);
+			scope.$watch('ctrl.portfolio.league', ctrl.update);
 		}
 	};
 });
