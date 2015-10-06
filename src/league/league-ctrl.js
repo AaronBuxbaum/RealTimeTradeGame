@@ -5,11 +5,12 @@
 * @description
 *
 * @requires LeagueService
+* @requires AuthenticationService
 **/
-angular.module('League').controller('LeagueCtrl', function (LeagueService) {
+angular.module('League').controller('LeagueCtrl', function (LeagueService, AuthenticationService) {
     var ctrl = this;
 
-    ctrl.uid = auth.uid;
+    ctrl.uid = AuthenticationService.getUserID();
     ctrl.league = LeagueService.league;
     ctrl.leagues = LeagueService.leagues;
     ctrl.joinLeague = LeagueService.joinLeague;

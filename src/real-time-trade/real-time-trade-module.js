@@ -18,7 +18,6 @@ angular.module('RealTimeTrade', [
 	'Login',
 	'Loading',
 	'Main',
-	'General',
 	'About',
 	'Authentication',
 	'Templates'
