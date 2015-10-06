@@ -1,4 +1,4 @@
-angular.module('League').factory('LeagueService', function (AuthenticationService, $firebaseObject, $firebaseArray) {
+angular.module('League').factory('LeagueService', function ($firebaseObject, $firebaseArray) {
 	var svc = this;
 
 	var ref = new Firebase('https://realtimetrade.firebaseio.com');
