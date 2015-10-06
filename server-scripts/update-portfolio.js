@@ -21,6 +21,7 @@ function updatePortfolio() {
 
 	usersRef.once('value', function (users) {
 		return _.forOwn(users.val(), function (user) {
+			console.log('Getting', user);
 			if (user.uid) {
 				getEarnings(user.uid);
 			}
@@ -37,6 +38,8 @@ function getEarnings(uid) {
 		if (previousEarningsArr.val()) {
 			var previousEarnings = _.toArray(previousEarningsArr.val())[0][1];
 		}
+
+		console.log('Getting portfolio value');
 
 		getPortfolioValue(portfolioRef, previousEarnings, uid).then(function (portfolioValue) {
 			var now = moment().tz(EDT).valueOf();
