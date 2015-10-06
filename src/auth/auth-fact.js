@@ -1,5 +1,5 @@
 
-angular.module('Authentication').factory('AuthenticationService', function ($firebaseAuth, $firebaseObject) {
+angular.module('Authentication').factory('AuthenticationService', function ($timeout, $firebaseAuth, $firebaseObject) {
 	var svc = this;
 
 	var ref = new Firebase('https://realtimetrade.firebaseio.com');
@@ -11,14 +11,15 @@ angular.module('Authentication').factory('AuthenticationService', function ($fir
 	};
 	
 	//Watch for changes in the authentication state
-	/*
-	svc.auth.$onAuth(function(authData) {
-		svc.isAuthenticated = !!authData;
+	svc.auth.$onAuth(function (authData) {
+		$timeout(function () {
+			svc.auth.isAuthenticated = authData;
+		});
 	});
-	*/
 
 	//Log in
 	svc.logIn = function (email, password) {
+		svc.auth.isLoading = true;
 		return svc.auth.$authWithPassword({
             email: email,
             password: password
@@ -31,6 +32,10 @@ angular.module('Authentication').factory('AuthenticationService', function ($fir
 			.catch(function (error) {
 				console.log(error);
 				return error;
+			})
+
+			.finally(function () {
+				svc.auth.isLoading = false;
 			});
 	};
 

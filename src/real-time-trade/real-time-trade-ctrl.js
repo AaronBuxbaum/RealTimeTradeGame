@@ -15,9 +15,6 @@ angular.module('RealTimeTrade').controller('RealTimeTradeCtrl', function (Authen
 		'height': '100%',
 		'width': '100%'
 	};
-	
-	//Changes the object when authentication state changes
-	AuthenticationService.auth.$onAuth(function (authState) {
-		ctrl.isAuthenticated = !!authState;
-	});
+
+	ctrl.auth = AuthenticationService.auth;
 });

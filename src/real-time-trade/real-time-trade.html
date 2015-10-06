@@ -1,0 +1,7 @@
+<md-content ng-style="!ctrl.auth.isAuthenticated && ctrl.loadingStyle">
+	<login ng-if="!ctrl.auth.isAuthenticated"></login>
+	<md-content ng-if="!ctrl.auth.isAuthenticated"></md-content>
+	<loading ng-if="ctrl.auth.isLoading"></loading>
+	<main ng-if="ctrl.auth.isAuthenticated"></main>
+	<about></about>
+</md-content>
