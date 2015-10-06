@@ -44,7 +44,8 @@ function getEarnings(uid) {
 		getPortfolioValue(portfolioRef, previousEarnings, uid).then(function (portfolioValue) {
 			var now = moment().tz(EDT).valueOf();
 			console.log('Timestamp:', now);
-			if (now > _.toArray(previousEarningsArr.val())[0][0] || 0) {
+			console.log('Previous time:', _.toArray(previousEarningsArr.val())[0][0]);
+			if (now > (_.toArray(previousEarningsArr.val())[0][0] || 0)) {
 				console.log('Authenticating...');
 				token.authenticate(seriesRef, 'admin').then(function () {
 					userEarnings.push([now, portfolioValue]);
