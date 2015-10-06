@@ -21,7 +21,7 @@ function updatePortfolio() {
 
 	usersRef.once('value', function (users) {
 		return _.forOwn(users.val(), function (user) {
-			console.log('Getting', user);
+			console.log('Getting', user.name);
 			if (user.uid) {
 				getEarnings(user.uid);
 			}
@@ -43,6 +43,7 @@ function getEarnings(uid) {
 
 		getPortfolioValue(portfolioRef, previousEarnings, uid).then(function (portfolioValue) {
 			var now = moment().tz(EDT).valueOf();
+			console.log('Timestamp:', now);
 			if (now > _.toArray(previousEarningsArr.val())[0][0] || 0) {
 				console.log('Authenticating...');
 				token.authenticate(seriesRef, 'admin').then(function () {
@@ -80,6 +81,8 @@ function getPortfolioValue(portfolioRef, previousEarnings, uid) {
 			tickers = ['F'];
 		}
 
+		console.log('Getting stock values');
+
 		//Find new earnings
 		yahooFinance.snapshot({
 			symbols: tickers,
@@ -94,7 +97,9 @@ function getPortfolioValue(portfolioRef, previousEarnings, uid) {
 			});
 
 			//Update stock values
+			console.log('Updating values');
 			token.authenticate(seriesRef, 'admin').then(function () {
+				console.log('Set new stock values');
 				portfolioRef.set(portfolio);
 				deferred.resolve(roundNumber(total));
 			});
