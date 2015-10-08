@@ -1,10 +1,10 @@
 <md-dialog>
-	<md-dialog-content>
+	<md-dialog-content style="padding: 0;">
 		<md-content class="md-padding">
 			<h2>Developers</h2>
 
 			<md-list class="about developer-list">
-				<md-list-item class="md-3-line" ng-repeat="developer in ::developers">
+				<md-list-item class="md-3-line" ng-repeat="developer in ::developers" style="height: 150px;">
 					<img ng-src="{{developer.picture}}" class="developer-face" alt="{{developer.name}}">
 					<div class="md-list-item-text">
 						<h2 style="margin: 0;" class="md-headline">{{developer.name}}
