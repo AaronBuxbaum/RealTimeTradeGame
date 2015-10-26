@@ -8,9 +8,10 @@ module.exports = function (config) {
 			'build/vendors.js',
 			'build/templates.js',
 			'build/app.js',
+      'node_modules/bardjs/dist/bard.js',
 			'src/**/*.spec.js'
 		],
-		frameworks: ['jasmine'],
+		frameworks: ['jasmine', 'sinon'],
 		plugins: [
 			'karma-jasmine',
 			'karma-phantomjs-launcher',
