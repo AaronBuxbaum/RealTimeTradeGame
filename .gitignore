@@ -1,6 +1,6 @@
-bower_components/*
-node_modules/*
-build/*
-typings/*
-coverage/*
-docs/*
+bower_components
+node_modules
+build
+typings
+coverage
+docs
