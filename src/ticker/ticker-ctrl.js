@@ -20,7 +20,7 @@ angular.module('Ticker').controller('TickerCtrl', function ($firebaseArray, Auth
         
         //Get lines for each player in active league
         ctrl.lines = [];
-        ref.child('users/' + auth.uid).once('value', function (activeUser) {
+        ref.child('users').child(auth.uid).once('value', function (activeUser) {
             if (!activeUser.val() || !activeUser.val().league) {
                 return;
             }
@@ -40,6 +40,7 @@ angular.module('Ticker').controller('TickerCtrl', function ($firebaseArray, Auth
                     ref.child('users').child(leagueUser.toString()).once('value', function (user) {
                         var tmp = user.val();
                         tmp.data = $firebaseArray(ref.child('series').child(tmp.uid));
+                        //tmp.pointInterval = 1000*60*60;
                         ctrl.lines.push(tmp);
                     });
                 });

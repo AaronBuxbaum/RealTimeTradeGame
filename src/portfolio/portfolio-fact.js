@@ -3,8 +3,8 @@ angular.module('Portfolio').factory('PortfolioService', function ($firebaseArray
 	svc.portfolio;
 
 	svc.getPortfolio = function (uid) {
-		var portfolioRef = new Firebase('https://realtimetrade.firebaseio.com/portfolios/' + uid);
-		svc.portfolio = $firebaseArray(portfolioRef);
+		var portfolioRef = new Firebase('https://realtimetrade.firebaseio.com/portfolios');
+		svc.portfolio = $firebaseArray(portfolioRef.child(uid));
 		return svc.portfolio;
 	};
 	

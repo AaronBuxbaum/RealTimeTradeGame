@@ -46,7 +46,7 @@ angular.module('Authentication').factory('AuthenticationService', function ($tim
 			password: password
 		})
 			.then(function (response) {
-				var user = ref.child('users/' + response.uid);
+				var user = ref.child('users').child(response.uid);
 				var newUser = $firebaseObject(user);
 				newUser.uid = response.uid;
 				newUser.name = response.uid;
