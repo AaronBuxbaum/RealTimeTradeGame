@@ -8,6 +8,6 @@ before_script:
     - gulp build
 script: gulp unit-tests
 after_success:
-    - node_modules/coveralls/bin/coveralls.js
+    - cat coverage/*/lcov.info | ./node_modules/coveralls/bin/coveralls.js
 notifications:
   email: false

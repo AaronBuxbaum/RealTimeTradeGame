@@ -19,7 +19,11 @@ module.exports = function (config) {
 		preprocessors: {
 			'build/app.js': 'coverage'
 		},
-		reporters: ['progress', 'coverage'],
-		singleRun: true
+		reporters: ['progress', 'coverage', 'coveralls'],
+		singleRun: true,
+		coverageReporter: {
+			type: 'lcov',
+			dir: 'coverage/'
+		}
 	});
 };
