@@ -1,11 +1,13 @@
 language: node_js
 node_js: '4.1.1'
-script: gulp unit-tests
 before_install:
     - export DISPLAY=:99.0
     - sh -e /etc/init.d/xvfb start
 before_script:
     - node_modules/bower/bin/bower install
-    - gulp build
+    - gulp
+script: gulp unit-tests
+after_success:
+    - node_modules/coveralls/bin/coveralls.js
 notifications:
   email: false
