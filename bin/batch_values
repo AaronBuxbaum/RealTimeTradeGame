@@ -1,0 +1,5 @@
+#!/usr/bin/env node
+
+console.log('Running batch');
+var batcher = require('../server-scripts/batcher.js');
+batcher.historicalBatch();
