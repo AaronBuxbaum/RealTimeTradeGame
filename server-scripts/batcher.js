@@ -19,6 +19,7 @@ function historicalBatch() {
     ref.once('value', function (s) {
       console.log('Historical batcher utility started');
 
+      close = closer(Object.keys(s.val()).length);
       s.forEach(function (userSeries) {
         userSeries.ref().orderByChild('0').limitToFirst(1).once('value', function (firstDay) {
           if (firstDay) {
@@ -27,10 +28,18 @@ function historicalBatch() {
         });
       });
     });
-  }).then(function () {
-    console.log('Ending batch');
-    process.exit();
   });
+}
+var close;
+function closer(num) {
+  var total = 0;
+  return function () {
+    total++;
+    if (total >= num) {
+      console.log('Historical batcher utility closed');
+      process.exit();
+    }
+  }
 }
 
 //Batch an entire ref, given the ref and the time to start batching.
@@ -42,11 +51,11 @@ function batchRef(ref, startTime) {
     var values = _.values(series.val());
     if (values.length > 100) {
       batch(ref, series);
+      close();
     }
     if (values.length) {
       batchRef(ref, getTime(startTime, 24));
     }
-    console.log('Finished batch');
   });
 }
 
@@ -69,6 +78,8 @@ function batch(ref, series) {
   series.forEach(function (serie) {
     ref.child(serie.key()).remove();
   });
+
+  console.log('batch');
 }
 
 module.exports.historicalBatch = historicalBatch;
