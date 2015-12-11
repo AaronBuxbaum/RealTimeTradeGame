@@ -3,8 +3,9 @@ var FirebaseTokenGenerator = require('firebase-token-generator');
 
 function authenticate(ref, uid) {
 	var defer = Q.defer();
+  var secret = process.env.FIREBASE_SECRET || require('../env.json').FIREBASE_SECRET;
 
-	if (!process.env.FIREBASE_SECRET) {
+	if (!secret) {
 		defer.reject();
 	}
 
@@ -14,7 +15,7 @@ function authenticate(ref, uid) {
 			options.admin = true;
 		}
 
-		var tokenGenerator = new FirebaseTokenGenerator(process.env.FIREBASE_SECRET);
+		var tokenGenerator = new FirebaseTokenGenerator(secret);
 		var token = tokenGenerator.createToken({ uid: uid }, options);
 
 		ref.authWithCustomToken(token,
