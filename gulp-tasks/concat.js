@@ -33,6 +33,8 @@ gulp.task('concat-vendor-js', function () {
     'jquery/dist/jquery.js',
     'angularfire/dist/angularfire.js',
     'highstock-release/highstock.src.js',
+    'highstock-release/modules/boost.src.js',
+    'highstock-release/modules/exporting.src.js',
     'highcharts-ng/dist/highcharts-ng.js',
     'angular-moment/angular-moment.js'
   ]);

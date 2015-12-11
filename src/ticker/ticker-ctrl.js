@@ -38,10 +38,15 @@ angular.module('Ticker').controller('TickerCtrl', function ($firebaseArray, Auth
 
                 _.forEach(findLeague.users, function (leagueUser) {
                     ref.child('users').child(leagueUser.toString()).once('value', function (user) {
-                        var tmp = user.val();
-                        tmp.data = $firebaseArray(ref.child('series').child(tmp.uid));
-                        //tmp.pointInterval = 1000*60*60;
-                        ctrl.lines.push(tmp);
+                        ref.child('series').child(tmp.uid).once('value', function (data) {
+                          var tmp = user.val();
+                           //tmp.pointInterval = 1000*60*60;
+                          tmp.dataGrouping = {
+                              enabled: false
+                          };
+                          tmp.data = _.toArray(data.val());
+                          ctrl.lines.push(tmp);
+                        });
                     });
                 });
             });
@@ -86,7 +91,9 @@ angular.module('Ticker').controller('TickerCtrl', function ($firebaseArray, Auth
                     ]
                 },
                 navigator: {
-                    enabled: true
+                    enabled: true,
+                    loading: true,
+                    adaptToUpdatedData: false
                 }
             },
             series: ctrl.lines,
