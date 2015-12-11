@@ -38,8 +38,8 @@ angular.module('Ticker').controller('TickerCtrl', function ($firebaseArray, Auth
 
                 _.forEach(findLeague.users, function (leagueUser) {
                     ref.child('users').child(leagueUser.toString()).once('value', function (user) {
+                        var tmp = user.val();
                         ref.child('series').child(tmp.uid).once('value', function (data) {
-                          var tmp = user.val();
                            //tmp.pointInterval = 1000*60*60;
                           tmp.dataGrouping = {
                               enabled: false
