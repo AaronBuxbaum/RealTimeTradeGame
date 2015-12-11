@@ -42,11 +42,7 @@ angular.module('Ticker').controller('TickerCtrl', function ($firebaseArray, Auth
             ref.child('series').child(tmp.uid).on('child_added', function (data) {
               var line = _.find(ctrl.lines, { uid: tmp.uid });
               if (line && line.data) {
-                var i = _.findLastIndex(line.data, function (elem) {
-                  return elem[0] >= data.val()[0];
-                });
-
-                line.data.splice(i, 0, data.val());
+                line.data.push(data.val());
               }
             });
 
