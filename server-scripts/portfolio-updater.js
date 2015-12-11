@@ -1,11 +1,9 @@
 //Initialize variables
 var PORTFOLIO_UPDATER;
-var runBatcher = false;
 var isUpdaterActive = false;
 var FETCH_INTERVAL = 20 * 1000;
 
 //Node scripts
-var batcher = require('./batcher.js');
 var marketOpen = require('./market-open.js');
 var updatePortfolio = require('./update-portfolio.js');
 
@@ -27,11 +25,6 @@ function checkTime() {
 	else if (isUpdaterActive && !isMarketOpen) {
 		stopPortfolioUpdater();
 	}
-
-	if (!isUpdaterActive && !isMarketOpen && runBatcher) {
-		batcher.historicalBatch();
-		runBatcher = false;
-	}
 }
 
 //Start the portfolio updater
@@ -45,7 +38,6 @@ function startPortfolioUpdater() {
 function stopPortfolioUpdater() {
 	clearInterval(PORTFOLIO_UPDATER);
 	isUpdaterActive = false;
-	runBatcher = true;
 	console.log('Portfolio updater stopped');
 }
 

@@ -12,7 +12,8 @@ var ref = new Firebase('https://realtimetrade.firebaseio.com/series');
 //Since the computational time is relatively low right now, and it's during off-time, the time complexity is more than acceptable.
 function historicalBatch() {
   if (marketOpen.isMarketOpen()) {
-    return;
+    console.log('Market is open!');
+    process.exit();
   }
 
   token.authenticate(ref, 'admin').then(function () {
