@@ -43,7 +43,7 @@ angular.module('Ticker').controller('TickerCtrl', function ($firebaseArray, Auth
               var line = _.find(ctrl.lines, { uid: tmp.uid });
               if (line && line.data) {
                 var i = _.findLastIndex(line.data, function (elem) {
-                  return elem[0] <= data.val()[0];
+                  return elem[0] >= data.val()[0];
                 });
 
                 line.data.splice(i, 0, data.val());
