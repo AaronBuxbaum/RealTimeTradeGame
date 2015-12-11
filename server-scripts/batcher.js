@@ -27,6 +27,9 @@ function historicalBatch() {
         });
       });
     });
+  }).then(function () {
+    console.log('Ending batch');
+    process.exit();
   });
 }
 
