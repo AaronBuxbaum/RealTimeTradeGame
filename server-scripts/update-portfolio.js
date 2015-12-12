@@ -45,12 +45,14 @@ function getEarnings(uid) {
       var now = moment().tz(EDT).valueOf();
       console.log('Timestamp:', now);
       token.authenticate(seriesRef, 'admin').then(function () {
+        /*
         var i = _.findLastIndex(userEarnings, function (elem) {
           return elem[0] < now
         });
         userEarnings.splice(i, 0, [now, portfolioValue]);
-
-        //userEarnings.push([now, portfolioValue]);
+        */
+        
+        userEarnings.push([now, portfolioValue]);
         console.log('Updating...');
       });
     });
