@@ -46,7 +46,7 @@ angular.module('Ticker').controller('TickerCtrl', function ($firebaseArray, Auth
               }
             });
 
-            ref.child('series').child(tmp.uid).once('value', function (data) {
+            ref.child('series').child(tmp.uid).orderByKey(0).once('value', function (data) {
               //tmp.pointInterval = 1000*60*60;
               tmp.dataGrouping = {
                 enabled: false
