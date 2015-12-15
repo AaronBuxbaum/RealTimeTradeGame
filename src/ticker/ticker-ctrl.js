@@ -46,11 +46,16 @@ angular.module('Ticker').controller('TickerCtrl', function ($firebaseArray, Auth
               }
             });
 
-            ref.child('series').child(tmp.uid).orderByChild('0').once('value', function (data) {
+            tmp.animation = false;
+            tmp.data = _.times(50000, _.random(95000, 105000));
+            ctrl.lines.push(tmp);
+
+            /*ref.child('series').child(tmp.uid).orderByChild('0').once('value', function (data) {
               tmp.animation = false;
               tmp.data = _.toArray(data.val());
               ctrl.lines.push(tmp);
             });
+            */
           });
         });
       });
