@@ -49,7 +49,7 @@ angular.module('Ticker').controller('TickerCtrl', function ($firebaseArray, Auth
             ref.child('series').child(tmp.uid).orderByChild('0').once('value', function (data) {
               tmp.pointInterval = 1000 * 60;
               tmp.dataGrouping = {
-                enabled: true
+                groupPixelWidth: 50
               };
               tmp.data = _.toArray(data.val());
               ctrl.lines.push(tmp);
