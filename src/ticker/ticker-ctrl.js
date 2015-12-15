@@ -47,7 +47,10 @@ angular.module('Ticker').controller('TickerCtrl', function ($firebaseArray, Auth
             });
 
             tmp.animation = false;
-            tmp.data = _.times(50000, _.random(95000, 105000));
+            var startTime = Date.now() - 50000;
+            tmp.data = _.times(50000, function (i) {
+              return [startTime + i, _.random(95000, 105000)];
+            });
             ctrl.lines.push(tmp);
 
             /*ref.child('series').child(tmp.uid).orderByChild('0').once('value', function (data) {
