@@ -6,3 +6,5 @@ coverage
 docs
 
 env.json
+
+npm-debug.log
