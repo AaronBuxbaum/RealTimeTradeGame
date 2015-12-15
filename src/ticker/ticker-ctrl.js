@@ -47,7 +47,7 @@ angular.module('Ticker').controller('TickerCtrl', function ($firebaseArray, Auth
             });
 
             ref.child('series').child(tmp.uid).orderByChild('0').once('value', function (data) {
-              tmp.pointInterval = 1000*60;
+              tmp.pointInterval = 1000 * 60;
               tmp.dataGrouping = {
                 enabled: true
               };
@@ -101,7 +101,8 @@ angular.module('Ticker').controller('TickerCtrl', function ($firebaseArray, Auth
           enabled: false,
           loading: true,
           adaptToUpdatedData: false
-        }
+        },
+        enableMouseTracking: false
       },
       series: ctrl.lines,
       title: {
