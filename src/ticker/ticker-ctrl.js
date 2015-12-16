@@ -48,20 +48,13 @@ angular.module('Ticker').controller('TickerCtrl', function ($firebaseArray, Auth
               }
             });*/
 
-            tmp.animation = false;
-            var startTime = Date.now() - 50000;
-            tmp.data = _.times(50000, function (i) {
-              return [startTime + i, _.random(95000, 105000)];
-            });
-            ctrl.lines.push(tmp);
-            ctrl.isLoading = false;
 
-            /*ref.child('series').child(tmp.uid).orderByChild('0').once('value', function (data) {
+            ref.child('series').child(tmp.uid).orderByChild('0').once('value', function (data) {
               tmp.animation = false;
               tmp.data = _.toArray(data.val());
               ctrl.lines.push(tmp);
+              ctrl.isLoading = false;
             });
-            */
           });
         });
       });
