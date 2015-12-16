@@ -75,8 +75,8 @@ angular.module('Ticker').controller('TickerCtrl', function ($firebaseArray, Auth
           }
         },
         tooltip: {
-          pointFormat: '<span style="color:{series.color}">{series.name}</span>: <b>{point.y}</b> ({point.change}%)<br/>',
-          valueDecimals: 2
+          valueDecimals: 2,
+          valuePrefix: '$'
         },
         series: [],
         title: {
