@@ -36,8 +36,8 @@ angular.module('Ticker').controller('TickerCtrl', function ($firebaseArray, Auth
           ctrl.endTime = findLeague.endTime;
         }
 
-       // _.forEach(findLeague.users, function (leagueUser) {
-          ref.child('users').child(findLeague.users[0].toString()).once('value', function (user) {
+        _.forEach(findLeague.users, function (leagueUser) {
+          ref.child('users').child(leagueUser.toString()).once('value', function (user) {
             var tmp = user.val();
             
             /*ref.child('series').child(tmp.uid).on('child_added', function (data) {
@@ -60,7 +60,7 @@ angular.module('Ticker').controller('TickerCtrl', function ($firebaseArray, Auth
               ctrl.lines.push(tmp);
             });
             */
-          //});
+          });
         });
       });
     });
@@ -115,6 +115,7 @@ angular.module('Ticker').controller('TickerCtrl', function ($firebaseArray, Auth
       title: {
         text: 'Testing'
       },
+      loading: true,
       useHighStocks: true
     };
   });
