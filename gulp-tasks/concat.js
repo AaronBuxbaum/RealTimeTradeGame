@@ -67,7 +67,9 @@ gulp.task('concat-app-js', function () {
       g.SRC + '**/*.js',
       '!' + g.SRC + '**/*.spec.js'
     ])
+    .pipe(sourcemaps.init())
     .pipe(concat('app.js'))
+    .pipe(sourcemaps.write())
     .pipe(gulp.dest(g.BUILD));
 });
 
@@ -77,9 +79,7 @@ gulp.task('concat-app-css', function () {
     .src(g.SRC + '**/*.less')
     .pipe(plumber({ errorHandler: true }))
     .pipe(less())
-    .pipe(sourcemaps.init())
     .pipe(concat('app.css'))
-    .pipe(sourcemaps.write())
     .pipe(gulp.dest(g.BUILD));
 });
 
