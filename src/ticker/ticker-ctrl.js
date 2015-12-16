@@ -40,14 +40,13 @@ angular.module('Ticker').controller('TickerCtrl', function ($firebaseArray, Auth
           ctrl.isLoading = true;
           ref.child('users').child(leagueUser.toString()).once('value', function (user) {
             var tmp = user.val();
-            
-            /*ref.child('series').child(tmp.uid).on('child_added', function (data) {
+
+            ref.child('series').child(tmp.uid).on('child_added', function (data) {
               var line = _.find(ctrl.lines, { uid: tmp.uid });
               if (line && line.data) {
                 line.data.push(data.val());
               }
-            });*/
-
+            });
 
             ref.child('series').child(tmp.uid).orderByChild('0').once('value', function (data) {
               tmp.animation = false;
