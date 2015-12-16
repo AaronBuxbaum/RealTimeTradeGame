@@ -37,7 +37,7 @@ gulp.task('concat-vendor-js', function () {
     'highstock-release/highstock.src.js',
     'highstock-release/modules/boost.src.js',
     'angular-moment/angular-moment.js',
-    //'firebase/lib/firebase-web.js'
+    'firebase/lib/firebase-web.js'
   ]);
 
   return gulp
