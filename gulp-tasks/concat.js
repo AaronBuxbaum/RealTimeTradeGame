@@ -5,6 +5,7 @@ var sourcemaps = require('gulp-sourcemaps');
 var less = require('gulp-less');
 var ngHtml2Js = require('gulp-ng-html2js');
 var plumber = require('gulp-plumber');
+var webpack = require('gulp-webpack');
 var g = require('./global.json');
 
 
@@ -35,9 +36,9 @@ gulp.task('concat-vendor-js', function () {
     'angularfire/dist/angularfire.js',
     'highstock-release/highstock.src.js',
     'highstock-release/modules/boost.src.js',
-    'angular-moment/angular-moment.js'
+    'angular-moment/angular-moment.js',
+    //'firebase/lib/firebase-web.js'
   ]);
-  vendorFiles.push(g.BOWER + 'firebase/firebase-debug.js');
 
   return gulp
     .src(vendorFiles)
