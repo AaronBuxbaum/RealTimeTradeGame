@@ -10,68 +10,30 @@
 angular.module('Ticker').controller('TickerCtrl', function ($firebaseArray, AuthenticationService) {
   var ctrl = this;
 
-  //TODO this shouldn't only happen when the authorization status changes (ie. if people join or leave a league?)
+  //TODO: this shouldn't only happen when the authorization status changes (ie. if people join or leave a league?)
   AuthenticationService.auth.$onAuth(function (auth) {
     if (!auth) {
       return;
     }
 
     var ref = new Firebase('https://realtimetrade.firebaseio.com');
-        
-    //Get lines for each player in active league
-    ctrl.lines = [];
-    ref.child('users').child(auth.uid).once('value', function (activeUser) {
-      if (!activeUser.val() || !activeUser.val().league) {
-        return;
-      }
 
-      var activeUserLeague = activeUser.val().league;
-      ref.child('leagues').once('value', function (leagues) {
-        var findLeague = _.find(leagues.val(), { id: activeUserLeague });
-        if (!findLeague) {
-          return;
-        }
-
-        if (findLeague.endTime) {
-          ctrl.endTime = findLeague.endTime;
-        }
-
-        _.forEach(findLeague.users, function (leagueUser) {
-          ctrl.isLoading = true;
-          ref.child('users').child(leagueUser.toString()).once('value', function (user) {
-            var tmp = user.val();
-
-            ref.child('series').child(tmp.uid).on('child_added', function (data) {
-              var line = _.find(ctrl.lines, { uid: tmp.uid });
-              if (line && line.data) {
-                line.data.push(data.val());
-              }
-            });
-
-            ref.child('series').child(tmp.uid).orderByChild('0').once('value', function (data) {
-              tmp.animation = false;
-              tmp.data = _.toArray(data.val());
-              ctrl.lines.push(tmp);
-              ctrl.isLoading = false;
-            });
-          });
-        });
-      });
-    });
-        
-    //Chart configuration
-    ctrl.chartConfig = {
-      options: {
+    //Create the chart
+    ctrl.createChart = function () {
+      ctrl.chart = new Highcharts.StockChart({
+        animation: false,
+        chart: {
+          renderTo: $('#stockTicker')[0],
+          height: 400,
+          animation: false,
+          reflow: false,
+          zoomType: 'x'
+        },
         legend: {
           enabled: true
         },
         credits: {
           enabled: false
-        },
-        chart: {
-          animation: false,
-          reflow: false,
-          zoomType: 'x'
         },
         rangeSelector: {
           buttons: [
@@ -96,21 +58,79 @@ angular.module('Ticker').controller('TickerCtrl', function ($firebaseArray, Auth
               count: 1,
               text: 'all'
             }
-          ]
+          ],
+          selected: 2
+        },
+        yAxis: {
+          title: {
+            text: 'Portfolio Value ($)'
+          }
+        },
+        tooltip: {
+          pointFormat: '<span style="color:{series.color}">{series.name}</span>: <b>{point.y}</b> ({point.change}%)<br/>',
+          valueDecimals: 2
+        },
+        series: [],
+        title: {
+          text: 'Testing'
         },
         navigator: {
-          enabled: false,
+          enabled: true,
           loading: true,
           adaptToUpdatedData: false
         },
         enableMouseTracking: false
-      },
-      series: ctrl.lines,
-      title: {
-        text: 'Testing'
-      },
-      loading: ctrl.isLoading,
-      useHighStocks: true
+      });
+      ctrl.chart.showLoading();
     };
+    ctrl.createChart();
+
+    //Throttle the render function
+    ctrl.renderChart = _.throttle(ctrl.chart.redraw, 5000);
+        
+    //Get lines for each player in active league
+    ctrl.lines = [];
+    ref.child('users').child(auth.uid).once('value', function (activeUser) {
+      if (!activeUser.val() || !activeUser.val().league) {
+        return;
+      }
+
+      var activeUserLeague = activeUser.val().league;
+      ref.child('leagues').once('value', function (leagues) {
+        var findLeague = _.find(leagues.val(), { id: activeUserLeague });
+        if (!findLeague) {
+          return;
+        }
+
+        if (findLeague.endTime) {
+          ctrl.endTime = findLeague.endTime;
+        }
+
+        _.forEach(findLeague.users, function (leagueUser, i) {
+          ref.child('users').child(leagueUser.toString()).once('value', function (user) {
+            var tmp = user.val();
+
+            //Update lines as new values come in
+            ref.child('series').child(tmp.uid).on('child_added', function (data) {
+              var line = ctrl.chart.get(tmp.uid);
+              if (line) {
+                line.addPoint(data.val(), false);
+                ctrl.renderChart();
+              }
+            });
+
+            //Get the initial values
+            ref.child('series').child(tmp.uid).orderByChild('0').once('value', function (data) {
+              tmp.data = _.toArray(data.val());
+              tmp.id = tmp.uid;
+              ctrl.chart.addSeries(tmp);
+              if (i === findLeague.users.length - 1) {
+                ctrl.chart.hideLoading();
+              }
+            });
+          });
+        });
+      });
+    });
   });
 });
