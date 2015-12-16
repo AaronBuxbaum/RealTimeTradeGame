@@ -1,5 +1,5 @@
 <md-content layout-padding>
 	<span ng-if="ctrl.endTime">{{ ctrl.endTime | amDifference : null : 'days' }} days remaining</span>
 
-	<highchart id="chart1" config="ctrl.chartConfig"></highchart>
+	<highchart id="chart1" config="ctrl.chartConfig" disable-data-watch="true"></highchart>
 </md-content>

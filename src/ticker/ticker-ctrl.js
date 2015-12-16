@@ -115,7 +115,7 @@ angular.module('Ticker').controller('TickerCtrl', function ($firebaseArray, Auth
       title: {
         text: 'Testing'
       },
-      loading: true,
+      loading: false,
       useHighStocks: true
     };
   });
