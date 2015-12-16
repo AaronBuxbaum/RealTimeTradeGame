@@ -67,7 +67,7 @@ angular.module('Ticker').controller('TickerCtrl', function ($firebaseArray, Auth
               text: 'all'
             }
           ],
-          selected: 2
+          selected: 3
         },
         yAxis: {
           title: {
@@ -133,7 +133,7 @@ angular.module('Ticker').controller('TickerCtrl', function ($firebaseArray, Auth
               tmp.id = tmp.uid;
               ctrl.chart.addSeries(tmp);
               if (i === findLeague.users.length - 1) {
-                ctrl.chart.rangeSelector.setState(2);
+                ctrl.chart.rangeSelector.clickButton(3);
                 ctrl.chart.hideLoading();
               }
             });
