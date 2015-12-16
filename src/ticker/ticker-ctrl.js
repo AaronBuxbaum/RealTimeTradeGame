@@ -133,6 +133,7 @@ angular.module('Ticker').controller('TickerCtrl', function ($firebaseArray, Auth
               tmp.id = tmp.uid;
               ctrl.chart.addSeries(tmp);
               if (i === findLeague.users.length - 1) {
+                ctrl.chart.rangeSelector.setState(2);
                 ctrl.chart.hideLoading();
               }
             });
