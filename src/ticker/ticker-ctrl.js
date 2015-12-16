@@ -37,6 +37,7 @@ angular.module('Ticker').controller('TickerCtrl', function ($firebaseArray, Auth
         }
 
         _.forEach(findLeague.users, function (leagueUser) {
+          ctrl.isLoading = true;
           ref.child('users').child(leagueUser.toString()).once('value', function (user) {
             var tmp = user.val();
             
@@ -53,6 +54,7 @@ angular.module('Ticker').controller('TickerCtrl', function ($firebaseArray, Auth
               return [startTime + i, _.random(95000, 105000)];
             });
             ctrl.lines.push(tmp);
+            ctrl.isLoading = false;
 
             /*ref.child('series').child(tmp.uid).orderByChild('0').once('value', function (data) {
               tmp.animation = false;
@@ -115,7 +117,7 @@ angular.module('Ticker').controller('TickerCtrl', function ($firebaseArray, Auth
       title: {
         text: 'Testing'
       },
-      loading: false,
+      loading: ctrl.isLoading,
       useHighStocks: true
     };
   });
