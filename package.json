@@ -72,5 +72,8 @@
   "cacheDirectories": [
     "node_modules",
     "bower_components"
-  ]
+  ],
+  "devDependencies": {
+    "gulp-sourcemaps": "^1.6.0"
+  }
 }
