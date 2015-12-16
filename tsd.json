@@ -56,9 +56,6 @@
     "q/Q.d.ts": {
       "commit": "af76bf46025371c760d8fe8c03cf874428da6124"
     },
-    "highcharts-ng/highcharts-ng.d.ts": {
-      "commit": "af76bf46025371c760d8fe8c03cf874428da6124"
-    },
     "jasmine/jasmine.d.ts": {
       "commit": "b3aeee64552e324581fdbe0926f4a96e981e451b"
     },

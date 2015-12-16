@@ -20,6 +20,14 @@ angular.module('Ticker').controller('TickerCtrl', function ($firebaseArray, Auth
 
     //Create the chart
     ctrl.createChart = function () {
+      //Set global timezone to EST
+      Highcharts.setOptions({
+        global: {
+          timezoneOffset: 5 * 60
+        }
+      });
+
+      //Set up the chart
       ctrl.chart = new Highcharts.StockChart({
         animation: false,
         chart: {

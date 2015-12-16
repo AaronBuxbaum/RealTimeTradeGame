@@ -33,9 +33,8 @@ gulp.task('concat-vendor-js', function () {
     'angular-mocks/angular-mocks.js',
     'jquery/dist/jquery.js',
     'angularfire/dist/angularfire.js',
-    'highcharts/lib/highcharts.src.js',
-    'highcharts/lib/modules/boost.src.js',
     'highstock-release/highstock.src.js',
+    'highstock-release/modules/boost.src.js',
     'angular-moment/angular-moment.js'
   ]);
   vendorFiles.push(g.BOWER + 'firebase/firebase-debug.js');
