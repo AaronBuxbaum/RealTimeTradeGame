@@ -72,8 +72,7 @@
     "yahoo-finance": "^0.2.12"
   },
   "cacheDirectories": [
-    "node_modules",
-    "bower_components"
+    "node_modules"
   ],
   "devDependencies": {}
 }
