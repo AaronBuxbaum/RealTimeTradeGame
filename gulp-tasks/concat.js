@@ -5,7 +5,9 @@ var sourcemaps = require('gulp-sourcemaps');
 var less = require('gulp-less');
 var ngHtml2Js = require('gulp-ng-html2js');
 var plumber = require('gulp-plumber');
-var webpack = require('gulp-webpack');
+var browserify = require('browserify');
+var transform = require('vinyl-transform');
+var source = require('vinyl-source-stream');
 var g = require('./global.json');
 
 
@@ -20,30 +22,16 @@ function prependNPM(fileNames) {
 //Concat everything down
 gulp.task('concat', ['concat-vendor-js', 'concat-vendor-css', 'concat-app-js', 'concat-app-css', 'concat-app-html', 'copy-index']);
 
-//Concatenate vendor JS into one file
+//Bundle vendor JS files
 gulp.task('concat-vendor-js', function () {
-  var vendorFiles = prependNPM([
-    'lodash/index.js',
-    'moment/moment.js',
-    'angular/angular.js',
-    'angular-animate/angular-animate.js',
-    'angular-aria/angular-aria.js',
-    'angular-material/angular-material.js',
-    'angular-material-icons/angular-material-icons.js',
-    'angular-messages/angular-messages.js',
-    'angular-mocks/angular-mocks.js',
-    'jquery/dist/jquery.js',
-    'angularfire/dist/angularfire.js',
-    'highstock-release/highstock.src.js',
-    'highstock-release/modules/boost.src.js',
-    'angular-moment/angular-moment.js',
-    'firebase/lib/firebase-web.js'
-  ]);
-
-  return gulp
-    .src(vendorFiles)
-    .pipe(concat('vendors.js'))
-    .pipe(gulp.dest(g.BUILD));
+  return browserify({
+    entries: 'browserify.js',
+    insertGlobals: true,
+    debug: true
+  })
+    .bundle()
+    .pipe(source('vendors.js'))
+    .pipe(gulp.dest('build'));
 });
 
 //Concatenate vendor CSS into one file
