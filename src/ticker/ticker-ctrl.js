@@ -4,10 +4,10 @@
 *
 * @description
 *
-* @requires $firebaseArray
+* @requires $timeout
 * @requires AuthenticationService
 **/
-angular.module('Ticker').controller('TickerCtrl', function ($firebaseArray, AuthenticationService) {
+angular.module('Ticker').controller('TickerCtrl', function ($timeout, AuthenticationService) {
   var ctrl = this;
 
   //TODO: this shouldn't only happen when the authorization status changes (ie. if people join or leave a league?)
@@ -91,7 +91,7 @@ angular.module('Ticker').controller('TickerCtrl', function ($firebaseArray, Auth
       });
       ctrl.chart.showLoading();
     };
-    ctrl.createChart();
+    $timeout(ctrl.createChart, 0);
 
     //Throttle the render function
     ctrl.renderChart = _.throttle(ctrl.chart.redraw, 5000);
