@@ -12,9 +12,7 @@ angular.module('Authentication').factory('AuthenticationService', function ($tim
 	
   //Watch for changes in the authentication state
   svc.auth.$onAuth(function (authData) {
-    $timeout(function () {
-      svc.auth.data = authData;
-    });
+    svc.auth.data = authData;
   });
 
   //Log in
