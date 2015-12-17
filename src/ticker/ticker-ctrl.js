@@ -66,8 +66,7 @@ angular.module('Ticker').controller('TickerCtrl', function ($timeout, Authentica
               count: 1,
               text: 'all'
             }
-          ],
-          selected: 3
+          ]
         },
         yAxis: {
           title: {
@@ -91,8 +90,8 @@ angular.module('Ticker').controller('TickerCtrl', function ($timeout, Authentica
       });
       ctrl.chart.showLoading();
 	  
-		//Throttle the render function
-    	ctrl.renderChart = _.throttle(ctrl.chart.redraw, 5000);
+      //Throttle the render function
+      ctrl.renderChart = _.throttle(ctrl.chart.redraw, 5000);
     };
     $timeout(ctrl.createChart, 0);
         
@@ -132,8 +131,9 @@ angular.module('Ticker').controller('TickerCtrl', function ($timeout, Authentica
               tmp.data = _.toArray(data.val());
               tmp.id = tmp.uid;
               ctrl.chart.addSeries(tmp);
+
+              ctrl.chart.rangeSelector.clickButton(2, ctrl.chart.rangeSelector.buttonOptions[0], false);
               if (i === findLeague.users.length - 1) {
-                ctrl.chart.rangeSelector.clickButton(3);
                 ctrl.chart.hideLoading();
               }
             });
