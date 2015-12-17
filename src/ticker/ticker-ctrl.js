@@ -90,11 +90,11 @@ angular.module('Ticker').controller('TickerCtrl', function ($timeout, Authentica
         enableMouseTracking: false
       });
       ctrl.chart.showLoading();
+	  
+		//Throttle the render function
+    	ctrl.renderChart = _.throttle(ctrl.chart.redraw, 5000);
     };
     $timeout(ctrl.createChart, 0);
-
-    //Throttle the render function
-    ctrl.renderChart = _.throttle(ctrl.chart.redraw, 5000);
         
     //Get lines for each player in active league
     ctrl.lines = [];
