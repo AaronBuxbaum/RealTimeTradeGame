@@ -1,22 +1,30 @@
 <md-dialog aria-label="Log In/Sign Up" flex="50">
-	<form name="logInForm" layout-padding>
-		<md-input-container>
-			<label>Email</label>
-			<input type="email" ng-model="ctrl.email" required>
-		</md-input-container>
+	<form name="logInForm">
+		<md-toolbar>
+			<div class="md-toolbar-tools">
+				<span>Log In/Sign Up</span>
+			</div>
+		</md-toolbar>
 
-		<md-input-container>
-			<label>Password</label>
-			<input type="password" ng-model="ctrl.password" required>
-		</md-input-container>
+		<md-dialog-content layout="column" layout-padding style="padding-top: 30px;">
+			<md-input-container layout-padding>
+				<label>Email</label>
+				<input type="email" ng-model="ctrl.email" required>
+			</md-input-container>
 
-		<md-content layout="row" layout-sm="column">
-			<md-button class="md-primary md-raised" ng-click="ctrl.logIn(ctrl.email, ctrl.password)">
+			<md-input-container layout-padding>
+				<label>Password</label>
+				<input type="password" ng-model="ctrl.password" required>
+			</md-input-container>
+		</md-dialog-content>
+
+		<md-dialog-actions layout="row" layout-sm="column">
+			<md-button type="submit" class="md-primary md-raised" ng-click="ctrl.logIn(ctrl.email, ctrl.password)">
 				Log In
 			</md-button>
 			<md-button class="md-primary md-raised" ng-click="ctrl.signUp(ctrl.email, ctrl.password)">
 				Sign Up
 			</md-button>
-		</md-content>
+		</md-dialog-actions>
 	</form>
 </md-dialog>
