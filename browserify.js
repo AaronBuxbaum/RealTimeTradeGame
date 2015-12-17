@@ -3,8 +3,6 @@ global.Highcharts = require('highstock-release');
 global.Firebase = require('firebase');
 global.$ = require('jquery');
 
-window.LiveReloadOptions = { host: 'localhost' };
-
 require('moment');
 require('angular');
 require('angular-animate');
@@ -16,6 +14,5 @@ require('angular-mocks');
 require('angularfire');
 require('highstock-release/modules/boost');
 require('angular-moment');
-require('livereload-js');
 
 module.exports = 'RealTimeTradeGame';
