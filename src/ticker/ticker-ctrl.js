@@ -31,7 +31,7 @@ angular.module('Ticker').controller('TickerCtrl', function ($http, Authenticatio
       ctrl.chart.showLoading();
 	  
       //Throttle the render function
-      ctrl.renderChart = _.throttle(ctrl.chart.redraw, 5000);
+      ctrl.renderChart = _.throttle(ctrl.chart.redraw, 10 * 1000);
     });
 
   };
@@ -69,10 +69,8 @@ angular.module('Ticker').controller('TickerCtrl', function ($http, Authenticatio
               
             //Update lines as new values come in
             series.ref().on('child_added', function (point) {
-              if (line) {
-                line.addPoint(point.val(), false);
-                ctrl.renderChart();
-              }
+              line.addPoint(point.val(), false);
+              ctrl.renderChart();
             });
 
             //Click the range selector button
