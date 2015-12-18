@@ -3,7 +3,7 @@ var FirebaseTokenGenerator = require('firebase-token-generator');
 
 function authenticate(ref, uid) {
 	var defer = Q.defer();
-  var secret = process.env.FIREBASE_SECRET || require('../env.json').FIREBASE_SECRET;
+	var secret = process.env.FIREBASE_SECRET || _.get(require('../env.json'), 'FIREBASE_SECRET');
 
 	if (!secret) {
 		defer.reject();
