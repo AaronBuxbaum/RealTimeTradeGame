@@ -30,8 +30,8 @@ angular.module('Ticker').controller('TickerCtrl', function ($http, Authenticatio
       //Show loading text
       ctrl.chart.showLoading();
 	  
-      //Throttle the render function
-      ctrl.renderChart = _.throttle(ctrl.chart.redraw, 10 * 1000);
+      //Debounce the render function
+      ctrl.renderChart = _.debounce(ctrl.chart.redraw, 1000);
     });
 
   };
@@ -61,24 +61,21 @@ angular.module('Ticker').controller('TickerCtrl', function ($http, Authenticatio
           var user = userRef.val();
           
           //Get the initial values
-          //.orderByChild('0')
-          ref.child('series').child(user.uid).once('value', function (series) {
-            user.data = _.sortBy(series.val(), '0');
-            user.id = user.uid;
+          ref.child('series').child(user.uid).orderByChild('0').once('value', function (series) {
             var line = ctrl.chart.addSeries(user);
-
+            
+            //Update lines as new values come in
+            series.ref().on('child_added', function (point) {
+              line.addPoint(point.val(), false);
+              ctrl.renderChart();
+            });
+            
             //Click the range selector button
-            ctrl.chart.rangeSelector.clickButton(2, ctrl.chart.rangeSelector.buttonOptions[0], false);
+            //ctrl.chart.rangeSelector.clickButton(2, ctrl.chart.rangeSelector.buttonOptions[0], true);
             
             //Hide the loading text
             if (i === findLeague.users.length - 1) {
               ctrl.chart.hideLoading();
-              
-              //Update lines as new values come in
-              series.ref().on('child_added', function (point) {
-                line.addPoint(point.val(), false);
-                ctrl.renderChart();
-              });
             }
           });
         });
