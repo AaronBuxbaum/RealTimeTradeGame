@@ -66,12 +66,6 @@ angular.module('Ticker').controller('TickerCtrl', function ($http, Authenticatio
             user.data = _.sortBy(series.val(), '0');
             user.id = user.uid;
             var line = ctrl.chart.addSeries(user);
-              
-            //Update lines as new values come in
-            series.ref().on('child_added', function (point) {
-              line.addPoint(point.val(), false);
-              ctrl.renderChart();
-            });
 
             //Click the range selector button
             ctrl.chart.rangeSelector.clickButton(2, ctrl.chart.rangeSelector.buttonOptions[0], false);
@@ -79,6 +73,12 @@ angular.module('Ticker').controller('TickerCtrl', function ($http, Authenticatio
             //Hide the loading text
             if (i === findLeague.users.length - 1) {
               ctrl.chart.hideLoading();
+              
+              //Update lines as new values come in
+              series.ref().on('child_added', function (point) {
+                line.addPoint(point.val(), false);
+                ctrl.renderChart();
+              });
             }
           });
         });
