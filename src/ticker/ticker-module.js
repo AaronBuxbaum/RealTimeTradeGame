@@ -10,7 +10,15 @@
 * @requires Authentication
 **/
 angular.module('Ticker', [
-	'ngMaterial',
-	'angularMoment',
-	'Authentication'
-]);
+  'ngMaterial',
+  'angularMoment',
+  'Authentication'
+])
+  .config(function () {
+    //Set global timezone to EST
+    Highcharts.setOptions({
+      global: {
+        timezoneOffset: 5 * 60
+      }
+    });
+  });

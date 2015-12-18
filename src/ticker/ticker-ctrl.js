@@ -4,41 +4,31 @@
 *
 * @description
 *
+* @requires $q
 * @requires $http
 * @requires AuthenticationService
 **/
-angular.module('Ticker').controller('TickerCtrl', function ($http, AuthenticationService) {
+angular.module('Ticker').controller('TickerCtrl', function ($q, $http, AuthenticationService) {
   var ctrl = this;
   var auth = AuthenticationService.auth.data;
   var ref = new Firebase('https://realtimetrade.firebaseio.com');
 
-  //Create the chart
-  ctrl.createChart = function () {
-    //Set global timezone to EST
-    Highcharts.setOptions({
-      global: {
-        timezoneOffset: 5 * 60
-      }
-    });
-
-    //Set up the chart
-    function setUpChart(json) {
-      var chartOptions = json.data['chart-options'];
-      chartOptions.chart.renderTo = $('#stockTicker')[0];
-      ctrl.chart = new Highcharts.StockChart(chartOptions);
-	  
-      //Debounce the render function
-      ctrl.renderChart = _.debounce(ctrl.chart.redraw, 1000);
-    }
-
-    $http.get('json.js').then(setUpChart);
-  };
-  ctrl.createChart();
-
   //Get lines for each player in active league
   ctrl.lines = [];
-  ref.child('users').child(auth.uid).once('value', findActiveLeague);
+  $http.get('json.js')
+    .then(setUpChart)
+    .then(ref.child('users').child(auth.uid).once('value', findActiveLeague));
 
+  //Set up the chart
+  function setUpChart(json) {
+    var chartOptions = json.data['chart-options'];
+    chartOptions.chart.renderTo = $('#stockTicker')[0];
+    ctrl.chart = new Highcharts.StockChart(chartOptions);
+    ctrl.renderChart = _.debounce(ctrl.chart.redraw, 1000);
+    return $q.when();
+  }
+
+  //Find the active league for the active user
   function findActiveLeague(activeUser) {
     if (!activeUser.val() || !activeUser.val().league) {
       return;
@@ -58,6 +48,7 @@ angular.module('Ticker').controller('TickerCtrl', function ($http, Authenticatio
     });
   }
 
+  //Render changes to the stock grid
   function renderUsers(leagueUser, i) {
     ref.child('users').child(leagueUser.toString()).once('value', function (userRef) {
       var user = userRef.val();
