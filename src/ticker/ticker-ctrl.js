@@ -4,10 +4,10 @@
 *
 * @description
 *
-* @requires $timeout
+* @requires $http
 * @requires AuthenticationService
 **/
-angular.module('Ticker').controller('TickerCtrl', function ($timeout, AuthenticationService) {
+angular.module('Ticker').controller('TickerCtrl', function ($http, AuthenticationService) {
   var ctrl = this;
   var auth = AuthenticationService.auth.data;
   var ref = new Firebase('https://realtimetrade.firebaseio.com');
@@ -22,74 +22,20 @@ angular.module('Ticker').controller('TickerCtrl', function ($timeout, Authentica
     });
 
     //Set up the chart
-    ctrl.chart = new Highcharts.StockChart({
-      animation: false,
-      chart: {
-        renderTo: $('#stockTicker')[0],
-        height: 400,
-        animation: false,
-        reflow: false,
-        zoomType: 'x'
-      },
-      legend: {
-        enabled: true
-      },
-      credits: {
-        enabled: false
-      },
-      rangeSelector: {
-        buttons: [
-          {
-            type: 'minute',
-            count: 5,
-            text: 'm'
-          }, {
-            type: 'hour',
-            count: 1,
-            text: 'h'
-          }, {
-            type: 'hour',
-            count: 8,
-            text: 'd'
-          }, {
-            type: 'day',
-            count: 5,
-            text: 'w'
-          }, {
-            type: 'all',
-            count: 1,
-            text: 'all'
-          }
-        ]
-      },
-      yAxis: {
-        title: {
-          text: 'Portfolio Value ($)'
-        }
-      },
-      tooltip: {
-        valueDecimals: 2,
-        valuePrefix: '$'
-      },
-      series: [],
-      title: {
-        text: 'Testing'
-      },
-      navigator: {
-        enabled: true,
-        loading: true,
-        adaptToUpdatedData: false
-      },
-      enableMouseTracking: false
-    });
+    $http.get('json.js').then(function (json) {
+      var chartOptions = json.data['chart-options'];
+      chartOptions.chart.renderTo = $('#stockTicker')[0];
+      ctrl.chart = new Highcharts.StockChart(chartOptions);
     
-    //Show loading text
-    ctrl.chart.showLoading();
+      //Show loading text
+      ctrl.chart.showLoading();
 	  
-    //Throttle the render function
-    ctrl.renderChart = _.throttle(ctrl.chart.redraw, 5000);
+      //Throttle the render function
+      ctrl.renderChart = _.throttle(ctrl.chart.redraw, 5000);
+    });
+
   };
-  $timeout(ctrl.createChart, 0);
+  ctrl.createChart();
         
   //Get lines for each player in active league
   ctrl.lines = [];

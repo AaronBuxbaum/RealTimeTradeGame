@@ -5,6 +5,7 @@ var sourcemaps = require('gulp-sourcemaps');
 var less = require('gulp-less');
 var ngHtml2Js = require('gulp-ng-html2js');
 var plumber = require('gulp-plumber');
+var json = require('gulp-json-concat');
 var browserify = require('browserify');
 var transform = require('vinyl-transform');
 var source = require('vinyl-source-stream');
@@ -20,7 +21,7 @@ function prependNPM(fileNames) {
 
 
 //Concat everything down
-gulp.task('concat', ['concat-vendor-js', 'concat-vendor-css', 'concat-app-js', 'concat-app-css', 'concat-app-html', 'copy-index']);
+gulp.task('concat', ['concat-json', 'concat-vendor-js', 'concat-vendor-css', 'concat-app-js', 'concat-app-css', 'concat-app-html', 'copy-index']);
 
 //Bundle vendor JS files
 gulp.task('concat-vendor-js', function () {
@@ -79,6 +80,16 @@ gulp.task('concat-app-html', function () {
       moduleName: 'Templates'
     }))
     .pipe(concat('templates.js'))
+    .pipe(gulp.dest(g.BUILD));
+});
+
+//Concat json files into a dictionary file
+gulp.task('concat-json', function () {
+  return gulp
+    .src(g.SRC + '**/*.json')
+    .pipe(json('json.js', function (data) {
+      return new Buffer(JSON.stringify(data));
+    }))
     .pipe(gulp.dest(g.BUILD));
 });
 

@@ -1,0 +1,63 @@
+{
+  "animation": false,
+  "chart": {
+    "height": 400,
+    "animation": false,
+    "reflow": false,
+    "zoomType": "x"
+  },
+  "legend": {
+    "enabled": true
+  },
+  "credits": {
+    "enabled": false
+  },
+  "rangeSelector": {
+    "buttons": [
+      {
+        "type": "minute",
+        "count": 5,
+        "text": "m"
+      },
+      {
+        "type": "hour",
+        "count": 1,
+        "text": "h"
+      },
+      {
+        "type": "hour",
+        "count": 8,
+        "text": "d"
+      },
+      {
+        "type": "day",
+        "count": 5,
+        "text": "w"
+      },
+      {
+        "type": "all",
+        "count": 1,
+        "text": "all"
+      }
+    ]
+  },
+  "yAxis": {
+    "title": {
+      "text": "Portfolio Value ($)"
+    }
+  },
+  "tooltip": {
+    "valueDecimals": 2,
+    "valuePrefix": "$"
+  },
+  "series": [],
+  "title": {
+    "text": "Testing"
+  },
+  "navigator": {
+    "enabled": true,
+    "loading": true,
+    "adaptToUpdatedData": false
+  },
+  "enableMouseTracking": false
+}
