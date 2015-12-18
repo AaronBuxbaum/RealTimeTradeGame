@@ -61,8 +61,9 @@ angular.module('Ticker').controller('TickerCtrl', function ($http, Authenticatio
           var user = userRef.val();
           
           //Get the initial values
-          ref.child('series').child(user.uid).orderByChild('0').once('value', function (series) {
-            user.data = _.toArray(series.val());
+          //.orderByChild('0')
+          ref.child('series').child(user.uid).once('value', function (series) {
+            user.data = _.sortBy(series.val(), '0');
             user.id = user.uid;
             var line = ctrl.chart.addSeries(user);
               
