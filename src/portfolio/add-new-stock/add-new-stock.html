@@ -1,36 +1,38 @@
 <md-content layout-padding>
-	<!-- Button to open up the add widget -->
-	<md-button ng-if="!ctrl.isOpen" class="md-raised md-primary" ng-click="ctrl.isOpen = true">Add Stock</md-button>
+  <!-- Button to open up the add widget -->
+  <md-button ng-if="!ctrl.isOpen" class="md-raised md-primary" ng-click="ctrl.isOpen = true">Add Stock</md-button>
 
-	<!-- Add widget -->
-	<form ng-if="ctrl.isOpen" layout>
+  <!-- Add widget -->
+  <form ng-if="ctrl.isOpen" layout>
 
-		<!-- Stock selection -->
-		<md-autocomplete flex="35" md-selected-item="ctrl.newStock.stock" md-search-text="ctrl.newStock.searchText" md-items="item in ctrl.getStocks(ctrl.newStock.searchText)"
-		md-item-text="item.name" md-autoselect="true" md-delay="100" md-menu-class="add-new-stocks-autocomplete" placeholder="Pick a stock"
-		md-autofocus>
-			<md-item-template>
-				<span class="item-title">
+    <!-- Stock selection -->
+    <md-autocomplete flex="35" md-selected-item="ctrl.newStock.stock" md-search-text="ctrl.newStock.searchText" md-items="item in ctrl.getStocks(ctrl.newStock.searchText)"
+    md-item-text="item.name" md-autoselect="true" md-delay="100" md-menu-class="add-new-stocks-autocomplete" placeholder="Pick a stock"
+    md-autofocus>
+      <md-item-template>
+        <span class="item-title">
 					<ng-md-icon icon="event_note"></ng-md-icon>
 					<span md-highlight-text="ctrl.newStock.searchText" md-highlight-flags="i">
-						{{::item.name}} ({{::item.ticker}})
+						{{::item.name}} ({{::item.symbol}})
 					</span>
-				</span>
+        </span>
+        <!--
 				<span class="item-metadata">
 					Value: <span class="item-metastat">{{item.value}}</span>
 				<span ng-style="{'color': (item.changePercentage.toString().charAt(0) === '-') ? 'red' : 'green' }">
 						({{item.changePercentage}}%)
 					</span>
 				</span>
-			</md-item-template>
+        -->
+      </md-item-template>
 
-			<md-not-found>
-				No matches found for "{{::ctrl.newStock.searchText}}".
-			</md-not-found>
-		</md-autocomplete>
+      <md-not-found>
+        No matches found for "{{::ctrl.newStock.searchText}}".
+      </md-not-found>
+    </md-autocomplete>
 
-		<!-- Confirm/cancel buttons -->
-		<md-button class="md-raised md-primary" ng-click="ctrl.addStock(ctrl.newStock.stock)">Confirm</md-button>
-		<md-button class="md-raised md-warn" ng-click="ctrl.close()">Cancel</md-button>
-	</form>
+    <!-- Confirm/cancel buttons -->
+    <md-button class="md-raised md-primary" ng-click="ctrl.addStock(ctrl.newStock.stock)">Confirm</md-button>
+    <md-button class="md-raised md-warn" ng-click="ctrl.close()">Cancel</md-button>
+  </form>
 </md-content>
