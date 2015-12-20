@@ -80,7 +80,7 @@ function getPortfolioValue(portfolioRef, previousEarnings, uid) {
     var total = previousEarnings * (unusedPercentage / 100);
 
     //Get symbols
-    var symbols = _.pluck(_.toArray(portfolio), 'symbol');
+    var symbols = _.pluck(_.toArray(portfolio), 'symbol' || 'ticker');
     if (!symbols.length) {
       symbols = ['F'];
     }
@@ -94,6 +94,7 @@ function getPortfolioValue(portfolioRef, previousEarnings, uid) {
     }).then(function (stocks) {
       //Calculate new earnings
       _.forOwn(portfolio, function (stock) {
+        console.log(stock);
         var stockValue = _.find(stocks, { symbol: stock.ticker }).bid;
         stock.shares = previousEarnings * (stock.percentage / 100) / stock.value || stockValue;
         stock.value = stockValue;
