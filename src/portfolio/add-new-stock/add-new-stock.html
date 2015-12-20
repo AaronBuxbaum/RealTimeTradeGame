@@ -13,7 +13,7 @@
         <span class="item-title">
 					<ng-md-icon icon="event_note"></ng-md-icon>
 					<span md-highlight-text="ctrl.newStock.searchText" md-highlight-flags="i">
-						{{::item.name}} ({{::item.symbol}})
+						{{::ctrl.unescape(item.name)}} ({{::item.symbol}})
 					</span>
         </span>
         <!--

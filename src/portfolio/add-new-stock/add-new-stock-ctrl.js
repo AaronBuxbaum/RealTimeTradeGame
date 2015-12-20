@@ -11,6 +11,7 @@ angular.module('AddNewStock').controller('AddNewStockCtrl', function (PortfolioS
     var ctrl = this;
 
     ctrl.getStocks = AddNewStockService.getStocks;
+    ctrl.unescape = _.unescape;
 
     ctrl.addStock = function (stock) {
         PortfolioService.addStock(stock);
