@@ -2,6 +2,7 @@ global._ = require('lodash');
 global.Highcharts = require('highstock-release');
 global.Firebase = require('firebase');
 global.$ = require('jquery');
+global.he = require('he');
 
 require('moment');
 require('angular');
