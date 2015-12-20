@@ -15,6 +15,7 @@ angular.module('Portfolio').factory('PortfolioService', function ($firebaseArray
     }
 
     stock.percentage = 0;
+    stock.ticker = stock.symbol;
     svc.portfolio.$add(stock);
   };
 	
