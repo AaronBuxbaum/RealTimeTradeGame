@@ -94,7 +94,7 @@ function getPortfolioValue(portfolioRef, previousEarnings, uid) {
     }).then(function (stocks) {
       //Calculate new earnings
       _.forOwn(portfolio, function (stock) {
-        var stockValue = _.find(stocks, { symbol: stock.symbol }).bid;
+        var stockValue = _.find(stocks, { symbol: stock.ticker }).bid;
         stock.shares = previousEarnings * (stock.percentage / 100) / stock.value || stockValue;
         stock.value = stockValue;
         total += stockValue * stock.shares;
