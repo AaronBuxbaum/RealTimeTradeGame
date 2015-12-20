@@ -51,7 +51,7 @@ function getEarnings(uid) {
         });
         userEarnings.splice(i, 0, [now, portfolioValue]);
         */
-        
+
         userEarnings.push([now, portfolioValue]);
         console.log('Updating...');
       });
@@ -79,22 +79,22 @@ function getPortfolioValue(portfolioRef, previousEarnings, uid) {
     var unusedPercentage = 100 - _.sum(portfolio, 'percentage');
     var total = previousEarnings * (unusedPercentage / 100);
 
-    //Get tickers
-    var tickers = _.pluck(_.toArray(portfolio), 'ticker');
-    if (!tickers.length) {
-      tickers = ['F'];
+    //Get symbols
+    var symbols = _.pluck(_.toArray(portfolio), 'symbol');
+    if (!symbols.length) {
+      symbols = ['F'];
     }
 
     console.log('Getting stock values');
 
     //Find new earnings
     yahooFinance.snapshot({
-      symbols: tickers,
+      symbols: symbols,
       fields: ['b', 'b2', 'b3']
     }).then(function (stocks) {
       //Calculate new earnings
       _.forOwn(portfolio, function (stock) {
-        var stockValue = _.find(stocks, { symbol: stock.ticker }).bid;
+        var stockValue = _.find(stocks, { symbol: stock.symbol }).bid;
         stock.shares = previousEarnings * (stock.percentage / 100) / stock.value || stockValue;
         stock.value = stockValue;
         total += stockValue * stock.shares;
