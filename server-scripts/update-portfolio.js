@@ -79,15 +79,17 @@ function getPortfolioValue(portfolioRef, previousEarnings, uid) {
     }
 
     //Find new earnings
+    //https://github.com/pilwon/node-yahoo-finance/blob/master/lib/fields.js
     yahooFinance.snapshot({
       symbols: symbols,
-      fields: ['b', 'b2', 'b3']
+      fields: ['b']
     }).then(function (stocks) {
       //Calculate new earnings
       _.forOwn(portfolio, function (stock) {
-        console.log(stock.ticker);
+        var ticker = stock.ticker || stock.symbol;
         console.log(stocks);
-        var stockValue = _.find(stocks, { symbol: stock.ticker }).bid;
+        console.log(ticker);
+        var stockValue = _.find(stocks, { symbol: ticker }).bid;
         stock.shares = previousEarnings * (stock.percentage / 100) / stock.value || stockValue;
         stock.value = stockValue;
         total += stockValue * stock.shares;
