@@ -10,12 +10,11 @@ angular.module('Portfolio').factory('PortfolioService', function ($firebaseArray
 	
   //Add a stock to a player
   svc.addStock = function (stock) {
-    if (!stock || !svc.portfolio || !stock.symbol || _.some(svc.portfolio, { ticker: stock.symbol })) {
+    if (!stock || !svc.portfolio || !stock.symbol || _.some(svc.portfolio, { symbol: stock.symbol })) {
       return;
     }
 
     stock.percentage = 0;
-    stock.ticker = stock.symbol;
     svc.portfolio.$add(stock);
   };
 	
