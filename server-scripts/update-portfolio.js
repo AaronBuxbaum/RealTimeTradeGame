@@ -17,11 +17,8 @@ var EDT = 'America/New_York';
 
 //Update player's portfolio
 function updatePortfolio() {
-  console.log('Updating portfolio');
-
   usersRef.once('value', function (users) {
     return _.forOwn(users.val(), function (user) {
-      console.log('Getting', user.name);
       if (user.uid) {
         getEarnings(user.uid);
       }
@@ -39,11 +36,8 @@ function getEarnings(uid) {
       var previousEarnings = _.toArray(previousEarningsArr.val())[0][1];
     }
 
-    console.log('Getting portfolio value');
-
     getPortfolioValue(portfolioRef, previousEarnings, uid).then(function (portfolioValue) {
       var now = moment().tz(EDT).valueOf();
-      console.log('Timestamp:', now);
       token.authenticate(seriesRef, 'admin').then(function () {
         /*
         var i = _.findLastIndex(userEarnings, function (elem) {
@@ -53,7 +47,6 @@ function getEarnings(uid) {
         */
 
         userEarnings.push([now, portfolioValue]);
-        console.log('Updating...');
       });
     });
   });
@@ -85,8 +78,6 @@ function getPortfolioValue(portfolioRef, previousEarnings, uid) {
       symbols = ['F'];
     }
 
-    console.log('Getting stock values');
-
     //Find new earnings
     yahooFinance.snapshot({
       symbols: symbols,
@@ -94,7 +85,7 @@ function getPortfolioValue(portfolioRef, previousEarnings, uid) {
     }).then(function (stocks) {
       //Calculate new earnings
       _.forOwn(portfolio, function (stock) {
-        console.log(stock);
+        console.log(_.keys(stock));
         var stockValue = _.find(stocks, { symbol: stock.ticker }).bid;
         stock.shares = previousEarnings * (stock.percentage / 100) / stock.value || stockValue;
         stock.value = stockValue;
@@ -102,9 +93,7 @@ function getPortfolioValue(portfolioRef, previousEarnings, uid) {
       });
 
       //Update stock values
-      console.log('Updating values');
       token.authenticate(seriesRef, 'admin').then(function () {
-        console.log('Set new stock values');
         portfolioRef.set(portfolio);
         deferred.resolve(roundNumber(total));
       });
