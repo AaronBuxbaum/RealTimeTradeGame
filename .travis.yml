@@ -1,12 +1,17 @@
 language: node_js
-node_js: '4.1.1'
+node_js: 4.1.1
 before_install:
-    - export DISPLAY=:99.0
-    - sh -e /etc/init.d/xvfb start
+- export DISPLAY=:99.0
+- sh -e /etc/init.d/xvfb start
 before_script:
-    - gulp build
+- gulp build
 script: gulp unit-tests
 after_success:
-    - cat coverage/*/lcov.info | ./node_modules/coveralls/bin/coveralls.js
+- cat coverage/*/lcov.info | ./node_modules/coveralls/bin/coveralls.js
 notifications:
   email: false
+addons:
+  sauce_connect:
+    username: AaronBuxbaum
+    access_key:
+      secure: "w25qNlM39mw/xYoOu/3BdpTRyJr3AmMLz7g10/8yujGA7UxpaoIyGi7dx7Iaaei1Q3yOA4vhLc01ife3Jhz/fXTBiwtysnk4Fzwsy3jMEQqYyGRubZqckLwu7eCULuQbbQKEOrvLZwNnh/PTDbU9LaRf+v1YbZ5vvXbbaAtLRj3gOjwVIrClyyi4fDzGiAEsxPKzkNmdSpFPdRsxNAbNFOO0CwkBemsAwoFa1gdP2ziFoNil+k+pkKeNGChm8IDBBMzZKzB46ffiEBSD4MJsF6NfNwyjm1Ur1xWSe/Cl+qf8tre7EcjWbOw5HLeCv1wBboy/ewVc/x/Mc3W6nxePrC6F5Lhx8Ij/qWaCN9iYYULlpkM4preWII6ZjdItPMrAxpKja2QuXKot7LBSQh9E5ffbAR9S+BV8wbyPeAToX08VUS5uEugvRFGKUr/N4WcECsuGjBukIg4CbKxf21L5x/FFoTv32ogKESYpm8oTM4rckWQ6+qtKF7Aln5/Z6IlZLUrr76SCYr7wW20QhuhxNcI7sx19feChENiJZdUZSJMMTBE+tevZ4AHm+i+5qbgRk5WHH8ABaRNf9TgG2GeQQ6sDcvBtCB08XjlOJOPy1FJCISxNBiaRDV+pxp4KGH1prVbFlTG/1Uol/CXa7Ut/+RKHFLkETwRwaTAK/zIiOwg="
