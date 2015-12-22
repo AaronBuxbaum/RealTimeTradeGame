@@ -24,7 +24,7 @@ angular.module('Ticker').controller('TickerCtrl', function ($q, $http, Authentic
     var chartOptions = json.data['ticker/chart-options'];
     chartOptions.chart.renderTo = $('#stockTicker')[0];
     ctrl.chart = new Highcharts.StockChart(chartOptions);
-    ctrl.renderChart = _.debounce(ctrl.chart.redraw, 1000);
+    ctrl.renderChart = _.debounce(ctrl.chart.redraw, 10000);
     return $q.when();
   }
 
@@ -55,9 +55,16 @@ angular.module('Ticker').controller('TickerCtrl', function ($q, $http, Authentic
 
       ref.child('series').child(user.uid).orderByChild('0').once('value', function (series) {
         var line = ctrl.chart.addSeries(user);
-            
+
+        //Set initial data
+        var data = [];
+        series.forEach(function (value) {
+          data.push(value.val());
+        });
+        line.setData(data);
+          
         //Update lines as new values come in
-        series.ref().on('child_added', function (point) {
+        series.ref().limitToLast(1).on('child_added', function (point) {
           line.addPoint(point.val(), false);
           ctrl.renderChart();
         });
