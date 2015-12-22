@@ -61,7 +61,7 @@ angular.module('Ticker').controller('TickerCtrl', function ($q, $http, Authentic
         series.forEach(function (value) {
           data.push(value.val());
         });
-        line.setData(data);
+        line.setData(data, false);
           
         //Update lines as new values come in
         series.ref().limitToLast(1).on('child_added', function (point) {
