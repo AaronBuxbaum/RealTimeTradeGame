@@ -13,7 +13,7 @@ exports.config = {
 		accessKey: process.env.SAUCE_ACCESS_KEY,
 		startConnect: false,
 		connectOptions: {
-			port: 5757,
+			port: 55547,
 			logfile: 'sauce_connect.log'
 		}
 	}
