@@ -1,5 +1,5 @@
 [![Build Status](https://travis-ci.org/AaronBuxbaum/RealTimeTradeGame.svg)](https://travis-ci.org/AaronBuxbaum/RealTimeTradeGame)
-[![Build Status](https://drone.io/github.com/AaronBuxbaum/RealTimeTradeGame/status.png)](https://drone.io/github.com/AaronBuxbaum/RealTimeTradeGame/latest)
+[![Sauce Test Status](https://saucelabs.com/buildstatus/YOUR_SAUCE_USERNAME)](https://saucelabs.com/u/AaronBuxbaum)
 [![Dependency Status](https://david-dm.org/AaronBuxbaum/RealTimeTradeGame.svg)](https://david-dm.org/AaronBuxbaum/RealTimeTradeGame#info=dependencies)
 [![Coverage Status](https://coveralls.io/repos/AaronBuxbaum/RealTimeTradeGame/badge.svg?branch=master&service=github)](https://coveralls.io/github/AaronBuxbaum/RealTimeTradeGame?branch=master)
 
