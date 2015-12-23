@@ -8,14 +8,9 @@ exports.config = {
   specs: ['e2e-tests/**/*.spec.js'],
 
   sauceLabs: {
-    testName: 'Web App Unit Tests',
     tunnelIdentifier: process.env.TRAVIS_JOB_NUMBER,
     username: process.env.SAUCE_USERNAME,
     accessKey: process.env.SAUCE_ACCESS_KEY,
-    startConnect: false,
-    connectOptions: {
-      port: 55547,
-      logfile: 'sauce_connect.log'
-    }
+    startConnect: false
   }
 };
