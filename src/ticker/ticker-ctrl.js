@@ -14,14 +14,13 @@ angular.module('Ticker').controller('TickerCtrl', function ($q, $http, Authentic
   var ref = new Firebase('https://realtimetrade.firebaseio.com');
 
   //Get lines for each player in active league
-  ctrl.lines = [];
   $http.get('json.js')
     .then(setUpChart)
     .then(ref.child('users').child(auth.uid).once('value', findActiveLeague));
 
   //Set up the chart
   function setUpChart(json) {
-    var chartOptions = json.data['ticker/chart-options'];
+    var chartOptions = json.data['chart-options'];
     chartOptions.chart.renderTo = $('#stockTicker')[0];
     ctrl.chart = new Highcharts.StockChart(chartOptions);
     ctrl.renderChart = _.debounce(ctrl.chart.redraw, 10000);
