@@ -20,7 +20,7 @@ angular.module('Ticker').controller('TickerCtrl', function ($q, $http, Authentic
 
   //Set up the chart
   function setUpChart(json) {
-    var chartOptions = json.data['chart-options'];
+    var chartOptions = json.data['chart-options'] || json.data['ticker/chart-options'];
     chartOptions.chart.renderTo = $('#stockTicker')[0];
     ctrl.chart = new Highcharts.StockChart(chartOptions);
     ctrl.renderChart = _.debounce(ctrl.chart.redraw, 10000);
