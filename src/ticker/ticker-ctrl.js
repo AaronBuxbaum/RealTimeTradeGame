@@ -16,7 +16,7 @@ angular.module('Ticker').controller('TickerCtrl', function ($q, $http, Authentic
   //Get lines for each player in active league
   $http.get('json.js')
     .then(setUpChart)
-    .then(ref.child('users').child(auth.uid).once('value', findActiveLeague));
+    .then(ref.child('series').child(auth.uid).orderByChild('0').once('value', renderUser));
 
   //Set up the chart
   function setUpChart(json) {
@@ -27,47 +27,66 @@ angular.module('Ticker').controller('TickerCtrl', function ($q, $http, Authentic
     return $q.when();
   }
 
-  //Find the active league for the active user
-  function findActiveLeague(activeUser) {
-    if (!activeUser.val() || !activeUser.val().league) {
-      return;
-    }
+  function renderUser(seriesData) {
+    var line = ctrl.chart.addSeries({});
 
-    ref.child('leagues').once('value', function (leagues) {
-      var findLeague = _.find(leagues.val(), { id: activeUser.val().league });
-      if (!findLeague) {
+    //Set initial data
+    var data = [];
+    seriesData.forEach(function (value) {
+      data.push(value.val());
+    });
+    line.setData(data);
+          
+    //Update lines as new values come in
+    seriesData.ref().limitToLast(1).on('child_added', function (point) {
+      line.addPoint(point.val(), false);
+      ctrl.renderChart();
+    });
+  }
+
+  /*
+    //Find the active league for the active user
+    function findActiveLeague(activeUser) {
+      if (!activeUser.val() || !activeUser.val().league) {
         return;
       }
+  
+      ref.child('leagues').once('value', function (leagues) {
+        var findLeague = _.find(leagues.val(), { id: activeUser.val().league });
+        if (!findLeague) {
+          return;
+        }
+  
+        if (findLeague.endTime) {
+          ctrl.endTime = findLeague.endTime;
+        }
+  
+        _.forEach(findLeague.users, renderUsers);
+      });
+    }
 
-      if (findLeague.endTime) {
-        ctrl.endTime = findLeague.endTime;
-      }
+    //Render changes to the stock grid
+    function renderUsers(leagueUser, i) {
+      ref.child('users').child(leagueUser.toString()).once('value', function (userRef) {
+        var user = userRef.val();
 
-      _.forEach(findLeague.users, renderUsers);
-    });
-  }
+        ref.child('series').child(user.uid).orderByChild('0').once('value', function (series) {
+          var line = ctrl.chart.addSeries(user);
 
-  //Render changes to the stock grid
-  function renderUsers(leagueUser, i) {
-    ref.child('users').child(leagueUser.toString()).once('value', function (userRef) {
-      var user = userRef.val();
-
-      ref.child('series').child(user.uid).orderByChild('0').once('value', function (series) {
-        var line = ctrl.chart.addSeries(user);
-
-        //Set initial data
-        var data = [];
-        series.forEach(function (value) {
-          data.push(value.val());
-        });
-        line.setData(data, false);
-          
-        //Update lines as new values come in
-        series.ref().limitToLast(1).on('child_added', function (point) {
-          line.addPoint(point.val(), false);
-          ctrl.renderChart();
+          //Set initial data
+          var data = [];
+          series.forEach(function (value) {
+            data.push(value.val());
+          });
+          line.setData(data, false);
+            
+          //Update lines as new values come in
+          series.ref().limitToLast(1).on('child_added', function (point) {
+            line.addPoint(point.val(), false);
+            ctrl.renderChart();
+          });
         });
       });
-    });
-  }
+    }
+  */
 });
