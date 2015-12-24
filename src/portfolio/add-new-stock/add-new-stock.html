@@ -10,17 +10,6 @@
         <span md-highlight-text="ctrl.newStock.searchText" md-highlight-flags="i" class="item-title" style="text-overflow: ellipsis;">
            {{::ctrl.unescape(item.name)}}
         </span>
-
-        <!--
-        <span class="item-metadata">
-					Symbol: <span class="item-metastat">{{::item.symbol}}</span>
-        </span>
-
-          <span ng-style="{'color': (item.changePercentage.toString().charAt(0) === '-') ? 'red' : 'green' }">
-						({{item.changePercentage}}%)
-					</span>
-        </span>
-        -->
       </md-item-template>
 
       <md-not-found>
