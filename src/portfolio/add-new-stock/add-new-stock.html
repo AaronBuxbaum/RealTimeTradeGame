@@ -7,19 +7,19 @@
     md-item-text="item.name" md-autoselect="true" md-delay="100" md-menu-class="add-new-stocks-autocomplete" placeholder="Pick a stock"
     md-autofocus>
       <md-item-template>
-        <span class="item-title">
-					<ng-md-icon icon="event_note"></ng-md-icon>
-					<span md-highlight-text="ctrl.newStock.searchText" md-highlight-flags="i">
-						{{::ctrl.unescape(item.name)}} ({{::item.symbol}})
-					</span>
+        <span md-highlight-text="ctrl.newStock.searchText" md-highlight-flags="i" class="item-title" style="text-overflow: ellipsis;">
+           {{::ctrl.unescape(item.name)}}
         </span>
+
         <!--
-				<span class="item-metadata">
-					Value: <span class="item-metastat">{{item.value}}</span>
-				<span ng-style="{'color': (item.changePercentage.toString().charAt(0) === '-') ? 'red' : 'green' }">
+        <span class="item-metadata">
+					Symbol: <span class="item-metastat">{{::item.symbol}}</span>
+        </span>
+
+          <span ng-style="{'color': (item.changePercentage.toString().charAt(0) === '-') ? 'red' : 'green' }">
 						({{item.changePercentage}}%)
 					</span>
-				</span>
+        </span>
         -->
       </md-item-template>
 
