@@ -13,7 +13,7 @@ require('angular-material-icons');
 require('angular-messages');
 require('angular-mocks');
 require('angularfire');
-require('highstock-release/modules/boost');
+require('highstock-release/modules/boost.src.js');
 require('angular-moment');
 
 module.exports = 'RealTimeTradeGame';

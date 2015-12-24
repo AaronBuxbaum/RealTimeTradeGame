@@ -1,8 +1,8 @@
 {
-  "animation": false,
+  "animation": true,
   "chart": {
     "height": 400,
-    "animation": false,
+    "animation": true,
     "reflow": false,
     "zoomType": "x",
     "style": {
@@ -14,7 +14,7 @@
     }
   },
   "legend": {
-    "enabled": true
+    "enabled": false
   },
   "credits": {
     "enabled": false
@@ -60,12 +60,11 @@
   },
   "series": [],
   "title": {
-    "text": "Testing"
+    "text": "My Portfolio"
   },
   "navigator": {
     "enabled": true,
-    "loading": true,
-    "adaptToUpdatedData": false
+    "adaptToUpdatedData": true
   },
   "enableMouseTracking": false
 }

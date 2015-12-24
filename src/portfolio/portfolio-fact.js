@@ -1,4 +1,4 @@
-angular.module('Portfolio').factory('PortfolioService', function ($firebaseArray) {
+angular.module('Portfolio').factory('PortfolioService', function ($firebaseArray, $mdDialog) {
   var svc = this;
   svc.portfolio;
 
@@ -24,8 +24,18 @@ angular.module('Portfolio').factory('PortfolioService', function ($firebaseArray
   };
 
   //Delete a stock from a player
-  svc.deleteStock = function (index) {
-    svc.portfolio.$remove(index);
+  svc.deleteStock = function (event, index) {
+    var confirm = $mdDialog.confirm()
+      .title('Would you like to delete this stock?')
+      .textContent('Please confirm that you would like to delete this stock!')
+      .ariaLabel('Delete stock')
+      .targetEvent(event)
+      .ok('Confirm')
+      .cancel('Cancel');
+
+    $mdDialog.show(confirm).then(function () {
+      svc.portfolio.$remove(index);
+    });
   };
 	
   //Find what percentage of the portfolio is unused (int between 0 and 100, inclusive).
