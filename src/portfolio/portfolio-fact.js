@@ -27,7 +27,7 @@ angular.module('Portfolio').factory('PortfolioService', function ($firebaseArray
   svc.deleteStock = function (event, index) {
     var confirm = $mdDialog.confirm()
       .title('Would you like to delete this stock?')
-      .textContent('Please confirm that you would like to delete this stock!')
+      .textContent('Please confirm that you would like to delete this stock.')
       .ariaLabel('Delete stock')
       .targetEvent(event)
       .ok('Confirm')
