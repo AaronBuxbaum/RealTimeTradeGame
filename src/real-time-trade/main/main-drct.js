@@ -11,7 +11,7 @@
 angular.module('Main').directive('main', function () {
 	return {
 		restrict: 'E',
-		templateUrl: 'main/main.html',
+		templateUrl: 'real-time-trade/main/main.html',
 		controller: 'MainCtrl',
 		controllerAs: 'ctrl',
 		bindToController: true,

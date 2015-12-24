@@ -11,7 +11,7 @@
 angular.module('Logout').directive('logout', function () {
 	return {
 		restrict: 'E',
-		templateUrl: 'logout/logout.html',
+		templateUrl: 'real-time-trade/logout/logout.html',
 		controller: 'LogoutCtrl',
 		controllerAs: 'ctrl',
 		bindToController: true,

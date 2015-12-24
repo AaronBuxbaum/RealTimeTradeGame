@@ -23,7 +23,7 @@ angular.module('About').controller('AboutCtrl', function ($mdDialog) {
     ctrl.openAbout = function ($event) {
         $mdDialog.show({
             title: 'About',
-            templateUrl: 'about/about-dialog.html',
+            templateUrl: 'real-time-trade/about/about-dialog.html',
             ok: 'Close',
             targetEvent: $event,
             clickOutsideToClose: true,

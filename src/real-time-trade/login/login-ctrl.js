@@ -15,7 +15,7 @@ angular.module('Login').controller('LoginCtrl', function ($mdDialog) {
         },
         controllerAs: 'ctrl',
         bindToController: true,
-        templateUrl: 'login/login.html',
+        templateUrl: 'real-time-trade/login/login.html',
         escapeToClose: false
     });
 });
