@@ -10,12 +10,15 @@
 angular.module('Portfolio').controller('PortfolioCtrl', function (AuthenticationService, PortfolioService) {
     var ctrl = this;
 
-    ctrl.update = function () {
-        var uid = AuthenticationService.getUserID();
-        ctrl.portfolio = PortfolioService.getPortfolio(uid);
+    //Get portfolio
+    var uid = AuthenticationService.getUserID();
+    ctrl.portfolio = PortfolioService.getPortfolio(uid);
+
+    //Get stock updating functions when the portfolio is ready
+    ctrl.portfolio.$loaded(function () {
+        ctrl.isLoaded = true;
         ctrl.updateStock = PortfolioService.saveStock;
         ctrl.deleteStock = PortfolioService.deleteStock;
         ctrl.getMax = PortfolioService.getUnusedPercentage;
-    };
-    ctrl.update();
+    });
 });

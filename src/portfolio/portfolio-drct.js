@@ -14,9 +14,6 @@ angular.module('Portfolio').directive('portfolio', function () {
 		controller: 'PortfolioCtrl',
 		controllerAs: 'ctrl',
 		bindToController: true,
-		scope: {},
-		link: function (scope, elem, attrs, ctrl) {
-			scope.$watch('ctrl.portfolio.league', ctrl.update);
-		}
+		scope: {}
 	};
 });
