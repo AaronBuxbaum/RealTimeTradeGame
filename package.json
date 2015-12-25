@@ -42,6 +42,7 @@
     "gulp-angular-protractor": "0.0.6",
     "gulp-concat": "^2.6.0",
     "gulp-eslint": "^1.1.1",
+    "gulp-google-webfonts": "0.0.11",
     "gulp-install": "^0.6.0",
     "gulp-json-concat": "0.0.5",
     "gulp-less": "^3.0.5",
