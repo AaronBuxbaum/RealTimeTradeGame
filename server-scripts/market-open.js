@@ -1,6 +1,5 @@
 //Dependencies
-var moment = require('moment');
-var timezone = require('moment-timezone');
+var moment = require('moment-timezone');
 
 //Initialize variables
 var EDT = 'America/New_York';
