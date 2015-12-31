@@ -12,12 +12,15 @@ gulp.task('unit-tests', function (done) {
   }, done).start();
 });
 
-gulp.task('e2e-tests', function () {
+gulp.task('e2e-tests', 'host', function () {
   return gulp
     .src(['./e2e-tests/**/*.js'])
     .pipe(protractor({
       configFile: './protractor.conf.js',
       debug: true
     }))
-    .on('error', function (e) { throw e });
-})
+    .on('error', function (e) { throw e })
+    .finally(function () {
+        gulp.start('stop-server');
+    });
+});
