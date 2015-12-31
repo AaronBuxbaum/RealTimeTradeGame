@@ -12,7 +12,7 @@ gulp.task('unit-tests', function (done) {
   }, done).start();
 });
 
-gulp.task('e2e-tests', 'host', function () {
+gulp.task('e2e-tests', ['host'], function () {
   return gulp
     .src(['./e2e-tests/**/*.js'])
     .pipe(protractor({
