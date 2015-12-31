@@ -17,6 +17,7 @@ angular.module('Portfolio', [
     'ngAnimate',
     'ngMaterial',
     'ngMdIcons',
+    'Authentication',
     'AddNewStock',
     'StockSlider'
 ]);
