@@ -21,6 +21,6 @@ describe('log in interface', function () {
         element(by.model('ctrl.email')).sendKeys('example@example.com');
         element(by.model('ctrl.password')).sendKeys('examplepassword');
         buttons[0].click();
-        expect(dialog.isPresent()).to.become(false);
+        expect(dialog.isPresent()).toBe(false);
     });
 });
