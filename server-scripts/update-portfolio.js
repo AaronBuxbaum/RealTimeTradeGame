@@ -15,13 +15,23 @@ var seriesRef = ref.child('series');
 var portfoliosRef = ref.child('portfolios');
 var EDT = 'America/New_York';
 
-//Test watching for changes in portfolios
+/*** TESTING ***/
+
+//Watch for changes in stock values
 var stocks = require('yahoo-finance-stream')({ frequency: 5000 });
+stocks.watch('AAPL');
+stocks.watch('AAPL');
 stocks.watch('AAPL');
 stocks.on('data', function (stock) {
     console.log(stock);
 });
 
+//Watch for changes in portfolios
+portfoliosRef.on('child_changed', function (child) {
+    console.log(child.val());
+});
+
+/*** TESTING ENDS ***/
 
 //Update player's portfolio
 function updatePortfolio() {
