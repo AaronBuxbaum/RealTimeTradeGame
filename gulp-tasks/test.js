@@ -20,7 +20,7 @@ gulp.task('e2e-tests', ['host'], function () {
       debug: true
     }))
     .on('error', function (e) { throw e })
-    .finally(function () {
-        gulp.start('stop-server');
+    .on('end', function () {
+        return gulp.start('stop-server');
     });
 });
