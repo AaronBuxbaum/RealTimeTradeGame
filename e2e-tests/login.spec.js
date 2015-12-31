@@ -1,4 +1,4 @@
-describe('log in interface', function () {
+xdescribe('log in interface', function () {
     it('should allow you to log in', function () {
         browser.get('localhost:8080');
 
