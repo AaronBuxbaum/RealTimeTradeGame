@@ -12,7 +12,9 @@ angular.module('AddNewStock').factory('AddNewStockService', function ($http, $q)
       },
       cache: true
     }).then(function (response) {
-      return _.filter(response.data.ResultSet.Result, { exchDisp: 'NASDAQ' || 'NYSE' });
+      return _.filter(response.data.ResultSet.Result, function(item) {
+          return item.exchDisp === 'NASDAQ' || item.exchDisp === 'NYSE'
+      });
     });
   };
 
