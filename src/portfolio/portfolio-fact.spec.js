@@ -9,8 +9,9 @@ describe('PortfolioService', function () {
         svc = _PortfolioService_;
         
         //Mock out the firebase array
-        svc.portfolio = [];
+        svc.portfolio = [{ symbol: 'AAPL', percentage: '40' }];
         svc.portfolio.$add = _.noop;
+        svc.portfolio.$save = _.noop;
     }));
 
     describe('getPortfolio', function () {
@@ -24,7 +25,6 @@ describe('PortfolioService', function () {
 
         beforeEach(function () {
             spy = spyOn(svc.portfolio, '$add');
-            svc.portfolio.push({ symbol: 'AAPL' });
         });
 
         it('should have an addStock function', function () {
@@ -49,6 +49,12 @@ describe('PortfolioService', function () {
         it('should have an saveStock function', function () {
             expect(_.isFunction(svc.saveStock)).toBeTruthy();
         });
+
+        it('calls the save function', function () {
+            var spy = spyOn(svc.portfolio, '$save');
+            svc.saveStock({ symbol: 'HELLO' });
+            expect(spy).toHaveBeenCalledWith({ symbol: 'HELLO' });
+        });
     });
 
     describe('deleteStock', function () {
@@ -60,6 +66,14 @@ describe('PortfolioService', function () {
     describe('getUnusedPercentage', function () {
         it('should have an getUnusedPercentage function', function () {
             expect(_.isFunction(svc.getUnusedPercentage)).toBeTruthy();
+        });
+
+        it('should correctly sum up the remaining percentage of a portfolio', function () {
+            expect(svc.getUnusedPercentage()).toEqual(60);
+        });
+
+        it('should add on the optional parameter if provided', function () {
+            expect(svc.getUnusedPercentage(30)).toEqual(90);
         });
     });
 });

@@ -17,7 +17,7 @@ module.exports = function (config) {
 			'karma-coverage'
 		],
 		preprocessors: {
-			'build/app.js': 'coverage'
+			'src': 'coverage'
 		},
 		reporters: ['progress', 'coverage', 'coveralls'],
 		singleRun: true,
