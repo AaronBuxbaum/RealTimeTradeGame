@@ -7,16 +7,16 @@ describe('log in interface', function () {
         //Fail for invalid email
         element(by.model('ctrl.email')).sendKeys('example');
         element(by.model('ctrl.password')).sendKeys('examplepassword');
-        buttons[0].click();
+        buttons.click();
         
         //Fail for invalid password
         element(by.model('ctrl.email')).sendKeys('example@example.com');
         element(by.model('ctrl.password')).sendKeys('');
-        buttons[0].click();
+        buttons.click();
         
         //Success
         element(by.model('ctrl.email')).sendKeys('example@example.com');
         element(by.model('ctrl.password')).sendKeys('examplepassword');
-        buttons[0].click();
+        buttons.click();
     });
 });
