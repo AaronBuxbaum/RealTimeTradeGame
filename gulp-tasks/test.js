@@ -3,13 +3,17 @@ var gulp = require('gulp');
 var karma = require('karma');
 var protractor = require('gulp-angular-protractor');
 
-gulp.task('test', ['unit-tests', 'e2e-tests']);
+gulp.task('test', ['unit-tests', 'e2e-test']);
 
 gulp.task('unit-tests', function (done) {
   return new karma.Server({
     configFile: __dirname + '/../karma.conf.js',
     singleRun: true
   }, done).start();
+});
+
+gulp.task('e2e-test', function (callback) {
+  runSequence('e2e-tests', 'stop-server', callback);
 });
 
 gulp.task('e2e-tests', ['host'], function () {
@@ -19,8 +23,5 @@ gulp.task('e2e-tests', ['host'], function () {
       configFile: './protractor.conf.js',
       debug: true
     }))
-    .on('error', function (e) { throw e })
-    .on('end', function () {
-        return gulp.start('stop-server');
-    });
+    .on('error', function (e) { throw e });
 });

@@ -25,6 +25,6 @@ gulp.task('host', function () {
 
 gulp.task('stop-server', function () {
     if (server) {
-        return server.stop();
+        server.stop();
     }
 });
