@@ -7,20 +7,19 @@ module.exports = function (config) {
         files: [
             'build/vendors.js',
             'build/templates.js',
-            'build/app.js',
-            'src/**/*.spec.js'
+            'src/**/*-module.js',
+            'src/**/*.js'
         ],
         frameworks: ['jasmine'],
         plugins: [
             'karma-jasmine',
             'karma-phantomjs-launcher',
-            'karma-sourcemap-loader',
             'karma-coverage',
             'karma-coveralls'
         ],
         reporters: ['progress', 'coverage', 'coveralls'],
         preprocessors: {
-            'build/app.js': ['sourcemap', 'coverage']
+            'src/**/*.js': ['coverage']
         },
         singleRun: true,
         coverageReporter: {
