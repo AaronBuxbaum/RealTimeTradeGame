@@ -28,7 +28,7 @@ stocks.on('data', function (stock) {
 
 //Watch for changes in portfolios
 portfoliosRef.on('child_changed', function (child) {
-    console.log(child.val());
+    //console.log(child.val());
 });
 
 /*** TESTING ENDS ***/
