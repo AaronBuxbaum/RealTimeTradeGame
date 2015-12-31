@@ -5,6 +5,7 @@
 * @description
 * The Portfolio module.
 *
+* @requires firebase
 * @requires ngAnimate
 * @requires ngMaterial
 * @requires ngMdIcons
@@ -12,9 +13,10 @@
 * @requires StockSlider
 **/
 angular.module('Portfolio', [
-	'ngAnimate',
-	'ngMaterial',
-	'ngMdIcons',
-	'AddNewStock',
-	'StockSlider'
+    'firebase',
+    'ngAnimate',
+    'ngMaterial',
+    'ngMdIcons',
+    'AddNewStock',
+    'StockSlider'
 ]);
