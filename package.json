@@ -73,7 +73,8 @@
     "run-sequence": "^1.1.5",
     "vinyl-source-stream": "^1.1.0",
     "vinyl-transform": "^1.0.0",
-    "yahoo-finance": "^0.2.12"
+    "yahoo-finance": "^0.2.12",
+    "yahoo-finance-stream": "^0.1.2"
   },
   "cacheDirectories": [
     "node_modules"
