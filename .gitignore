@@ -7,3 +7,5 @@ docs
 env.json
 
 *.log
+
+.tsdrc
