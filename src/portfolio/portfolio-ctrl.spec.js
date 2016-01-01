@@ -1,32 +1,29 @@
 describe('PortfolioCtrl', function () {
-    var ctrl, $scope, $controller, getPortfolioSpy;
+    var ctrl, createController, getPortfolioSpy;
 
     beforeEach(function () {
         module('Portfolio');
     });
 
-    var startController = function () {
-        ctrl = $controller('PortfolioCtrl', { $scope: $scope });
-    };
-
-    beforeEach(inject(function (_$controller_, $rootScope, PortfolioService, AuthenticationService) {
-        $scope = $rootScope.$new();
-        $controller = _$controller_;
+    beforeEach(inject(function ($controller, $rootScope, PortfolioService, AuthenticationService) {
         spyOn(AuthenticationService, 'getUserID').and.returnValue(0);
         getPortfolioSpy = spyOn(PortfolioService, 'getPortfolio').and.returnValue({
             $loaded: function (callback) { callback(); }
         });
+        createController = function () {
+            ctrl = $controller('PortfolioCtrl', { $scope: $rootScope.$new() });
+        };
     }));
 
     describe('it hooks into services', function () {
         it('calls the getPortfolio function', function () {
             expect(getPortfolioSpy).not.toHaveBeenCalled();
-            startController();
+            createController();
             expect(getPortfolioSpy).toHaveBeenCalled();
         });
 
         it('sets the controller functions after getPortfolio resolves', function () {
-            startController();
+            createController();
             expect(ctrl.isLoaded).toBeTruthy();
             expect(_.isFunction(ctrl.updateStock)).toBeTruthy();
             expect(_.isFunction(ctrl.deleteStock)).toBeTruthy();
