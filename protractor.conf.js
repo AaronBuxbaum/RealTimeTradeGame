@@ -6,7 +6,6 @@ exports.config = {
         'name': 'Radian build #{process.env.TRAVIS_BUILD_NUMBER}'
     },
     framework: 'jasmine',
-    baseUrl: 'http://localhost:' + (process.env.PORT || 8080),
     sauceUser: process.env.SAUCE_USERNAME,
     sauceKey: process.env.SAUCE_ACCESS_KEY,
     specs: ['e2e-tests/**/*.spec.js'],
