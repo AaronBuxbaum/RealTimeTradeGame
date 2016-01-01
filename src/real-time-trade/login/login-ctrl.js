@@ -7,7 +7,9 @@
 * @requires $mdDialog
 **/
 angular.module('Login').controller('LoginCtrl', function ($mdDialog) {
-    $mdDialog.show({
+    var ctrl = this;
+
+    ctrl.dialog = $mdDialog.show({
         controller: function (AuthenticationService) {
             var ctrl = this;
             ctrl.logIn = AuthenticationService.logIn;
