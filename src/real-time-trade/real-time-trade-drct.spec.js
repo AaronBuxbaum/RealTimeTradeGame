@@ -1,12 +1,12 @@
-describe('Ticker', function () {
+describe('RealTimeTrade', function () {
     var $scope, elem;
 
-    beforeEach(module('Ticker'));
+    beforeEach(module('RealTimeTrade'));
     beforeEach(module('Templates'));
 
     beforeEach(inject(function ($compile, $rootScope) {
         $scope = $rootScope.$new();
-        elem = $compile('<ticker></ticker>')($scope);
+        elem = $compile('<real-time-trade></real-time-trade>')($scope);
         $scope.$digest();
     }));
 
