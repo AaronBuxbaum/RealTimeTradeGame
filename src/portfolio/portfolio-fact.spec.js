@@ -1,12 +1,13 @@
 describe('PortfolioService', function () {
-    var svc;
+    var svc, $mdDialog;
 
     beforeEach(function () {
         module('Portfolio');
     });
 
-    beforeEach(inject(function (_PortfolioService_) {
+    beforeEach(inject(function (_PortfolioService_, _$mdDialog_) {
         svc = _PortfolioService_;
+        $mdDialog = _$mdDialog_;
         
         //Mock out the firebase array
         svc.portfolio = [{ symbol: 'AAPL', percentage: '40' }];
@@ -60,6 +61,14 @@ describe('PortfolioService', function () {
     describe('deleteStock', function () {
         it('should have an deleteStock function', function () {
             expect(_.isFunction(svc.deleteStock)).toBeTruthy();
+        });
+
+        it('should call into the dialog service', function () {
+            spyOn($mdDialog, 'confirm').and.callThrough();
+            spyOn($mdDialog, 'show').and.callThrough();
+            svc.deleteStock();
+            expect($mdDialog.confirm).toHaveBeenCalled();
+            expect($mdDialog.show).toHaveBeenCalled();
         });
     });
 
