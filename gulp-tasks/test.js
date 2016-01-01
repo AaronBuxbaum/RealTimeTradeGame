@@ -2,7 +2,6 @@
 var gulp = require('gulp');
 var karma = require('karma');
 var protractor = require('gulp-angular-protractor');
-var runSequence = require('run-sequence');
 
 gulp.task('test', ['unit-tests', 'e2e-tests']);
 
