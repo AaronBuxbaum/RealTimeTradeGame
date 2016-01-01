@@ -2,6 +2,10 @@ describe('log in interface', function () {
   var dialog = element(by.tagName('md-dialog'));
   var buttons = element(by.tagName('md-dialog-actions')).all(by.tagName('button'));
 
+  beforeEach(function() {
+    browser.get('http://localhost:8000');
+  });
+
   it('should allow you to log in', function () {
     var logIn = buttons.first();
 
