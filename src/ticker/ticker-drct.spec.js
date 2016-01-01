@@ -4,13 +4,23 @@ describe('Ticker', function () {
     beforeEach(module('Ticker'));
     beforeEach(module('Templates'));
 
-    beforeEach(inject(function ($compile, $rootScope) {
+    beforeEach(inject(function ($compile, $httpBackend, $rootScope, AuthenticationService) {
+        AuthenticationService.auth.data = {
+            uid: 'AAA'
+        };
+
+        $httpBackend.whenGET('json.js').respond({
+            'chart-options': {
+                'chart': {}
+            }
+        });
+
         $scope = $rootScope.$new();
         elem = $compile('<ticker></ticker>')($scope);
         $scope.$digest();
     }));
 
-    xdescribe('initialization', function () {
+    describe('initialization', function () {
         it('creates the element', function () {
             expect(elem).toBeDefined();
         });
