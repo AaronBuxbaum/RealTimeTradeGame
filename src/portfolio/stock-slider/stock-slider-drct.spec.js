@@ -1,12 +1,12 @@
-describe('AddNewStock', function () {
+describe('StockSlider', function () {
     var $scope, elem;
 
-    beforeEach(module('AddNewStock'));
+    beforeEach(module('StockSlider'));
     beforeEach(module('Templates'));
 
     beforeEach(inject(function ($compile, $rootScope) {
         $scope = $rootScope.$new();
-        elem = $compile('<add-new-stock></add-new-stock>')($scope);
+        elem = $compile('<stock-slider name="TEST" percentage="50"></stock-slider>')($scope);
         $scope.$digest();
     }));
 

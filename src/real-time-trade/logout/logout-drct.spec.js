@@ -1,12 +1,12 @@
-describe('AddNewStock', function () {
+describe('Logout', function () {
     var $scope, elem;
 
-    beforeEach(module('AddNewStock'));
+    beforeEach(module('Logout'));
     beforeEach(module('Templates'));
 
     beforeEach(inject(function ($compile, $rootScope) {
         $scope = $rootScope.$new();
-        elem = $compile('<add-new-stock></add-new-stock>')($scope);
+        elem = $compile('<logout></logout>')($scope);
         $scope.$digest();
     }));
 
