@@ -10,7 +10,7 @@ describe('Ticker', function () {
         $scope.$digest();
     }));
 
-    describe('initialization', function () {
+    xdescribe('initialization', function () {
         it('creates the element', function () {
             expect(elem).toBeDefined();
         });
