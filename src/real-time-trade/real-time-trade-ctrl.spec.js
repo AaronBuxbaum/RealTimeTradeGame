@@ -10,8 +10,4 @@ describe('RealTimeTradeCtrl', function () {
             $scope: $rootScope.$new()
         });
     }));
-
-    it('should run this test', function () {
-        expect(1 + 1).toBe(2);
-    });
 });
