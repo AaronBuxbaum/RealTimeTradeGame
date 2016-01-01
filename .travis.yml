@@ -7,7 +7,8 @@ before_install:
 before_script:
 - gulp build
 - node_modules/protractor/bin/webdriver-manager update
-- curl https://gist.github.com/santiycr/5139565/raw/sauce_connect_setup.sh | bash
+- python -m SimpleHTTPServer &
+- sleep 2
 script: gulp test
 after_success:
 - cat coverage/*/lcov.info | ./node_modules/coveralls/bin/coveralls.js
