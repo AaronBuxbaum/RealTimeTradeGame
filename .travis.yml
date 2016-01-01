@@ -16,5 +16,3 @@ notifications:
   email: false
 addons:
   sauce_connect: true
-  hosts:
-    myself
