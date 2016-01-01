@@ -7,7 +7,7 @@ before_install:
 before_script:
 - gulp build
 - node_modules/protractor/bin/webdriver-manager update
-- python -m SimpleHTTPServer &
+- python -m SimpleHTTPServer 8081 &
 - sleep 2
 script: gulp test
 after_success:
