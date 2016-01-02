@@ -18,7 +18,7 @@ describe('TickerCtrl', function () {
         } };
 
         AuthenticationService.auth.data = {
-            uid: 'AAA'
+            uid: 'AAAAA'
         };
         
         $httpBackend.whenGET('json.js').respond({
