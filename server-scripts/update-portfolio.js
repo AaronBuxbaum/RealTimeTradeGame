@@ -24,12 +24,13 @@ stocks.watch('AAPL');
 stocks.watch('AAPL');
 stocks.on('data', function (stock) {
     console.log(stock);
+    console.log(_.keys(stock));
 });
 
 //Watch for changes in portfolios
-portfoliosRef.on('child_changed', function (child) {
+//portfoliosRef.on('child_changed', function (child) {
     //console.log(child.val());
-});
+//});
 
 /*** TESTING ENDS ***/
 
