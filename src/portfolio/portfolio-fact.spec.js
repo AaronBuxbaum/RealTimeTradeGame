@@ -1,18 +1,20 @@
 describe('PortfolioService', function () {
-    var svc, $mdDialog;
+    var svc, $mdDialog, $q;
 
     beforeEach(function () {
         module('Portfolio');
     });
 
-    beforeEach(inject(function (_PortfolioService_, _$mdDialog_) {
+    beforeEach(inject(function (_PortfolioService_, _$q_, _$mdDialog_) {
         svc = _PortfolioService_;
         $mdDialog = _$mdDialog_;
+        $q = _$q_;
         
         //Mock out the firebase array
         svc.portfolio = [{ symbol: 'AAPL', percentage: '40' }];
         svc.portfolio.$add = _.noop;
         svc.portfolio.$save = _.noop;
+        svc.portfolio.$remove = _.noop;
     }));
 
     describe('getPortfolio', function () {
@@ -64,10 +66,8 @@ describe('PortfolioService', function () {
         });
 
         it('should call into the dialog service', function () {
-            spyOn($mdDialog, 'confirm').and.callThrough();
-            spyOn($mdDialog, 'show').and.callThrough();
-            svc.deleteStock();
-            expect($mdDialog.confirm).toHaveBeenCalled();
+            spyOn($mdDialog, 'show').and.returnValue($q.when());
+            expect(svc.deleteStock()).toBeUndefined();
             expect($mdDialog.show).toHaveBeenCalled();
         });
     });
