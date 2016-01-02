@@ -15,6 +15,9 @@ describe('AboutDialogCtrl', function () {
     describe('initialization', function () {
         it('has a closeDialog function', function () {
             expect(_.isFunction(ctrl.closeDialog)).toBeTruthy();
+            spyOn($mdDialog, 'hide');
+            ctrl.closeDialog();
+            expect($mdDialog.hide).toHaveBeenCalled();
         });
 
         it('has an array of developers', function () {
