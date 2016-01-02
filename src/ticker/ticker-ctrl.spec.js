@@ -21,7 +21,8 @@ describe('TickerCtrl', function () {
                 redraw: function () { },
                 addSeries: function () {
                     return {
-                        setData: function () { }
+                        setData: function () { },
+                        addPoint: function () { }
                     }
                 },
                 drawSeries: function () { }
@@ -48,6 +49,16 @@ describe('TickerCtrl', function () {
         it('creates the chart', function () {
             createController();
             expect(_.isObject(ctrl.chart)).toBeTruthy();
+        });
+    });
+
+    describe('updating', function () {
+        it('it updates when new children are added', function () {
+            createController();
+            spyOn(ctrl, 'renderChart');
+            ctrl.ref.push({ TEST: 'HELLO' });
+            ctrl.ref.flush();
+            expect(ctrl.renderChart).toHaveBeenCalled();
         });
     });
 });
