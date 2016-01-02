@@ -39,7 +39,7 @@ angular.module('Authentication').factory('AuthenticationService', function ($tim
 
   //Sign up
   svc.signUp = function (email, password) {
-    svc.auth.$createUser({
+    return svc.auth.$createUser({
       email: email,
       password: password
     })
