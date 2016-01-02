@@ -2,7 +2,7 @@ describe('AboutDialogCtrl', function () {
     var ctrl, $mdDialog;
 
     beforeEach(function () {
-        module('About');
+        module('RealTimeTrade.About');
     });
 
     beforeEach(inject(function ($controller, $rootScope, _$mdDialog_) {

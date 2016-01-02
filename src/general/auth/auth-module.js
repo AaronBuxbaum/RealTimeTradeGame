@@ -1,12 +1,12 @@
 /**
 * @ngdoc overview
-* @name Authentication
+* @name RealTimeTrade.Authentication
 *
 * @description
 * The Authentication module.
 *
 * @requires firebase
 **/
-angular.module('Authentication', [
+angular.module('RealTimeTrade.Authentication', [
 	'firebase'
 ]);

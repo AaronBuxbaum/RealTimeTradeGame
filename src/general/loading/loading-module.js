@@ -1,12 +1,12 @@
 /**
 * @ngdoc overview
-* @name Loading
+* @name RealTimeTrade.Loading
 *
 * @description
 * The Loading module.
 *
 * @requires ngMaterial
 **/
-angular.module('Loading', [
+angular.module('RealTimeTrade.Loading', [
 	'ngMaterial'
 ]);

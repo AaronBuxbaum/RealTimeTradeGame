@@ -1,13 +1,13 @@
 /**
 * @ngdoc controller
-* @name About.controller:AboutCtrl
+* @name RealTimeTrade.About.controller:AboutCtrl
 *
 * @description
 * Controller for the About dialog.
 *
 * @requires $mdDialog
 **/
-angular.module('About').controller('AboutCtrl', function ($mdDialog) {
+angular.module('RealTimeTrade.About').controller('AboutCtrl', function ($mdDialog) {
     var ctrl = this;
 
     /**

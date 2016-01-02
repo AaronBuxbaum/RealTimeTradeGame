@@ -1,14 +1,14 @@
 /**
 * @ngdoc overview
-* @name AddNewStock
+* @name RealTimeTrade.AddNewStock
 *
 * @description
 * The AddNewStock module.
 *
 * @requires ngMaterial
-* @requires Portfolio
+* @requires RealTimeTrade.Portfolio
 **/
-angular.module('AddNewStock', [
-	'ngMaterial',
-	'Portfolio'
+angular.module('RealTimeTrade.AddNewStock', [
+    'ngMaterial',
+    'RealTimeTrade.Portfolio'
 ]);

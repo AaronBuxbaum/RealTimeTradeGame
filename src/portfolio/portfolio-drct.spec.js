@@ -1,7 +1,7 @@
 describe('Portfolio', function () {
     var $scope, elem;
 
-    beforeEach(module('Portfolio'));
+    beforeEach(module('RealTimeTrade.Portfolio'));
     beforeEach(module('Templates'));
 
     beforeEach(inject(function ($compile, $rootScope, $httpBackend, AuthenticationService) {

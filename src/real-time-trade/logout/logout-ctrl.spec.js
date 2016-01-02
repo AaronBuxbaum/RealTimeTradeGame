@@ -2,7 +2,7 @@ describe('LogoutCtrl', function () {
   var ctrl, scope, AuthenticationService;
 
   beforeEach(function () {
-    module('Logout');
+    module('RealTimeTrade.Logout');
   });
 
   beforeEach(inject(function ($controller, $rootScope, _AuthenticationService_) {

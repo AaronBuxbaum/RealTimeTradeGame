@@ -1,14 +1,14 @@
 /**
 * @ngdoc overview
-* @name StockSlider
+* @name RealTimeTrade.StockSlider
 *
 * @description
 * The StockSlider module.
 *
 * @requires ngMaterial
-* @requires Portfolio
+* @requires RealTimeTrade.Portfolio
 **/
-angular.module('StockSlider', [
+angular.module('RealTimeTrade.StockSlider', [
 	'ngMaterial',
-	'Portfolio'
+	'RealTimeTrade.Portfolio'
 ]);

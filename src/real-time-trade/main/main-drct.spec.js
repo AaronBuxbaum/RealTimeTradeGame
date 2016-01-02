@@ -1,7 +1,7 @@
 describe('Main', function () {
     var $scope, elem;
 
-    beforeEach(module('Main'));
+    beforeEach(module('RealTimeTrade.Main'));
     beforeEach(module('Templates'));
 
     beforeEach(inject(function ($compile, $rootScope, $httpBackend, AuthenticationService) {

@@ -1,6 +1,6 @@
 /**
 * @ngdoc directive
-* @name Logout.directive:logout
+* @name RealTimeTrade.Logout.directive:logout
 * @restrict E
 * @element logout
 * @scope
@@ -8,7 +8,7 @@
 * @description
 * A logout button that deauthorizes the user.
 **/
-angular.module('Logout').directive('logout', function () {
+angular.module('RealTimeTrade.Logout').directive('logout', function () {
 	return {
 		restrict: 'E',
 		templateUrl: 'real-time-trade/logout/logout.html',

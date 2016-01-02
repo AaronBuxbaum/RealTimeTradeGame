@@ -1,6 +1,6 @@
 /**
 * @ngdoc overview
-* @name Portfolio
+* @name RealTimeTrade.Portfolio
 *
 * @description
 * The Portfolio module.
@@ -9,15 +9,16 @@
 * @requires ngAnimate
 * @requires ngMaterial
 * @requires ngMdIcons
-* @requires AddNewStock
-* @requires StockSlider
+* @requires RealTimeTrade.Authentication
+* @requires RealTimeTrade.AddNewStock
+* @requires RealTimeTrade.StockSlider
 **/
-angular.module('Portfolio', [
+angular.module('RealTimeTrade.Portfolio', [
     'firebase',
     'ngAnimate',
     'ngMaterial',
     'ngMdIcons',
-    'Authentication',
-    'AddNewStock',
-    'StockSlider'
+    'RealTimeTrade.Authentication',
+    'RealTimeTrade.AddNewStock',
+    'RealTimeTrade.StockSlider'
 ]);

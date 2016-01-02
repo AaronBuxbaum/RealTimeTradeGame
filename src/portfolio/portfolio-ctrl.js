@@ -1,13 +1,13 @@
 /**
 * @ngdoc controller
-* @name Portfolio.controller:PortfolioCtrl
+* @name RealTimeTrade.Portfolio.controller:PortfolioCtrl
 *
 * @description
 *
 * @requires AuthenticationService
 * @requires PortfolioService
 **/
-angular.module('Portfolio').controller('PortfolioCtrl', function (AuthenticationService, PortfolioService) {
+angular.module('RealTimeTrade.Portfolio').controller('PortfolioCtrl', function (AuthenticationService, PortfolioService) {
     var ctrl = this;
 
     //Get portfolio

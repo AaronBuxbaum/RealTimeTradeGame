@@ -1,8 +1,8 @@
 /**
 * @ngdoc controller
-* @name Main.controller:MainCtrl
+* @name RealTimeTrade.Main.controller:MainCtrl
 *
 * @description
 **/
-angular.module('Main').controller('MainCtrl', function () {
+angular.module('RealTimeTrade.Main').controller('MainCtrl', function () {
 });

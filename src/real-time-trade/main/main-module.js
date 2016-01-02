@@ -1,20 +1,18 @@
 /**
 * @ngdoc overview
-* @name Main
+* @name RealTimeTrade.Main
 *
 * @description
 * The Main module.
 *
 * @requires ngMaterial
-* @requires Ticker
-* @requires Portfolio
-* @requires CreateLeague
-* @requires League
-* @requires Logout
+* @requires RealTimeTrade.Ticker
+* @requires RealTimeTrade.Portfolio
+* @requires RealTimeTrade.Logout
 **/
-angular.module('Main', [
+angular.module('RealTimeTrade.Main', [
 	'ngMaterial',
-	'Ticker',
-	'Portfolio',
-	'Logout'
+	'RealTimeTrade.Ticker',
+	'RealTimeTrade.Portfolio',
+	'RealTimeTrade.Logout'
 ]);

@@ -2,7 +2,7 @@ describe('TickerCtrl', function () {
     var ctrl, createController, $httpBackend;
 
     beforeEach(function () {
-        module('mock.firebase', 'Ticker');
+        module('mock.firebase', 'RealTimeTrade.Ticker');
     });
 
     beforeEach(inject(function ($rootScope, $controller, _$httpBackend_, AuthenticationService) {

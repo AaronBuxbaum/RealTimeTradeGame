@@ -1,12 +1,12 @@
 /**
 * @ngdoc overview
-* @name About
+* @name RealTimeTrade.About
 *
 * @description
 * The About module.
 *
 * @requires ngMaterial
 **/
-angular.module('About', [
+angular.module('RealTimeTrade.About', [
 	'ngMaterial'
 ]);

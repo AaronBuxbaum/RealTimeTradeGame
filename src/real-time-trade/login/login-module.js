@@ -1,14 +1,14 @@
 /**
 * @ngdoc overview
-* @name Login
+* @name RealTimeTrade.Login
 *
 * @description
 * The Login module.
 *
 * @requires ngMaterial
-* @requires Authentication
+* @requires RealTimeTrade.Authentication
 **/
-angular.module('Login', [
+angular.module('RealTimeTrade.Login', [
 	'ngMaterial',
-	'Authentication'
+	'RealTimeTrade.Authentication'
 ]);

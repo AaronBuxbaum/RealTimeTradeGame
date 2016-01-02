@@ -1,12 +1,12 @@
 /**
 * @ngdoc controller
-* @name Logout.controller:LogoutCtrl
+* @name RealTimeTrade.Logout.controller:LogoutCtrl
 *
 * @description
 *
 * @requires AuthenticationService
 **/
-angular.module('Logout').controller('LogoutCtrl', function (AuthenticationService) {
+angular.module('RealTimeTrade.Logout').controller('LogoutCtrl', function (AuthenticationService) {
     var ctrl = this;
     
     ctrl.logOut = AuthenticationService.logOut;

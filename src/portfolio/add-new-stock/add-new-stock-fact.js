@@ -1,4 +1,4 @@
-angular.module('AddNewStock').factory('AddNewStockService', function ($http, $q) {
+angular.module('RealTimeTrade.AddNewStock').factory('AddNewStockService', function ($http, $q) {
   var svc = this;
 
   svc.getStocks = function (query) {

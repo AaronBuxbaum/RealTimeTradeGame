@@ -6,9 +6,9 @@
 * The Logout module.
 *
 * @requires ngMaterial
-* @requires Authentication
+* @requires RealTimeTrade.Authentication
 **/
-angular.module('Logout', [
+angular.module('RealTimeTrade.Logout', [
 	'ngMaterial',
-	'Authentication'
+	'RealTimeTrade.Authentication'
 ]);

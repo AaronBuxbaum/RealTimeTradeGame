@@ -1,6 +1,6 @@
 /**
 * @ngdoc controller
-* @name Ticker.controller:TickerCtrl
+* @name RealTimeTrade.Ticker.controller:TickerCtrl
 *
 * @description
 *
@@ -8,7 +8,7 @@
 * @requires $http
 * @requires AuthenticationService
 **/
-angular.module('Ticker').controller('TickerCtrl', function ($q, $http, AuthenticationService) {
+angular.module('RealTimeTrade.Ticker').controller('TickerCtrl', function ($q, $http, AuthenticationService) {
   var ctrl = this;
   var auth = AuthenticationService.auth.data;
   ctrl.ref = new Firebase('https://realtimetrade.firebaseio.com').child('series').child(auth.uid);

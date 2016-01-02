@@ -1,18 +1,18 @@
 /**
 * @ngdoc overview
-* @name Ticker
+* @name RealTimeTrade.Ticker
 *
 * @description
 * The Ticker module.
 *
 * @requires ngMaterial
 * @requires angularMoment
-* @requires Authentication
+* @requires RealTimeTrade.Authentication
 **/
-angular.module('Ticker', [
+angular.module('RealTimeTrade.Ticker', [
   'ngMaterial',
   'angularMoment',
-  'Authentication'
+  'RealTimeTrade.Authentication'
 ])
   .config(function () {
     //Set global timezone to EST

@@ -1,13 +1,13 @@
 /**
 * @ngdoc controller
-* @name About.controller:AboutDialogCtrl
+* @name RealTimeTrade.About.controller:AboutDialogCtrl
 *
 * @description
 * Controller for the About dialog, internally.
 *
 * @requires $mdDialog
 **/
-angular.module('About').controller('AboutDialogCtrl', function ($mdDialog) {
+angular.module('RealTimeTrade.About').controller('AboutDialogCtrl', function ($mdDialog) {
     var ctrl = this;
 
     ctrl.closeDialog = $mdDialog.hide;

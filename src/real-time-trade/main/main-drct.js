@@ -1,6 +1,6 @@
 /**
 * @ngdoc directive
-* @name Main.directive:main
+* @name RealTimeTrade.Main.directive:main
 * @restrict E
 * @element main
 * @scope
@@ -8,7 +8,7 @@
 * @description
 * The main directive.
 **/
-angular.module('Main').directive('main', function () {
+angular.module('RealTimeTrade.Main').directive('main', function () {
 	return {
 		restrict: 'E',
 		templateUrl: 'real-time-trade/main/main.html',

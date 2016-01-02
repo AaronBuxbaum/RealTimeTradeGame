@@ -1,13 +1,13 @@
 /**
 * @ngdoc directive
-* @name Portfolio.directive:portfolio
+* @name RealTimeTrade.Portfolio.directive:portfolio
 * @restrict E
 * @element portfolio
 * @scope
 *
 * @description
 **/
-angular.module('Portfolio').directive('portfolio', function () {
+angular.module('RealTimeTrade.Portfolio').directive('portfolio', function () {
 	return {
 		restrict: 'E',
 		templateUrl: 'portfolio/portfolio.html',

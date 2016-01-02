@@ -2,7 +2,7 @@ describe('AuthenticationService', function () {
     var svc, $q, $rootScope;
 
     beforeEach(function () {
-        module('Authentication');
+        module('RealTimeTrade.Authentication');
     });
 
     beforeEach(inject(function (_AuthenticationService_, _$q_, _$rootScope_) {

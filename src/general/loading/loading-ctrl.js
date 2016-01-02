@@ -1,12 +1,12 @@
 /**
 * @ngdoc controller
-* @name Loading.controller:LoadingCtrl
+* @name RealTimeTrade.Loading.controller:LoadingCtrl
 *
 * @description
 *
 * @requires $mdDialog
 **/
-angular.module('Loading').controller('LoadingCtrl', function ($mdDialog) {
+angular.module('RealTimeTrade.Loading').controller('LoadingCtrl', function ($mdDialog) {
     $mdDialog.show({
         templateUrl: 'general/loading/loading.html',
         escapeToClose: false

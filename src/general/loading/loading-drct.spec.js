@@ -1,7 +1,7 @@
 describe('Loading', function () {
     var $scope, elem, $mdDialog;
 
-    beforeEach(module('Loading'));
+    beforeEach(module('RealTimeTrade.Loading'));
     beforeEach(module('Templates'));
 
     beforeEach(inject(function ($compile, $rootScope, _$mdDialog_) {

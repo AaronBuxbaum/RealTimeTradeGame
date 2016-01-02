@@ -1,7 +1,7 @@
 describe('Ticker', function () {
     var $scope, elem;
 
-    beforeEach(module('Ticker'));
+    beforeEach(module('RealTimeTrade.Ticker'));
     beforeEach(module('Templates'));
 
     beforeEach(inject(function ($compile, $httpBackend, $rootScope, AuthenticationService) {

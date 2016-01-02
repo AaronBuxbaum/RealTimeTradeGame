@@ -1,4 +1,4 @@
-angular.module('Portfolio').factory('PortfolioService', function ($firebaseArray, $mdDialog) {
+angular.module('RealTimeTrade.Portfolio').factory('PortfolioService', function ($firebaseArray, $mdDialog) {
   var svc = this;
   svc.portfolio;
 

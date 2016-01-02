@@ -1,13 +1,13 @@
 /**
 * @ngdoc directive
-* @name AddNewStock.directive:addNewStock
+* @name RealTimeTrade.AddNewStock.directive:addNewStock
 * @restrict E
 * @element add-new-stock
 * @scope
 *
 * @description
 **/
-angular.module('AddNewStock').directive('addNewStock', function () {
+angular.module('RealTimeTrade.AddNewStock').directive('addNewStock', function () {
 	return {
 		restrict: 'E',
 		templateUrl: 'portfolio/add-new-stock/add-new-stock.html',

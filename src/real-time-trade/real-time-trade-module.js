@@ -15,10 +15,10 @@
 **/
 angular.module('RealTimeTrade', [
 	'ngMaterial',
-	'Login',
-	'Loading',
-	'Main',
-	'About',
-	'Authentication',
+	'RealTimeTrade.Login',
+	'RealTimeTrade.Loading',
+	'RealTimeTrade.Main',
+	'RealTimeTrade.About',
+	'RealTimeTrade.Authentication',
 	'Templates'
 ]);

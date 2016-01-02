@@ -1,7 +1,7 @@
 describe('AddNewStock', function () {
     var $scope, elem;
 
-    beforeEach(module('AddNewStock'));
+    beforeEach(module('RealTimeTrade.AddNewStock'));
     beforeEach(module('Templates'));
 
     beforeEach(inject(function ($compile, $rootScope) {
