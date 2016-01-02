@@ -10,7 +10,10 @@
 angular.module('RealTimeTrade.About').controller('AboutDialogCtrl', function ($mdDialog) {
     var ctrl = this;
 
-    ctrl.closeDialog = $mdDialog.hide;
+    ctrl.closeDialog = function () {
+        $mdDialog.hide();
+    };
+
     ctrl.developers = [
         {
             name: 'Aaron Buxbaum',
