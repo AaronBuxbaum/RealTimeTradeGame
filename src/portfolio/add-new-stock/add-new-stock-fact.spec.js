@@ -13,7 +13,7 @@ describe('AddNewStockService', function () {
     describe('getStocks', function () {
         beforeEach(function () {
             $httpBackend
-                .when('GET', '//d.yimg.com/aq/autoc?lang=en-US&query=F&region=US')
+                .when('JSONP', '//d.yimg.com/aq/autoc?callback=JSON_CALLBACK&lang=en-US&query=F&region=US')
                 .respond({
                     ResultSet: {
                         Result: [
@@ -45,7 +45,7 @@ describe('AddNewStockService', function () {
         it('should call into yahoo images', function () {
             svc.getStocks('F');
             $httpBackend.flush();
-            $httpBackend.expectGET('//d.yimg.com/aq/autoc?lang=en-US&query=F&region=US');
+            $httpBackend.expectJSONP('//d.yimg.com/aq/autoc?callback=JSON_CALLBACK&lang=en-US&query=F&region=US');
         });
 
         it('should filter out the results', function () {

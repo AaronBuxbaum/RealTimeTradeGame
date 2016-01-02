@@ -3,12 +3,13 @@ angular.module('AddNewStock').factory('AddNewStockService', function ($http, $q)
 
   svc.getStocks = function (query) {
     return $http({
-      method: 'GET',
+      method: 'JSONP',
       url: '//d.yimg.com/aq/autoc',
       params: {
         query: query,
         region: 'US',
-        lang: 'en-US'
+        lang: 'en-US',
+        callback: 'JSON_CALLBACK'
       },
       cache: true
     }).then(function (response) {
