@@ -1,4 +1,4 @@
-describe('portfolio interface', function () {
+xdescribe('portfolio interface', function () {
     var tabs = element(by.tagName('md-tab'));
 
     beforeEach(function () {
