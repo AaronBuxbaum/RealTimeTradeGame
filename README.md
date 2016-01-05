@@ -42,6 +42,7 @@ RealTimeTradeGame uses [Protractor](http://angular.github.io/protractor) for end
 If you wish to contribute, keep the following in mind:
 
 1. Write Karma unit tests for any new functionality.
-2. Ensure that all of the files for tests are included in `karma.conf.js`.
-3. Run the tests such that they all pass.
-4. Submit a pull request to the GitHub repository.
+2. If applicable, write Protractor end-to-end tests for visual additions.
+3. Run the tests (`gulp test`) such that they all pass.
+4. Check the coverage report. Test coverage should _not_ be less than the master branch.
+5. Submit a pull request to the GitHub repository.
