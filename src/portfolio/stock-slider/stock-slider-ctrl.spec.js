@@ -2,7 +2,7 @@ describe('StockSliderCtrl', function () {
     var ctrl, createController;
 
     beforeEach(function () {
-        module('RealTimeTrade.StockSlider');
+        module('RealTimeTrade.Portfolio');
     });
 
     beforeEach(inject(function ($controller, $rootScope) {

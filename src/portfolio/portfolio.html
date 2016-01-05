@@ -14,7 +14,7 @@
 
     <!-- Stock sliders -->
     <div ng-repeat="stock in ctrl.portfolio" ng-init="stockIndex = $index" class="fade">
-      <stock-slider name="{{stock.name}}" ng-model="stock.percentage" ng-change="ctrl.updateStock(stock)">
+      <stock-slider name="{{stock.name}}" ng-model="stock.percentage" ng-change="ctrl.updateStock(stock)" symbol="{{stock.symbol}}">
         <ng-md-icon icon="delete" class="delete-icon" ng-click="ctrl.deleteStock($event, stockIndex)"></ng-md-icon>
       </stock-slider>
     </div>

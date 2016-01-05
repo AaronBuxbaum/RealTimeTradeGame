@@ -1,13 +1,13 @@
 /**
 * @ngdoc directive
-* @name RealTimeTrade.StockSlider.directive:stockSlider
+* @name RealTimeTrade.Portfolio.directive:stockSlider
 * @restrict E
 * @element stock-slider
 * @scope
 *
 * @description
 **/
-angular.module('RealTimeTrade.StockSlider').directive('stockSlider', function () {
+angular.module('RealTimeTrade.Portfolio').directive('stockSlider', function () {
 	return {
 		restrict: 'E',
 		templateUrl: 'portfolio/stock-slider/stock-slider.html',
@@ -19,6 +19,7 @@ angular.module('RealTimeTrade.StockSlider').directive('stockSlider', function ()
 		scope: {
 			name: '@',
 			percentage: '=ngModel',
+            symbol: '@?',
 			ngChange: '=?'
 		}
 	};

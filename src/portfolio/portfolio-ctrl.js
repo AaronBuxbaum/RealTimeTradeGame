@@ -5,9 +5,10 @@
 * @description
 *
 * @requires AuthenticationService
+* @requires ChartService
 * @requires PortfolioService
 **/
-angular.module('RealTimeTrade.Portfolio').controller('PortfolioCtrl', function (AuthenticationService, PortfolioService) {
+angular.module('RealTimeTrade.Portfolio').controller('PortfolioCtrl', function (AuthenticationService, ChartService, PortfolioService) {
     var ctrl = this;
 
     //Get portfolio

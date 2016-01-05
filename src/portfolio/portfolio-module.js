@@ -10,8 +10,7 @@
 * @requires ngMaterial
 * @requires ngMdIcons
 * @requires RealTimeTrade.Authentication
-* @requires RealTimeTrade.AddNewStock
-* @requires RealTimeTrade.StockSlider
+* @requires RealTimeTrade.Chart
 **/
 angular.module('RealTimeTrade.Portfolio', [
     'firebase',
@@ -19,6 +18,5 @@ angular.module('RealTimeTrade.Portfolio', [
     'ngMaterial',
     'ngMdIcons',
     'RealTimeTrade.Authentication',
-    'RealTimeTrade.AddNewStock',
-    'RealTimeTrade.StockSlider'
+    'RealTimeTrade.Chart'
 ]);
