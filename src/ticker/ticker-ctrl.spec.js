@@ -1,5 +1,5 @@
 describe('TickerCtrl', function () {
-    var ctrl, createController, $httpBackend;
+    var ctrl, createController, $httpBackend, line;
 
     beforeEach(function () {
         module('mock.firebase', 'RealTimeTrade.Ticker');
@@ -10,9 +10,13 @@ describe('TickerCtrl', function () {
 
         createController = function () {
             ctrl = $controller('TickerCtrl', { $scope: $rootScope.$new() });
+            ctrl.ref.set(['TEST']);
+            ctrl.ref.flush();
             $httpBackend.flush();
             ctrl.ref.flush();
         };
+
+        line = jasmine.createSpy('line');
 
         Highcharts.StockChart = function () {
             return {
@@ -21,7 +25,7 @@ describe('TickerCtrl', function () {
                 redraw: function () { },
                 addSeries: function () {
                     return {
-                        setData: function () { },
+                        setData: line,
                         addPoint: function () { }
                     }
                 },
@@ -50,12 +54,18 @@ describe('TickerCtrl', function () {
             createController();
             expect(_.isObject(ctrl.chart)).toBeTruthy();
         });
+
+        it('sets the initial data', function () {
+            createController();
+            expect(line).toHaveBeenCalledWith(['TEST']);
+        });
     });
 
     describe('updating', function () {
         it('it updates when new children are added', function () {
             createController();
             spyOn(ctrl, 'renderChart');
+            expect(ctrl.renderChart).not.toHaveBeenCalled();
             ctrl.ref.push({ TEST: 'HELLO' });
             ctrl.ref.flush();
             expect(ctrl.renderChart).toHaveBeenCalled();

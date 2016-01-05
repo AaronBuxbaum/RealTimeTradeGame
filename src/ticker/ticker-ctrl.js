@@ -16,7 +16,9 @@ angular.module('RealTimeTrade.Ticker').controller('TickerCtrl', function ($q, $h
   //Get lines for each player in active league
   $http.get('json.js')
     .then(setUpChart)
-    .then(ctrl.ref.orderByChild('0').once('value', renderUser));
+    .then(function () {
+        ctrl.ref.once('value', renderUser)
+    });
 
   //Set up the chart
   function setUpChart(json) {
