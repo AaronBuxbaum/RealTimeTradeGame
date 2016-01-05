@@ -1,8 +1,7 @@
 describe('Login', function () {
     var $scope, elem, $mdDialog;
 
-    beforeEach(module('RealTimeTrade.Login'));
-    beforeEach(module('Templates'));
+    beforeEach(module('RealTimeTrade.Login', 'Templates'));
 
     beforeEach(inject(function ($compile, $rootScope, _$mdDialog_) {
         $scope = $rootScope.$new();

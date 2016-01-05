@@ -1,8 +1,7 @@
 describe('Logout', function () {
     var $scope, elem;
 
-    beforeEach(module('RealTimeTrade.Logout'));
-    beforeEach(module('Templates'));
+    beforeEach(module('RealTimeTrade.Logout', 'Templates'));
 
     beforeEach(inject(function ($compile, $rootScope) {
         $scope = $rootScope.$new();
