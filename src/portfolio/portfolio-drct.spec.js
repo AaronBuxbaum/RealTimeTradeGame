@@ -1,14 +1,13 @@
 describe('Portfolio', function () {
     var $scope, elem;
 
-    beforeEach(module('RealTimeTrade.Portfolio'));
-    beforeEach(module('Templates'));
+    beforeEach(module('RealTimeTrade.Portfolio', 'Templates'));
 
     beforeEach(inject(function ($compile, $rootScope, $httpBackend, AuthenticationService) {
         AuthenticationService.auth.data = {
             uid: 'AAA'
         };
-        spyOn(AuthenticationService, 'getUserID').and.returnValue(0);
+        spyOn(AuthenticationService, 'getUserID').and.returnValue('1');
 
         $httpBackend.whenGET('json.js').respond({
             'chart-options': {

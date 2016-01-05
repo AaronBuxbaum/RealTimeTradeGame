@@ -2,8 +2,8 @@
 angular.module('RealTimeTrade.Authentication').factory('AuthenticationService', function ($timeout, $firebaseAuth, $firebaseObject) {
   var svc = this;
 
-  var ref = new Firebase('https://realtimetrade.firebaseio.com');
-  svc.auth = $firebaseAuth(ref);
+  svc.ref = new Firebase('https://realtimetrade.firebaseio.com');
+  svc.auth = $firebaseAuth(svc.ref);
 
   //Get signed in user ID (or null if not signed in)
   svc.getUserID = function () {
@@ -11,7 +11,7 @@ angular.module('RealTimeTrade.Authentication').factory('AuthenticationService', 
   };
 	
   //Watch for changes in the authentication state
-  svc.auth.$onAuth(function (authData) {
+  svc.ref.onAuth(function (authData) {
     svc.auth.data = authData;
   });
 
@@ -44,7 +44,7 @@ angular.module('RealTimeTrade.Authentication').factory('AuthenticationService', 
       password: password
     })
       .then(function (response) {
-        var user = ref.child('users').child(response.uid);
+        var user = svc.ref.child('users').child(response.uid);
         var newUser = $firebaseObject(user);
         newUser.uid = response.uid;
         newUser.name = response.uid;

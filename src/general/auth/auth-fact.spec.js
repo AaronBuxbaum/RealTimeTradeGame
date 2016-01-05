@@ -2,7 +2,7 @@ describe('AuthenticationService', function () {
     var svc, $q, $rootScope;
 
     beforeEach(function () {
-        module('RealTimeTrade.Authentication');
+        module('mock.firebase', 'RealTimeTrade.Authentication');
     });
 
     beforeEach(inject(function (_AuthenticationService_, _$q_, _$rootScope_) {
@@ -10,6 +10,15 @@ describe('AuthenticationService', function () {
         $q = _$q_;
         $rootScope = _$rootScope_;
     }));
+
+    describe('onAuth', function () {
+        it('calls the onAuth function on a change of authentication', function () {
+            expect(svc.auth.data).toBeNull();
+            svc.ref.changeAuthState({});
+            svc.ref.flush();
+            expect(svc.auth.data).not.toBeNull();
+        });
+    });
 
     describe('getUserID', function () {
         it('has a getUserID function', function () {
