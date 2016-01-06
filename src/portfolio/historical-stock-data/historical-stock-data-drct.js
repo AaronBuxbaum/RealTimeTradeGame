@@ -16,6 +16,37 @@ angular.module('RealTimeTrade.Portfolio').directive('historicalStockData', funct
         bindToController: true,
         scope: {
             symbol: '@'
+        },
+        link: function (scope, element, attrs, ctrl) {
+            var chartOptions = {
+                chart: {
+                    renderTo: element.find('DIV')[0],
+                    style: {
+                        fontFamily: [
+                            'Roboto',
+                            'Helvetica Neue',
+                            'sans-serif'
+                        ]
+                    }
+                },
+                credits: {
+                    enabled: false
+                },
+                navigator: false,
+                rangeSelector: false,
+                series: [],
+                scrollbar : {
+                    enabled : false
+                },
+                xAxis: {
+                    visible: false
+                },
+                yAxis: {
+                    visible: false
+                }
+            };
+            ctrl.chart = new Highcharts.StockChart(chartOptions);
+            ctrl.chart.showLoading();
         }
     };
 });

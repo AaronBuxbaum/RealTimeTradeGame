@@ -10,8 +10,12 @@ angular.module('RealTimeTrade.Portfolio').controller('HistoricalStockDataCtrl', 
     var ctrl = this;
 
     if (_.isString(ctrl.symbol) && ctrl.symbol.length && ctrl.symbol.length < 5) {
-        ChartService.getHistoricalStockValues(ctrl.symbol).then(function (data) {
-            ctrl.data = data;
-        });
+        ChartService.getHistoricalStockValues(ctrl.symbol)
+            .then(function (chartData) {
+                ctrl.chart.addSeries({data: chartData});
+            })
+            .finally(function() {
+                ctrl.chart.hideLoading(); 
+            });
     }
 });
