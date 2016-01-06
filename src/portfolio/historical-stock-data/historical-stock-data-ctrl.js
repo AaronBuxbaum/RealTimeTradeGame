@@ -16,6 +16,7 @@ angular.module('RealTimeTrade.Portfolio').controller('HistoricalStockDataCtrl', 
             })
             .finally(function() {
                 ctrl.chart.hideLoading(); 
+                ctrl.chart.reflow();
             });
     }
 });

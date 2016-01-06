@@ -10,16 +10,17 @@
 angular.module('RealTimeTrade.Portfolio').directive('historicalStockData', function () {
     return {
         restrict: 'E',
-        templateUrl: 'portfolio/historical-stock-data/historical-stock-data.html',
         controller: 'HistoricalStockDataCtrl',
         controllerAs: 'ctrl',
         bindToController: true,
         scope: {
             symbol: '@'
         },
+        template: '<div></div>',
         link: function (scope, element, attrs, ctrl) {
             var chartOptions = {
                 chart: {
+                    height: 50,
                     renderTo: element.find('DIV')[0],
                     style: {
                         fontFamily: [
