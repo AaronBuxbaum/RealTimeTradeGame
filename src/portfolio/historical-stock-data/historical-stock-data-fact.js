@@ -1,5 +1,4 @@
-
-angular.module('RealTimeTrade.Chart').factory('ChartService', function ($http) {
+angular.module('RealTimeTrade.Portfolio').factory('HistoricalStockDataService', function ($http) {
     var svc = this;
 
     //Get historical stock values

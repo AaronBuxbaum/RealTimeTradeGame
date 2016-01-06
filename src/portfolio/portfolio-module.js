@@ -10,13 +10,11 @@
 * @requires ngMaterial
 * @requires ngMdIcons
 * @requires RealTimeTrade.Authentication
-* @requires RealTimeTrade.Chart
 **/
 angular.module('RealTimeTrade.Portfolio', [
     'firebase',
     'ngAnimate',
     'ngMaterial',
     'ngMdIcons',
-    'RealTimeTrade.Authentication',
-    'RealTimeTrade.Chart'
+    'RealTimeTrade.Authentication'
 ]);
