@@ -3,7 +3,9 @@ describe('authentication interface', function () {
     var buttons = element(by.tagName('md-dialog-actions')).all(by.tagName('button'));
 
     beforeEach(function () {
-        browser.addMockModule('mock.firebase');
+        browser.addMockModule('firebase', function () {
+            angular.module('firebase', ['mock.firebase']);
+        });
         browser.get('http://localhost:8000');
     });
 
