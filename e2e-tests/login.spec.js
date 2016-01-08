@@ -27,7 +27,7 @@ describe('authentication interface', function () {
         expect(dialog.isPresent()).toBe(false);
 
         //Log Out
-        element.all(by.tagName('md-tab-item')).last.click();
+        element.all(by.tagName('md-tab-item')).last().click();
         element(by.buttonText('Log Out')).click();
         expect(dialog.isPresent()).toBe(true);
     });
