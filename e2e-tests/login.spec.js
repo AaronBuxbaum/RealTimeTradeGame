@@ -30,7 +30,7 @@ describe('authentication interface', function () {
         var logOutTab = element.all(by.tagName('md-tab-item')).last();
         expect(logOutTab.getText()).toEqual('LOG OUT');
         logOutTab.click();
-        element(by.buttonText('Log Out')).click();
-        //expect(dialog.isPresent()).toBe(true);
+        element(by.buttonText('LOG OUT')).click();
+        expect(dialog.isPresent()).toBe(true);
     });
 });
