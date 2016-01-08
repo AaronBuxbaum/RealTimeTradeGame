@@ -28,7 +28,7 @@ describe('authentication interface', function () {
 
         //Log Out
         var logOutTab = element.all(by.tagName('md-tab-item')).last();
-        expect(logOutTab.getText()).toEqual('Log Out');
+        expect(logOutTab.getText()).toEqual('LOG OUT');
         logOutTab.click();
         element(by.buttonText('Log Out')).click();
         //expect(dialog.isPresent()).toBe(true);
