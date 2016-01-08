@@ -1,5 +1,6 @@
 exports.config = {
-    allScriptsTimeout: 30000,
+    allScriptsTimeout: 60000,
+    getPageTimeout: 60000,
     capabilities: {
         'browserName': 'chrome',
         'tunnel-identifier': process.env.TRAVIS_JOB_NUMBER,
