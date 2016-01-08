@@ -16,7 +16,7 @@ describe('authentication interface', function () {
         expect(dialog.isPresent()).toBe(true);
 
         //Fail for non-existant account
-        element(by.model('ctrl.email')).sendKeys('@example.com');
+        element(by.model('ctrl.email')).sendKeys('@EXAMMMPLE.com');
         logIn.click();
         expect(dialog.isPresent()).toBe(true);
     
