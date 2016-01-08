@@ -2,6 +2,8 @@ describe('authentication interface', function () {
     var dialog = element(by.tagName('md-dialog'));
     var buttons = element(by.tagName('md-dialog-actions')).all(by.tagName('button'));
 
+    beforeEach(module('mock.firebase'));
+
     beforeEach(function () {
         browser.get('http://localhost:8000');
     });
@@ -30,7 +32,7 @@ describe('authentication interface', function () {
         var logOutTab = element.all(by.tagName('md-tab-item')).last();
         expect(logOutTab.getText()).toEqual('LOG OUT');
         logOutTab.click();
-        element(by.buttonText('LOG OUT')).click();
+        element(by.buttonText('Log Out')).click();
         expect(dialog.isPresent()).toBe(true);
     });
 });
