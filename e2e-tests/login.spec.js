@@ -3,7 +3,7 @@ describe('authentication interface', function () {
     var buttons = element(by.tagName('md-dialog-actions')).all(by.tagName('button'));
 
     beforeEach(function () {
-        //jasmine.DEFAULT_TIMEOUT_INTERVAL = 1000 * 60; //10 seconds is way too short
+        jasmine.DEFAULT_TIMEOUT_INTERVAL = 1000 * 60; //10 seconds is way too short
         browser.get('http://localhost:8000');
     });
 
@@ -26,9 +26,6 @@ describe('authentication interface', function () {
         element(by.model('ctrl.password')).sendKeys('a');
         logIn.click();
         expect(dialog.isPresent()).toBe(false);
-        
-        //Wait for page to finish loading
-        browser.waitForAngular();
 
         //Log Out
         var logOutTab = element.all(by.tagName('md-tab-item')).last();
