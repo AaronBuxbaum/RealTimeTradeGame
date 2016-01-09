@@ -2,11 +2,10 @@ describe('authentication interface', function () {
     var dialog = element(by.tagName('md-dialog'));
     var buttons = element(by.tagName('md-dialog-actions')).all(by.tagName('button'));
 
-    beforeEach(inject(function () {
+    beforeEach(function () {
         jasmine.DEFAULT_TIMEOUT_INTERVAL = 999999;
-
         browser.get('http://localhost:8000');
-    }));
+    });
 
     it('should allow you to authenticate in and out', function () {
         var logIn = buttons.first();
