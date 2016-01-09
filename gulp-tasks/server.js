@@ -17,7 +17,7 @@ gulp.task('server', function () {
 //Just host files
 gulp.task('host', function () {
     var port = process.env.PORT || 8000;
-    server = gls.static('build', port);
+    server = gls.static(['build', 'node_modules/mockfirebase/browser/mockfirebase.js'], port);
 
     require('connect-livereload')();
     server.start();
