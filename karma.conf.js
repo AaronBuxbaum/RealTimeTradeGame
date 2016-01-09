@@ -16,9 +16,10 @@ module.exports = function (config) {
             'karma-jasmine',
             'karma-phantomjs-launcher',
             'karma-coverage',
-            'karma-coveralls'
+            'karma-coveralls',
+            'karma-sauce-launcher'
         ],
-        reporters: ['progress', 'coverage', 'coveralls'],
+        reporters: ['dots', 'saucelabs', 'coverage', 'coveralls'],
         preprocessors: {
             'src/**/*.js': ['coverage']
         },
@@ -26,6 +27,9 @@ module.exports = function (config) {
         coverageReporter: {
             type: 'lcov',
             dir: 'coverage/'
-        }
+        },
+        sauceLabs: true,
+        sauceUser: process.env.SAUCE_USERNAME,
+        sauceKey: process.env.SAUCE_ACCESS_KEY,
     });
 };
