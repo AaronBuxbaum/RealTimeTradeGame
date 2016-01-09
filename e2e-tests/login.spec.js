@@ -3,6 +3,7 @@ describe('authentication interface', function () {
     var buttons = element(by.tagName('md-dialog-actions')).all(by.tagName('button'));
 
     beforeEach(function () {
+        window.jasmine.DEFAULT_TIMEOUT_INTERVAL = 60000;
         browser.get('http://localhost:8000');
     });
 
@@ -30,7 +31,8 @@ describe('authentication interface', function () {
         var logOutTab = element.all(by.tagName('md-tab-item')).last();
         expect(logOutTab.getText()).toEqual('LOG OUT');
         logOutTab.click();
-        element(by.buttonText('Log Out')).click();
-        expect(dialog.isPresent()).toBe(true);
+        var logOutButton = element(by.buttonText('Log Out'));
+        expect(logOutButton.isPresent()).toBeTruthy();
+        logOutButton.click();
     });
 });
