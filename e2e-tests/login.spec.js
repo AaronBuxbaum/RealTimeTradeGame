@@ -26,9 +26,6 @@ describe('authentication interface', function () {
         element(by.model('ctrl.password')).sendKeys('a');
         logIn.click();
         expect(dialog.isPresent()).toBe(false);
-        
-        //Wait for loading -- should never be longer than 10 seconds
-        browser.driver.sleep(10000);
 
         //Log Out
         var logOutTab = element.all(by.tagName('md-tab-item')).last();
