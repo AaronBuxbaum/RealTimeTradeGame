@@ -11,7 +11,12 @@ exports.config = {
     sauceUser: process.env.SAUCE_USERNAME,
     sauceKey: process.env.SAUCE_ACCESS_KEY,
     specs: ['e2e-tests/**/*.spec.js'],
-    onPrepare: function () { },
+    onPrepare: function () {
+        var proxyquire = require('proxyquire');
+        var mySrc = proxyquire('./mySrc', {
+            firebase: require('mockfirebase').MockFirebase.autoFlush()
+        });
+    },
     jasmineNodeOpts: {
         defaultTimeoutInterval: 60000
     }
