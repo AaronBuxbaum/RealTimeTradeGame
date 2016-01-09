@@ -27,26 +27,26 @@ describe('HistoricalStockDataCtrl', function () {
             createController();
             createController(3);
             createController('');
-            createController({ symbol: 'AAPL' });
-            createController('AAAPL');
+            createController({ symbol: 'GOOGL' });
+            createController('GOOGLE');
             expect(HistoricalStockDataService.getHistoricalStockValues).not.toHaveBeenCalled();
 
-            createController('AAPL');
+            createController('GOOGL');
             expect(HistoricalStockDataService.getHistoricalStockValues).toHaveBeenCalled();
         });
 
         it('sets some chart data on success', function () {
             spyOn(HistoricalStockDataService, 'getHistoricalStockValues').and.returnValue($q.when(['1']));
 
-            createController('AAPL');
+            createController('GOOG');
             $rootScope.$apply();
-            expect(ctrl.chart.addSeries).toHaveBeenCalledWith(({ name: 'AAPL', data: ['1'] }));
+            expect(ctrl.chart.addSeries).toHaveBeenCalledWith(({ name: 'GOOG', data: ['1'] }));
         });
 
         it('cleans itself up regardless of success or failure', function () {
             spyOn(HistoricalStockDataService, 'getHistoricalStockValues').and.returnValue($q.reject());
 
-            createController('AAPL');
+            createController('GOOG');
             $rootScope.$apply();
             expect(ctrl.chart.hideLoading).toHaveBeenCalled();
             expect(ctrl.chart.reflow).toHaveBeenCalled();
