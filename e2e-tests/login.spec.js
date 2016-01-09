@@ -3,9 +3,6 @@ describe('authentication interface', function () {
     var buttons = element(by.tagName('md-dialog-actions')).all(by.tagName('button'));
 
     beforeEach(function () {
-        browser.addMockModule('mockFirebase', function () {
-            angular.module('mockFirebase', ['mock.firebase']);
-        });
         browser.get('http://localhost:8000');
     });
 
@@ -28,6 +25,9 @@ describe('authentication interface', function () {
         element(by.model('ctrl.password')).sendKeys('a');
         logIn.click();
         expect(dialog.isPresent()).toBe(false);
+        
+        //Wait for loading -- should never be longer than 10 seconds
+        browser.driver.sleep(10000);
 
         //Log Out
         var logOutTab = element.all(by.tagName('md-tab-item')).last();
