@@ -6,12 +6,12 @@
 * The RealTimeTrade module.
 *
 * @requires ngMaterial
-* @requires Login
-* @requires Loading
-* @requires Main
-* @requires About
-* @requires Authentication
-* @requires Templates
+* @requires RealTimeTrade.Login
+* @requires RealTimeTrade.Loading
+* @requires RealTimeTrade.Main
+* @requires RealTimeTrade.About
+* @requires RealTimeTrade.Authentication
+* @requires RealTimeTrade.Templates
 **/
 angular.module('RealTimeTrade', [
 	'ngMaterial',
