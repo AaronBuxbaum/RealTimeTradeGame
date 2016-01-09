@@ -20,5 +20,5 @@ angular.module('RealTimeTrade', [
 	'RealTimeTrade.Main',
 	'RealTimeTrade.About',
 	'RealTimeTrade.Authentication',
-	'Templates'
+	'RealTimeTrade.Templates'
 ]);

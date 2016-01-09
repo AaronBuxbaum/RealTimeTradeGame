@@ -77,7 +77,7 @@ gulp.task('concat-app-html', function () {
   return gulp
     .src(g.SRC + '**/*.html')
     .pipe(ngHtml2Js({
-      moduleName: 'Templates'
+      moduleName: 'RealTimeTrade.Templates'
     }))
     .pipe(concat('templates.js'))
     .pipe(gulp.dest(g.BUILD));

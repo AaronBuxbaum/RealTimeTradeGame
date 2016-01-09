@@ -1,7 +1,7 @@
 describe('StockSlider', function () {
     var $scope, elem;
 
-    beforeEach(module('RealTimeTrade.Portfolio', 'Templates'));
+    beforeEach(module('RealTimeTrade.Portfolio', 'RealTimeTrade.Templates'));
 
     beforeEach(inject(function ($compile, $rootScope) {
         $scope = $rootScope.$new();
