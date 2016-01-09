@@ -1,6 +1,5 @@
 describe('portfolio interface', function () {
     beforeEach(function () {
-        jasmine.DEFAULT_TIMEOUT_INTERVAL = 1000 * 60; //10 seconds is way too short
         browser.get('http://localhost:8000');
         element.all(by.tagName('md-tab-item')).get(1).click();
     });
