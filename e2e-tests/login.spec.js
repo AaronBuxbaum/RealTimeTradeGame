@@ -3,7 +3,9 @@ describe('authentication interface', function () {
     var buttons = element(by.tagName('md-dialog-actions')).all(by.tagName('button'));
 
     beforeEach(function () {
-        window.jasmine.DEFAULT_TIMEOUT_INTERVAL = 60000;
+        browser.addMockModule('mockFirebase', function () {
+            angular.module('mockFirebase', ['mock.firebase']);
+        });
         browser.get('http://localhost:8000');
     });
 
