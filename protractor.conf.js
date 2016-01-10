@@ -11,11 +11,9 @@ exports.config = {
     sauceUser: process.env.SAUCE_USERNAME,
     sauceKey: process.env.SAUCE_ACCESS_KEY,
     specs: ['e2e-tests/**/*.spec.js'],
-    onPrepare: function () {
-        var MockFirebase = require('mockfirebase').MockFirebase;
-        MockFirebase.override();
-    },
+    onPrepare: function () { },
     jasmineNodeOpts: {
         defaultTimeoutInterval: 60000
-    }
+    },
+    restartBrowserBetweenTests: true
 };
