@@ -20,7 +20,7 @@ exports.config = {
 
         var dialog = element(by.tagName('md-dialog'));
         return browser.driver.wait(function () {
-            return dialog.isPresent();
+            return !dialog.isPresent();
         }, 10000);
     },
     onCleanUp: function () {
