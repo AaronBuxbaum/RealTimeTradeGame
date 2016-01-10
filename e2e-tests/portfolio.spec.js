@@ -15,7 +15,7 @@ describe('portfolio interface', function () {
     it('adds a stock', function () {
         element(by.buttonText('Add Stock')).click();
         element(by.tagName('md-autocomplete')).element(by.tagName('input')).sendKeys('Apple');
-        driver.wait(until.elementLocated(by.binding('ctrl.unescape(item.name)')), 3000);
+        browser.wait(element(by.binding('ctrl.unescape(item.name)')).isPresent);
         element(by.tagName('md-autocomplete')).element(by.tagName('input')).sendKeys(protractor.Key.ENTER);
         element(by.buttonText('Confirm')).click();
 
