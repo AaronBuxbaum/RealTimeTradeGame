@@ -12,11 +12,20 @@ exports.config = {
     sauceKey: process.env.SAUCE_ACCESS_KEY,
     specs: ['e2e-tests/**/*.spec.js'],
     onPrepare: function () {
-        browser.manage().deleteAllCookies();
         browser.get('http://localhost:8000');
+
         element(by.model('ctrl.email')).sendKeys('a@a.com');
         element(by.model('ctrl.password')).sendKeys('a');
-        element(by.tagName('md-dialog-actions')).all(by.tagName('button')).first().click();
+        element(by.buttonText('Log In')).click();
+
+        var dialog = element(by.tagName('md-dialog'));
+        return browser.driver.wait(function () {
+            return dialog.isPresent();
+        }, 10000);
+    },
+    onCleanUp: function () {
+        //browser.manage().deleteAllCookies();
+        browser.driver.manage().deleteAllCookies();
     },
     jasmineNodeOpts: {
         defaultTimeoutInterval: 60000
