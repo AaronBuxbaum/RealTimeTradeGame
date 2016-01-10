@@ -25,10 +25,6 @@ exports.config = {
             });
         }, 10000);
     },
-    onCleanUp: function () {
-        //browser.manage().deleteAllCookies();
-        browser.driver.manage().deleteAllCookies();
-    },
     jasmineNodeOpts: {
         defaultTimeoutInterval: 60000
     }
