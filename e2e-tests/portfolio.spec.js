@@ -18,9 +18,8 @@ describe('portfolio interface', function () {
         browser.actions().sendKeys(protractor.Key.ENTER).perform();
         element(by.buttonText('Confirm')).click();
 
-        var addedStock = element(by.repeater('stock in ctrl.portfolio').row(0));
-        expect(addedStock.column('stock.name').getText()).toEqual('Apple Inc.');
-        expect(addedStock.column('stock.percentage').getText()).toEqual('0');
+        var addedStock = element(by.repeater('stock in ctrl.portfolio').row(0).column('stock.name'));
+        expect(addedStock.getText()).toEqual('Apple Inc.');
     });
 
     it('updates the percentage', function () {
