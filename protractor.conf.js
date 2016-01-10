@@ -12,8 +12,8 @@ exports.config = {
     sauceKey: process.env.SAUCE_ACCESS_KEY,
     specs: ['e2e-tests/**/*.spec.js'],
     onPrepare: function () {
-        var MockFirebase = require('mockfirebase');
-        MockFirebase.MockFirebase.override();
+        var MockFirebase = require('mockfirebase').MockFirebase;
+        MockFirebase.override();
     },
     jasmineNodeOpts: {
         defaultTimeoutInterval: 60000
