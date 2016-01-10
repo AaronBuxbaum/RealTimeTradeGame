@@ -22,7 +22,7 @@ exports.config = {
         return browser.driver.wait(function () {
             return dialog.isPresent().then(function (present) {
                 return !present;
-            })
+            });
         }, 10000);
     },
     onCleanUp: function () {

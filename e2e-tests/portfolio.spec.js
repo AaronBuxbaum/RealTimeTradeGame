@@ -1,5 +1,6 @@
 describe('portfolio interface', function () {
     beforeEach(function () {
+        browser.get('http://localhost:8000');
         element.all(by.tagName('md-tab-item')).get(1).click();
     });
 
