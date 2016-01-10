@@ -28,10 +28,13 @@ describe('portfolio interface', function () {
     });
 
     it('updates the stock\'s percentage', function () {
+        var percentage = element(by.binding('ctrl.getMax(0)'));
+        expect(percentage.getText()).toEqual('100%');
+
         var slider = element(by.model('ctrl.percentage'));
-        expect(slider.getAttribute('ng-model')).toEqual(0);
         browser.actions().dragAndDrop(slider, { x: 100, y: 0 }).perform();
-        expect(slider.getAttribute('ng-model')).not.toEqual(0);
+
+        expect(percentage.getText()).not.toEqual('100%');
     });
 
     it('removes that stock', function () {
