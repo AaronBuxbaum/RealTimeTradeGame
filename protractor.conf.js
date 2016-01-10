@@ -12,7 +12,7 @@ exports.config = {
     sauceKey: process.env.SAUCE_ACCESS_KEY,
     specs: ['e2e-tests/**/*.spec.js'],
     onPrepare: function () {
-        browser.driver.manage().deleteAllCookies();
+        browser.manage().deleteAllCookies();
         browser.get('http://localhost:8000');
         element(by.model('ctrl.email')).sendKeys('a@a.com');
         element(by.model('ctrl.password')).sendKeys('a');
