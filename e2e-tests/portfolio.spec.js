@@ -4,15 +4,15 @@ describe('portfolio interface', function () {
         element.all(by.tagName('md-tab-item')).get(1).click();
     });
 
-    it('should navigate to an empty portfolio page', function () {
+    it('runs through the basic stock functions', function () {
+        //navigate to the portfolio page
         var nothingHereText = element(by.cssContainingText('.md-title', "Looks like there's nothing here yet!"));
         expect(nothingHereText.isPresent()).toBeTruthy();
         var hundredPercent = element(by.binding('ctrl.getMax(0)'));
         expect(hundredPercent.isPresent()).toBeTruthy();
         expect(hundredPercent.getText()).toEqual('100%');
-    });
-
-    it('adds a stock', function () {
+        
+        //add a stock
         element(by.buttonText('Add Stock')).click();
         element(by.tagName('md-autocomplete')).element(by.tagName('input')).sendKeys('Apple');
 
@@ -25,9 +25,8 @@ describe('portfolio interface', function () {
 
         var stockSlider = element(by.tagName('stock-slider'));
         expect(stockSlider.getAttribute('name')).toEqual('Apple Inc.');
-    });
-
-    it('updates the stock\'s percentage', function () {
+        
+        //update stock percentage
         var percentage = element(by.binding('ctrl.getMax(0)'));
         expect(percentage.getText()).toEqual('100%');
 
@@ -35,14 +34,13 @@ describe('portfolio interface', function () {
         browser.actions().dragAndDrop(slider, { x: 100, y: 0 }).perform();
 
         expect(percentage.getText()).not.toEqual('100%');
-    });
-
-    it('removes that stock', function () {
+        
+        //delete stock
         element(by.css('.delete-icon')).click();
-        
-        var dialogButton = element(by.tagName('md-dialog-actions')).element(by.tagName('button'));
+
+        var dialogButton = element(by.tagName('md-dialog-actions')).all(by.tagName('button')).last();
         dialogButton.click();
-        
+
         expect(element(by.tagName('stock-slider')).isPresent()).toBeFalsy();
     });
 });
