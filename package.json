@@ -36,6 +36,7 @@
     "coveralls": "^2.11.6",
     "del": "^2.2.0",
     "eslint": "^1.10.3",
+    "fingular": "^0.2.7",
     "firebase": "^2.3.2",
     "firebase-token-generator": "^2.0.0",
     "gulp": "^3.9.0",

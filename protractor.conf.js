@@ -12,15 +12,8 @@ exports.config = {
     sauceKey: process.env.SAUCE_ACCESS_KEY,
     specs: ['e2e-tests/**/*.spec.js'],
     onPrepare: function () {
-        var proxyquire = require('proxyquire');
-        var MockFirebase = require('mockfirebase').MockFirebase;
-        var mock;
-        proxyquire('RealTimeTradeGame', {
-            firebase: function (url) {
-                return (mock = new MockFirebase(url));
-            }
-        });
-        mock.flush();
+        var MockFirebase = require('mockfirebase');
+        MockFirebase.MockFirebase.override();
     },
     jasmineNodeOpts: {
         defaultTimeoutInterval: 60000
