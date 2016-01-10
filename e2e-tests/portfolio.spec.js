@@ -39,6 +39,10 @@ describe('portfolio interface', function () {
 
     it('removes that stock', function () {
         element(by.css('.delete-icon')).click();
+        
+        var dialogButton = element(by.tagName('md-dialog-actions')).element(by.tagName('button'));
+        dialogButton.click();
+        
         expect(element(by.tagName('stock-slider')).isPresent()).toBeFalsy();
     });
 });
