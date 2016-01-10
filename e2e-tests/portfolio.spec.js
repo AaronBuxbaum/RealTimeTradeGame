@@ -27,11 +27,15 @@ describe('portfolio interface', function () {
         expect(stockSlider.getAttribute('name')).toEqual('Apple Inc.');
     });
 
-    it('updates the percentage', function () {
-
+    it('updates the stock\'s percentage', function () {
+        var slider = element(by.model('ctrl.percentage'));
+        expect(slider.getAttribute('ng-model')).toEqual(0);
+        browser.actions().dragAndDrop(slider, { x: 100, y: 0 }).perform();
+        expect(slider.getAttribute('ng-model')).not.toEqual(0);
     });
 
-    it('removes a stock', function () {
-
+    it('removes that stock', function () {
+        element(by.css('.delete-icon')).click();
+        expect(element(by.tagName('stock-slider')).isPresent()).toBeFalsy();
     });
 });
