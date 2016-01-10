@@ -15,7 +15,7 @@ exports.config = {
         var proxyquire = require('proxyquire');
         var MockFirebase = require('mockfirebase').MockFirebase;
         var mock;
-        proxyquire('*', {
+        proxyquire('RealTimeTradeGame', {
             firebase: function (url) {
                 return (mock = new MockFirebase(url));
             }
