@@ -13,9 +13,14 @@ exports.config = {
     specs: ['e2e-tests/**/*.spec.js'],
     onPrepare: function () {
         var proxyquire = require('proxyquire');
-        var mySrc = proxyquire('./mySrc', {
-            firebase: require('mockfirebase').MockFirebase.autoFlush()
+        var MockFirebase = require('mockfirebase').MockFirebase;
+        var mock;
+        proxyquire('*', {
+            firebase: function (url) {
+                return (mock = new MockFirebase(url));
+            }
         });
+        mock.flush();
     },
     jasmineNodeOpts: {
         defaultTimeoutInterval: 60000
