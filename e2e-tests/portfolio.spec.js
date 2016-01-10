@@ -8,8 +8,9 @@ describe('portfolio interface', function () {
         it('should navigate to an empty portfolio page', function () {
             var nothingHereText = element(by.cssContainingText('.md-title', "Looks like there's nothing here yet!"));
             expect(nothingHereText.isPresent()).toBeTruthy();
-            var hundredPercent = element(by.linkText('100%'));
+            var hundredPercent = element(by.binding('ctrl.getMax(0)'));
             expect(hundredPercent.isPresent()).toBeTruthy();
+            expect(hundredPercent.getText()).toEqual('100%');
         });
 
         it('should have an add stock button', function () {
