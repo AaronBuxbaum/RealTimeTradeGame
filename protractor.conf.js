@@ -12,13 +12,6 @@ exports.config = {
     sauceKey: process.env.SAUCE_ACCESS_KEY,
     specs: ['e2e-tests/**/*.spec.js'],
     onPrepare: function () {
-        var disableNgAnimate = function () {
-            angular.module('disableNgAnimate', []).run(['$animate', function ($animate) {
-                $animate.enabled(false);
-            }]);
-        };
-        browser.addMockModule('disableNgAnimate', disableNgAnimate);
-
         browser.get('http://localhost:8000');
 
         element(by.model('ctrl.email')).sendKeys('a@a.com');
