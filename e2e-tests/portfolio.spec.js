@@ -15,7 +15,11 @@ describe('portfolio interface', function () {
     it('adds a stock', function () {
         element(by.buttonText('Add Stock')).click();
         element(by.tagName('md-autocomplete')).element(by.tagName('input')).sendKeys('Apple');
-        browser.wait(element(by.binding('ctrl.unescape(item.name)')).isPresent);
+
+        browser.driver.wait(function () {
+            return element(by.binding('ctrl.unescape(item.name)')).isPresent();
+        }, 3000);
+
         element(by.tagName('md-autocomplete')).element(by.tagName('input')).sendKeys(protractor.Key.ENTER);
         element(by.buttonText('Confirm')).click();
 
