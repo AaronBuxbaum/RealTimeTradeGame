@@ -23,8 +23,8 @@ describe('portfolio interface', function () {
         element(by.tagName('md-autocomplete')).element(by.tagName('input')).sendKeys(protractor.Key.ENTER);
         element(by.buttonText('Confirm')).click();
 
-        var addedStock = element(by.repeater('stock in ctrl.portfolio').row(0).column('stock.name'));
-        expect(addedStock.getText()).toEqual('Apple Inc.');
+        var stockSlider = element(by.tagName('stock-slider'));
+        expect(stockSlider.getAttribute('name')).toEqual('Apple Inc.');
     });
 
     it('updates the percentage', function () {
