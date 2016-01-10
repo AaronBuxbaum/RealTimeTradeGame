@@ -14,8 +14,7 @@ describe('portfolio interface', function () {
 
     it('adds a stock', function () {
         element(by.buttonText('Add Stock')).click();
-        element(by.tagName('md-autocomplete')).sendKeys('Apple');
-        browser.actions().sendKeys(protractor.Key.ENTER).perform();
+        element(by.tagName('md-autocomplete')).element(by.tagName('input')).sendKeys('Apple', protractor.Key.ENTER);
         element(by.buttonText('Confirm')).click();
 
         var addedStock = element(by.repeater('stock in ctrl.portfolio').row(0).column('stock.name'));
