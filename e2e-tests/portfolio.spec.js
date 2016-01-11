@@ -8,9 +8,9 @@ describe('portfolio interface', function () {
         //navigate to the portfolio page
         var nothingHereText = element(by.cssContainingText('.md-title', "Looks like there's nothing here yet!"));
         expect(nothingHereText.isPresent()).toBeTruthy();
-        var hundredPercent = element(by.binding('ctrl.getMax(0)'));
-        expect(hundredPercent.isPresent()).toBeTruthy();
-        expect(hundredPercent.getText()).toEqual('100%');
+        var percentage = element(by.binding('ctrl.getMax(0)'));
+        expect(percentage.isPresent()).toBeTruthy();
+        expect(percentage.getText()).toEqual('100%');
         
         //add a stock
         element(by.buttonText('Add Stock')).click();
@@ -27,7 +27,6 @@ describe('portfolio interface', function () {
         expect(stockSlider.getAttribute('name')).toEqual('Apple Inc.');
         
         //update stock percentage
-        var percentage = element(by.binding('ctrl.getMax(0)'));
         expect(percentage.getText()).toEqual('100%');
 
         var slider = element(by.model('ctrl.percentage'));
