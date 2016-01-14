@@ -41,7 +41,7 @@ angular.module('RealTimeTrade.Portfolio').factory('PortfolioService', function (
   //Find what percentage of the portfolio is unused (int between 0 and 100, inclusive).
   //Optionally tacks on an extra addition number.
   svc.getUnusedPercentage = function (plus) {
-    return 100 - _.sumBy(svc.portfolio, 'percentage') + (plus || 0);
+    return 100 - (_.sumBy(svc.portfolio, 'percentage') || 0) + (plus || 0);
   };
 
   return svc;
