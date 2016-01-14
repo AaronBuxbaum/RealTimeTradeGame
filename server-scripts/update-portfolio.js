@@ -60,7 +60,7 @@ function getPortfolioValue(portfolioRef, previousEarnings, uid) {
         }
 
         //Initialize cash
-        var unusedPercentage = 100 - _.sum(portfolio, 'percentage');
+        var unusedPercentage = 100 - _.sumBy(portfolio, 'percentage');
         var total = previousEarnings * (unusedPercentage / 100);
 
         //Get symbols
