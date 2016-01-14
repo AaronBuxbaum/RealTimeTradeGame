@@ -64,7 +64,7 @@ function getPortfolioValue(portfolioRef, previousEarnings, uid) {
         var total = previousEarnings * (unusedPercentage / 100);
 
         //Get symbols
-        var symbols = _.pluck(_.toArray(portfolio), 'symbol');
+        var symbols = _.map(_.toArray(portfolio), 'symbol');
         if (!symbols.length) {
             symbols = ['F'];
         }
