@@ -24,23 +24,16 @@ angular.module('RealTimeTrade.Main', [
             .state('tabs', {
                 abstract: true,
                 url: '/tabs'
-            })
-            .state('tabs.ticker', {
-                url: '/ticker',
+            });
+
+        var tabs = ['ticker', 'portfolio', 'logOut'];
+
+        _.forEach(tabs, function (state, i) {
+            $stateProvider.state('tabs.' + state, {
+                url: '/' + state,
                 data: {
-                    'selectedTab': 0
-                }
-            })
-            .state('tabs.portfolio', {
-                url: '/portfolio',
-                data: {
-                    'selectedTab': 1
-                }
-            })
-            .state('tabs.logOut', {
-                url: '/logout',
-                data: {
-                    'selectedTab': 2
+                    selectedTab: i
                 }
             });
+        });
     });
