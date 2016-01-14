@@ -9,12 +9,17 @@
 * The main directive.
 **/
 angular.module('RealTimeTrade.Main').directive('main', function () {
-	return {
-		restrict: 'E',
-		templateUrl: 'real-time-trade/main/main.html',
-		controller: 'MainCtrl',
-		controllerAs: 'ctrl',
-		bindToController: true,
-		scope: {}
-	};
+    return {
+        restrict: 'E',
+        templateUrl: 'real-time-trade/main/main.html',
+        controller: 'MainCtrl',
+        controllerAs: 'ctrl',
+        bindToController: true,
+        scope: {},
+        link: function (scope, elem, attrs, ctrl) {
+            scope.$on('$stateChangeSuccess', function (event, toState, toParams, fromState, fromParams) {
+                ctrl.selectedTab = toState.data.selectedTab;
+            });
+        }
+    };
 });

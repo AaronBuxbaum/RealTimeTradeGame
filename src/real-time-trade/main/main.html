@@ -1,11 +1,13 @@
-<md-tabs md-dynamic-height="true">
-	<md-tab label="Ticker">
-		<ticker></ticker>
-	</md-tab>
-	<md-tab label="Portfolio">
-		<portfolio></portfolio>
-	</md-tab>
-	<md-tab label="Log Out">
-		<logout></logout>
-	</md-tab>
+<md-tabs md-dynamic-height="true" md-selected="ctrl.selectedTab">
+    <md-tab label="Ticker" ui-sref="tabs.ticker">
+        <ticker></ticker>
+    </md-tab>
+
+    <md-tab label="Portfolio" ui-sref="tabs.portfolio">
+        <portfolio></portfolio>
+    </md-tab>
+
+    <md-tab label="Log Out" ui-sref="tabs.logOut">
+        <logout></logout>
+    </md-tab>
 </md-tabs>

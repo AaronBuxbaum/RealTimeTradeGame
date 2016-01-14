@@ -12,6 +12,7 @@ require('angular-material');
 require('angular-material-icons');
 require('angular-messages');
 require('angular-mocks');
+require('angular-ui-router');
 require('angularfire');
 require('highstock-release/modules/boost.src.js');
 require('angular-moment');
