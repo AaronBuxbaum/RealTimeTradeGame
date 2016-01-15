@@ -7,22 +7,17 @@ describe('portfolio interface', function () {
     it('runs through the basic stock functions', function () {
         //navigate to the portfolio page
         var nothingHereText = element(by.cssContainingText('.md-title', "Looks like there's nothing here yet!"));
-        expect(nothingHereText.isPresent()).toBeTruthy();
         var percentage = element(by.binding('ctrl.getMax(0)'));
+        driver.wait(nothingHereText.isPresent(), 5000);
         expect(percentage.isPresent()).toBeTruthy();
         expect(percentage.getText()).toEqual('100%');
         
         //add a stock
         element(by.buttonText('Add Stock')).click();
         element(by.tagName('md-autocomplete')).element(by.tagName('input')).sendKeys('Apple');
-
-        browser.driver.wait(function () {
-            return element(by.cssContainingText('.highlight', 'Apple')).isPresent();
-        }, 3000);
-
+        driver.wait(element(by.cssContainingText('.highlight', 'Apple')).isPresent(), 3000);
         element(by.tagName('md-autocomplete')).element(by.tagName('input')).sendKeys(protractor.Key.ENTER);
         element(by.buttonText('Confirm')).click();
-
         var stockSlider = element(by.tagName('stock-slider'));
         expect(stockSlider.getAttribute('name')).toEqual('Apple Inc.');
         
