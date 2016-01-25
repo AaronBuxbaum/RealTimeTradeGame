@@ -3,7 +3,7 @@ describe('authentication interface', function () {
     var buttons = element(by.tagName('md-dialog-actions')).all(by.tagName('button'));
 
     beforeEach(function () {
-        browser.get('http://localhost:8000');
+        browser.get('http://localhost:' + process.env.PORT);
     });
 
     it('should allow you to authenticate out and back in', function () {

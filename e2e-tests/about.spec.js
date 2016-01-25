@@ -1,6 +1,6 @@
 describe('about modal', function () {
     beforeEach(function () {
-        browser.get('http://localhost:8000');
+        browser.get('http://localhost:' + process.env.PORT);
     });
 
     it('opens a modal', function () {
