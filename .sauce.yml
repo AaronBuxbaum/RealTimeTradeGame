@@ -1,4 +1,3 @@
----
-  language: "javascript"
-  framework: "protractor"
-  configPath: "protractor.conf.js"
+--  language: "javascript"
+--  framework: "protractor"
+--  configPath: "protractor.conf.js"
