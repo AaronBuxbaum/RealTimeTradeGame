@@ -16,7 +16,7 @@ angular.module('RealTimeTrade.Main').directive('main', function () {
         controllerAs: 'ctrl',
         bindToController: true,
         scope: {},
-        link: function (scope, elem, attrs, ctrl) {
+        link: function (scope, elem, attrs, ctrl: {selectedTab: string}) {
             scope.$on('$stateChangeSuccess', function (event, toState, toParams, fromState, fromParams) {
                 ctrl.selectedTab = toState.data.selectedTab;
             });
