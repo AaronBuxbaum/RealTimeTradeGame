@@ -21,7 +21,7 @@ gulp.task('ts', function () {
 
 gulp.task('ts-spec', function () {
   return gulp
-    .src('src/**/*.ts')
+    .src('src/**/*.spec.ts')
     .pipe(ts())
     .pipe(gulp.dest('TEST'));
 });
