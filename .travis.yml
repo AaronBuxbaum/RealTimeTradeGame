@@ -7,7 +7,7 @@ before_install:
 before_script:
 - gulp build
 - node_modules/protractor/bin/webdriver-manager update
-script: gulp test
+script: gulp unit-tests
 after_success:
 - cat coverage/*/lcov.info | ./node_modules/coveralls/bin/coveralls.js
 notifications:
