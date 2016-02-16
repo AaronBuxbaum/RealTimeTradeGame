@@ -8,8 +8,8 @@ module.exports = function (config) {
             'node_modules/mockfirebase/browser/mockfirebase.js',
             'build/vendors.js',
             'build/templates.js',
-            'src/**/*-module.js',
-            'src/**/*.js'
+            'TEST/**/*-module.js',
+            'TEST/**/*.js'
         ],
         frameworks: ['jasmine'],
         plugins: [
@@ -21,7 +21,7 @@ module.exports = function (config) {
         ],
         reporters: ['dots', 'saucelabs', 'coverage', 'coveralls'],
         preprocessors: {
-            'src/**/*.js': ['coverage']
+            'TEST/**/*.js': ['coverage']
         },
         singleRun: true,
         coverageReporter: {

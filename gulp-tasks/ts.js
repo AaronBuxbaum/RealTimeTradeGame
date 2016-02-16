@@ -18,3 +18,10 @@ gulp.task('ts', function () {
     .pipe(sourcemaps.write())
     .pipe(gulp.dest(g.BUILD));
 });
+
+gulp.task('ts-spec', function () {
+  return gulp
+    .src('src/**/*.ts')
+    .pipe(ts())
+    .pipe(gulp.dest('TEST'));
+});

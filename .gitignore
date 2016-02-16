@@ -3,6 +3,7 @@ build
 typings
 coverage
 docs
+TEST
 
 env.json
 

@@ -13,10 +13,3 @@ gulp.task('install-npm', function () {
     .src('package.json')
     .pipe(install());
 });
-
-//Install Typescript typings (for Visual Studio)
-gulp.task('install-tsd', function () {
-  return gulp
-    .src('tsd.json')
-    .pipe(install());
-});
