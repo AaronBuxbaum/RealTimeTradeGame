@@ -19,7 +19,7 @@ gulp.task('e2e-tests', function (callback) {
 
 gulp.task('protractor', function () {
   return gulp
-    .src(['./e2e-tests/**/*.js'])
+    .src(['./e2e-tests/**/*.ts'])
     .pipe(protractor({
       configFile: './protractor.conf.js',
       debug: true
