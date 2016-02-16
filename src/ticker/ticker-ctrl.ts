@@ -21,10 +21,10 @@ angular.module('RealTimeTrade.Ticker').controller('TickerCtrl', function ($q, $h
     });
 
   //Set up the chart
-  function setUpChart(json:Object) {
-    var chartOptions = json.data['chart-options'] || json.data['ticker/chart-options'];
+  function setUpChart(json: Object) {
+    var chartOptions: Object = json.data['chart-options'] || json.data['ticker/chart-options'];
     chartOptions.chart.renderTo = $('#stockTicker')[0];
-    ctrl.chart = new Highcharts.StockChart(chartOptions);
+    ctrl.chart: Object = new Highcharts.StockChart(chartOptions);
     ctrl.chart.showLoading();
     ctrl.renderChart = _.debounce(ctrl.chart.redraw, 10000);
     return $q.when();
@@ -35,14 +35,14 @@ angular.module('RealTimeTrade.Ticker').controller('TickerCtrl', function ($q, $h
 
     //Set initial data
     var data = [];
-    seriesData.forEach(function (value:Object) {
+    seriesData.forEach(function (value: Object) {
       data.push(value.val());
     });
     line.setData(data);
     ctrl.chart.hideLoading();
           
     //Update lines as new values come in
-    seriesData.ref().limitToLast(1).on('child_added', function (point:Object) {
+    seriesData.ref().limitToLast(1).on('child_added', function (point: Object) {
       line.addPoint(point.val(), false);
       ctrl.renderChart();
     });
