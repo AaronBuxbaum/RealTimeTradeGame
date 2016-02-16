@@ -21,7 +21,7 @@ function prependNPM(fileNames) {
 
 
 //Concat everything down
-gulp.task('concat', ['concat-json', 'concat-vendor-js', 'concat-vendor-css', 'concat-app-js', 'concat-app-css', 'concat-app-html', 'copy-index']);
+gulp.task('concat', ['concat-json', 'concat-vendor-js', 'concat-vendor-css', 'ts', 'concat-app-css', 'concat-app-html', 'copy-index']);
 
 //Bundle vendor JS files
 gulp.task('concat-vendor-js', function () {
@@ -45,20 +45,6 @@ gulp.task('concat-vendor-css', function () {
   return gulp
     .src(prependNPM(vendorFiles))
     .pipe(concat('vendors.css'))
-    .pipe(gulp.dest(g.BUILD));
-});
-
-//Concat all source files into one file
-gulp.task('concat-app-js', function () {
-  return gulp
-    .src([
-      g.SRC + '**/*-module.js',
-      g.SRC + '**/*.js',
-      '!' + g.SRC + '**/*.spec.js'
-    ])
-    .pipe(sourcemaps.init())
-    .pipe(concat('app.js'))
-    .pipe(sourcemaps.write())
     .pipe(gulp.dest(g.BUILD));
 });
 
