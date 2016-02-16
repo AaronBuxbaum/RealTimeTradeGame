@@ -8,8 +8,8 @@ module.exports = function (config) {
       'node_modules/mockfirebase/browser/mockfirebase.js',
       'build/vendors.js',
       'build/templates.js',
-      'src/**/*-module.ts',
-      'src/**/*.ts'
+      'build/app.js',
+      'src/**/*.spec.ts'
     ],
     frameworks: ['jasmine'],
     plugins: [
@@ -21,7 +21,7 @@ module.exports = function (config) {
     ],
     reporters: ['dots', 'saucelabs', 'coverage', 'coveralls'],
     preprocessors: {
-      'src/**/*.ts': ['typescript', 'coverage']
+      'build/app.js': ['coverage']
     },
     singleRun: true,
     typescriptPreprocessor: {
