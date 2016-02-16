@@ -10,7 +10,7 @@ exports.config = {
     framework: 'jasmine',
     sauceUser: process.env.SAUCE_USERNAME,
     sauceKey: process.env.SAUCE_ACCESS_KEY,
-    specs: ['e2e-tests/**/*.spec.js'],
+    specs: ['e2e-tests/**/*.spec.ts'],
     onPrepare: function () {
         browser.get('http://localhost:' + (process.env.PORT || 8000));
 
