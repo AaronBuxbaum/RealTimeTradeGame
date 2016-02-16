@@ -1,6 +1,5 @@
 var gulp = require('gulp');
 var ts = require('gulp-typescript');
-var concat = require('gulp-concat');
 var sourcemaps = require('gulp-sourcemaps');
 var g = require('./global.json');
 
