@@ -7,5 +7,8 @@
 * @description
 **/
 angular.module('RealTimeTrade').component('historicalStockData', {
-  controller: 'HistoricalStockDataCtrl'
+  controller: 'HistoricalStockDataCtrl',
+  bindings: {
+    symbol: '@'
+  }
 });
