@@ -4,9 +4,10 @@
 *
 * @description
 *
+* @requires $scope
 * @requires $mdDialog
 **/
-angular.module('RealTimeTrade.Login').controller('LoginCtrl', function ($mdDialog) {
+angular.module('RealTimeTrade.Login').controller('LoginCtrl', function ($scope, $mdDialog) {
     var ctrl = this;
 
     ctrl.dialog = $mdDialog.show({
@@ -20,4 +21,8 @@ angular.module('RealTimeTrade.Login').controller('LoginCtrl', function ($mdDialo
         templateUrl: 'real-time-trade/login/login.html',
         escapeToClose: false
     });
+    
+    $scope.$on('$destroy', function () {
+			$mdDialog.hide();
+		});
 });

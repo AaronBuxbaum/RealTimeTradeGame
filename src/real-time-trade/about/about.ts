@@ -1,22 +1,15 @@
 /**
 * @ngdoc directive
-* @name RealTimeTrade.About.directive:about
-* @restrict E
+* @name RealTimeTrade.About.component:about
 * @element about
 * @scope
 *
 * @description
 * A button that opens a dialog with developer information.
 **/
-angular.module('RealTimeTrade.About').directive('about', function () {
-	return {
-		restrict: 'E',
+angular.module('RealTimeTrade.About').component('about', {
 		templateUrl: 'real-time-trade/about/about.html',
-		controller: 'AboutCtrl',
-		controllerAs: 'ctrl',
-		bindToController: true,
-		scope: {}
-	};
+		controller: 'AboutCtrl'
 });
 
 /**
