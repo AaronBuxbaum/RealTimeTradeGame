@@ -1,12 +1,12 @@
 /**
 * @ngdoc component
-* @name RealTimeTrade.Ticker.component:ticker
+* @name RealTimeTrade.component:ticker
 * @element ticker
 * @scope
 *
 * @description
 **/
-angular.module('RealTimeTrade.Ticker').component('ticker', {
+angular.module('RealTimeTrade').component('ticker', {
   templateUrl: 'ticker/ticker.html',
   controller: 'TickerCtrl'
 });

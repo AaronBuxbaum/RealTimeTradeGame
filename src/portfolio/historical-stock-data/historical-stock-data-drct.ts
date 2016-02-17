@@ -1,13 +1,13 @@
 /**
 * @ngdoc directive
-* @name RealTimeTrade.Portfolio.directive:historicalStockData
+* @name RealTimeTrade.directive:historicalStockData
 * @restrict E
 * @element historical-stock-data
 * @scope
 *
 * @description
 **/
-angular.module('RealTimeTrade.Portfolio').directive('historicalStockData', function () {
+angular.module('RealTimeTrade').directive('historicalStockData', function () {
     return {
         restrict: 'E',
         controller: 'HistoricalStockDataCtrl',

@@ -2,7 +2,7 @@ describe('AuthenticationService', function () {
     var svc, $q, $rootScope;
 
     beforeEach(function () {
-        module('mock.firebase', 'RealTimeTrade.Authentication');
+        module('mock.firebase', 'RealTimeTrade');
     });
 
     beforeEach(inject(function (_AuthenticationService_, _$q_, _$rootScope_) {

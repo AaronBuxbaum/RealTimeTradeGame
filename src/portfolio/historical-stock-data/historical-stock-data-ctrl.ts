@@ -1,12 +1,12 @@
 /**
 * @ngdoc controller
-* @name RealTimeTrade.Portfolio.controller:HistoricalStockDataCtrl
+* @name RealTimeTrade.controller:HistoricalStockDataCtrl
 *
 * @description
 *
 * @requires HistoricalStockDataService
 **/
-angular.module('RealTimeTrade.Portfolio').controller('HistoricalStockDataCtrl', function (HistoricalStockDataService) {
+angular.module('RealTimeTrade').controller('HistoricalStockDataCtrl', function (HistoricalStockDataService) {
     var ctrl = this;
     
     ctrl.chartOptions = {

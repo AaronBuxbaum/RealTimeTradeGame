@@ -1,13 +1,13 @@
 /**
 * @ngdoc directive
-* @name RealTimeTrade.About.component:about
+* @name RealTimeTrade.component:about
 * @element about
 * @scope
 *
 * @description
 * A button that opens a dialog with developer information.
 **/
-angular.module('RealTimeTrade.About').component('about', {
+angular.module('RealTimeTrade').component('about', {
 		templateUrl: 'real-time-trade/about/about.html',
 		controller: 'AboutCtrl'
 });

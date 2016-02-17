@@ -2,7 +2,7 @@ describe('AddNewStockService', function () {
     var svc, $httpBackend;
 
     beforeEach(function () {
-        module('RealTimeTrade.Portfolio');
+        module('RealTimeTrade');
     });
 
     beforeEach(inject(function (_AddNewStockService_, _$httpBackend_) {

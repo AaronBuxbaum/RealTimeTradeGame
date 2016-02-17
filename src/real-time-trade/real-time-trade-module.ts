@@ -6,19 +6,17 @@
 * The RealTimeTrade module.
 *
 * @requires ngMaterial
-* @requires RealTimeTrade.Login
-* @requires RealTimeTrade.Loading
-* @requires RealTimeTrade.Main
-* @requires RealTimeTrade.About
-* @requires RealTimeTrade.Authentication
+* @requires ngAnimate
+* @requires ngMdIcons
+* @requires firebase
+* @requires ui.router
 * @requires RealTimeTrade.Templates
 **/
 angular.module('RealTimeTrade', [
 	'ngMaterial',
-	'RealTimeTrade.Login',
-	'RealTimeTrade.Loading',
-	'RealTimeTrade.Main',
-	'RealTimeTrade.About',
-	'RealTimeTrade.Authentication',
+  'ngAnimate',
+  'ngMdIcons',
+  'firebase',
+  'ui.router',
 	'RealTimeTrade.Templates'
 ]);

@@ -1,13 +1,13 @@
 /**
 * @ngdoc directive
-* @name RealTimeTrade.Portfolio.directive:stockSlider
+* @name RealTimeTrade.directive:stockSlider
 * @restrict E
 * @element stock-slider
 * @scope
 *
 * @description
 **/
-angular.module('RealTimeTrade.Portfolio').directive('stockSlider', function () {
+angular.module('RealTimeTrade').directive('stockSlider', function () {
 	return {
 		restrict: 'E',
 		templateUrl: 'portfolio/stock-slider/stock-slider.html',

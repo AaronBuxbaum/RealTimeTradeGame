@@ -2,7 +2,7 @@ describe('HistoricalStockDataCtrl', function () {
     var ctrl, createController, HistoricalStockDataService, $q, $rootScope, chartSpy;
 
     beforeEach(function () {
-        module('RealTimeTrade.Portfolio');
+        module('RealTimeTrade');
     });
 
     beforeEach(inject(function ($controller, _$rootScope_, _$q_, _HistoricalStockDataService_) {

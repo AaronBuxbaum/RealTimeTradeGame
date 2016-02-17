@@ -1,5 +1,5 @@
 
-angular.module('RealTimeTrade.Authentication').factory('AuthenticationService', function ($timeout, $firebaseAuth, $firebaseObject) {
+angular.module('RealTimeTrade').factory('AuthenticationService', function ($timeout, $firebaseAuth, $firebaseObject) {
   var svc = this;
 
   svc.ref = new Firebase('https://realtimetrade.firebaseio.com');

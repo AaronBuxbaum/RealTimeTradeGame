@@ -1,13 +1,13 @@
 /**
 * @ngdoc controller
-* @name RealTimeTrade.Portfolio.controller:AddNewStockCtrl
+* @name RealTimeTrade.controller:AddNewStockCtrl
 *
 * @description
 *
 * @requires PortfolioService
 * @requires AddNewStockService
 **/
-angular.module('RealTimeTrade.Portfolio').controller('AddNewStockCtrl', function (PortfolioService, AddNewStockService) {
+angular.module('RealTimeTrade').controller('AddNewStockCtrl', function (PortfolioService, AddNewStockService) {
     var ctrl = this;
 
     ctrl.getStocks = AddNewStockService.getStocks;

@@ -2,7 +2,7 @@ describe('LoginCtrl', function () {
     var ctrl, createController, $mdDialog;
 
     beforeEach(function () {
-        module('RealTimeTrade.Login');
+        module('RealTimeTrade');
     });
 
     beforeEach(inject(function ($controller, $rootScope, _$mdDialog_) {

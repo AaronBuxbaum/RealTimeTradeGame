@@ -1,13 +1,13 @@
 /**
 * @ngdoc controller
-* @name RealTimeTrade.Login.controller:LoginCtrl
+* @name RealTimeTrade.controller:LoginCtrl
 *
 * @description
 *
 * @requires $scope
 * @requires $mdDialog
 **/
-angular.module('RealTimeTrade.Login').controller('LoginCtrl', function ($scope, $mdDialog) {
+angular.module('RealTimeTrade').controller('LoginCtrl', function ($scope, $mdDialog) {
     var ctrl = this;
 
     ctrl.dialog = $mdDialog.show({
