@@ -4,16 +4,15 @@
 *
 * @description
 *
-* @requires $element
 * @requires HistoricalStockDataService
 **/
-angular.module('RealTimeTrade').controller('HistoricalStockDataCtrl', function ($element, HistoricalStockDataService) {
+angular.module('RealTimeTrade').controller('HistoricalStockDataCtrl', function (HistoricalStockDataService) {
     var ctrl = this;
     
     ctrl.chartOptions = {
         chart: {
             height: 50,
-            renderTo: $element[0],
+            renderTo: angular.element(),
             style: {
                 fontFamily: [
                     'Roboto',
