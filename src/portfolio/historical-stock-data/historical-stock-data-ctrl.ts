@@ -12,7 +12,6 @@ angular.module('RealTimeTrade').controller('HistoricalStockDataCtrl', function (
     ctrl.chartOptions = {
         chart: {
             height: 50,
-            renderTo: angular.element(),
             style: {
                 fontFamily: [
                     'Roboto',
@@ -41,9 +40,6 @@ angular.module('RealTimeTrade').controller('HistoricalStockDataCtrl', function (
             visible: false
         }
     };
-    
-    ctrl.chart = new Highcharts.StockChart(ctrl.chartOptions);
-    ctrl.chart.showLoading();
 
     if (_.isString(ctrl.symbol) && ctrl.symbol.length && ctrl.symbol.length < 6) {
         HistoricalStockDataService.getHistoricalStockValues(ctrl.symbol)
