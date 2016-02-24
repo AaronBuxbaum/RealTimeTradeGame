@@ -33,7 +33,7 @@ describe('portfolio interface', function () {
         //update stock percentage
         expect(percentage.getText()).toEqual('100%');
 
-        var slider = element(by.model('ctrl.percentage'));
+        var slider = element(by.model('stock.percentage'));
         browser.actions().dragAndDrop(slider, { x: 100, y: 0 }).perform();
 
         expect(percentage.getText()).not.toEqual('100%');
