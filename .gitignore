@@ -1,13 +1,9 @@
-node_modules
 build
-typings
 coverage
 docs
-TEST
-UNUSED
+node_modules
+typings
 
 env.json
 
 *.log
-
-.tsdrc
