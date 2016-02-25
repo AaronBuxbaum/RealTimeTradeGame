@@ -4,6 +4,7 @@ typings
 coverage
 docs
 TEST
+UNUSED
 
 env.json
 
