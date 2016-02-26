@@ -1,5 +1,4 @@
-
-angular.module('RealTimeTrade').factory('AuthenticationService', function ($timeout, $firebaseAuth, $firebaseObject) {
+angular.module('RealTimeTrade').factory('AuthenticationService', function (ToastService, $firebaseAuth, $firebaseObject) {
   var svc = this;
 
   svc.ref = new Firebase('https://realtimetrade.firebaseio.com');
@@ -29,6 +28,7 @@ angular.module('RealTimeTrade').factory('AuthenticationService', function ($time
 
       .catch(function (error) {
         console.log(error);
+        ToastService.toast(error, 'color: red;');
         return error;
       })
 
@@ -54,6 +54,7 @@ angular.module('RealTimeTrade').factory('AuthenticationService', function ($time
 
       .catch(function (error) {
         console.log(error);
+        ToastService.toast(error, 'color: red;');
         return error;
       });
   };
