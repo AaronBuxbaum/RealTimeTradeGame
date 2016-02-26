@@ -25,7 +25,6 @@ describe('PortfolioCtrl', function () {
         it('sets the controller functions after getPortfolio resolves', function () {
             createController();
             expect(ctrl.isLoaded).toBeTruthy();
-            expect(_.isFunction(ctrl.updateStock)).toBeTruthy();
             expect(_.isFunction(ctrl.deleteStock)).toBeTruthy();
             expect(_.isFunction(ctrl.getMax)).toBeTruthy();
         });
