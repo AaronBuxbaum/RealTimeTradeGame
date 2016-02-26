@@ -11,6 +11,6 @@ angular.module('RealTimeTrade').component('stockSlider', {
   controller: 'StockSliderCtrl',
   transclude: true,
   bindings: {
-    stock: '='
+    stock: '<'
   }
 });
