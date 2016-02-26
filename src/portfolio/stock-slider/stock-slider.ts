@@ -9,11 +9,8 @@
 angular.module('RealTimeTrade').component('stockSlider', {
   templateUrl: 'portfolio/stock-slider/stock-slider.html',
   controller: 'StockSliderCtrl',
-  require: 'ngModel',
   transclude: true,
   bindings: {
-    name: '@',
-    percentage: '=ngModel',
-    symbol: '@?'
+    stock: '='
   }
 });

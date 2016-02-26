@@ -10,4 +10,5 @@ angular.module('RealTimeTrade').controller('StockSliderCtrl', function (Portfoli
     var ctrl = this;
     
     ctrl.getMax = PortfolioService.getUnusedPercentage;
+    ctrl.updateStock = PortfolioService.saveStock;
 });

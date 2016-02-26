@@ -17,7 +17,6 @@ angular.module('RealTimeTrade').controller('PortfolioCtrl', function (Authentica
     //Get stock updating functions when the portfolio is ready
     ctrl.portfolio.$loaded(function () {
         ctrl.isLoaded = true;
-        ctrl.updateStock = PortfolioService.saveStock;
         ctrl.deleteStock = PortfolioService.deleteStock;
         ctrl.getMax = PortfolioService.getUnusedPercentage;
     });
