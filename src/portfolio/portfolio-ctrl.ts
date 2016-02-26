@@ -13,11 +13,11 @@ angular.module('RealTimeTrade').controller('PortfolioCtrl', function (Authentica
     //Get portfolio
     var uid = AuthenticationService.getUserID();
     ctrl.portfolio = PortfolioService.getPortfolio(uid);
-
-    //Get stock updating functions when the portfolio is ready
+    ctrl.deleteStock = PortfolioService.deleteStock;
+    ctrl.getMax = PortfolioService.getUnusedPercentage;
+        
+    //Stop loading when the portfolio finishes
     ctrl.portfolio.$loaded(function () {
         ctrl.isLoaded = true;
-        ctrl.deleteStock = PortfolioService.deleteStock;
-        ctrl.getMax = PortfolioService.getUnusedPercentage;
     });
 });

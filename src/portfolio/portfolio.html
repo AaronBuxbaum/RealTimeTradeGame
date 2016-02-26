@@ -20,7 +20,7 @@
         </div>
 
         <!-- Currency holding percentage -->
-        <md-content layout-padding ng-if="$ctrl.getMax(0) > 0" class="fade">
+        <md-content layout-padding ng-if="$ctrl.getMax(0) > 0 && $ctrl.isLoaded" class="fade">
             <span><strong>{{$ctrl.getMax(0)}}%</strong> is held in U.S. Dollars.</span>
         </md-content>
     </md-content>
