@@ -2,7 +2,7 @@ angular.module('RealTimeTrade').factory('HistoricalStockDataService', function (
     var svc = this;
 
     //Get historical stock values
-    svc.getHistoricalStockValues = function (symbol) {
+    svc.getHistoricalStockValues = function (symbol: string) {
         if (!_.isString(symbol)) { return; }
 
         return $http({

@@ -15,7 +15,7 @@ angular.module('RealTimeTrade').factory('AuthenticationService', function (Toast
   });
 
   //Log in
-  svc.logIn = function (email, password) {
+  svc.logIn = function (email: string, password: string) {
     svc.auth.isLoading = true;
     return svc.auth.$authWithPassword({
       email: email,
@@ -26,7 +26,7 @@ angular.module('RealTimeTrade').factory('AuthenticationService', function (Toast
         return svc.profileImage;
       })
 
-      .catch(function (error) {
+      .catch(function (error: string) {
         console.log(error);
         ToastService.toast(error, 'color: red;');
         return error;
@@ -38,12 +38,12 @@ angular.module('RealTimeTrade').factory('AuthenticationService', function (Toast
   };
 
   //Sign up
-  svc.signUp = function (email, password) {
+  svc.signUp = function (email: string, password: string) {
     return svc.auth.$createUser({
       email: email,
       password: password
     })
-      .then(function (response) {
+      .then(function (response: {uid: string}) {
         var user = svc.ref.child('users').child(response.uid);
         var newUser = $firebaseObject(user);
         newUser.uid = response.uid;
@@ -52,7 +52,7 @@ angular.module('RealTimeTrade').factory('AuthenticationService', function (Toast
         return svc.logIn(email, password);
       })
 
-      .catch(function (error) {
+      .catch(function (error: string) {
         console.log(error);
         ToastService.toast(error, 'color: red;');
         return error;
