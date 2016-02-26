@@ -18,22 +18,20 @@ describe('portfolio interface', function () {
         
         //add a stock
         element(by.buttonText('Add Stock')).click();
-        element(by.tagName('md-autocomplete')).element(by.tagName('input')).sendKeys('Apple');
+        element(by.tagName('md-autocomplete')).element(by.tagName('input')).sendKeys('AAPL');
 
         browser.driver.wait(function () {
-            return element(by.cssContainingText('.highlight', 'Apple')).isPresent();
-        }, 3000);
+            return element(by.cssContainingText('span.item-title', 'Apple')).isPresent();
+        }, 5000);
 
         element(by.tagName('md-autocomplete')).element(by.tagName('input')).sendKeys(protractor.Key.ENTER);
         element(by.buttonText('Confirm')).click();
+        expect(element(by.cssContainingText('span.md-body-1', 'Apple Inc.')).isPresent()).toBeTruthy();
 
-        var stockSlider = element(by.tagName('stock-slider'));
-        expect(stockSlider.getAttribute('name')).toEqual('Apple Inc.');
-        
         //update stock percentage
         expect(percentage.getText()).toEqual('100%');
 
-        var slider = element(by.model('stock.percentage'));
+        var slider = element(by.model('$ctrl.stock.percentage'));
         browser.actions().dragAndDrop(slider, { x: 100, y: 0 }).perform();
 
         expect(percentage.getText()).not.toEqual('100%');
