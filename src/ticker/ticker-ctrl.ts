@@ -8,7 +8,7 @@
 * @requires $http
 * @requires AuthenticationService
 **/
-angular.module('RealTimeTrade').controller('TickerCtrl', function ($q, $http, AuthenticationService) {
+angular.module('RealTimeTrade').controller('TickerCtrl', function($q: $q, $http: $http, AuthenticationService: AuthenticationService) {
   var ctrl = this;
   var auth = AuthenticationService.auth.data;
   ctrl.ref = new Firebase('https://realtimetrade.firebaseio.com').child('series').child(auth.uid);
@@ -16,15 +16,41 @@ angular.module('RealTimeTrade').controller('TickerCtrl', function ($q, $http, Au
   //Get lines for each player in active league
   $http.get('json.js')
     .then(setUpChart)
-    .then(function () {
-        ctrl.ref.orderByChild('0').once('value', renderUser)
+    .then(function() {
+      ctrl.ref.orderByChild('0').once('value', renderUser)
     });
     
+  //Services interface
+  interface $q {
+    when: Function
+  }
+  interface $http {
+    get: Function
+  }
+  interface AuthenticationService {
+    auth: {
+      data: {
+        uid: string
+      }
+    }
+  }
+
   //Chart options interface
-  interface IChartOptions{
-    chart: { 
+  interface IChartOptions {
+    chart: {
       renderTo: HTMLElement
     }
+  }
+
+  //Series options interface
+  interface ISeriesData {
+    forEach: Function,
+    ref: Function
+  }
+
+  //Data point interface
+  interface IDataPoint {
+    val: Function
   }
 
   //Set up the chart
@@ -37,19 +63,19 @@ angular.module('RealTimeTrade').controller('TickerCtrl', function ($q, $http, Au
     return $q.when();
   }
 
-  function renderUser(seriesData) {
+  function renderUser(seriesData: ISeriesData) {
     var line = ctrl.chart.addSeries({});
 
     //Set initial data
-    var data = [];
-    seriesData.forEach(function (value: { val: Function }) {
+    var data: number[] = [];
+    seriesData.forEach(function(value: IDataPoint) {
       data.push(value.val());
     });
     line.setData(data);
     ctrl.chart.hideLoading();
-          
+
     //Update lines as new values come in
-    seriesData.ref().limitToLast(1).on('child_added', function (point: { val: Function }) {
+    seriesData.ref().limitToLast(1).on('child_added', function(point: IDataPoint) {
       line.addPoint(point.val(), false);
       ctrl.renderChart();
     });
